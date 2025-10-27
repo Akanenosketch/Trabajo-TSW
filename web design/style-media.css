@@ -1,0 +1,74 @@
+body {
+  border: 5px solid orange;
+  background: #999999;
+  /* Uses % to adjust the content to the screen width. */
+  width: calc(100%-10px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  background-color: black;
+  color: white;
+}
+
+#mainnavigation {
+  background-color: lightgrey;
+  width: 25%;
+  float: left;
+}
+
+#maincontent {
+  width: 50%;
+  background-color: red;
+  float: left;
+}
+
+#news {
+  background-color: cyan;
+  width: 25%;
+  float: left;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  clear: both;
+}
+
+/* Div boxes */
+.boxes {
+  border: dashed 2px;
+  justify-content: space-around;
+  margin: 5%;
+  width: calc(100%-10%);
+}
+
+#group1 {
+  border-color: purple;
+}
+
+/* Responsive */
+/* Small devices (tablets, 768px and up) */
+/* container width: 750 */
+@media (min-width: 768px) {
+  body {
+    background-color: red;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+/* container width: 970 */
+@media (min-width: 992px) {
+  body {
+    background-color: yellow;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+/* container width: 1170px */
+@media (min-width: 1200px) {
+  body {
+    background-color: green;
+  }
+}
