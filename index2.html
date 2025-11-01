@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="design.css">
+    <title>Página de Bienvenida</title>
+
+</head>
+
+<body>
+    <main class="container">
+        <div class="welcome-card" role="region" aria-labelledby="bienvenido">
+            <h1 id="bienvenido">¡RECORCHOLIS!</h1>
+            <p class="subtitle">Esto va a acabar en esvelte</p>
+
+            <div class="actions">
+                <button id="openLogin" class="primary" type="button">Iniciar sesión</button>
+                <button id="openRegister" class="secondary" type="button">Registrarse</button>
+            </div>
+            +
+            </p>
+        </div>
+    </main>
+
+
+    <div id="loginOverlay" class="overlay">
+        <div class="modal">
+            <header>
+                <h2 id="loginTitle">Iniciar sesión</h2>
+                <button class="close-btn" data-close="loginOverlay" aria-label="Cerrar">&times;</button>
+            </header>
+
+            <form id="loginForm" novalidate>
+                <div class="form-row">
+                    <label for="loginNombre">nombreUsuario</label>
+                    <input id="loginNombre" name="nombreUsuario" type="text"
+                        placeholder="Escribe tu nombre de usuario" />
+                </div>
+
+                <div class="form-row">
+                    <label for="loginPass">contraseña</label>
+                    <input id="loginPass" name="contrasena" type="password" placeholder="Contraseña" />
+                </div>
+
+                <div id="loginError" class="error" role="alert" style="display:none"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary" data-close="loginOverlay">Cancelar</button>
+                    <button type="submit" class="primary">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerOverlay" class="overlay">
+        <div class="modal">
+            <header>
+                <h2 id="registerTitle">Registrarse</h2>
+                <button class="close-btn" data-close="registerOverlay" aria-label="Cerrar">&times;</button>
+            </header>
+
+            <form id="registerForm" novalidate>
+                <div class="form-row">
+                    <label for="regNombre">nombreUsuario</label>
+                    <input id="regNombre" name="nombreUsuario" type="text" placeholder="Nombre de usuario" required />
+                </div>
+
+                <div class="form-row">
+                    <label for="regCorreo">correo</label>
+                    <input id="regCorreo" name="correo" type="email" placeholder="nrufino@uvigo.gal" required />
+                </div>
+
+                <div class="form-row">
+                    <label for="regPass">contraseña</label>
+                    <input id="regPass" name="contrasena" type="password" placeholder="Contraseña" required
+                        minlength="6" />
+                </div>
+
+                <div id="regError" class="error" role="alert" style="display:none"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary" data-close="registerOverlay">Cancelar</button>
+                    <button type="submit" class="primary">Crear cuenta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div><strong>Información:</strong> Proyecto Trabajo-TSW — interfaz de ejemplo.</div>
+        <div class="small">Contacto: equipo@example.com · Versión 1.0</div>
+    </footer>
+
+    <script>
+        //gracias stack overflow
+        function showOverlay(id) {
+            const o = document.getElementById(id);
+            if (!o) return;
+            o.classList.add('show');
+            o.setAttribute('aria-hidden', 'false');
+            // focus first input
+            const first = o.querySelector('input');
+            if (first) first.focus();
+        }
+        function hideOverlay(id) {
+            const o = document.getElementById(id);
+            if (!o) return;
+            o.classList.remove('show');
+            o.setAttribute('aria-hidden', 'true');
+        }
+
+        document.querySelectorAll('.overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) hideOverlay(overlay.id);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.overlay.show').forEach(o => hideOverlay(o.id));
+            }
+        });
+
+        document.querySelectorAll('[data-close]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.getAttribute('data-close');
+                hideOverlay(id);
+            });
+        });
+
+
+        document.getElementById('openLogin').addEventListener('click', () => {
+            showOverlay('loginOverlay');
+            window.open('https://youtu.be/xvFZjo5PgG0', '_blank');
+        });
+        document.getElementById('openRegister').addEventListener('click', () => showOverlay('registerOverlay'));
+
+     
+ 
+    
+
+    
+    </script>
+</body>
+
+</html>
