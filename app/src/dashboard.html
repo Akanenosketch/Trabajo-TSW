@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="../style/dashboard.css">
+    <title>Dashboard - Kanban</title>
+
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="username" id="userDisplay">Usuario</div>
+            <div class="small" id="userEmail">Lista de proyectos</div>
+        </div>
+        <div>
+            <button onclick="logout()" class="add-btn">Cerrar sesión</button>
+        </div>
+    </header>
+
+    <section class="project-list">
+        <div class="add-project-container">
+            <button id="openNewProjectModal" class="add-btn">Añadir proyecto</button>
+        </div>
+
+        <div class="content-center">
+            <div class="table-container">
+                <table id="projectsTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre del proyecto</th>
+                            <th>Tareas ToDo</th>
+                            <th>Tareas Working</th>
+                            <th>Tareas Done</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projectsContainer"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para nuevo proyecto -->
+    <div id="newProjectModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-box">
+            <h3>Nuevo proyecto</h3>
+            <form id="addProjectForm">
+                <div class="form-row">
+                    <label>Nombre del proyecto</label>
+                    <input id="newProjectName" type="text" required>
+                </div>
+                <div class="form-row">
+                    <label>Participantes</label>
+                    <div id="initialUsers" class="checkbox-list"></div>
+                </div>
+                <div class="form-row">
+                    <label>Tarea inicial</label>
+                    <div id="initialTasks">
+                        <div class="task-input-group">
+                            <div class="task-main-inputs">
+                                <input type="text" placeholder="Nombre de la tarea" class="task-input">
+                                <textarea placeholder="Descripción de la tarea" class="task-desc"></textarea>
+                                <select class="task-status">
+                                    <option value="todo">ToDo</option>
+                                    <option value="working">Working</option>
+                                    <option value="done">Done</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" id="addTaskField" style="margin-top:8px">+ Añadir otra tarea</button>
+                </div>
+                <div style="text-align:right;margin-top:12px">
+                    <button type="button" class="btn" id="cancelProjectBtn">Cancelar</button>
+                    <button type="submit" class="btn primary">Crear proyecto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
+        .modal-overlay.show{display:flex}
+        .modal-box{
+            background:var(--surface-dark);
+            color:var(--text-bright);
+            padding:24px;
+            border-radius:12px;
+            min-width:400px;
+            max-width:92%;
+            border:1px solid var(--border-dark);
+            box-shadow:0 0 40px rgba(0,255,157,0.1)
+        }
+        .form-row{margin-bottom:16px}
+        .form-row label{
+            display:block;
+            margin-bottom:8px;
+            color:var(--text-dim);
+            font-size:14px
+        }
+        input[type="text"], textarea, select{
+            width:100%;
+            padding:10px;
+            border:1px solid var(--border-dark);
+            background:var(--surface-lighter);
+            border-radius:6px;
+            color:var(--text-bright);
+            font-size:15px
+        }
+        textarea {
+            resize:vertical;
+            min-height:80px
+        }
+        .checkbox-list{
+            max-height:120px;
+            overflow:auto;
+            border:1px solid var(--border-dark);
+            padding:12px;
+            border-radius:8px;
+            background:var(--surface-lighter)
+        }
+        .checkbox-list label{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            margin-bottom:8px;
+            color:var(--text-bright)
+        }
+        .task-input-group{
+            display:flex;
+            gap:8px;
+            margin-bottom:8px;
+            align-items:center
+        }
+        .task-input{flex:1}
+        .remove-task{
+            padding:6px 12px;
+            background:#ff3b3b;
+            color:white;
+            border-radius:6px;
+            border:none
+        }
+        .btn{
+            padding:10px 16px;
+            border-radius:6px;
+            border:none;
+            cursor:pointer;
+            font-weight:500;
+            transition:all 0.3s ease
+        }
+        .btn.primary{
+            background:var(--accent-neon);
+            color:var(--bg-dark)
+        }
+        h3{
+            color:var(--accent-neon);
+            margin:0 0 20px 0;
+            font-size:20px;
+            text-shadow:0 0 10px rgba(0,255,157,0.3)
+        }
+        .add-project-container{
+            text-align:center;
+            margin-bottom:32px;
+            padding:20px 0
+        }
+        .add-project-container .add-btn{
+            padding:14px 28px;
+            font-size:16px;
+            letter-spacing:0.5px
+        }
+    </style>
+
+    <script>
+        // Leer usuario y proyectos desde localStorage
+        const user = localStorage.getItem('kanban_user') || 'Invitado';
+        document.getElementById('userDisplay').textContent = user;
+
+        function getProjects() {
+            try {
+                return JSON.parse(localStorage.getItem('kanban_projects') || '[]');
+            } catch (e) { return [] }
+        }
+        function setProjects(p) { localStorage.setItem('kanban_projects', JSON.stringify(p)); }
+
+        function render() {
+            const container = document.getElementById('projectsContainer');
+            const projects = getProjects();
+            if (!projects.length) {
+                container.innerHTML = '<tr><td colspan="4" style="text-align:center" class="small">No hay proyectos. Utiliza el botón superior para crear uno nuevo.</td></tr>';
+                return;
+            }
+            
+            const rows = projects
+                .filter(proj => {
+                    // Show only projects where user participates
+                    const participants = proj.participants || [];
+                    return participants.includes(user);
+                })
+                .map(proj => {
+                    // Count tasks by status
+                    const tasks = proj.tasks || [];
+                    const counts = {
+                        todo: tasks.filter(t => t.status === 'todo').length,
+                        working: tasks.filter(t => t.status === 'working').length,
+                        done: tasks.filter(t => t.status === 'done').length
+                    };
+                    
+                    return `
+                        <tr>
+                            <td><a class="project-link" href="project.html?id=${proj.id}">${escapeHtml(proj.name)}</a></td>
+                            <td><span class="task-count">${counts.todo}</span></td>
+                            <td><span class="task-count">${counts.working}</span></td>
+                            <td><span class="task-count">${counts.done}</span></td>
+                        </tr>
+                    `;
+                });
+            
+            container.innerHTML = rows.length ? rows.join('') :
+                '<tr><td colspan="4" style="text-align:center" class="small">No tienes proyectos asignados.</td></tr>';
+        }
+
+        // Modal helpers
+        function openModal(id){ const m=document.getElementById(id); if(!m) return; m.classList.add('show'); m.setAttribute('aria-hidden','false'); }
+        function closeModal(id){ const m=document.getElementById(id); if(!m) return; m.classList.remove('show'); m.setAttribute('aria-hidden','true'); }
+
+        // Get all known users
+        function getAllUsers(){
+            const all = new Set();
+            const cur = localStorage.getItem('kanban_user'); if(cur) all.add(cur);
+            const allProjects = getProjects();
+            allProjects.forEach(p=> (p.participants||[]).forEach(u=> all.add(u)) );
+            return Array.from(all).sort();
+        }
+
+        document.getElementById('openNewProjectModal').addEventListener('click', () => {
+            // Reset form
+            document.getElementById('newProjectName').value = '';
+            
+            // Populate users list
+            const list = document.getElementById('initialUsers');
+            list.innerHTML = '';
+            const users = getAllUsers();
+            users.forEach(u => {
+                const id = 'user-'+Math.random().toString(36).slice(2,8);
+                const checked = u === user ? 'checked' : '';
+                list.innerHTML += `<div><label><input type="checkbox" value="${escapeHtml(u)}" id="${id}" ${checked}> ${escapeHtml(u)}</label></div>`;
+            });
+            
+            // Clear tasks except first
+            const tasksDiv = document.getElementById('initialTasks');
+            tasksDiv.innerHTML = `
+                <div class="task-input-group">
+                    <div style="flex:1">
+                        <input type="text" placeholder="Nombre de la tarea" class="task-input">
+                        <textarea placeholder="Descripción de la tarea" class="task-desc"></textarea>
+                        <select class="task-status" style="margin-top:8px">
+                            <option value="todo">ToDo</option>
+                            <option value="working">Working</option>
+                            <option value="done">Done</option>
+                        </select>
+                        <div class="task-assignees-select"></div>
+                    </div>
+                    <button type="button" class="btn remove-task" style="align-self:flex-start">×</button>
+                </div>
+            `;
+            
+            // Add initial assignees checkboxes
+            updateTaskAssignees(tasksDiv.querySelector('.task-assignees-select'));
+            
+            openModal('newProjectModal');
+        });
+
+        document.getElementById('cancelProjectBtn').addEventListener('click', () => closeModal('newProjectModal'));
+        
+        // Add new task input field
+        // Helper function to update task assignees checkboxes
+        function updateTaskAssignees(container) {
+            const users = getAllUsers();
+            container.innerHTML = `
+                <div style="margin-top:8px">
+                    <label style="display:block;margin-bottom:4px;color:var(--text-dim)">Asignar a:</label>
+                    <div class="checkbox-list" style="max-height:80px">
+                        ${users.map(u => `
+                            <label style="display:flex;gap:8px;margin-bottom:4px">
+                                <input type="checkbox" value="${escapeHtml(u)}"> ${escapeHtml(u)}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('addTaskField').addEventListener('click', () => {
+            const div = document.createElement('div');
+            div.className = 'task-input-group';
+            div.innerHTML = `
+                <div style="flex:1">
+                    <input type="text" placeholder="Nombre de la tarea" class="task-input">
+                    <textarea placeholder="Descripción de la tarea" class="task-desc"></textarea>
+                    <div class="task-assignees-select"></div>
+                </div>
+                <div style="min-width:120px">
+                    <select class="task-status">
+                        <option value="todo">ToDo</option>
+                        <option value="working">Working</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <button type="button" class="btn remove-task">×</button>
+            `;
+            document.getElementById('initialTasks').appendChild(div);
+            updateTaskAssignees(div.querySelector('.task-assignees-select'));
+        });
+
+        // Remove task input field
+        document.getElementById('initialTasks').addEventListener('click', e => {
+            if(e.target.classList.contains('remove-task')) {
+                const groups = document.querySelectorAll('.task-input-group');
+                if(groups.length > 1) {
+                    e.target.closest('.task-input-group').remove();
+                }
+            }
+        });
+
+        document.getElementById('addProjectForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('newProjectName').value.trim();
+            if (!name) return;
+
+            // Get selected users
+            const checked = Array.from(document.querySelectorAll('#initialUsers input[type=checkbox]:checked')).map(i=>i.value);
+            const participants = [...new Set(checked)];
+            
+            // Asegurar que el usuario actual es participante
+            if (!participants.includes(user)) {
+                participants.push(user);
+            }
+            
+            // Get tasks with descriptions and assignees
+            const tasks = Array.from(document.querySelectorAll('.task-input-group')).map(g => {
+                const name = g.querySelector('.task-input').value.trim();
+                const description = g.querySelector('.task-desc').value.trim();
+                const status = g.querySelector('.task-status').value;
+                const assignees = Array.from(g.querySelectorAll('.task-assignees-select input[type="checkbox"]:checked'))
+                    .map(cb => cb.value);
+                
+                return name ? { 
+                    id: Date.now().toString(36) + Math.random().toString(36).slice(2),
+                    name,
+                    description,
+                    status,
+                    assignees
+                } : null;
+            }).filter(Boolean);
+
+            const projects = getProjects();
+            const p = { id: Date.now().toString(36), name, participants, tasks };
+            projects.push(p);
+            setProjects(projects);
+            closeModal('newProjectModal');
+            render();
+        });
+
+        function logout() {
+            localStorage.removeItem('kanban_user');
+            // keep projects
+            window.location.href = 'login.html';
+        }
+
+        function escapeHtml(s) {
+            return (s + '').replace(/[&<>\"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' })[c]);
+        }
+
+        render();
+    </script>
+</body>
+
+</html>
