@@ -1,0 +1,244 @@
+:root {
+    --bg-dark: #0a0b0f;
+    --surface-dark: #1a1b23;
+    --surface-lighter: #22242e;
+    --accent-neon: #00ff9d;
+    --accent-glow: #00cc7e;
+    --text-bright: #ffffff;
+    --text-dim: #9da3b4;
+    --border-dark: #2a2d3a;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
+    padding: 20px;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    max-width: 1400px;
+    margin: 0 auto
+}
+
+header {
+    margin-bottom: 24px;
+    background: var(--surface-dark);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--border-dark)
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.project-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--accent-neon);
+    text-shadow: 0 0 10px rgba(0,255,157,0.3);
+    margin-bottom: 16px;
+}
+
+.stats-container {
+    display: flex;
+    gap: 32px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-item > span:first-child {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-bright);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-dim);
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--accent-neon);
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.controls {
+    display: flex;
+    gap: 12px
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+}
+
+.btn.primary:hover {
+    background: var(--accent-glow);
+}
+
+.btn.danger {
+    background: #ff3b3b;
+    color: #fff;
+}
+
+.project-content {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.tasks-container {
+    flex: 1;
+}
+
+.task-actions {
+    width: 200px;
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-btn {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+}
+
+.cols {
+    display: flex;
+    gap: 16px
+}
+
+.col {
+    background: var(--surface-dark);
+    padding: 16px;
+    border-radius: 12px;
+    flex: 1;
+    min-height: 200px;
+    border: 1px solid var(--border-dark);
+}
+
+.col h4 {
+    color: var(--text-dim);
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.task {
+    padding: 16px;
+    background: var(--surface-lighter);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid var(--border-dark);
+    gap: 16px
+}
+
+.task-title {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-bright)
+}
+
+.task-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    line-height: 1.4
+}
+
+.task-assignees {
+    font-size: 13px;
+    color: var(--accent-neon)
+}
+
+input[type=text], textarea, select {
+    padding: 10px;
+    background: var(--surface-lighter);
+    border: 1px solid var(--border-dark);
+    border-radius: 6px;
+    color: var(--text-bright);
+    width: 100%
+}
+
+select {
+    background: var(--surface-lighter);
+    color: var(--text-bright)
+}
+
+.small {
+    font-size: 13px;
+    color: var(--text-dim)
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    body {
+        padding: 16px;
+    }
+    .cols {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cols {
+        flex-direction: column;
+    }
+    .col {
+        min-height: auto;
+    }
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    .controls {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .task {
+        flex-direction: column;
+    }
+    .task > div:last-child {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    .task select {
+        flex: 1;
+    }
+}

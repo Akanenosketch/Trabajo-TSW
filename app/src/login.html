@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="../style/login.css">
     <title>Página de Bienvenida</title>
 
 </head>
@@ -19,7 +19,7 @@
                 <button id="openLogin" class="primary" type="button">Iniciar sesión</button>
                 <button id="openRegister" class="secondary" type="button">Registrarse</button>
             </div>
-            +
+            
             </p>
         </div>
     </main>
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <!-- Register Modal -->
+
     <div id="registerOverlay" class="overlay">
         <div class="modal">
             <header>
@@ -96,15 +96,28 @@
 
     <script>
         //gracias stack overflow
+
+        /*
+        * param :id: correspond to form 
+        * 
+        * able visluazation on web page 
+        * gets proc by cliccking on form buttom with action recall
+        */
         function showOverlay(id) {
             const o = document.getElementById(id);
             if (!o) return;
             o.classList.add('show');
             o.setAttribute('aria-hidden', 'false');
-            // focus first input
             const first = o.querySelector('input');
             if (first) first.focus();
         }
+
+        /*
+        * param :id: correspond to form 
+        * 
+        * disables visluazation on web page 
+        * gets proc by key:ESC: clicking outside or close buttom
+        */
         function hideOverlay(id) {
             const o = document.getElementById(id);
             if (!o) return;
@@ -131,18 +144,37 @@
             });
         });
 
-
         document.getElementById('openLogin').addEventListener('click', () => {
             showOverlay('loginOverlay');
-            window.open('https://youtu.be/xvFZjo5PgG0', '_blank');
         });
         document.getElementById('openRegister').addEventListener('click', () => showOverlay('registerOverlay'));
 
-     
- 
-    
+        // Manejo del submit del formulario de login: guardar usuario y redirigir al dashboard
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (loginError) loginError.style.display = 'none';
+                const nombre = document.getElementById('loginNombre').value.trim();
+                const pass = document.getElementById('loginPass').value;
+                if (!nombre) {
+                    if (loginError) {
+                        loginError.textContent = 'Por favor, introduce nombre de usuario.';
+                        loginError.style.display = 'block';
+                    }
+                    return;
+                }
+                // Guardar usuario en localStorage (sin verificación)
+                localStorage.setItem('kanban_user', nombre);
+                if (!localStorage.getItem('kanban_projects')) {
+                    localStorage.setItem('kanban_projects', JSON.stringify([]));
+                }
+                // Redirigir al dashboard (archivo en la misma carpeta)
+                window.location.href = 'dashboard.html';
+            });
+        }
 
-    
     </script>
 </body>
 
