@@ -1,0 +1,7 @@
+CSS responsive
+Centrar la tabla pls
+Hacer el server
+Revisar el js (la gran parte sobra xd creo que hay que hacer hasta los forms en html distinto, )
+manual de usuario
+Montar el lamp server
+Montar el server codigo
