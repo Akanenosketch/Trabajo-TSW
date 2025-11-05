@@ -5,4 +5,5 @@ Revisar el js (la gran parte sobra xd creo que hay que hacer hasta los forms en 
 manual de usuario
 Montar el lamp server
 Montar el server codigo
-Poner los dnis
+Poner los dnis AL ENTREGAR SIN COMMITEAR
+El script sql meterle el dump de la db
