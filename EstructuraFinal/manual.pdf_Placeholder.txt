@@ -1,0 +1,5 @@
+Fichero manual.pdf que contenga:
+
+Pasos a seguir para desplegar y probar la aplicación.
+Usuario y contraseña de acceso a la base de datos.   tswuser     tswpass
+Usuario y contraseña de la web de un usuario que tenga proyectos y tareas asignadas.  tswuser  tswpass
