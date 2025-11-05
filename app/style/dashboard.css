@@ -1,45 +1,45 @@
     :root {
-    --bg-dark: #0a0b0f;
-    --surface-dark: #1a1b23;
-    --surface-lighter: #22242e;
-    --accent-neon: #00ff9d;
-    --accent-glow: #00cc7e;
-    --text-bright: #ffffff;
-    --text-dim: #9da3b4;
-    --border-dark: #2a2d3a;
-}
+        --bg-dark: #0a0b0f;
+        --surface-dark: #1a1b23;
+        --surface-lighter: #22242e;
+        --accent-neon: #00ff9d;
+        --accent-glow: #00cc7e;
+        --text-bright: #ffffff;
+        --text-dim: #9da3b4;
+        --border-dark: #2a2d3a;
+    }
 
-body {
-    font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
-    padding: 20px;
-    background: var(--bg-dark);
-    max-width: 1400px;
-    margin: 0 auto;
-    color: var(--text-bright)
-}
+    body {
+        font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
+        padding: 20px;
+        background: var(--bg-dark);
+        max-width: 1400px;
+        margin: 0 auto;
+        color: var(--text-bright)
+    }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-    background: var(--surface-dark);
-    padding: 16px 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    border: 1px solid var(--border-dark)
-}
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+        background: var(--surface-dark);
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border-dark)
+    }
 
-.username {
-    font-weight: 600;
-    font-size: 18px;
-    background: var(--surface-lighter);
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--border-dark);
-    color: var(--accent-neon);
-    text-shadow: 0 0 10px rgba(0,255,157,0.3);
-}
+    .username {
+        font-weight: 600;
+        font-size: 18px;
+        background: var(--surface-lighter);
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border-dark);
+        color: var(--accent-neon);
+        text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+    }
 
     .table-container {
         background: var(--surface-dark);
@@ -49,7 +49,7 @@ header {
         overflow-x: auto;
         margin: 0 auto;
         width: 90%;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2)
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)
     }
 
     table {
@@ -72,7 +72,8 @@ header {
         border-bottom: 1px solid var(--border-dark);
     }
 
-    th, td {
+    th,
+    td {
         padding: 16px;
     }
 
@@ -103,12 +104,12 @@ header {
         text-transform: uppercase;
         letter-spacing: 0.5px;
         transition: all 0.3s ease;
-        box-shadow: 0 0 20px rgba(0,255,157,0.2);
+        box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
     }
 
     .add-btn:hover {
         background: var(--accent-glow);
-        box-shadow: 0 0 30px rgba(0,255,157,0.4);
+        box-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
     }
 
     /* Responsive Design */
@@ -122,6 +123,7 @@ header {
         body {
             padding: 16px;
         }
+
         .table-container {
             width: 95%;
         }
@@ -133,7 +135,9 @@ header {
             text-align: center;
             gap: 16px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
         }
     }
@@ -143,10 +147,13 @@ header {
             padding: 12px;
             width: 100%;
         }
-        th, td {
+
+        th,
+        td {
             padding: 8px;
             font-size: 14px;
         }
+
         .task-count {
             padding: 4px 8px;
             font-size: 12px;
@@ -178,4 +185,127 @@ header {
     a.project-link {
         color: #2b8aef;
         text-decoration: none
+    }
+
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(4px)
+    }
+
+    .modal-overlay.show {
+        display: flex
+    }
+
+    .modal-box {
+        background: var(--surface-dark);
+        color: var(--text-bright);
+        padding: 24px;
+        border-radius: 12px;
+        min-width: 400px;
+        max-width: 92%;
+        border: 1px solid var(--border-dark);
+        box-shadow: 0 0 40px rgba(0, 255, 157, 0.1)
+    }
+
+    .form-row {
+        margin-bottom: 16px
+    }
+
+    .form-row label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-dim);
+        font-size: 14px
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--border-dark);
+        background: var(--surface-lighter);
+        border-radius: 6px;
+        color: var(--text-bright);
+        font-size: 15px
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px
+    }
+
+    .checkbox-list {
+        max-height: 120px;
+        overflow: auto;
+        border: 1px solid var(--border-dark);
+        padding: 12px;
+        border-radius: 8px;
+        background: var(--surface-lighter)
+    }
+
+    .checkbox-list label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        color: var(--text-bright)
+    }
+
+    .task-input-group {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+        align-items: center
+    }
+
+    .task-input {
+        flex: 1
+    }
+
+    .remove-task {
+        padding: 6px 12px;
+        background: #ff3b3b;
+        color: white;
+        border-radius: 6px;
+        border: none
+    }
+
+    .btn {
+        padding: 10px 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease
+    }
+
+    .btn.primary {
+        background: var(--accent-neon);
+        color: var(--bg-dark)
+    }
+
+    h3 {
+        color: var(--accent-neon);
+        margin: 0 0 20px 0;
+        font-size: 20px;
+        text-shadow: 0 0 10px rgba(0, 255, 157, 0.3)
+    }
+
+    .add-project-container {
+        text-align: center;
+        margin-bottom: 32px;
+        padding: 20px 0
+    }
+
+    .add-project-container .add-btn {
+        padding: 14px 28px;
+        font-size: 16px;
+        letter-spacing: 0.5px
     }
