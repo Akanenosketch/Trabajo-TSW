@@ -7,3 +7,5 @@ Montar el lamp server
 Montar el server codigo
 Poner los dnis AL ENTREGAR SIN COMMITEAR
 El script sql meterle el dump de la db
+en elform de añadir quitar la task por defecto, al menos 1 participante (por defecto el propio)
+hay cosas que usan alert y otras no
