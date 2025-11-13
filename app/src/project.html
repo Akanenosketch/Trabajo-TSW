@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="../style/project.css">
-    <title>Proyecto - Kanban</title>
+    <title>Proyecto</title>
 
 
 </head>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="stat-item">
                         <span id="totalTasks">0</span>
-                        <span class="stat-label">Tareas totales</span>
+                        <span class="stat-label">Tareas Totales</span>
                     </div>
                     <div class="stat-item">
                         <span id="completionRate">0%</span>
@@ -54,9 +54,9 @@
             </div>
         </div>
         <div class="task-actions">
-            <button class="btn primary action-btn" id="openTaskModal">+ Nueva tarea</button>
-            <button class="btn action-btn" id="editProjBtn" style="margin-top:12px">Editar proyecto</button>
-            <button class="btn danger action-btn" id="deleteProjBtn" style="margin-top:8px">Eliminar proyecto</button>
+            <button class="btn primary action-btn" id="openTaskModal">+ Nueva Tarea</button>
+            <button class="btn action-btn" id="editProjBtn" style="margin-top:12px">Editar Proyecto</button>
+            <button class="btn danger action-btn" id="deleteProjBtn" style="margin-top:8px">Eliminar Proyecto</button>
         </div>
     </main>
 
@@ -64,13 +64,13 @@
     <div id="taskModal" class="modal-overlay" aria-hidden="true">
         <div class="modal-box">
             <div class="modal-content">
-                <h3 id="taskModalTitle">Añadir tarea</h3>
+                <h3 id="taskModalTitle">Añadir Tarea</h3>
                 <div class="form-row">
                     <label>Nombre</label>
                     <input id="modalTaskName" type="text" required>
                 </div>
                 <div class="form-row">
-                    <label>Descripción</label>
+                    <label>Descripcion</label>
                     <textarea id="modalTaskDesc" rows="3"></textarea>
                 </div>
                 <div class="form-row">
@@ -97,19 +97,19 @@
     <div id="userModal" class="modal-overlay" aria-hidden="true">
         <div class="modal-box">
             <div class="modal-content">
-                <h3>Administrar usuarios</h3>
+                <h3>Administrar Usuarios</h3>
                 <div class="form-row">
-                    <label>Usuarios existentes</label>
+                    <label>Usuarios Existentes</label>
                     <div id="modalUserList" class="checkbox-list"></div>
                 </div>
                 <div class="form-row">
-                    <label>Añadir nuevo usuario</label>
+                    <label>Añadir Nuevo Usuario</label>
                     <input id="modalNewUser" type="text" placeholder="Nombre de usuario">
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn" id="cancelUserBtn">Cancelar</button>
-                <button class="btn primary" id="saveUserBtn">Guardar cambios</button>
+                <button class="btn primary" id="saveUserBtn">Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -117,15 +117,15 @@
     <div id="editProjectModal" class="modal-overlay" aria-hidden="true">
         <div class="modal-box">
             <div class="modal-content">
-                <h3>Editar proyecto</h3>
+                <h3>Editar Proyecto</h3>
                 <div class="form-row">
-                    <label>Nombre del proyecto</label>
+                    <label>Nombre del Proyecto</label>
                     <input id="editProjectName" type="text" required>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal('editProjectModal')">Cancelar</button>
-                <button class="btn primary" id="confirmEditProjectBtn">Guardar cambios</button>
+                <button class="btn primary" id="confirmEditProjectBtn">Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -133,7 +133,8 @@
     <div id="deleteProjectModal" class="modal-overlay" aria-hidden="true">
         <div class="modal-box">
             <div class="modal-content">
-                <h3>Eliminar proyecto</h3>
+                <h3>Eliminar Proyecto</h3>
+                <!--El stype al css-->
                 <p style="margin:0 0 20px;line-height:1.5">¿Estás seguro de que deseas eliminar este proyecto? Esta
                     acción no se puede deshacer y se perderán todas las tareas asociadas.</p>
             </div>

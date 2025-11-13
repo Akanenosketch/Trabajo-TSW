@@ -1,5 +1,8 @@
+Hay un div con el css incrustado en dashboard hay que pasarlo al css
 CSS responsive
 Centrar la tabla pls
+En el dashboard quite una cosa del formulario revisar el css pq peta
+Tal vez no acepte modales
 Hacer el server
 Revisar el js (la gran parte sobra xd creo que hay que hacer hasta los forms en html distinto, )
 manual de usuario

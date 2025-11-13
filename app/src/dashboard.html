@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="../style/dashboard.css">
-    <title>Dashboard - Kanban</title>
+    <title>Dashboard</title>
     
 
 </head>
@@ -14,16 +14,16 @@
     <header>
         <div>
             <div class="username" id="userDisplay">Usuario</div>
-            <div class="small" id="userEmail">Lista de proyectos</div>
+            <div class="small" id="userEmail">Lista de Proyectos</div>
         </div>
         <div>
-            <button onclick="logout()" class="add-btn">Cerrar sesión</button>
+            <button onclick="logout()" class="add-btn">Cerrar sesion</button>
         </div>
     </header>
 
     <section class="project-list">
         <div class="add-project-container">
-            <button id="openNewProjectModal" class="add-btn">Añadir proyecto</button>
+            <button id="openNewProjectModal" class="add-btn">Añadir Proyecto</button>
         </div>
 
         <div class="content-center">
@@ -31,7 +31,7 @@
                 <table id="projectsTable">
                     <thead>
                         <tr>
-                            <th>Nombre del proyecto</th>
+                            <th>Nombre del Proyecto</th>
                             <th>Tareas ToDo</th>
                             <th>Tareas Working</th>
                             <th>Tareas Done</th>
@@ -46,34 +46,17 @@
     <!-- Modal para nuevo proyecto -->
     <div id="newProjectModal" class="modal-overlay" aria-hidden="true">
         <div class="modal-box">
-            <h3>Nuevo proyecto</h3>
+            <h3>Nuevo Proyecto</h3>
             <form id="addProjectForm">
                 <div class="form-row">
-                    <label>Nombre del proyecto</label>
+                    <label>Nombre del Proyecto</label>
                     <input id="newProjectName" type="text" required>
                 </div>
                 <div class="form-row">
                     <label>Participantes</label>
                     <div id="initialUsers" class="checkbox-list"></div>
                 </div>
-                <div class="form-row">
-                    <label>Tarea inicial</label>
-                    <div id="initialTasks">
-                        <div class="task-input-group">
-                            <div class="task-main-inputs">
-                                <input type="text" placeholder="Nombre de la tarea" class="task-input">
-                                <textarea placeholder="Descripción de la tarea" class="task-desc"></textarea>
-                                <select class="task-status">
-                                    <option value="todo">ToDo</option>
-                                    <option value="working">Working</option>
-                                    <option value="done">Done</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn" id="addTaskField" style="margin-top:8px">+ Añadir otra
-                        tarea</button>
-                </div>
+                <!--ESTE STYLE AL CSS-->
                 <div style="text-align:right;margin-top:12px">
                     <button type="button" class="btn" id="cancelProjectBtn">Cancelar</button>
                     <button type="submit" class="btn primary">Crear proyecto</button>
