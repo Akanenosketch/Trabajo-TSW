@@ -1,14 +1,22 @@
 Hay un div con el css incrustado en dashboard hay que pasarlo al css
 CSS responsive
 Centrar la tabla pls
-En el dashboard quite una cosa del formulario revisar el css pq peta
-Tal vez no acepte modales
-Hacer el server
-Revisar el js (la gran parte sobra xd creo que hay que hacer hasta los forms en html distinto, )
+Revisar el js (la gran parte sobra xd creo que hay que hacer hasta los forms en html distinto)
 manual de usuario
-Montar el lamp server
-Montar el server codigo
 Poner los dnis AL ENTREGAR SIN COMMITEAR
 El script sql meterle el dump de la db
-en elform de añadir quitar la task por defecto, al menos 1 participante (por defecto el propio)
+en el form al menos 1 participante (por defecto el propio)
 hay cosas que usan alert y otras no
+Montar y probar el lamp server
+Montar el server codigo
+Para añadir usuarios a un proyecto es por email, metodos de recuperacion de email en el UserMapper
+Identificacion es solo con el correo no con el usuario
+Comprobar que en el resto de tablas se elimina lo que toca cuando se borra un proyecto/usuario/tarea   FK delete on cascade
+Comprobar que los mapper funcionan
+
+Model, core y el index.php estan en principio acabados
+En el dashboard quite una cosa del formulario revisar el JS pq peta
+Tal vez no acepte modales preguntarle en clase
+
+
+Falta por hacer: Controllers, Vistas, manual de usuario, dump de la db, probar con lampserver
