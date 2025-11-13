@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="../style/login.css">
-    <title>Página de Bienvenida</title>
+    <link rel="stylesheet" type="text/css" href="../style/login.css">
+    <title>Pagina de Bienvenida</title>
     
 </head>
 
@@ -13,10 +13,10 @@
     <main class="container">
         <div class="welcome-card" role="region" aria-labelledby="bienvenido">
             <h1 id="bienvenido">Bienvenido</h1>
-            <p class="subtitle">Un app de administración al estilo Kanban</p>
+            <p class="subtitle">Una app de administracion al estilo Kanban</p>
 
             <div class="actions">
-                <button id="openLogin" class="primary" type="button">Iniciar sesión</button>
+                <button id="openLogin" class="primary" type="button">Iniciar sesion</button>
                 <button id="openRegister" class="secondary" type="button">Registrarse</button>
             </div>
 
@@ -28,19 +28,19 @@
     <div id="loginOverlay" class="overlay">
         <div class="modal">
             <header>
-                <h2 id="loginTitle">Iniciar sesión</h2>
+                <h2 id="loginTitle">Iniciar sesion</h2>
                 <button class="close-btn" data-close="loginOverlay" aria-label="Cerrar">&times;</button>
             </header>
 
             <form id="loginForm" novalidate>
                 <div class="form-row">
-                    <label for="loginNombre">nombreUsuario</label>
+                    <label for="loginNombre">Nombre de Usuario</label>
                     <input id="loginNombre" name="nombreUsuario" type="text"
                         placeholder="Escribe tu nombre de usuario" />
                 </div>
 
                 <div class="form-row">
-                    <label for="loginPass">contraseña</label>
+                    <label for="loginPass">Contraseña</label>
                     <input id="loginPass" name="contrasena" type="password" placeholder="Contraseña" />
                 </div>
 
@@ -64,17 +64,17 @@
 
             <form id="registerForm" novalidate>
                 <div class="form-row">
-                    <label for="regNombre">nombreUsuario</label>
+                    <label for="regNombre">Nombre de Usuario</label>
                     <input id="regNombre" name="nombreUsuario" type="text" placeholder="Nombre de usuario" required />
                 </div>
 
                 <div class="form-row">
-                    <label for="regCorreo">correo</label>
+                    <label for="regCorreo">Correo</label>
                     <input id="regCorreo" name="correo" type="email" placeholder="nrufino@uvigo.gal" required />
                 </div>
 
                 <div class="form-row">
-                    <label for="regPass">contraseña</label>
+                    <label for="regPass">Contraseña</label>
                     <input id="regPass" name="contrasena" type="password" placeholder="Contraseña" required
                         minlength="6" />
                 </div>
@@ -90,8 +90,8 @@
     </div>
 
     <footer class="site-footer">
-        <div><strong>Información:</strong> Proyecto Trabajo-TSW — interfaz de ejemplo.</div>
-        <div class="small">Contacto: equipo@example.com · Versión 1.0</div>
+        <div><strong>Informacion:</strong> Proyecto Trabajo-TSW — Interfaz de Ejemplo.</div>
+        <div class="small">Contacto: equipo@example.com · Version 1.0</div>
     </footer>
     <script type="text/javascript" src="./js/login_script.js"></script>
 </body>
