@@ -31,7 +31,7 @@ array(
 	
 	//register_form
 	"Correo" => "Email",
-	"Crear cuenta" => "Create Account",
+	"Crear Cuenta" => "Create Account",
 
 	//dashboard.php
 	"Dashboard" => "Dashboard",
