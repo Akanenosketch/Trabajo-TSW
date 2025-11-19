@@ -28,10 +28,12 @@ array(
 	
 	// login_form
 	"Entrar" => "Enter",
-	
+	"Login Form" => "Login Form",
+
 	//register_form
 	"Correo" => "Email",
 	"Crear Cuenta" => "Create Account",
+	"Register Form" => "Register Form",
 
 	//dashboard.php
 	"Dashboard" => "Dashboard",

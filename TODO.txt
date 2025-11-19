@@ -20,3 +20,13 @@ Tal vez no acepte modales preguntarle en clase
 
 
 Falta por hacer: Controllers, Vistas, manual de usuario, dump de la db, probar con lampserver
+
+
+el css al separar las vistas era 1 por vista o el del login form es el mismo que el de la pagina de bienvenida?
+
+
+hacer el html poliglota (html5 y xhmtl)
+
+ponerle a los views las acciones para cambiar de pagina
+cambiar el lang del html con las cookies
+meter la parte de languaje

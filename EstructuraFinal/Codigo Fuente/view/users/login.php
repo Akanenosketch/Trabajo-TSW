@@ -8,10 +8,11 @@ $view = ViewManager::getInstance();
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="../css/welcomePage.css">
-    <title><?= i18n("Usuario registrado") ?></title>
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <title><?= i18n("Login Form") ?></title>
 </head>
 <html>
+    
 <div id="loginOverlay" class="overlay">
     <div class="modal">
         <header>
