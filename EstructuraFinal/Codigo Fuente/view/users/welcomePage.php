@@ -18,10 +18,10 @@ $view = ViewManager::getInstance();
             <h1 id="bienvenido"><?= i18n("Bienvenido")?></h1>
             <p class="subtitle"><?= i18n("Una app de administracion al estilo Kanban")?></p>
 
-            <div class="actions">
-                <button id="openLogin" class="primary" type="button"><?= i18n("Iniciar sesion")?></button>
-                <button id="openRegister" class="secondary" type="button"><?= i18n("Registrarse")?></button>
-            </div>
+            <form class="actions" method="get">
+                <button id="openLogin" class="primary" type="submit" formaction="index.php?action=login"><?= i18n("Iniciar sesion")?></button>
+                <button id="openRegister" class="secondary" type="submit" formaction="index.php?action=register"><?= i18n("Registrarse")?></button>
+            </form>
             </p>
         </div>
     </main>

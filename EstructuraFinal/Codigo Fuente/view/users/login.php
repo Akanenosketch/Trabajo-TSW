@@ -1,6 +1,7 @@
 <?php
 // file: view/users/login.php
 $view = ViewManager::getInstance();
+$errors = $view->getVariable("errors");
 ?>
 <!DOCTYPE html>
 <html lang="es">

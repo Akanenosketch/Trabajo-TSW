@@ -33,7 +33,6 @@ define("DEFAULT_ACTION", "index");
 *
 * @return void
 *
-* @author lipido <lipido@gmail.com>
 */
 function run() {
 	// invoke action!

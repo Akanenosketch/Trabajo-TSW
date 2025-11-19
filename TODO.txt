@@ -33,4 +33,13 @@ meter la parte de languaje
 
 hay que tocar el viewManager si no se usan layouts
 Los errores que sueltan los controllers como los mostramos xd, habria que meterle un alert o algo y ponerle traduccion
-revisar los mensajes traducidos al acabar 
+revisar los mensajes traducidos al acabar
+
+
+
+Dashboard tiene una tabla con el nombre del proyecto y el numero de tareas por tipo, nombre de usuario arriba, proyectos los del user
+
+project tiene nombre proyecto, num participantes, tareas y % completado, boton de volver a dashboard
+boton de nueva tarea, editar proyecto, eliminar proyecto, borrar tarea, editar tarea, muestra todas las tareas, tiene un select del tipo de tarea para editar facil
+
+ 

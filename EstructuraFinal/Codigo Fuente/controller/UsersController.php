@@ -134,11 +134,9 @@ class UsersController extends BaseController {
 	* The views are:
 	* <ul>
 	* <li>users/register: If this action is reached via HTTP GET (via include)</li>
-	* <li>users/welcomePage: If login succeds (via redirect)</li>
+	* <li>users/welcomePage: If register succeds (via redirect)</li>
 	* <li>users/register: If validation fails (via include). Includes these view variables:</li>
 	* <ul>
-	*	<li>user: The current User instance, empty or being added
-	*	(but not validated)</li>
 	*	<li>errors: Array including validation errors</li>
 	* </ul>
 	* </ul>
@@ -174,7 +172,7 @@ class UsersController extends BaseController {
 					$this->view->redirect("users", "index");
 				} else {
 					$errors = array();
-					$errors["correo"] = "Existe un usuario con el mismo correo";
+					$errors["user_mail"] = "Existe un usuario con el mismo correo";
 					$this->view->setVariable("errors", $errors);
 				}
 			}catch(ValidationException $ex) {
