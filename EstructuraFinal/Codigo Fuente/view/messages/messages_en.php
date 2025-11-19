@@ -20,7 +20,6 @@ array(
 	"Registrarse" => "Register",
 	
 	//login_form & register_form
-	"Nombre de Usuario" => "Username",
 	"Contraseña" => "Password",
 
 	//login_form & register_form & project_form
@@ -29,7 +28,7 @@ array(
 	// login_form
 	"Entrar" => "Enter",
 	"Login Form" => "Login Form",
-
+	"Escribe tu correo" => "Write your email",
 	//register_form
 	"Correo" => "Email",
 	"Crear Cuenta" => "Create Account",

@@ -31,6 +31,46 @@ class UsersController extends BaseController {
 	}
 
 	/**
+	* Action to show the welcome page.
+	*
+	* No HTTP parameters are needed.
+	*
+	* The views are:
+	* <ul>
+	* <li>users/welcomePage (via include)</li>
+	* </ul>
+	*/
+	public function index() {
+
+		// render the view (/view/users/welcomePage.php)
+		$this->view->render("users", "welcomePage");
+	}
+
+	/**
+	* Action to logout
+	*
+	* This action should be called via GET
+	*
+	* No HTTP parameters are needed.
+	*
+	* The views are:
+	* <ul>
+	* <li>users/welcomePage (via redirect)</li>
+	* </ul>
+	*
+	* @return void
+	*/
+	public function logout() {
+		session_destroy();
+
+		// perform a redirection. More or less:
+		// header("Location: index.php?controller=users&action=login")
+		// die();
+		$this->view->redirect("users", "index");
+	}
+
+
+	/**
 	* Action to login
 	*
 	* Logins a user checking its creedentials agains
@@ -41,8 +81,8 @@ class UsersController extends BaseController {
 	*
 	* The expected HTTP parameters are:
 	* <ul>
-	* <li>login: The username (via HTTP POST)</li>
-	* <li>passwd: The password (via HTTP POST)</li>
+	* <li>login: The nombreUsuario (via HTTP POST)</li>
+	* <li>contrasena: The password (via HTTP POST)</li>
 	* </ul>
 	*
 	* The views are:
@@ -58,18 +98,18 @@ class UsersController extends BaseController {
 	* @return void
 	*/
 	public function login() {
-		if (isset($_POST["username"])){ // reaching via HTTP Post...
+		if (isset($_POST["correo"])){ // reaching via HTTP Post...
 			//process login form
-			if ($this->userMapper->isValidUser($_POST["username"], $_POST["passwd"])) {
+			if ($this->userMapper->isValidUser($_POST["correo"], $_POST["contrasena"])) {
 
-				$_SESSION["currentuser"]=$_POST["username"];
+				$_SESSION["currentuser"]= $this->userMapper->findByEmail($_POST["correo"])->getUsername();
 
 				// send user to the restricted area (HTTP 302 code)
-				$this->view->redirect("posts", "index");
+				$this->view->redirect("projects", "index");
 
 			}else{
 				$errors = array();
-				$errors["general"] = "Username is not valid";
+				$errors["general"] = "user is not valid";
 				$this->view->setVariable("errors", $errors);
 			}
 		}
@@ -87,14 +127,14 @@ class UsersController extends BaseController {
 	*
 	* The expected HTTP parameters are:
 	* <ul>
-	* <li>login: The username (via HTTP POST)</li>
-	* <li>passwd: The password (via HTTP POST)</li>
+	* <li>login: The nombreUsuario (via HTTP POST)</li>
+	* <li>contrasena: The password (via HTTP POST)</li>
 	* </ul>
 	*
 	* The views are:
 	* <ul>
 	* <li>users/register: If this action is reached via HTTP GET (via include)</li>
-	* <li>users/login: If login succeds (via redirect)</li>
+	* <li>users/welcomePage: If login succeds (via redirect)</li>
 	* <li>users/register: If validation fails (via include). Includes these view variables:</li>
 	* <ul>
 	*	<li>user: The current User instance, empty or being added
@@ -109,35 +149,32 @@ class UsersController extends BaseController {
 
 		$user = new User();
 
-		if (isset($_POST["username"])){ // reaching via HTTP Post...
+		if (isset($_POST["correo"])){ // reaching via HTTP Post...
 
 			// populate the User object with data form the form
-			$user->setUsername($_POST["username"]);
-			$user->setPassword($_POST["passwd"]);
+			$user->setUsername($_POST["nombreUsuario"]);
+			$user->setUserMail($_POST["correo"]);
+			$user->setPassword($_POST["contrasena"]);
 
 			try{
 				$user->checkIsValidForRegister(); // if it fails, ValidationException
 
 				// check if user exists in the database
-				if (!$this->userMapper->usernameExists($_POST["username"])){
+				if (!$this->userMapper->usermailExists($_POST["correo"])){
 
 					// save the User object into the database
 					$this->userMapper->save($user);
 
 					// POST-REDIRECT-GET
-					// Everything OK, we will redirect the user to the list of posts
-					// We want to see a message after redirection, so we establish
-					// a "flash" message (which is simply a Session variable) to be
-					// get in the view after redirection.
-					$this->view->setFlash("Username ".$user->getUsername()." successfully added. Please login now");
-
+					// Everything OK, we will redirect the user to the welcomePage
+					
 					// perform the redirection. More or less:
 					// header("Location: index.php?controller=users&action=login")
 					// die();
-					$this->view->redirect("users", "login");
+					$this->view->redirect("users", "index");
 				} else {
 					$errors = array();
-					$errors["username"] = "Username already exists";
+					$errors["correo"] = "Existe un usuario con el mismo correo";
 					$this->view->setVariable("errors", $errors);
 				}
 			}catch(ValidationException $ex) {
@@ -156,28 +193,8 @@ class UsersController extends BaseController {
 
 	}
 
-	/**
-	* Action to logout
-	*
-	* This action should be called via GET
-	*
-	* No HTTP parameters are needed.
-	*
-	* The views are:
-	* <ul>
-	* <li>users/login (via redirect)</li>
-	* </ul>
-	*
-	* @return void
-	*/
-	public function logout() {
-		session_destroy();
 
-		// perform a redirection. More or less:
-		// header("Location: index.php?controller=users&action=login")
-		// die();
-		$this->view->redirect("users", "login");
 
-	}
+
 
 }

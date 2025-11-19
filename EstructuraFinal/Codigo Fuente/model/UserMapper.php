@@ -42,14 +42,12 @@ class UserMapper
 	 * @param string $usermail the usermail to check
 	 * @return boolean true if the usermail exists, false otherwise
 	 */
-	public function usernameExists($usermail)
+	public function usermailExists($usermail)
 	{
 		$stmt = $this->db->prepare("SELECT count(user_mail) FROM users where user_mail=?");
 		$stmt->execute(array($usermail));
 
-		if ($stmt->fetchColumn() > 0) {
-			return true;
-		}
+			return $stmt->fetchColumn() > 0;
 	}
 
 	/**
@@ -64,8 +62,33 @@ class UserMapper
 		$stmt = $this->db->prepare("SELECT count(user_mail) FROM users where user_mail=? and passwd=?");
 		$stmt->execute(array($usermail, $passwd));
 
-		if ($stmt->fetchColumn() > 0) {
-			return true;
+			return $stmt->fetchColumn() > 0;
+	}
+
+
+
+	/**
+	 * Loads a user from the database given its email
+	 *
+	 *
+	 * @throws PDOException if a database error occurs
+	 * @return User The User instance. NULL
+	 * if the User is not found
+	 */
+	public function findByEmail($usermail)
+	{
+		$stmt = $this->db->prepare("SELECT * FROM users where user_mail=?");
+		$stmt->execute(array($$usermail));
+		$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if ($user != null) {
+			return new user(
+				$user["user_name"],
+				$user["user_mail"],
+				$user["passwd"]
+			);
+		} else {
+			return NULL;
 		}
 	}
 }

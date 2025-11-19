@@ -12,7 +12,7 @@ $view = ViewManager::getInstance();
     <title><?= i18n("Login Form") ?></title>
 </head>
 <html>
-    
+
 <div id="loginOverlay" class="overlay">
     <div class="modal">
         <header>
@@ -22,9 +22,9 @@ $view = ViewManager::getInstance();
 
         <form id="loginForm" novalidate>
             <div class="form-row">
-                <label for="loginNombre"><?= i18n("Nombre de Usuario") ?></label>
-                <input id="loginNombre" name="nombreUsuario" type="text"
-                    placeholder="<?= i18n("Escribe tu nombre de usuario") ?>" />
+                <label for="loginNombre"><?= i18n(key: "Correo") ?></label>
+                <input id="loginNombre" name="correo" type="email"
+                    placeholder="<?= i18n("Escribe tu correo") ?>" />
             </div>
 
             <div class="form-row">

@@ -30,3 +30,7 @@ hacer el html poliglota (html5 y xhmtl)
 ponerle a los views las acciones para cambiar de pagina
 cambiar el lang del html con las cookies
 meter la parte de languaje
+
+hay que tocar el viewManager si no se usan layouts
+Los errores que sueltan los controllers como los mostramos xd, habria que meterle un alert o algo y ponerle traduccion
+revisar los mensajes traducidos al acabar 
