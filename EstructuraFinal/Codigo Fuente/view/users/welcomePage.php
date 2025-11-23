@@ -8,7 +8,7 @@ $view = ViewManager::getInstance();
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="../css/welcomePage.css">
+    <link rel="stylesheet" type="text/css" href="../css/users/welcomePage.css">
     <title><?= i18n("Pagina de Bienvenida") ?></title>
 </head>
 
