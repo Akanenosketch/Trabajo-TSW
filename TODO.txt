@@ -1,7 +1,6 @@
 Hay un div con el css incrustado en dashboard hay que pasarlo al css
 CSS responsive
 Centrar la tabla pls
-Revisar el js (la gran parte sobra xd creo que hay que hacer hasta los forms en html distinto)
 manual de usuario
 Poner los dnis AL ENTREGAR SIN COMMITEAR
 El script sql meterle el dump de la db
@@ -44,3 +43,5 @@ project tiene nombre proyecto, num participantes, tareas y % completado, boton d
 boton de nueva tarea, editar proyecto, eliminar proyecto, borrar tarea, editar tarea, muestra todas las tareas, tiene un select del tipo de tarea para editar facil, para añadir usuarios
 
  
+
+Views de user le faltan lo de traducciones y meter mensajes de error traducidos y comprobar el css

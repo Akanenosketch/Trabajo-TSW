@@ -4,7 +4,7 @@ $view = ViewManager::getInstance();
 $errors = $view->getVariable("errors");
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html>
 
 <head>
     <meta charset="utf-8" />
@@ -24,13 +24,13 @@ $errors = $view->getVariable("errors");
             <div class="form-row">
                 <label for="regNombre"><?= i18n("Nombre de Usuario") ?></label>
                 <input id="regNombre" name="nombreUsuario" type="text" placeholder="<?= i18n("Nombre de Usuario") ?>"
-                    required />
+                    required minlength="4"/>
             </div>
 
             <div class="form-row">
                 <label for="regCorreo"><?= i18n("Correo") ?></label>
                 <input id="regCorreo" name="correo" type="email" placeholder="ivan.martinez.estevez@uvigo.es"
-                    required />
+                    required pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
             </div>
 
             <div class="form-row">

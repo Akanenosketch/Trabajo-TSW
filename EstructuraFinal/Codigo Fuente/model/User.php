@@ -122,15 +122,15 @@ class User
 		//Comprobacion de PK lo hace el controller, aqui solo comprueba formatos
 
 		// Correos de la forma example123@example123.example
-		if (preg_match("^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$", $this->user_mail) < 1) {
+		if (preg_match("^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$", $this->user_mail) < 1) {
 			$errors["user_mail"] = "Usermail must use a valid format example@example";
 		}
 
-		if (strlen(trim($this->username)) == 0) {
+		if (strlen(trim($this->username)) < 4) {
 			$errors["username"] = "Username is mandatory";
 
 		}
-		if (strlen(trim($this->passwd)) == 0) {
+		if (strlen(trim($this->passwd)) < 6) {
 			$errors["passwd"] = "Password is mandatory";
 		}
 

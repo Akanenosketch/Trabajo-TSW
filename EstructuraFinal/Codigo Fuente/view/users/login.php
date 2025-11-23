@@ -4,7 +4,7 @@ $view = ViewManager::getInstance();
 $errors = $view->getVariable("errors");
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html>
 
 <head>
     <meta charset="utf-8" />
@@ -24,13 +24,13 @@ $errors = $view->getVariable("errors");
         <form id="loginForm" novalidate>
             <div class="form-row">
                 <label for="loginNombre"><?= i18n(key: "Correo") ?></label>
-                <input id="loginNombre" name="correo" type="email"
+                <input id="loginNombre" name="correo" type="email" required pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$"
                     placeholder="<?= i18n("Escribe tu correo") ?>" />
             </div>
 
             <div class="form-row">
                 <label for="loginPass"><?= i18n("Contraseña") ?></label>
-                <input id="loginPass" name="contrasena" type="password" placeholder="<?= i18n("Contraseña") ?>" />
+                <input id="loginPass" name="contrasena" type="password" required minlength="6" placeholder="<?= i18n("Contraseña") ?>" />
             </div>
 
             <div id="loginError" class="error" role="alert" style="display:none"></div>
@@ -42,5 +42,11 @@ $errors = $view->getVariable("errors");
         </form>
     </div>
 </div>
+
+<?php foreach ($errors as $error): ?>
+    <script>
+        alert("Error (pasar por traduccion): $error");
+    </script>
+<?php endforeach; ?>
 
 </html>
