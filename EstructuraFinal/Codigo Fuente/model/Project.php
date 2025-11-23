@@ -180,4 +180,14 @@ class Project
 			throw new ValidationException($errors, "project is not valid");
 		}
 	}
+
+	public function getTaskNumberByType($type): int{
+		$toRet = 0;
+		foreach ($this->tasks as $task) {
+ 			 if (strcmp($task.getStatus(), $type) == 0 ){
+				$toRet++;
+			 }	
+	}
+		return $toRet; 
+	}
 }
