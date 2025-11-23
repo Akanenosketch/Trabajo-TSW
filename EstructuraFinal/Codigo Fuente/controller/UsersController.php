@@ -87,8 +87,8 @@ class UsersController extends BaseController {
 	*
 	* The views are:
 	* <ul>
-	* <li>posts/login: If this action is reached via HTTP GET (via include)</li>
-	* <li>posts/index: If login succeds (via redirect)</li>
+	* <li>users/login: If this action is reached via HTTP GET (via include)</li>
+	* <li>projects/index: If login succeds (via redirect)</li>
 	* <li>users/login: If validation fails (via include). Includes these view variables:</li>
 	* <ul>
 	*	<li>errors: Array including validation errors</li>

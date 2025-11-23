@@ -100,15 +100,6 @@
 
   
 
-        // Remove task input field
-        document.getElementById('initialTasks').addEventListener('click', e => {
-            if(e.target.classList.contains('remove-task')) {
-                const groups = document.querySelectorAll('.task-input-group');
-                if(groups.length > 1) {
-                    e.target.closest('.task-input-group').remove();
-                }
-            }
-        });
 
         document.getElementById('addProjectForm').addEventListener('submit', (e) => {
             e.preventDefault();
