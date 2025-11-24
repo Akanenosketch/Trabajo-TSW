@@ -14,12 +14,9 @@ $view = ViewManager::getInstance();
 
 <body>
     <main class="container">
-        /*
-            * No se como ejecutarlo hay que probarlo lol
-        */
         <div class="lang-switch">
-            <a href="?lang=es" class="lang-btn">ES</a>
-            <a href="?lang=en" class="lang-btn">EN</a>
+            <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">ES</a>
+            <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
         </div>
 
         <div class="welcome-card" role="region" aria-labelledby="bienvenido">

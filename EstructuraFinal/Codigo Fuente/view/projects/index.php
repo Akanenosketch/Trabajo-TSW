@@ -1,6 +1,6 @@
 <?php
 //file: view/projects/index.php
-require_once(__DIR__."/../../core/ViewManager.php");
+require_once(__DIR__ . "/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 
 $projects = $view->getVariable("projects");
@@ -25,6 +25,11 @@ $currentuserMail = $view->getVariable("currentusermail");
             <div class="small" id="userEmail"><?= $currentuserMail ?></div>
         </div>
         <div>
+            <div class="lang-switch">
+                <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">ES</a>
+                <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
+            </div>
+
             <form action="index.php?action=index" method="get">
                 <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
             </form>
