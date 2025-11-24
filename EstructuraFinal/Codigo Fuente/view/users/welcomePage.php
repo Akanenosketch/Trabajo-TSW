@@ -14,6 +14,14 @@ $view = ViewManager::getInstance();
 
 <body>
     <main class="container">
+        /*
+            * No se como ejecutarlo hay que probarlo lol
+        */
+        <div class="lang-switch">
+            <a href="?lang=es" class="lang-btn">ES</a>
+            <a href="?lang=en" class="lang-btn">EN</a>
+        </div>
+
         <div class="welcome-card" role="region" aria-labelledby="bienvenido">
             <h1 id="bienvenido"><?= i18n("Bienvenido") ?></h1>
             <p class="subtitle"><?= i18n("Una app de administracion al estilo Kanban") ?></p>
