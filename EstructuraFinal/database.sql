@@ -35,7 +35,7 @@ CREATE TABLE projects (
 -- Crear una tabla para las tareas
 CREATE TABLE tasks (
 	task_id INT AUTO_INCREMENT NOT NULL,
-	task_name VARCHAR(255) AUTO_INCREMENT,
+	task_name VARCHAR(255),
 	project_id INT NOT NULL,
     task_status ENUM("ToDo","Working","Done") NOT NULL,
     
