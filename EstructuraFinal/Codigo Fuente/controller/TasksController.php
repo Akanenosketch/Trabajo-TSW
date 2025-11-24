@@ -41,6 +41,17 @@ class TaskController extends BaseController {
 		$this->projectmapper = new ProjectMapper();
 	}
 
+
+
+
+	public function view() {}
+	public function add() {}
+	public function edit() {}
+	public function delete() {}
+
+
+
+
 	/**
 	* Action to adds a task to a project
 	*

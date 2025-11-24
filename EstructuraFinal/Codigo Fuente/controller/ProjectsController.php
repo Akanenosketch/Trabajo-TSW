@@ -36,6 +36,76 @@ class ProjectsController extends BaseController {
 // list, add, edit, delete
 //VISTAS DEFINITIVAS
 //index form view
+//TODO no hay que verificar que estes logueado?????? yo croe que si 
+
+	/**
+	* Action to list projects.
+	*
+	* Loads all the projects from the database.
+	* No HTTP parameters are needed.
+	*
+	* The views are:
+	* <ul>
+	* <li>projects/index (via include)</li>
+	* </ul>
+	*/
+	public function index() {
+		// obtain the data from the database
+		$projects = $this->projectMapper->findAll();
+
+		// put the array containing Post object to the view
+		$this->view->setVariable("projects", $projects);
+
+		// render the view (/view/projects/index.php)
+		$this->view->render("projects", "index");
+	}
+
+
+
+	/**
+	* Action to view a given project.
+	*
+	* This action should only be called via GET
+	*
+	* The expected HTTP parameters are:
+	* <ul>
+	* <li>id: Id of the project (via HTTP GET)</li>
+	* </ul>
+	*
+	* The views are:
+	* <ul>
+	* <li>project/view: If post is successfully loaded (via include).	Includes these view variables:</li>
+	* <ul>
+	*	<li>project: The current Project retrieved</li>
+	*	<li>tasks: The current Project tasks instance, empty or
+	*	being added</li>
+	* </ul>
+	* <li>projects/index: If project id does not exist (via include). Includes these view variables:</li>
+	* <ul>
+	* <li>errors: Array including validation errors</li>
+	* </ul>
+	* </ul>
+	* @return void
+	*
+	*/
+	public function view() {}
+	
+	/**
+	 * 
+	 * 
+	 * @return void
+	 */
+	public function add() {}
+	
+	/**
+	 * 
+	 * 
+	 * @return void
+	 */	
+	public function edit() {}
+	
+	
+	public function delete() {}
 
 //index = al que llega desde login y desde ir atras en projects/view, get sobre list es el dashboard actual
 //form = solo se accede desde index a traves de gets sobre add y edit, tiene acciones post sobre esos mismos dependiendo de cual venga
@@ -52,56 +122,10 @@ delete para borrar, solo post */
 // projects/add
 // projects/add?id=project_id para el edit?
 
-	/**
-	* Action to list projects
-	*
-	* Loads all the projects from the database.
-	* No HTTP parameters are needed.
-	*
-	* The views are:
-	* <ul>
-	* <li>projects/index (via include)</li>
-	* </ul>
-	*/
-/*	public function index() {
-
-		// obtain the data from the database
-		$posts = $this->postMapper->findAll();
-
-		// put the array containing Post object to the view
-		$this->view->setVariable("posts", $posts);
-
-		// render the view (/view/posts/index.php)
-		$this->view->render("posts", "index");
-	}
-*/
+/*	
 
 
-	/**
-	* Action to view a given post
-	*
-	* This action should only be called via GET
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>id: Id of the post (via HTTP GET)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>posts/view: If post is successfully loaded (via include).	Includes these view variables:</li>
-	* <ul>
-	*	<li>post: The current Post retrieved</li>
-	*	<li>comment: The current Comment instance, empty or
-	*	being added (but not validated)</li>
-	* </ul>
-	* </ul>
-	*
-	* @throws Exception If no such post of the given id is found
-	* @return void
-	*
-	*/
-	public function view(){
+		public function view(){
 		if (!isset($_GET["id"])) {
 			throw new Exception("id is mandatory");
 		}
