@@ -59,7 +59,7 @@ CREATE TABLE users_on_tasks (
 	project_id INT NOT NULL,
 	task_id INT NOT NULL,
 	
-	FOREIGN KEY (user_mail) REFERENCES users_on_projects(user_mail, project_id),
+	FOREIGN KEY (user_mail,project_id) REFERENCES users_on_projects(user_mail, project_id),
 	FOREIGN KEY (task_id) REFERENCES tasks(task_id),
     CONSTRAINT PK_Users_Tasks PRIMARY KEY (user_mail, project_id, task_id)
 ) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
