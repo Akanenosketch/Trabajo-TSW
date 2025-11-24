@@ -32,6 +32,14 @@ class ProjectsController extends BaseController {
 	}
 
 
+//ACCIONES DEFINITIVAS
+// list, add, edit, delete
+//VISTAS DEFINITIVAS
+//index form view
+
+//index = al que llega desde login y desde ir atras en projects/view, get sobre list es el dashboard actual
+//form = solo se accede desde index a traves de gets sobre add y edit, tiene acciones post sobre esos mismos dependiendo de cual venga
+//view = vista de detalles de un concreto, se llega desde index con el id del proyecto como parametor
 
 /*
 list para mostrar la tabla de projectos

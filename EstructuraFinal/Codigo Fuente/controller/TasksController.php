@@ -149,3 +149,13 @@ modalTaskStatus es un select
 modalTaskAssignees es un checkbox
 
 hay que hacer get al user a partir del email y meterlo al task, pero se guarda el proyect id*/
+
+
+//ACCIONES DEFINITIVAS
+// add edit delete view
+//solo hay 1 vista = form, estilo IU 
+// add/edit con get levantan la form, post la ejecutan
+//para cambiar el tipo desde la tabla hace un edit encubierto
+//delete es n boton que borra y ya
+//view levanta la form cubierta readonly
+}
