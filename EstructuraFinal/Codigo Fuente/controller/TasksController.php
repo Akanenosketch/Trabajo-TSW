@@ -192,9 +192,9 @@ class TaskController extends BaseController
 
 		// POST-REDIRECT-GET
 		// perform the redirection. More or less:
-		// header("Location: index.php?controller=projects&action=index")
+		// header("Location: index.php?controller=projects&action=view&id=project_id")
 		// die();
-		$this->view->redirect("projects", "index");
+		$this->view->redirect("projects", "index","id=".$projectid);
 	}
 
 

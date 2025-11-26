@@ -18,10 +18,9 @@ $errors = $view->getVariable("errors");
     <div class="modal">
         <header>
             <h2 id="loginTitle"><?= i18n("Iniciar sesion") ?></h2>
-            <button class="close-btn" data-close="loginOverlay" aria-label="Cerrar">&times;</button>
         </header>
 
-        <form id="loginForm" novalidate>
+        <form id="loginForm">
             <div class="form-row">
                 <label for="loginNombre"><?= i18n(key: "Correo") ?></label>
                 <input id="loginNombre" name="correo" type="email" required pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$"
@@ -36,8 +35,8 @@ $errors = $view->getVariable("errors");
             <div id="loginError" class="error" role="alert" style="display:none"></div>
 
             <div class="form-actions">
-                <button type="button" class="secondary" data-close="loginOverlay"><?= i18n("Cancelar") ?></button>
-                <button type="submit" class="primary"><?= i18n("Entrar") ?></button>
+                <button type="button" class="secondary" formaction="index.php?action=index" data-close="loginOverlay"><?= i18n("Cancelar") ?></button>
+                <button type="submit" class="primary" formaction="index.php?action=login" formmethod="post"><?= i18n("Entrar") ?></button>
             </div>
         </form>
     </div>
