@@ -88,3 +88,4 @@ class TaskMapper
 		$stmt->execute(array($id));
 	}
 }
+?>

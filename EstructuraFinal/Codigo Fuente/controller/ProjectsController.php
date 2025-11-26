@@ -232,7 +232,7 @@ class ProjectsController extends BaseController
 		// die();
 		$this->view->redirect("projects", "index");
 	}
-
+	?>
 
 
 

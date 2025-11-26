@@ -198,3 +198,4 @@ class Project
 		return intdiv($completed,$total);
 	}
 }
+?>
