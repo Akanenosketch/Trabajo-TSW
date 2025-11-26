@@ -10,14 +10,14 @@ $errors = $view->getVariable("errors");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="../css/users/welcomePage.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/users/welcomePage.css">
     <title><?= i18n("Pagina de Bienvenida") ?></title>
 </head>
 
 <body>
     <main class="container">
         <div class="lang-switch">
-            <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">ES</a>
+            <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
             <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
         </div>
 

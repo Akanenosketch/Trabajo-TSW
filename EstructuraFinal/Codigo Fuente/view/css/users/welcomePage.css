@@ -246,7 +246,7 @@ footer.small {
 }
 
 .lang-btn {
-    background: --accept-neon;
+    background: var(--accent-neon);
     color: var(--bg-dark);
     border: 1px solid var(--border-dark);
     padding: 5px 10px;
@@ -254,7 +254,6 @@ footer.small {
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
-    transition: background 0.2s, color 0.2s;
 }
 
 .lang-btn:hover {

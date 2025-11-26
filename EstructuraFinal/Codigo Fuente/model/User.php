@@ -1,7 +1,7 @@
 <?php
 // file: model/User.php
 
-require_once(__DIR__ . "/../core/ValidationException.php");
+require_once(__DIR__."/../core/ValidationException.php");
 
 /**
  * Class User
@@ -122,7 +122,7 @@ class User
 		//Comprobacion de PK lo hace el controller, aqui solo comprueba formatos
 
 		// Correos de la forma example123@example123.example
-		if (preg_match("^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$", $this->user_mail) < 1) {
+		if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $this->user_mail) < 1) {
 			$errors["user_mail"] = "Usermail must use a valid format example@example";
 		}
 
@@ -139,3 +139,4 @@ class User
 		}
 	}
 }
+<?php

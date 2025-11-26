@@ -9,7 +9,7 @@ $errors = $view->getVariable("errors");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="../css/users/login.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/users/login.css">
     <title><?= i18n("Login Form") ?></title>
 </head>
 <html>
