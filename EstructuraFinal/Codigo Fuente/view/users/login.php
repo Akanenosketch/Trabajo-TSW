@@ -43,10 +43,12 @@ $errors = $view->getVariable("errors");
     </div>
 </div>
 
+<?php if (!is_null($errors) ): ?>
 <?php foreach ($errors as $error): ?>
     <script>
         alert("Error (pasar por traduccion): $error");
     </script>
 <?php endforeach; ?>
+<?php endif ?>
 
 </html>
