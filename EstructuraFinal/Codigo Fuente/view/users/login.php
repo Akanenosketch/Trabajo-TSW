@@ -23,31 +23,35 @@ $errors = $view->getVariable("errors");
         <form id="loginForm">
             <div class="form-row">
                 <label for="loginNombre"><?= i18n(key: "Correo") ?></label>
-                <input id="loginNombre" name="correo" type="email" required pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$"
+                <input id="loginNombre" name="correo" type="email" required
+                    pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$"
                     placeholder="<?= i18n("Escribe tu correo") ?>" />
             </div>
 
             <div class="form-row">
                 <label for="loginPass"><?= i18n("Contraseña") ?></label>
-                <input id="loginPass" name="contrasena" type="password" required minlength="6" placeholder="<?= i18n("Contraseña") ?>" />
+                <input id="loginPass" name="contrasena" type="password" required minlength="6"
+                    placeholder="<?= i18n("Contraseña") ?>" />
             </div>
 
             <div id="loginError" class="error" role="alert" style="display:none"></div>
 
             <div class="form-actions">
-                <button type="button" class="secondary" formaction="index.php?action=index" data-close="loginOverlay"><?= i18n("Cancelar") ?></button>
-                <button type="submit" class="primary" formaction="index.php?action=login" formmethod="post"><?= i18n("Entrar") ?></button>
+                <a href="index.php?action=index">
+                    <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>
+                </a> <button type="submit" class="primary" formaction="index.php?action=login"
+                    formmethod="post"><?= i18n("Entrar") ?></button>
             </div>
         </form>
     </div>
 </div>
 
-<?php if (!is_null($errors) ): ?>
-<?php foreach ($errors as $error): ?>
-    <script>
-        alert("Error (pasar por traduccion): $error");
-    </script>
-<?php endforeach; ?>
+<?php if (!is_null($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <script>
+            alert("Error (pasar por traduccion): $error");
+        </script>
+    <?php endforeach; ?>
 <?php endif ?>
 
 </html>

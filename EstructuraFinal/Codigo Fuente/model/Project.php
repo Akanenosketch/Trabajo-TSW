@@ -184,7 +184,7 @@ class Project
 	public function getTaskNumberByType($type): int{
 		$toRet = 0;
 		foreach ($this->tasks as $task) {
- 			 if (strcmp($task.getStatus(), $type) == 0 ){
+ 			 if (strcmp($task->getStatus(), $type) == 0 ){
 				$toRet++;
 			 }	
 	}

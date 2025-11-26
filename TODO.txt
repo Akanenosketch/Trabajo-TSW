@@ -57,3 +57,9 @@ hacr que copiar a lamp sea mas facil, cambiar el nombre del fichero por el espac
 
 un delete para tasks
 un get para tasks
+
+
+suicidarse
+
+
+abandona
