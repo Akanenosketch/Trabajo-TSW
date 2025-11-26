@@ -81,7 +81,7 @@ class UsersController extends BaseController {
 	*
 	* The expected HTTP parameters are:
 	* <ul>
-	* <li>login: The nombreUsuario (via HTTP POST)</li>
+	* <li>correo: The mailUsuario (via HTTP POST)</li>
 	* <li>contrasena: The password (via HTTP POST)</li>
 	* </ul>
 	*
@@ -127,7 +127,8 @@ class UsersController extends BaseController {
 	*
 	* The expected HTTP parameters are:
 	* <ul>
-	* <li>login: The nombreUsuario (via HTTP POST)</li>
+	* <li>nombreUsuario: The nombreUsuario (via HTTP POST)</li>
+	* <li>correo: The mailUsuario (via HTTP POST)</li>
 	* <li>contrasena: The password (via HTTP POST)</li>
 	* </ul>
 	*
@@ -169,7 +170,7 @@ class UsersController extends BaseController {
 					// perform the redirection. More or less:
 					// header("Location: index.php?controller=users&action=login")
 					// die();
-					$this->view->redirect("users", "index");
+					$this->view->redirect("users", "index",'correo='.$_POST["correo"]);
 				} else {
 					$errors = array();
 					$errors["user_mail"] = "Existe un usuario con el mismo correo";

@@ -46,3 +46,10 @@ boton de nueva tarea, editar proyecto, eliminar proyecto, borrar tarea, editar t
 
 Views de user le faltan lo de traducciones y meter mensajes de error traducidos y comprobar el css
 revisar en los de ir atras si funciona con post CONFIMRO FUNCIONA PERO CUIDADO 
+
+
+
+login register welcome page traduccion errores y faltaria revisar css
+
+
+hacr que copiar a lamp sea mas facil, cambiar el nombre del fichero por el espacio y que sea pegarlo

@@ -1,185 +1,259 @@
 <?php
 //file: controller/ProjectsController.php
 
-require_once(__DIR__."/../model/Project.php");
-require_once(__DIR__."/../model/Task.php");
-require_once(__DIR__."/../model/ProjectMapper.php");
-require_once(__DIR__."/../model/User.php");
+require_once(__DIR__ . "/../model/Project.php");
+require_once(__DIR__ . "/../model/Task.php");
+require_once(__DIR__ . "/../model/ProjectMapper.php");
+require_once(__DIR__ . "/../model/User.php");
 
-require_once(__DIR__."/../core/ViewManager.php");
-require_once(__DIR__."/../controller/BaseController.php");
+require_once(__DIR__ . "/../core/ViewManager.php");
+require_once(__DIR__ . "/../controller/BaseController.php");
 
 /**
-* Class ProjectsController
-*
-* Controller to make a CRUDL of Project entities
-*
-*/
-class ProjectsController extends BaseController {
+ * Class ProjectsController
+ *
+ * Controller to make a CRUDL of Project entities
+ *
+ */
+class ProjectsController extends BaseController
+{
 
 	/**
-	* Reference to the ProjectMapper to interact
-	* with the database
-	*
-	* @var ProjectMapper
-	*/
+	 * Reference to the ProjectMapper to interact
+	 * with the database
+	 *
+	 * @var ProjectMapper
+	 */
 	private $projectMapper;
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 
 		$this->projectMapper = new ProjectMapper();
 	}
 
 
-//ACCIONES DEFINITIVAS
+	//ACCIONES DEFINITIVAS
 // list, add, edit, delete
 //VISTAS DEFINITIVAS
 //index form view
 //TODO no hay que verificar que estes logueado?????? yo croe que si 
 
+
+
 	/**
 	* Action to list projects.
 	*
 	* Loads all the projects from the database.
-	* No HTTP parameters are needed.
+	* The expected HTTP parameters are:
+	* <ul>
+	* <li>correo: The mailUsuario (via HTTP POST)</li>
+	* </ul>
 	*
 	* The views are:
 	* <ul>
 	* <li>projects/index (via include)</li>
-	* </ul>
-	*/
-	public function index() {
-		// obtain the data from the database
-		$projects = $this->projectMapper->findAll();
-
-		// put the array containing Post object to the view
-		$this->view->setVariable("projects", $projects);
-
-		// render the view (/view/projects/index.php)
-		$this->view->render("projects", "index");
-	}
-
-
-
-	/**
-	* Action to view a given project.
-	*
-	* This action should only be called via GET
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>id: Id of the project (via HTTP GET)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>project/view: If post is successfully loaded (via include).	Includes these view variables:</li>
-	* <ul>
-	*	<li>project: The current Project retrieved</li>
-	*	<li>tasks: The current Project tasks instance, empty or
-	*	being added</li>
-	* </ul>
-	* <li>projects/index: If project id does not exist (via include). Includes these view variables:</li>
+	* <li>users/welcomePage: If no user was passed (via include). Includes these view variables:</li>
 	* <ul>
 	* <li>errors: Array including validation errors</li>
 	* </ul>
 	* </ul>
-	* @return void
-	*
+
 	*/
-	public function view() {}
-	
+	public function index()
+	{
+		if (isset($_SESSION["correo"])) {
+			$user_mail = $_SESSION["correo"];
+
+			// obtain the data from the database
+			$projects = $this->projectMapper->findAll($user_mail);
+
+			// put the array containing Post object to the view
+			$this->view->setVariable("projects", $projects);
+
+			// render the view (/view/projects/index.php)
+			$this->view->render("projects", "index");
+		} else {
+			$errors = array();
+			$errors["general"] = "user is not valid";
+			$this->view->setVariable("errors", $errors);
+			$this->view->redirect("users", "index");
+		}
+	}
+
+
+
 	/**
+	 * Action to view a given project.
+	 *
+	 * This action should only be called via GET
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>id: Id of the project (via HTTP GET)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>project/view: If post is successfully loaded (via include).	Includes these view variables:</li>
+	 * <ul>
+	 *	<li>project: The current Project retrieved</li>
+	 *	<li>tasks: The current Project tasks instance, empty or
+	 *	being added</li>
+	 * </ul>
+	 * <li>projects/index: If project id does not exist (via include). Includes these view variables:</li>
+	 * <ul>
+	 * <li>errors: Array including validation errors</li>
+	 * </ul>
+	 * </ul>
+	 * @return void
+	 *
+	 */
+	public function view()
+	{
+	}
+
+	/**
+	 * Action to add a new project
+	 * When called via GET, it shows the add form
+	 * When called via POST, it adds the project to the
+	 * database
 	 * 
-	 * 
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>title: Title of the project (via HTTP POST)</li>
+	 * <li>users: emails of the users to be assigned to the project (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>projects/form: If this action is reached via HTTP GET (via include)</li>
+	 * <li>projects/index: If post was successfully added (via redirect)</li>
+	 * <li>projects/form: If validation fails (via include). Includes these view variables:</li>
+	 * <ul>
+	 *	<li>addProject: The current Project instance, empty or
+	 *	being added (but not validated)</li>
+	 *	<li>errors: Array including per-field validation errors</li>
+	 * </ul>
+	 * </ul>
+	 * @throws Exception if no user is in session
+
 	 * @return void
 	 */
-	public function add() {}
-	
-	/**
-	 * 
-	 * 
-	 * @return void
-	 */	
-	public function edit() {}
-	
-	
-	public function delete() {}
+	public function add()
+	{
+	}
 
-//index = al que llega desde login y desde ir atras en projects/view, get sobre list es el dashboard actual
+
+	/**
+	 * Action to edit a project
+	 *
+	 * When called via GET, it shows an edit form
+	 * including the current data of the Project.
+	 * When called via POST, it modifies the project in the
+	 * database.
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>id: Id of the project (via HTTP POST and GET)</li>
+	 * <li>title: Title of the project (via HTTP POST)</li>
+	 * <li>users: emails of the users to be assigned to the project (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>projects/form: If this action is reached via HTTP GET (via include)</li>
+	 * <li>projects/index: If project was successfully edited (via redirect)</li>
+	 * <li>projects/form: If validation fails (via include). Includes these view variables:</li>
+	 * <ul>
+	 *	<li>project: The current Project instance, empty or being added (but not validated)</li>
+	 *	<li>errors: Array including per-field validation errors</li>
+	 * </ul>
+	 * </ul>
+	 * @throws Exception if no id was provided
+	 * @throws Exception if no user is in session
+	 * @throws Exception if there is not any project with the provided id
+	 * @throws Exception if the current logged user is not assigned to the project
+	 * @return void
+	 */
+	public function edit()
+	{
+	}
+
+
+		/**
+	 * Action to delete a project
+	 *
+	 * This action should only be called via HTTP POST
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>id: Id of the project (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>projects/index: If project was successfully deleted (via redirect)</li>
+	 * </ul>
+	 * @throws Exception if no id was provided
+	 * @throws Exception if no user is in session
+	 * @throws Exception if there is not any project with the provided id
+	 * @throws Exception if the current logged user is not assigned to the project
+	 * @return void
+	 */
+	public function delete()
+	{
+	}
+
+	//index = al que llega desde login y desde ir atras en projects/view, get sobre list es el dashboard actual
 //form = solo se accede desde index a traves de gets sobre add y edit, tiene acciones post sobre esos mismos dependiendo de cual venga
 //view = vista de detalles de un concreto, se llega desde index con el id del proyecto como parametor
 
-/*
-list para mostrar la tabla de projectos
-view para ver 1 en concreto
-add y edit para mostrar el form con get, postear con post  (COMBINAR LO DE AÑADIR USUARIOS)
-delete para borrar, solo post */
+	/*
+	list para mostrar la tabla de projectos
+	view para ver 1 en concreto
+	add y edit para mostrar el form con get, postear con post  (COMBINAR LO DE AÑADIR USUARIOS)
+	delete para borrar, solo post */
 
-// projects/index
+	// projects/index
 // projects/view?id=project_id
 // projects/add
 // projects/add?id=project_id para el edit?
 
-/*	
+	/*	
 
 
-		public function view(){
-		if (!isset($_GET["id"])) {
-			throw new Exception("id is mandatory");
+			public function view(){
+			if (!isset($_GET["id"])) {
+				throw new Exception("id is mandatory");
+			}
+
+			$postid = $_GET["id"];
+
+			// find the Post object in the database
+			$post = $this->postMapper->findByIdWithComments($postid);
+
+			if ($post == NULL) {
+				throw new Exception("no such post with id: ".$postid);
+			}
+
+			// put the Post object to the view
+			$this->view->setVariable("post", $post);
+
+			// check if comment is already on the view (for example as flash variable)
+			// if not, put an empty Comment for the view
+			$comment = $this->view->getVariable("comment");
+			$this->view->setVariable("comment", ($comment==NULL)?new Comment():$comment);
+
+			// render the view (/view/posts/view.php)
+			$this->view->render("posts", "view");
+
 		}
 
-		$postid = $_GET["id"];
 
-		// find the Post object in the database
-		$post = $this->postMapper->findByIdWithComments($postid);
-
-		if ($post == NULL) {
-			throw new Exception("no such post with id: ".$postid);
-		}
-
-		// put the Post object to the view
-		$this->view->setVariable("post", $post);
-
-		// check if comment is already on the view (for example as flash variable)
-		// if not, put an empty Comment for the view
-		$comment = $this->view->getVariable("comment");
-		$this->view->setVariable("comment", ($comment==NULL)?new Comment():$comment);
-
-		// render the view (/view/posts/view.php)
-		$this->view->render("posts", "view");
-
-	}
-
-	/**
-	* Action to add a new post
-	*
-	* When called via GET, it shows the add form
-	* When called via POST, it adds the post to the
-	* database
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>title: Title of the post (via HTTP POST)</li>
-	* <li>content: Content of the post (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>posts/add: If this action is reached via HTTP GET (via include)</li>
-	* <li>posts/index: If post was successfully added (via redirect)</li>
-	* <li>posts/add: If validation fails (via include). Includes these view variables:</li>
-	* <ul>
-	*	<li>post: The current Post instance, empty or
-	*	being added (but not validated)</li>
-	*	<li>errors: Array including per-field validation errors</li>
-	* </ul>
-	* </ul>
-	* @throws Exception if no user is in session
-	* @return void
-	*/
-	public function add() {
+	public function add()
+	{
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding posts requires login");
 		}
@@ -207,14 +281,14 @@ delete para borrar, solo post */
 				// We want to see a message after redirection, so we establish
 				// a "flash" message (which is simply a Session variable) to be
 				// get in the view after redirection.
-				$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully added."),$post ->getTitle()));
+				$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully added."), $post->getTitle()));
 
 				// perform the redirection. More or less:
 				// header("Location: index.php?controller=posts&action=index")
 				// die();
 				$this->view->redirect("posts", "index");
 
-			}catch(ValidationException $ex) {
+			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
@@ -230,38 +304,8 @@ delete para borrar, solo post */
 
 	}
 
-	/**
-	* Action to edit a post
-	*
-	* When called via GET, it shows an edit form
-	* including the current data of the Post.
-	* When called via POST, it modifies the post in the
-	* database.
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>id: Id of the post (via HTTP POST and GET)</li>
-	* <li>title: Title of the post (via HTTP POST)</li>
-	* <li>content: Content of the post (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>posts/edit: If this action is reached via HTTP GET (via include)</li>
-	* <li>posts/index: If post was successfully edited (via redirect)</li>
-	* <li>posts/edit: If validation fails (via include). Includes these view variables:</li>
-	* <ul>
-	*	<li>post: The current Post instance, empty or being added (but not validated)</li>
-	*	<li>errors: Array including per-field validation errors</li>
-	* </ul>
-	* </ul>
-	* @throws Exception if no id was provided
-	* @throws Exception if no user is in session
-	* @throws Exception if there is not any post with the provided id
-	* @throws Exception if the current logged user is not the author of the post
-	* @return void
-	*/
-	public function edit() {
+	public function edit()
+	{
 		if (!isset($_REQUEST["id"])) {
 			throw new Exception("A post id is mandatory");
 		}
@@ -277,12 +321,12 @@ delete para borrar, solo post */
 
 		// Does the post exist?
 		if ($post == NULL) {
-			throw new Exception("no such post with id: ".$postid);
+			throw new Exception("no such post with id: " . $postid);
 		}
 
 		// Check if the Post author is the currentUser (in Session)
 		if ($post->getAuthor() != $this->currentUser) {
-			throw new Exception("logged user is not the author of the post id ".$postid);
+			throw new Exception("logged user is not the author of the post id " . $postid);
 		}
 
 		if (isset($_POST["submit"])) { // reaching via HTTP Post...
@@ -303,14 +347,14 @@ delete para borrar, solo post */
 				// We want to see a message after redirection, so we establish
 				// a "flash" message (which is simply a Session variable) to be
 				// get in the view after redirection.
-				$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully updated."),$post ->getTitle()));
+				$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully updated."), $post->getTitle()));
 
 				// perform the redirection. More or less:
 				// header("Location: index.php?controller=posts&action=index")
 				// die();
 				$this->view->redirect("posts", "index");
 
-			}catch(ValidationException $ex) {
+			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
@@ -325,41 +369,23 @@ delete para borrar, solo post */
 		$this->view->render("posts", "edit");
 	}
 
-	/**
-	* Action to delete a post
-	*
-	* This action should only be called via HTTP POST
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>id: Id of the post (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>posts/index: If post was successfully deleted (via redirect)</li>
-	* </ul>
-	* @throws Exception if no id was provided
-	* @throws Exception if no user is in session
-	* @throws Exception if there is not any post with the provided id
-	* @throws Exception if the author of the post to be deleted is not the current user
-	* @return void
-	*/
-	public function delete() {
+
+	public function delete()
+	{
 		if (!isset($_POST["id"])) {
 			throw new Exception("id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing posts requires login");
 		}
-		
+
 		// Get the Post object from the database
 		$postid = $_REQUEST["id"];
 		$post = $this->postMapper->findById($postid);
 
 		// Does the post exist?
 		if ($post == NULL) {
-			throw new Exception("no such post with id: ".$postid);
+			throw new Exception("no such post with id: " . $postid);
 		}
 
 		// Check if the Post author is the currentUser (in Session)
@@ -375,7 +401,7 @@ delete para borrar, solo post */
 		// We want to see a message after redirection, so we establish
 		// a "flash" message (which is simply a Session variable) to be
 		// get in the view after redirection.
-		$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."),$post ->getTitle()));
+		$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."), $post->getTitle()));
 
 		// perform the redirection. More or less:
 		// header("Location: index.php?controller=posts&action=index")

@@ -1,6 +1,8 @@
 <?php
 // file: view/users/login.php
 $view = ViewManager::getInstance();
+$errors = $view->getVariable("errors");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,21 +25,29 @@ $view = ViewManager::getInstance();
             <h1 id="bienvenido"><?= i18n("Bienvenido") ?></h1>
             <p class="subtitle"><?= i18n("Una app de administracion al estilo Kanban") ?></p>
 
-            <form class="actions" method="get">
-                <button id="openLogin" class="primary" type="submit"
-                    formaction="index.php?action=login"><?= i18n("Iniciar sesion") ?></button>
-                <button id="openRegister" class="secondary" type="submit"
-                    formaction="index.php?action=register"><?= i18n("Registrarse") ?></button>
-            </form>
+            <a href="index.php?action=login">
+                <button id="openLogin" class="primary"><?= i18n("Iniciar sesion") ?></button>
+            </a>
+            <a href="index.php?action=register">
+                <button id=" openRegister" class="secondary"><?= i18n("Registrarse") ?></button>
+            </a>
+
             </p>
         </div>
     </main>
 
     <footer class="site-footer">
-        <div><strong><?= i18n("Informacion:") ?></strong> <?= i18n("Proyecto Trabajo-TSW — Interfaz de Ejemplo.") ?></div>
+        <div><strong><?= i18n("Informacion:") ?></strong> <?= i18n("Proyecto Trabajo-TSW — Interfaz de Ejemplo.") ?>
+        </div>
         <div class="small"><?= i18n("Contacto: equipo@example.com · Version 1.0") ?></div>
     </footer>
 
 </body>
+
+<?php foreach ($errors as $error): ?>
+    <script>
+        alert("Error (pasar por traduccion): $error");
+    </script>
+<?php endforeach; ?>
 
 </html>
