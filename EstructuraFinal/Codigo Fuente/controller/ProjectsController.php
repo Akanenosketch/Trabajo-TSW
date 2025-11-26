@@ -182,7 +182,7 @@ class ProjectsController extends BaseController
 	}
 
 
-		/**
+	/**
 	 * Action to delete a project
 	 *
 	 * This action should only be called via HTTP POST
@@ -204,7 +204,55 @@ class ProjectsController extends BaseController
 	 */
 	public function delete()
 	{
+		if (!isset($_POST["id"])) {
+			throw new Exception("No project id given");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Deleting projects requires login");
+		}
+
+		// Get the project object from the database
+		$projectid = $_REQUEST["id"];
+		$project = $this->projectMapper->findById($projectid);
+		// Does the project exist?
+		if ($project == NULL) {
+			throw new Exception("no such project with id: " . $projectid);
+		}
+
+		// Check if the currentUser (in Session) is in the Project
+		if (!in_array($this->currentUser, $project->getUsers())) {
+			throw new Exception("logged user does not exits int the project");
+		}
+
+		// Delete the project object from the database
+		$this->projectMapper->delete($project);
+
+		// POST-REDIRECT-GET
+		// perform the redirection. More or less:
+		// header("Location: index.php?controller=projects&action=index")
+		// die();
+		$this->view->redirect("projects", "index");
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//index = al que llega desde login y desde ir atras en projects/view, get sobre list es el dashboard actual
 //form = solo se accede desde index a traves de gets sobre add y edit, tiene acciones post sobre esos mismos dependiendo de cual venga
@@ -370,43 +418,5 @@ class ProjectsController extends BaseController
 	}
 
 
-	public function delete()
-	{
-		if (!isset($_POST["id"])) {
-			throw new Exception("id is mandatory");
-		}
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing posts requires login");
-		}
-
-		// Get the Post object from the database
-		$postid = $_REQUEST["id"];
-		$post = $this->postMapper->findById($postid);
-
-		// Does the post exist?
-		if ($post == NULL) {
-			throw new Exception("no such post with id: " . $postid);
-		}
-
-		// Check if the Post author is the currentUser (in Session)
-		if ($post->getAuthor() != $this->currentUser) {
-			throw new Exception("Post author is not the logged user");
-		}
-
-		// Delete the Post object from the database
-		$this->postMapper->delete($post);
-
-		// POST-REDIRECT-GET
-		// Everything OK, we will redirect the user to the list of posts
-		// We want to see a message after redirection, so we establish
-		// a "flash" message (which is simply a Session variable) to be
-		// get in the view after redirection.
-		$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."), $post->getTitle()));
-
-		// perform the redirection. More or less:
-		// header("Location: index.php?controller=posts&action=index")
-		// die();
-		$this->view->redirect("posts", "index");
-
-	}
+*/
 }
