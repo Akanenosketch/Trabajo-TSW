@@ -138,7 +138,6 @@ class ProjectsController extends BaseController
 	 * </ul>
 	 * </ul>
 	 * @throws Exception if no user is in session
-
 	 * @return void
 	 */
 	public function add()

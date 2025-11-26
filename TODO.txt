@@ -49,7 +49,11 @@ revisar en los de ir atras si funciona con post CONFIMRO FUNCIONA PERO CUIDADO
 
 
 
+meter descripcion al task en db, model, mappers
 login register welcome page traduccion errores y faltaria revisar css
 
 
 hacr que copiar a lamp sea mas facil, cambiar el nombre del fichero por el espacio y que sea pegarlo
+
+un delete para tasks
+un get para tasks

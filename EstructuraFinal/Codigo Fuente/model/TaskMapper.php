@@ -74,4 +74,17 @@ class TaskMapper
 		}
 	}
 
+
+	/**
+	 * Deletes a Tasl from the database
+	 *
+	 * @param String $id The Id of the task to be deleted
+	 * @throws PDOException if a database error occurs
+	 * @return void
+	 */
+	public function delete(String $id)
+	{
+		$stmt = $this->db->prepare("DELETE from tasks WHERE task_id=?");
+		$stmt->execute(array($id));
+	}
 }
