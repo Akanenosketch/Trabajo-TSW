@@ -1,7 +1,7 @@
 <?php
 // file: model/Task.php
 
-require_once(__DIR__ . "/../core/ValidationException.php");
+require_once(__DIR__."/../core/ValidationException.php");
 
 /**
  * Class Task

@@ -1,7 +1,7 @@
 <?php
 // file: model/Project.php
 
-require_once(__DIR__ . "/../core/ValidationException.php");
+require_once(__DIR__."/../core/ValidationException.php");
 
 /**
  * Class Project

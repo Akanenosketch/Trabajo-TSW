@@ -1,14 +1,14 @@
 <?php
 //file: /controller/TasksController.php
 
-require_once(__DIR__ . "/../model/User.php");
-require_once(__DIR__ . "/../model/Project.php");
-require_once(__DIR__ . "/../model/Task.php");
+require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/Project.php");
+require_once(__DIR__."/../model/Task.php");
 
-require_once(__DIR__ . "/../model/ProjectMapper.php");
-require_once(__DIR__ . "/../model/TaskMapper.php");
+require_once(__DIR__."/../model/ProjectMapper.php");
+require_once(__DIR__."/../model/TaskMapper.php");
 
-require_once(__DIR__ . "/../controller/BaseController.php");
+require_once(__DIR__."/../controller/BaseController.php");
 
 /**
  * Class TasksController
