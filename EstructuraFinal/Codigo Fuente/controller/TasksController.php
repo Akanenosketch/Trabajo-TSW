@@ -20,7 +20,7 @@ class TaskController extends BaseController
 {
 
 	/**
-	 * Reference to the CommentMapper to interact
+	 * Reference to the TaskMapper to interact
 	 * with the database
 	 *
 	 * @var TaskMapper
@@ -28,7 +28,7 @@ class TaskController extends BaseController
 	private $taskMapper;
 
 	/**
-	 * Reference to the PostMapper to interact
+	 * Reference to the ProjectMapper to interact
 	 * with the database
 	 *
 	 * @var ProjectMapper
@@ -45,9 +45,69 @@ class TaskController extends BaseController
 
 
 
+	//add
+//edit
+//delete
+//ver una tarea (para la descripcion)
 
+	//view - form cargado y readonly
+//add y edit = get levantan la form, post realiza
+//delete - solo deletea con post
+
+
+	// projects/index lista
+// tasks/view?id=task_id   view?
+// tasks/add
+// tasks/add?id=tasks_id para el edit y view?
+
+	//todos devuelven al mismo view del dashboard del projecto
+
+	/*
+	modalTaskName
+	modalTaskDesc
+	modalTaskStatus es un select
+	modalTaskAssignees es un checkbox
+
+	hay que hacer get al user a partir del email y meterlo al task, pero se guarda el proyect id*/
+
+
+	//ACCIONES DEFINITIVAS
+// add edit delete view
+//solo hay 1 vista = form, estilo IU 
+// add/edit con get levantan la form, post la ejecutan
+//para cambiar el tipo desde la tabla hace un edit encubierto
+//delete es n boton que borra y ya
+//view levanta la form cubierta readonly
+
+
+	/**
+	 * Action to view a given task.
+	 *
+	 * This action should only be called via GET
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>id: Id of the project (via HTTP POST)</li>
+	 * <li>task_id: Id of the task (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>tasks/form: If post is successfully loaded (via include).	Includes these view variables:</li>
+	 * <ul>
+	 *	<li>task: The current Task retrieved</li>
+	 * </ul>
+	 * <li>projects/view?id=project_id: If task id does not exist (via include). Includes these view variables:</li>
+	 * <ul>
+	 * <li>errors: Array including validation errors</li>
+	 * </ul>
+	 * </ul>
+	 * @return void
+	 *
+	 */
 	public function view()
 	{
+
 	}
 
 
@@ -81,6 +141,62 @@ class TaskController extends BaseController
 	 */
 	public function add()
 	{
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding tasks requires login");
+		}
+
+		if (isset($_POST["id"])) { // reaching via HTTP Post...
+
+			// Get the Project object from the database
+			$projectid = $_POST["id"];
+			$project = $this->projectMapper->findByIdWithAll($projectid);
+
+			// Does the project exist?
+			if ($project == NULL) {
+				throw new Exception("no such project with id: ".$projectid);
+			}
+
+				// Check if the currentUser (in Session) is in the Project
+			if (!in_array($this->currentUser, $project->getUsers())) {
+				throw new Exception("logged user does not exits int the project");
+			}
+
+			// Create and populate the Task object
+			$task = new Task();
+			
+			$task->setProject($projectid);
+			$task->setName($_POST["title"]);
+			$task->setStatus($_POST["status"]);
+			$task->setDesc($_POST["description"]);
+
+			$users = array();
+			foreach($project->getUsers() as $user) {
+				if(isset($_POST[$user->getUserMail()])){
+					array_push($users,$user); 
+				}
+			}
+			
+			try {
+				// validate Task object
+				$task->checkIsValidForCreate(); // if it fails, ValidationException
+
+				// save the Comment object into the database
+				$this->taskMapper->save($task);
+
+				// POST-REDIRECT-GET projects/view?id=project_id
+				$this->view->redirect("projects", "view", "id=".$projectid);
+			} catch (ValidationException $ex) {
+				$errors = $ex->getErrors();
+
+				// Go back to the form to show errors.
+				$this->view->setVariable("errors", $errors);
+				// igual necesite el project id - df
+				$this->view->redirect("tasks", "form");
+			}
+		} else{
+		// render the view (/view/tasks/form.php)
+		$this->view->render("tasks", "form");
+		}
 	}
 
 
@@ -120,6 +236,85 @@ class TaskController extends BaseController
 	 */
 	public function edit()
 	{
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("A project id is mandatory");
+		}
+
+		if (!isset($_REQUEST["task_id"])) {
+			throw new Exception("A task id is mandatory");
+		}
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing tasks requires login");
+		}
+
+		// Get the Project object from the database
+		$projectid = $_REQUEST["id"];
+		$project = $this->projectMapper->findByIdWithAll($projectid);
+
+		// Does the project exist?
+		if ($project == NULL) {
+			throw new Exception("no such project with id: ".$projectid);
+		}
+
+		// Check if the currentUser (in Session) is in the Project
+		if (!in_array($this->currentUser, $project->getUsers())) {
+			throw new Exception("logged user does not exits int the project");
+		}
+
+		// Get the task object
+		$taskid = $_REQUEST["task_id"];
+		$task = NULL;
+
+		foreach($project->getTasks() as $t) {
+			if($t->getId() == $taskid) {
+				$task = $t;
+			}
+		}
+
+		if($task == NULL){
+			throw new Exception("no such task with id: ".$taskid);
+		}
+
+		// Check if the user is assigned to task
+		if (!in_array($this->currentUser, $task->getUsers())) {
+			throw new Exception("logged user does not exists in the task");
+		}
+
+		if (isset($_POST["id"])) { // reaching via HTTP Post...
+
+			try {
+				$task->setProject($projectid);
+				$task->setName($_POST["title"]);
+				$task->setStatus($_POST["status"]);
+				$task->setDesc($_POST["description"]);
+
+				$users = array();
+				foreach($project->getUsers() as $user) {
+					if(isset($_POST[$user->getUserMail()])){
+						array_push($users,$user); 
+					}
+				}
+				// validate Task object
+				$task->checkIsValidForUpdate(); // if it fails, ValidationException
+				// update the Task object in the database
+				$this->taskMapper->update($task);
+
+				// POST-REDIRECT-GET
+				$this->view->redirect("projects", "view", "id=".$projectid);
+
+			} catch (ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+				$this->view->redirect("tasks", "form");
+			}
+		} else{
+			$this->view->setVariable("task", $task);
+			// render the view (/view/tasks/form.php)
+			$this->view->render("tasks", "form");
+		}		
 	}
 
 
@@ -136,7 +331,7 @@ class TaskController extends BaseController
 	 *
 	 * The views are:
 	 * <ul>
-	 * <li>projects/view?id=project_id: If task was successfully added.
+	 * <li>projects/view?id=project_id: If task was successfully deleted.
 	 * </ul>
 	 * @throws Exception if no id was provided
 	 * @throws Exception if no user is in session
@@ -164,7 +359,7 @@ class TaskController extends BaseController
 
 		// Does the project exist?
 		if ($project == NULL) {
-			throw new Exception("no such project with id: " . $projectid);
+			throw new Exception("no such project with id: ".$projectid);
 		}
 
 		// Check if the currentUser (in Session) is in the Project
@@ -173,17 +368,17 @@ class TaskController extends BaseController
 		}
 
 		//Check if the task exists
-				$taskid = $_REQUEST["task_id"];
+		$taskid = $_REQUEST["task_id"];
 
 		$task = null;
 		foreach ($project->getTasks() as $t) {
-				if(strcmp($t->getId(), $taskid) == 0){
-					$task = $t;
-				}
+			if (strcmp($t->getId(), $taskid) == 0) {
+				$task = $t;
+			}
 		}
 
 		if ($task == NULL) {
-			throw new Exception("no such task with id: " . $taskid);
+			throw new Exception("no such task with id: ".$taskid);
 
 		}
 
@@ -194,108 +389,8 @@ class TaskController extends BaseController
 		// perform the redirection. More or less:
 		// header("Location: index.php?controller=projects&action=view&id=project_id")
 		// die();
-		$this->view->redirect("projects", "index","id=".$projectid);
+		$this->view->redirect("projects", "index", "id=".$projectid);
 	}
 
-
-
-
-
-	/*	public function add() {
-			if (!isset($this->currentUser)) {
-				throw new Exception("Not in session. Adding tasks requires login");
-			}
-
-			if (isset($_POST["id"])) { // reaching via HTTP Post...
-
-				// Get the Post object from the database
-				$postid = $_POST["id"];
-				$post = $this->postmapper->findById($postid);
-
-				// Does the post exist?
-				if ($post == NULL) {
-					throw new Exception("no such post with id: ".$postid);
-				}
-
-				// Create and populate the Comment object
-				$comment = new Comment();
-				$comment->setContent($_POST["content"]);
-				$comment->setAuthor($this->currentUser);
-				$comment->setPost($post);
-
-				try {
-
-					// validate Comment object
-					$comment->checkIsValidForCreate(); // if it fails, ValidationException
-
-					// save the Comment object into the database
-					$this->commentmapper->save($comment);
-
-					// POST-REDIRECT-GET
-					// Everything OK, we will redirect the user to the list of posts
-					// We want to see a message after redirection, so we establish
-					// a "flash" message (which is simply a Session variable) to be
-					// get in the view after redirection.
-					$this->view->setFlash("Comment \"".$post ->getTitle()."\" successfully added.");
-
-					// perform the redirection. More or less:
-					// header("Location: index.php?controller=posts&action=view&id=$postid")
-					// die();
-					$this->view->redirect("posts", "view", "id=".$post->getId());
-				}catch(ValidationException $ex) {
-					$errors = $ex->getErrors();
-
-					// Go back to the form to show errors.
-					// However, the form is not in a single page (comments/add)
-					// It is in the View Post page.
-					// We will save errors as a "flash" variable (third parameter true)
-					// and redirect the user to the referring page
-					// (the View post page)
-					$this->view->setVariable("comment", $comment, true);
-					$this->view->setVariable("errors", $errors, true);
-
-					$this->view->redirect("posts", "view", "id=".$post->getId());
-				}
-			} else {
-				throw new Exception("No such post id");
-			}
-		}
-	}
-
-	*/
-
-	//add
-//edit
-//delete
-//ver una tarea (para la descripcion)
-
-	//view - form cargado y readonly
-//add y edit = get levantan la form, post realiza
-//delete - solo deletea con post
-
-
-	// projects/index lista
-// tasks/view?id=task_id   view?
-// tasks/add
-// tasks/add?id=tasks_id para el edit y view?
-
-	//todos devuelven al mismo view del dashboard del projecto
-
-	/*
-	modalTaskName
-	modalTaskDesc
-	modalTaskStatus es un select
-	modalTaskAssignees es un checkbox
-
-	hay que hacer get al user a partir del email y meterlo al task, pero se guarda el proyect id*/
-
-
-	//ACCIONES DEFINITIVAS
-// add edit delete view
-//solo hay 1 vista = form, estilo IU 
-// add/edit con get levantan la form, post la ejecutan
-//para cambiar el tipo desde la tabla hace un edit encubierto
-//delete es n boton que borra y ya
-//view levanta la form cubierta readonly
 }
 ?>
