@@ -43,43 +43,6 @@ class TaskController extends BaseController
 		$this->projectMapper = new ProjectMapper();
 	}
 
-
-
-	//add
-//edit
-//delete
-//ver una tarea (para la descripcion)
-
-	//view - form cargado y readonly
-//add y edit = get levantan la form, post realiza
-//delete - solo deletea con post
-
-
-	// projects/index lista
-// tasks/view?id=task_id   view?
-// tasks/add
-// tasks/add?id=tasks_id para el edit y view?
-
-	//todos devuelven al mismo view del dashboard del projecto
-
-	/*
-	modalTaskName
-	modalTaskDesc
-	modalTaskStatus es un select
-	modalTaskAssignees es un checkbox
-
-	hay que hacer get al user a partir del email y meterlo al task, pero se guarda el proyect id*/
-
-
-	//ACCIONES DEFINITIVAS
-// add edit delete view
-//solo hay 1 vista = form, estilo IU 
-// add/edit con get levantan la form, post la ejecutan
-//para cambiar el tipo desde la tabla hace un edit encubierto
-//delete es n boton que borra y ya
-//view levanta la form cubierta readonly
-
-
 	/**
 	 * Action to view a given task.
 	 *
@@ -126,7 +89,7 @@ class TaskController extends BaseController
 
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exits int the project");
+			throw new Exception("logged user does not exist in the project");
 		}
 
 		// Get the task object
@@ -188,22 +151,24 @@ class TaskController extends BaseController
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding tasks requires login");
 		}
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("A project id is mandatory");
+		}
+		// Get the Project object from the database
+		$projectid = $_REQUEST["id"];
+		$project = $this->projectMapper->findByIdWithAll($projectid);
+
+		// Does the project exist?
+		if ($project == NULL) {
+			throw new Exception("no such project with id: ".$projectid);
+		}
+
+		// Check if the currentUser (in Session) is in the Project
+		if (!in_array($this->currentUser, $project->getUsers())) {
+			throw new Exception("logged user does not exist in the project");
+		}
 
 		if (isset($_POST["id"])) { // reaching via HTTP Post...
-
-			// Get the Project object from the database
-			$projectid = $_POST["id"];
-			$project = $this->projectMapper->findByIdWithAll($projectid);
-
-			// Does the project exist?
-			if ($project == NULL) {
-				throw new Exception("no such project with id: ".$projectid);
-			}
-
-			// Check if the currentUser (in Session) is in the Project
-			if (!in_array($this->currentUser, $project->getUsers())) {
-				throw new Exception("logged user does not exits int the project");
-			}
 
 			// Create and populate the Task object
 			$task = new Task();
@@ -239,6 +204,7 @@ class TaskController extends BaseController
 			}
 		} else {
 			// render the view (/view/tasks/form.php)
+			$this->view->setVariable("users", $project->getUsers());
 			$this->view->render("tasks", "form");
 		}
 	}
@@ -303,7 +269,7 @@ class TaskController extends BaseController
 
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exits int the project");
+			throw new Exception("logged user does not exist in the project");
 		}
 
 		// Get the task object
@@ -352,10 +318,12 @@ class TaskController extends BaseController
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
+
 				$this->view->redirect("tasks", "form");
 			}
 		} else {
 			$this->view->setVariable("task", $task);
+			$this->view->setVariable("users", $project->getUsers());
 			// render the view (/view/tasks/form.php)
 			$this->view->render("tasks", "form");
 		}
@@ -408,7 +376,7 @@ class TaskController extends BaseController
 
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exits int the project");
+			throw new Exception("logged user does not exist in the project");
 		}
 
 		//Check if the task exists

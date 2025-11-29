@@ -11,6 +11,12 @@ array(
 	"Proyecto Trabajo-TSW — Interfaz de Ejemplo." => "TSW-Work Project — Example Interface.",
 	"Contacto: equipo@example.com · Version 1.0" => "Contact: equipo@example.com · Version 1.0",
 	
+	
+	
+	
+	
+	
+	"Formulario de Tareas" => "Task Form",
 
 
 	//login.php & login_form
