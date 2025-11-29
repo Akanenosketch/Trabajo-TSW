@@ -97,18 +97,12 @@ class TaskController extends BaseController
 	 * <ul>
 	 *	<li>task: The current Task retrieved</li>
 	 * </ul>
-	 * <li>projects/view?id=project_id: If task id does not exist (via include). Includes these view variables:</li>
-	 * <ul>
-	 * <li>errors: Array including validation errors</li>
-	 * </ul>
 	 * </ul>
 	 * @return void
 	 *
 	 */
 	public function view()
 	{
-
-		try{
 		if (!isset($_REQUEST["id"])) {
 			throw new Exception("A project id is mandatory");
 		}
@@ -121,7 +115,7 @@ class TaskController extends BaseController
 			throw new Exception("Not in session. Viewing tasks requires login");
 		}
 
-				// Get the Project object from the database
+		// Get the Project object from the database
 		$projectid = $_REQUEST["id"];
 		$project = $this->projectMapper->findByIdWithAll($projectid);
 
@@ -139,13 +133,13 @@ class TaskController extends BaseController
 		$taskid = $_REQUEST["task_id"];
 		$task = NULL;
 
-		foreach($project->getTasks() as $t) {
-			if($t->getId() == $taskid) {
+		foreach ($project->getTasks() as $t) {
+			if ($t->getId() == $taskid) {
 				$task = $t;
 			}
 		}
 
-		if($task == NULL){
+		if ($task == NULL) {
 			throw new Exception("no such task with id: ".$taskid);
 		}
 
@@ -153,20 +147,10 @@ class TaskController extends BaseController
 		if (!in_array($this->currentUser, $task->getUsers())) {
 			throw new Exception("logged user does not exists in the task");
 		}
-			$this->view->setVariable("task", $task);
-			$this->view->setVariable("isViewing", true);
-			// render the view (/view/tasks/form.php)
-			$this->view->render("tasks", "form");
-
-		}catch(Exception $e){ //esto igual esta mal -df
-				// Get the errors array inside the exepction...
-				$errors = $e->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-				$this->view->redirect("projects", "view", "id=".$projectid);
-
-		}
-
+		$this->view->setVariable("task", $task);
+		$this->view->setVariable("isViewing", true);
+		// render the view (/view/tasks/form.php)
+		$this->view->render("tasks", "form");
 
 	}
 
@@ -216,26 +200,26 @@ class TaskController extends BaseController
 				throw new Exception("no such project with id: ".$projectid);
 			}
 
-				// Check if the currentUser (in Session) is in the Project
+			// Check if the currentUser (in Session) is in the Project
 			if (!in_array($this->currentUser, $project->getUsers())) {
 				throw new Exception("logged user does not exits int the project");
 			}
 
 			// Create and populate the Task object
 			$task = new Task();
-			
+
 			$task->setProject($projectid);
 			$task->setName($_POST["title"]);
 			$task->setStatus($_POST["status"]);
 			$task->setDesc($_POST["description"]);
 
 			$users = array();
-			foreach($project->getUsers() as $user) {
-				if(isset($_POST[$user->getUserMail()])){
-					array_push($users,$user); 
+			foreach ($project->getUsers() as $user) {
+				if (isset($_POST[$user->getUserMail()])) {
+					array_push($users, $user);
 				}
 			}
-			
+
 			try {
 				// validate Task object
 				$task->checkIsValidForCreate(); // if it fails, ValidationException
@@ -253,9 +237,9 @@ class TaskController extends BaseController
 				// igual necesite el project id - df
 				$this->view->redirect("tasks", "form");
 			}
-		} else{
-		// render the view (/view/tasks/form.php)
-		$this->view->render("tasks", "form");
+		} else {
+			// render the view (/view/tasks/form.php)
+			$this->view->render("tasks", "form");
 		}
 	}
 
@@ -326,13 +310,13 @@ class TaskController extends BaseController
 		$taskid = $_REQUEST["task_id"];
 		$task = NULL;
 
-		foreach($project->getTasks() as $t) {
-			if($t->getId() == $taskid) {
+		foreach ($project->getTasks() as $t) {
+			if ($t->getId() == $taskid) {
 				$task = $t;
 			}
 		}
 
-		if($task == NULL){
+		if ($task == NULL) {
 			throw new Exception("no such task with id: ".$taskid);
 		}
 
@@ -350,9 +334,9 @@ class TaskController extends BaseController
 				$task->setDesc($_POST["description"]);
 
 				$users = array();
-				foreach($project->getUsers() as $user) {
-					if(isset($_POST[$user->getUserMail()])){
-						array_push($users,$user); 
+				foreach ($project->getUsers() as $user) {
+					if (isset($_POST[$user->getUserMail()])) {
+						array_push($users, $user);
 					}
 				}
 				// validate Task object
@@ -370,11 +354,11 @@ class TaskController extends BaseController
 				$this->view->setVariable("errors", $errors);
 				$this->view->redirect("tasks", "form");
 			}
-		} else{
+		} else {
 			$this->view->setVariable("task", $task);
 			// render the view (/view/tasks/form.php)
 			$this->view->render("tasks", "form");
-		}		
+		}
 	}
 
 
