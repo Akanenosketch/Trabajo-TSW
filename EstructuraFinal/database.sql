@@ -35,11 +35,12 @@ CREATE TABLE projects (
 -- Crear una tabla para las tareas
 CREATE TABLE tasks (
 	task_id INT AUTO_INCREMENT NOT NULL,
-	task_name VARCHAR(255),
+	task_name VARCHAR(255) NOT NULL,
+	task_desc VARCHAR(255) NOT NULL,
 	project_id INT NOT NULL,
     task_status ENUM("ToDo","Working","Done") NOT NULL,
     
-	FOREIGN KEY (project_id) REFERENCES projects(project_id),
+	FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
     CONSTRAINT PK_Task PRIMARY KEY (task_id, project_id)
 ) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
 
@@ -48,8 +49,8 @@ CREATE TABLE users_on_projects (
 	user_mail VARCHAR(255) NOT NULL,
 	project_id INT NOT NULL,
 
-	FOREIGN KEY (user_mail) REFERENCES users(user_mail),
-	FOREIGN KEY (project_id) REFERENCES projects(project_id),
+	FOREIGN KEY (user_mail) REFERENCES users(user_mail) ON DELETE CASCADE,
+	FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
     CONSTRAINT PK_Users_projects PRIMARY KEY (user_mail, project_id)
 ) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
 
@@ -59,21 +60,29 @@ CREATE TABLE users_on_tasks (
 	project_id INT NOT NULL,
 	task_id INT NOT NULL,
 	
-	FOREIGN KEY (user_mail,project_id) REFERENCES users_on_projects(user_mail, project_id),
-	FOREIGN KEY (task_id) REFERENCES tasks(task_id),
+	FOREIGN KEY (user_mail,project_id) REFERENCES users_on_projects(user_mail, project_id) ON DELETE CASCADE,
+	FOREIGN KEY (task_id) REFERENCES tasks(task_id) ON DELETE CASCADE,
     CONSTRAINT PK_Users_Tasks PRIMARY KEY (user_mail, project_id, task_id)
 ) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
 
 
 -- Introducir datos de prueba en la base de datos
 INSERT INTO users (user_mail,username, passwd) VALUES ('tsw@uvigo.es', 'tswuser','tswpass');
+INSERT INTO users (user_mail,username, passwd) VALUES ('tsw2@uvigo.es', 'tswuser2','tswpass2');
 
 INSERT INTO projects (project_name) VALUES ('TSWTestproject');
+INSERT INTO projects (project_name) VALUES ('TSWTestproject2');
 INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw@uvigo.es',1);
+INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw@uvigo.es',2);
+INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw2@uvigo.es',1);
 
-INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestToDO',1,"ToDo");
-INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestWork',1,"Working");
-INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestDone',1,"Done");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestToDO',1,"ToDo","desc");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestWork',1,"Working","des2");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestDone',1,"Done","");
+
+INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestToDO',2,"ToDo");
+INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestWork',2,"Working");
+INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestDone',2,"Done");
 
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,1);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,2);
