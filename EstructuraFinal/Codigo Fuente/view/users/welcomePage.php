@@ -47,7 +47,7 @@ $errors = $view->getVariable("errors");
 <?php if (!is_null($errors) ): ?>
 <?php foreach ($errors as $error): ?>
     <script>
-        var errorMsg = <?php echo json_encode($error)?>
+        var errorMsg = <?php echo json_encode($error)?>;
         console.log(errorMsg);
         alert(errorMsg);
     </script>
