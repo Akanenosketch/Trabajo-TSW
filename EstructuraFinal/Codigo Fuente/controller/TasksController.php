@@ -108,6 +108,66 @@ class TaskController extends BaseController
 	public function view()
 	{
 
+		try{
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("A project id is mandatory");
+		}
+
+		if (!isset($_REQUEST["task_id"])) {
+			throw new Exception("A task id is mandatory");
+		}
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Viewing tasks requires login");
+		}
+
+				// Get the Project object from the database
+		$projectid = $_REQUEST["id"];
+		$project = $this->projectMapper->findByIdWithAll($projectid);
+
+		// Does the project exist?
+		if ($project == NULL) {
+			throw new Exception("no such project with id: ".$projectid);
+		}
+
+		// Check if the currentUser (in Session) is in the Project
+		if (!in_array($this->currentUser, $project->getUsers())) {
+			throw new Exception("logged user does not exits int the project");
+		}
+
+		// Get the task object
+		$taskid = $_REQUEST["task_id"];
+		$task = NULL;
+
+		foreach($project->getTasks() as $t) {
+			if($t->getId() == $taskid) {
+				$task = $t;
+			}
+		}
+
+		if($task == NULL){
+			throw new Exception("no such task with id: ".$taskid);
+		}
+
+		// Check if the user is assigned to task
+		if (!in_array($this->currentUser, $task->getUsers())) {
+			throw new Exception("logged user does not exists in the task");
+		}
+			$this->view->setVariable("task", $task);
+			$this->view->setVariable("isViewing", true);
+			// render the view (/view/tasks/form.php)
+			$this->view->render("tasks", "form");
+
+		}catch(Exception $e){ //esto igual esta mal -df
+				// Get the errors array inside the exepction...
+				$errors = $e->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+				$this->view->redirect("projects", "view", "id=".$projectid);
+
+		}
+
+
 	}
 
 
