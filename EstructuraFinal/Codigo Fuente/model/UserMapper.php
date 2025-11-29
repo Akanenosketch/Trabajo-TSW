@@ -1,7 +1,7 @@
 <?php
 // file: model/UserMapper.php
 
-require_once(__DIR__."/core/PDOConnection.php");
+require_once(__DIR__."/../core/PDOConnection.php");
 
 /**
  * Class UserMapper
@@ -78,7 +78,7 @@ class UserMapper
 	public function findByEmail($usermail)
 	{
 		$stmt = $this->db->prepare("SELECT * FROM users where user_mail=?");
-		$stmt->execute(array($$usermail));
+		$stmt->execute(array($usermail));
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if ($user != null) {
