@@ -42,7 +42,7 @@ class ProjectMapper
 
 		$projects = array();
 
-		foreach ($projects as $project) {
+		foreach ($projects_db as $project) {
 			array_push($projects, new Project($project["project_id"], $project["project_name"]));
 		}
 
@@ -85,51 +85,16 @@ class ProjectMapper
 	 */
 	public function findByIdWithAll($projectid)
 	{
-		$stmt = $this->db->prepare("SELECT
-			P.project_id as 'project.id',
-			P.project_name as 'project.name',
-			UP.user_mail as 'user.mail',
-			T.task_id as 'task.id',			
-			T.task_name as 'task.name',			
-			T.task_status  as 'task.status '			
-
-			FROM projects P, LEFT OUTER JOIN tasks T
-			ON P.project_id = T.project_id
-			WHERE
-			P.project_id=?");
-
-		$stmt->execute(array($projectid));
-		$project_with_all = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		if (sizeof($project_with_all) > 0) {
-
-			$project = new Project(
-				$project_with_all[0]["project.id"],
-				$project_with_all[0]["project.name"]
-			);
-
-			$tasks_array = array();
-			if ($project_with_all[0]["task.id"] != null) {
-				foreach ($project_with_all as $task) {
-					$task = new Task(
-						$task["task.id"],
-						$task["task.name"],
-						$task["project.id"],
-						$task["task.status"]
-					);
-					array_push($tasks_array, $task);
-				}
-			}
-
-			$project->setTasks($tasks_array);
-
-
+		$project_with_all = $this->findById($projectid);
+		if($project_with_all != null){
+			//retrievear todas las task y todas los users
+			
 			//recuperar usuarios
-			$stmt2 = $this->db->prepare("SELECT * FROM users WHERE user_mail IN (
+			$stmt = $this->db->prepare("SELECT * FROM users WHERE user_mail IN (
 				SELECT user_mail FROM users_on_projects WHERE project_id=?)
 				");
-			$stmt2->execute(array($projectid));
-			$users = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->execute(array($projectid));
+			$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 			$users_array = array();
@@ -139,11 +104,26 @@ class ProjectMapper
 
 			$project->setUsers($users_array);
 
+			//recuperar tasks
+			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=?)");
+			$stmt->execute(array($projectid));
+			$tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-			return $project;
-		} else {
-			return NULL;
+			$tasks_array = array();
+				foreach ($tasks as $task) {
+					$task = new Task(
+						$task["task.id"],
+						$task["task.name"],
+						$task["task.desc"],
+						$task["project.id"],
+						$task["task.status"]
+					);
+					array_push($tasks_array, $task);
+				}
+			$project->setTasks($tasks_array);
 		}
+
+		return $project_with_all
 	}
 
 	/**

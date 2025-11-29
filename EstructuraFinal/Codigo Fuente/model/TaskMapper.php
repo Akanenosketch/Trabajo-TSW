@@ -35,8 +35,8 @@ class TaskMapper
 	 */
 	public function save(Task $task)
 	{
-		$stmt = $this->db->prepare("INSERT INTO Tasks(task_name, project_id, task_status) values (?,?,?)");
-		$stmt->execute(array($task->getName(), $task->getProject(), $task->getStatus()));
+		$stmt = $this->db->prepare("INSERT INTO Tasks(task_name, project_id, task_status,task_desc) values (?,?,?,?)");
+		$stmt->execute(array($task->getName(), $task->getProject(), $task->getStatus(), $task->getDesc()));
 		$toRet = $this->db->lastInsertId();
 
 		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
@@ -58,8 +58,8 @@ class TaskMapper
 	 */
 	public function update(Task $task)
 	{
-		$stmt = $this->db->prepare("UPDATE Tasks set task_name=?,task_status=? where task_id=?");
-		$stmt->execute(array($task->getName(), $task->getStatus(), $task->getId()));
+		$stmt = $this->db->prepare("UPDATE Tasks set task_name=?,task_status=?,task_desc=? where task_id=?");
+		$stmt->execute(array($task->getName(), $task->getStatus(), $task->getDesc(), $task->getId()));
 
 		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_tasks WHERE task_id=?");
 		$stmt->execute(array($task->getId()));
@@ -76,7 +76,7 @@ class TaskMapper
 
 
 	/**
-	 * Deletes a Tasl from the database
+	 * Deletes a Task from the database
 	 *
 	 * @param String $id The Id of the task to be deleted
 	 * @throws PDOException if a database error occurs
