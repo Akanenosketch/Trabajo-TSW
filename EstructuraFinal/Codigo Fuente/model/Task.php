@@ -205,10 +205,6 @@ class Task
 			$errors["users"] = "Task must have at least 1 user";
 		}
 
-		if (strlen(trim($this->projectID)) < 1) {
-			$errors["projectID"] = "projectID is mandatory";
-		}
-
 		if (strlen(trim($this->status)) < 1) {
 			$errors["status"] = "status is mandatory";
 		}
@@ -221,5 +217,26 @@ class Task
 			throw new ValidationException($errors, "Task is not valid");
 		}
 	}
+
+		public function checkIsValidForUpdate()
+	{
+		$errors = array();
+
+		if (strlen(trim($this->projectID)) < 1) {
+			$errors["projectID"] = "projectID is mandatory";
+		}
+
+		try {
+			$this->checkIsValidForCreate();
+		} catch (ValidationException $ex) {
+			foreach ($ex->getErrors() as $key => $error) {
+				$errors[$key] = $error;
+			}
+		}
+		if (sizeof($errors) > 0) {
+			throw new ValidationException($errors, "project is not valid");
+		}
+	}
+
 }
 ?>
