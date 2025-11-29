@@ -26,6 +26,12 @@ class Task
 	private $name;
 
 	/**
+	 * The description of the Task
+	 * @var string
+	 */
+	private $desc;
+
+	/**
 	 * The status of the Task
 	 * @var string
 	 */
@@ -49,10 +55,11 @@ class Task
 	 * @param string $id The id of the Task
 	 * @param string $name The name of the Task
 	 */
-	public function __construct($id = NULL, $name = NULL, $projectID = NULL, $status = NULL, array $users = NULL)
+	public function __construct($id = NULL, $name = NULL,$desc = NULL, $projectID = NULL, $status = NULL, array $users = NULL)
 	{
 		$this->id = $id;
 		$this->name = $name;
+		$this->desc = $desc;
 		$this->projectID = $projectID;
 		$this->status = $status;
 		$this->users = $users;
@@ -89,6 +96,26 @@ class Task
 		$this->name = $name;
 	}
 
+	/**
+	 * Gets the desc of this Task
+	 *
+	 * @return string The desc of this Task
+	 */
+	public function getDesc()
+	{
+		return $this->desc;
+	}
+
+	/**
+	 * Sets the desc of the Task
+	 *
+	 * @param string $desc the desc of this Task
+	 * @return void
+	 */
+	public function setDesc($desc)
+	{
+		$this->desc = $desc;
+	}
 	/**
 	 * Gets the ProjectID of this Task
 	 *
@@ -168,6 +195,10 @@ class Task
 
 		if (strlen(trim($this->name)) < 1) {
 			$errors["name"] = "name is mandatory";
+		}
+
+		if (strlen(trim($this->desc)) < 1) {
+			$errors["desc"] = "desc is mandatory";
 		}
 
 		if (sizeof($this->users) < 1) {
