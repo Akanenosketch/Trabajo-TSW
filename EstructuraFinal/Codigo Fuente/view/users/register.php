@@ -12,8 +12,7 @@ $errors = $view->getVariable("errors");
     <link rel="stylesheet" type="text/css" href="./view/css/users/register.css">
     <title><?= i18n("Register Form") ?></title>
 </head>
-<html>
-
+<body>
 <div id="registerOverlay" class="overlay">
     <div class="modal">
         <header>
@@ -48,7 +47,8 @@ $errors = $view->getVariable("errors");
             </div>
         </form>
     </div>
-</div>
+</div>    
+</body>
 
 <?php if (!is_null($errors)): ?>
     <?php foreach ($errors as $error): ?>

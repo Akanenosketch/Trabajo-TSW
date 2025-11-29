@@ -22,4 +22,4 @@
 
 
 
-    etiqueta html
+    etiqueta html y body y head
