@@ -66,10 +66,21 @@ class TaskMapper
 		$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
-
+		$stmt2 = $this->db->prepare("DELETE FROM users_on_tasks WHERE user_mail=?");
+		$newUsers = $task->getUsers();
+		$repeatedUsers = array();
 		foreach ($task->getUsers() as $user) {
 			if (!in_array($user->getUserMail(), $users)) {
 				$stmt->execute(array($user->getUserMail(), $task->getProject(), $task->getId()));
+			} else{
+				array_push($repeatedUsers,$user->getUserMail()); 
+			}
+		}
+
+		//Remove users from task
+		foreach ($users as $user) {
+			if (!in_array($user, $repeatedUsers)) {
+				$stmt2->execute(array($user));
 			}
 		}
 	}

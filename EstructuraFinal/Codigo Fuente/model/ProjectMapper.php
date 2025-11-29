@@ -102,7 +102,7 @@ class ProjectMapper
 				array_push($users_array, new User($user["user_mail"], $user["username"], $user["passwd"]));
 			}
 
-			$project->setUsers($users_array);
+			$project_with_all->setUsers($users_array);
 
 			//recuperar tasks
 			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=?)");
@@ -120,10 +120,10 @@ class ProjectMapper
 					);
 					array_push($tasks_array, $task);
 				}
-			$project->setTasks($tasks_array);
+			$project_with_all->setTasks($tasks_array);
 		}
 
-		return $project_with_all
+		return $project_with_all;
 	}
 
 	/**
@@ -161,16 +161,26 @@ class ProjectMapper
 		$stmt->execute(array($project->getName(), $project->getId()));
 
 
-
 		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_projects WHERE project_id=?");
 		$stmt->execute(array($project->getId()));
 		$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$stmt = $this->db->prepare("INSERT INTO users_on_projects(user_mail,project_id) values (?,?)");
-
+		$stmt2 = $this->db->prepare("DELETE FROM users_on_projects WHERE user_mail=?");
+	
+		$repeatedUsers = array();
 		foreach ($project->getUsers() as $user) {
 			if (!in_array($user->getUserMail(), $users)) {
 				$stmt->execute(array($user->getUserMail(), $project->getId()));
+			}else{
+				array_push($repeatedUsers,$user->getUserMail()); 
+			}
+		}
+		
+		//Remove users from proyect
+		foreach ($users as $user) {
+			if (!in_array($user, $repeatedUsers)) {
+				$stmt2->execute(array($user));
 			}
 		}
 	}
