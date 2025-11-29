@@ -205,6 +205,7 @@ class TaskController extends BaseController
 		} else {
 			// render the view (/view/tasks/form.php)
 			$this->view->setVariable("users", $project->getUsers());
+			$this->view->setVariable("projectID", $_REQUEST["id"]);
 			$this->view->render("tasks", "form");
 		}
 	}

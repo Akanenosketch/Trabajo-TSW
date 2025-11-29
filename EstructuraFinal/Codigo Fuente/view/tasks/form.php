@@ -6,7 +6,7 @@ $isViewing = $view->getVariable("isViewing", false);
 $task = $view->getVariable("task");
 $users = $view->getVariable("users");
 $currentuserMail = $view->getVariable("currentusermail");
-$projectID = ALGOFN
+$projectID = $view->getVariable("projectID"); 
 ?>
 
 
