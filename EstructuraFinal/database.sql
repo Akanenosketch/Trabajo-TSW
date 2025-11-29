@@ -78,11 +78,11 @@ INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw2@uvigo.es',1);
 
 INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestToDO',1,"ToDo","desc");
 INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestWork',1,"Working","des2");
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestDone',1,"Done","");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestDone',1,"Done","desc3");
 
-INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestToDO',2,"ToDo");
-INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestWork',2,"Working");
-INSERT INTO tasks (task_name,project_id,task_status) VALUES ('TSWTestDone',2,"Done");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestToDO',2,"ToDo","desc4");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestWork',2,"Working","desc5");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestDone',2,"Done","desc6");
 
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,1);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,2);
