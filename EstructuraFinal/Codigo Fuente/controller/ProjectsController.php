@@ -194,17 +194,12 @@ class ProjectsController extends BaseController
 
 				// Go back to the form to show errors.
 				$this->view->setVariable("errors", $errors);
-				$this->view->setVariable("users", $users);
-				$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
-				$this->view->redirect("projects", "form");
 			}
-		} else {
-			// render the view (/view/projects/form.php)
-			$this->view->setVariable("users", $users);
-			$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
-
-			$this->view->render("projects", "form");
 		}
+	 	// render the view (/view/projects/form.php)
+		$this->view->setVariable("users", $users);
+		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
+		$this->view->render("projects", "form");
 	}
 
 	/**
@@ -290,22 +285,14 @@ class ProjectsController extends BaseController
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
-				$this->view->setVariable("project", $project);
-				$this->view->setVariable("projectUsers", $project->getUsers());
-				$this->view->setVariable("users", $users);
-				$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
-
-				$this->view->redirect("tasks", "form");
 			}
-		} else {
-			$this->view->setVariable("project", $project);
-			$this->view->setVariable("projectUsers", $project->getUsers());
-			$this->view->setVariable("users", $users);
-			$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
-
-			// render the view (/view/projects/form.php)
-			$this->view->render("projects", "form");
 		}
+		$this->view->setVariable("project", $project);
+		$this->view->setVariable("projectUsers", $project->getUsers());
+		$this->view->setVariable("users", $users);
+		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
+		// render the view (/view/projects/form.php)
+		$this->view->render("projects", "form");		
 	}
 
 	/**

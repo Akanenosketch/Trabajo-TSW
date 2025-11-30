@@ -29,7 +29,7 @@ class BaseController
 	 * The current user instance
 	 * @var User
 	 */
-	protected $currentUser;
+	protected $currentUser = null;
 
 	public function __construct()
 	{
@@ -42,7 +42,6 @@ class BaseController
 		}
 
 		if (isset($_SESSION["currentusername"])) {
-
 			$this->currentUser = new User($_SESSION["currentusername"], $_SESSION["currentusermail"], $_SESSION["currentuserpass"]);
 			//add current user to the view, since some views require it
 			$this->view->setVariable(
