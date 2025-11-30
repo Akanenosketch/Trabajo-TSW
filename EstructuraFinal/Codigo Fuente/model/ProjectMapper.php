@@ -98,7 +98,7 @@ class ProjectMapper
 
 			$users_array = array();
 			foreach ($users as $user) {
-				array_push($users_array, new User($user["user_mail"], $user["username"], $user["passwd"]));
+				array_push($users_array, new User( $user["username"],$user["user_mail"], $user["passwd"]));
 			}
 
 			$project_with_all->setUsers($users_array);
