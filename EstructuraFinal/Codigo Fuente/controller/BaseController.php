@@ -16,7 +16,8 @@ require_once(__DIR__."/../model/User.php");
  *
  * @author lipido <lipido@gmail.com>
  */
-class BaseController {
+class BaseController
+{
 
 	/**
 	 * The view manager instance
@@ -30,7 +31,8 @@ class BaseController {
 	 */
 	protected $currentUser;
 
-	public function __construct() {
+	public function __construct()
+	{
 
 		$this->view = ViewManager::getInstance();
 
@@ -39,14 +41,18 @@ class BaseController {
 			session_start();
 		}
 
-		if(isset($_SESSION["currentusername"])) {
-				
-			$this->currentUser = new User($_SESSION["currentusername"],$_SESSION["currentusermail"],$_SESSION["currentuserpass"]);
+		if (isset($_SESSION["currentusername"])) {
+
+			$this->currentUser = new User($_SESSION["currentusername"], $_SESSION["currentusermail"], $_SESSION["currentuserpass"]);
 			//add current user to the view, since some views require it
-			$this->view->setVariable("currentusername",
-					$this->currentUser->getUsername());
-			$this->view->setVariable("currentusermail",
-					$this->currentUser->getUserMail());
+			$this->view->setVariable(
+				"currentusername",
+				$this->currentUser->getUsername()
+			);
+			$this->view->setVariable(
+				"currentusermail",
+				$this->currentUser->getUserMail()
+			);
 		}
 	}
 }

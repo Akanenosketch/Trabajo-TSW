@@ -37,21 +37,21 @@ class ProjectsController extends BaseController
 
 
 	/**
-	* Action to list projects.
-	*
-	* Loads all the projects from the database.
-	*
-	* The views are:
-	* <ul>
-	* <li>projects/index (via include)</li>
-	* </ul>
-	* </ul>
-	*/
+	 * Action to list projects.
+	 *
+	 * Loads all the projects from the database.
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>projects/index (via include)</li>
+	 * </ul>
+	 * </ul>
+	 */
 	public function index()
 	{
 
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Adding tasks requires login");
+			throw new Exception("Not in session. Viewing projects requires login");
 		}
 
 		$user_mail = $this->currentUser->getUserMail();
@@ -72,7 +72,7 @@ class ProjectsController extends BaseController
 
 		// render the view (/view/projects/index.php)
 		$this->view->render("projects", "index");
-		
+
 	}
 
 
@@ -194,14 +194,14 @@ class ProjectsController extends BaseController
 
 				// Go back to the form to show errors.
 				$this->view->setVariable("errors", $errors);
-				$this->view->setVariable("users",$users);
-							$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+				$this->view->setVariable("users", $users);
+				$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 				$this->view->redirect("projects", "form");
 			}
 		} else {
 			// render the view (/view/projects/form.php)
-			$this->view->setVariable("users",$users);
-						$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+			$this->view->setVariable("users", $users);
+			$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 
 			$this->view->render("projects", "form");
 		}
@@ -293,15 +293,15 @@ class ProjectsController extends BaseController
 				$this->view->setVariable("project", $project);
 				$this->view->setVariable("projectUsers", $project->getUsers());
 				$this->view->setVariable("users", $users);
-							$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+				$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 
 				$this->view->redirect("tasks", "form");
-				}
+			}
 		} else {
 			$this->view->setVariable("project", $project);
 			$this->view->setVariable("projectUsers", $project->getUsers());
 			$this->view->setVariable("users", $users);
-						$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+			$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 
 			// render the view (/view/projects/form.php)
 			$this->view->render("projects", "form");
@@ -342,7 +342,7 @@ class ProjectsController extends BaseController
 		$project = $this->projectMapper->findById($projectid);
 		// Does the project exist?
 		if ($project == NULL) {
-			throw new Exception("no such project with id: " . $projectid);
+			throw new Exception("no such project with id: ".$projectid);
 		}
 
 		// Check if the currentUser (in Session) is in the Project

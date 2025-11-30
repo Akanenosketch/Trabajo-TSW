@@ -199,14 +199,14 @@ class TaskController extends BaseController
 				// Go back to the form to show errors.
 				$this->view->setVariable("errors", $errors);
 				$this->view->setVariable("users", $project->getUsers());
-				$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+				$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 				$this->view->setVariable("projectID", $_REQUEST["id"]);
 				$this->view->redirect("tasks", "form");
 			}
 		} else {
 			// render the view (/view/tasks/form.php)
 			$this->view->setVariable("users", $project->getUsers());
-			$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+			$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 			$this->view->setVariable("projectID", $_REQUEST["id"]);
 			$this->view->render("tasks", "form");
 		}
@@ -325,12 +325,12 @@ class TaskController extends BaseController
 				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
 				$this->view->setVariable("task", $task);
-				$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+				$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 				$this->view->setVariable("users", $project->getUsers());
 				$this->view->redirect("tasks", "form");
 			}
 		} else {
-			$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+			$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 			$this->view->setVariable("task", $task);
 			$this->view->setVariable("users", $project->getUsers());
 			// render the view (/view/tasks/form.php)
