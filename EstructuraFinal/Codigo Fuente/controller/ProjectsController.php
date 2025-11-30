@@ -111,9 +111,8 @@ class ProjectsController extends BaseController
 
 		if (!isset($this->currentUser)) {
 			// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
-			$this->view->redirect( "projects", "index");
-		}else{
-
+			throw new Exception("Not in session. Viewing projects requires login");
+		}
 		// Get the Project object from the database
 		$projectid = $_GET["id"];
 		$project = $this->projectMapper->findByIdWithAll($projectid);
@@ -126,8 +125,10 @@ class ProjectsController extends BaseController
 
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $users)) {
-			throw new Exception("logged user does not exist in the project");
-		}
+			// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
+			$this->view->redirect( "projects", "index");
+		}else{
+
 
 		$this->view->setVariable("project", $project);
 		// render the view (/view/projects/form.php)
