@@ -27,6 +27,13 @@ class ProjectsController extends BaseController
 	 */
 	private $projectMapper;
 
+	/**
+	 * Reference to the UserMapper to interact
+	 * with the database
+	 *
+	 * @var UserMapper
+	 */
+	private $userMapper;
 	public function __construct()
 	{
 		parent::__construct();
