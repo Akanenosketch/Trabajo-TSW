@@ -331,7 +331,7 @@ class ProjectsController extends BaseController
 
 		// Get the project object from the database
 		$projectid = $_POST["id"];
-		$project = $this->projectMapper->findById($projectid);
+		$project = $this->projectMapper->findByIdWithAll($projectid);
 		// Does the project exist?
 		if ($project == NULL) {
 			throw new Exception("no such project with id: ".$projectid);

@@ -30,7 +30,8 @@ $userNum = 1;
 
                 <div class="form-row">
                     <label><?= i18n("Nombre del Proyecto") ?></label>
-                    <input id="newProjectName" type="text" name="name" required minlength="1">
+                    <input id="newProjectName" type="text" name="name" required minlength="1" 
+                     value="<?php if (!is_null($project)): ?><?= $project->getName() ?><?php endif ?>">
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Participantes") ?></label>

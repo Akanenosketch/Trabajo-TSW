@@ -170,15 +170,21 @@ class ProjectMapper
 
 		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_projects WHERE project_id=?");
 		$stmt->execute(array($project->getId()));
-		$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$users = array();
+		foreach ($users_db as $user) {
+				array_push($users, $user["user_mail"]);
 
-		$stmt = $this->db->prepare("INSERT INTO users_on_projects(user_mail,project_id) values (?,?)");
+		}
+		$stmt3 = $this->db->prepare("INSERT  INTO users_on_projects(user_mail,project_id) values (?,?)");
 		$stmt2 = $this->db->prepare("DELETE FROM users_on_projects WHERE user_mail=?");
 
+		$newUsers = $project->getUsers();
+
 		$repeatedUsers = array();
-		foreach ($project->getUsers() as $user) {
+		foreach ($newUsers as $user) {
 			if (!in_array($user->getUserMail(), $users)) {
-				$stmt->execute(array($user->getUserMail(), $project->getId()));
+				$stmt3->execute(array($user->getUserMail(), $project->getId()));
 			} else {
 				array_push($repeatedUsers, $user->getUserMail());
 			}
