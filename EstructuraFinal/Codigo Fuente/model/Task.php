@@ -155,7 +155,7 @@ class Task
 	 */
 	public function setStatus($status)
 	{
-		$this->name = $status;
+		$this->status = $status;
 	}
 
 	/**

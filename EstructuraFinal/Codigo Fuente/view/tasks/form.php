@@ -39,7 +39,7 @@ $userNum = 1;
                 <div class="form-row">
                     <label><?= i18n("Descripcion") ?></label>
                     <textarea id="modalTaskDesc" name="desc" rows="3" minlength="1"
-                     text="<?php if (!is_null($task)): ?><?= $task->getDesc() ?><?php endif ?>"
+                     text="<?php if (!is_null($task)): ?><?= $task->getDesc()?><?php endif ?>"
                     <?php if ($isViewing): ?>readonly<?php endif ?>
                     ></textarea>
                 </div>
@@ -84,7 +84,7 @@ $userNum = 1;
 
             <div class="modal-footer">
                  <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $projectID?>">
-                <button class="btn" id="cancelTaskBtn"><?= i18n("Cancelar") ?></button>
+                <button class="btn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
                 </a>
                 <button class="btn primary" type="submit" id="saveTaskBtn"
                 <?php if ($isViewing): ?>
@@ -98,14 +98,7 @@ $userNum = 1;
                             <?= $task->getId() ?>
                 <?php endif ?>
                 "/>
-                <input type="hidden" id="editingProjectId" name="id" value="
-                <?php if (!is_null($task)): ?>
-                            <?= $task->getProject() ?>
-                <?php endif ?>
-                <?php if (is_null($task)): ?>
-                            <?= $projectID ?>
-                <?php endif ?>
-                "/>
+                <input type="hidden" id="editingProjectId" name="id" value="<?php if (!is_null($task)):?><?= $task->getProject() ?><?php endif ?><?php if (is_null($task)): ?><?= $projectID ?><?php endif ?>"/>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ require_once(__DIR__."/../controller/BaseController.php");
  * Controller for tasks related use cases.
  *
  */
-class TaskController extends BaseController
+class TasksController extends BaseController
 {
 
 	/**
@@ -175,15 +175,19 @@ class TaskController extends BaseController
 			$task->setProject($projectid);
 			$task->setName($_POST["title"]);
 			$task->setStatus($_POST["status"]);
-			$task->setDesc($_POST["description"]);
+			$task->setDesc($_POST["desc"]);
 
 			$users = array();
+			$userNum = 1;
+			
 			foreach ($project->getUsers() as $user) {
-				if (isset($_POST[$user->getUserMail()])) {
+				if (isset($_POST["user".$userNum])) {
 					array_push($users, $user);
-				}
+				}	
+				$userNum++;
 			}
 			$task->setUsers($users);
+			
 			try {
 				// validate Task object
 				$task->checkIsValidForCreate(); // if it fails, ValidationException
