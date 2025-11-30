@@ -176,8 +176,8 @@ class ProjectMapper
 				array_push($users, $user["user_mail"]);
 
 		}
-		$stmt3 = $this->db->prepare("INSERT  INTO users_on_projects(user_mail,project_id) values (?,?)");
-		$stmt2 = $this->db->prepare("DELETE FROM users_on_projects WHERE user_mail=?");
+		$stmt3 = $this->db->prepare("INSERT INTO users_on_projects(user_mail,project_id) values (?,?)");
+		$stmt2 = $this->db->prepare("DELETE FROM users_on_projects WHERE user_mail=? and project_id=?");
 
 		$newUsers = $project->getUsers();
 
@@ -193,7 +193,7 @@ class ProjectMapper
 		//Remove users from proyect
 		foreach ($users as $user) {
 			if (!in_array($user, $repeatedUsers)) {
-				$stmt2->execute(array($user));
+				$stmt2->execute(array($user,$project->getId()));
 			}
 		}
 	}

@@ -70,7 +70,7 @@ class TaskMapper
 
 		}
 		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
-		$stmt2 = $this->db->prepare("DELETE FROM users_on_tasks WHERE user_mail=?");
+		$stmt2 = $this->db->prepare("DELETE FROM users_on_tasks WHERE user_mail=? and task_id=?");
 		$repeatedUsers = array();
 		foreach ($task->getUsers() as $user) {
 			if (!in_array($user->getUserMail(), $users)) {
@@ -83,7 +83,7 @@ class TaskMapper
 		//Remove users from task
 		foreach ($users as $user) {
 			if (!in_array($user, $repeatedUsers)) {
-				$stmt2->execute(array($user));
+				$stmt2->execute(array($user,$task->getId()));
 			}
 		}
 	}
