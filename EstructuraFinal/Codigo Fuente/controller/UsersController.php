@@ -182,7 +182,7 @@ class UsersController extends BaseController
 					$this->view->redirect("users", "index", 'correo='.$_POST["correo"]);
 				} else {
 					$errors = array();
-					$errors["user_mail"] = "Existe un usuario con el mismo correo";
+					$errors["user_mail"] = i18n("Existe un usuario con el mismo correo");
 					$this->view->setVariable("errors", $errors);
 				}
 			} catch (ValidationException $ex) {
