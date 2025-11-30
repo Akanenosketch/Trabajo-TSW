@@ -5,6 +5,7 @@ require_once(__DIR__."/../model/Project.php");
 require_once(__DIR__."/../model/Task.php");
 require_once(__DIR__."/../model/ProjectMapper.php");
 require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/UserMapper.php");
 
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/BaseController.php");
@@ -127,9 +128,8 @@ class ProjectsController extends BaseController
 		}
 
 		$this->view->setVariable("project", $project);
-		$this->view->setVariable("isViewing", true);
-		// render the view (/view/tasks/form.php)
-		$this->view->render("tasks", "form");
+		// render the view (/view/projects/form.php)
+		$this->view->render("projects", "view");
 	}
 
 	/**
@@ -195,11 +195,14 @@ class ProjectsController extends BaseController
 				// Go back to the form to show errors.
 				$this->view->setVariable("errors", $errors);
 				$this->view->setVariable("users",$users);
+							$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
 				$this->view->redirect("projects", "form");
 			}
 		} else {
 			// render the view (/view/projects/form.php)
 			$this->view->setVariable("users",$users);
+						$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+
 			$this->view->render("projects", "form");
 		}
 	}
@@ -290,12 +293,16 @@ class ProjectsController extends BaseController
 				$this->view->setVariable("project", $project);
 				$this->view->setVariable("projectUsers", $project->getUsers());
 				$this->view->setVariable("users", $users);
+							$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+
 				$this->view->redirect("tasks", "form");
 				}
 		} else {
 			$this->view->setVariable("project", $project);
 			$this->view->setVariable("projectUsers", $project->getUsers());
 			$this->view->setVariable("users", $users);
+						$this->view->setVariable("currentusermail",$this->currentUser->getUserMail() );
+
 			// render the view (/view/projects/form.php)
 			$this->view->render("projects", "form");
 		}

@@ -10,7 +10,6 @@ $projectID = $view->getVariable("projectID");
 ?>
 
 
-
 <!doctype html>
 <html>
 

@@ -14,8 +14,7 @@ array(
 	
 	
 	
-	
-	
+	"Formulario de Projectos"=> "Project Form",
 	"Formulario de Tareas" => "Task Form",
 
 
