@@ -60,7 +60,7 @@ $projectUsers = $view->getVariable("projectUsers");
                   <a href="index.php?controller=projects&amp;action=index">
                 <?php endif ?>
                 <?php if (!is_null($project)): ?>
-                  <a href="index.php?controller=projects&amp;action=view&amp;id=id=<?= $project->getId()?>">                    
+                  <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $project->getId()?>">                    
                 <?php endif ?>
                        <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
                     </a>

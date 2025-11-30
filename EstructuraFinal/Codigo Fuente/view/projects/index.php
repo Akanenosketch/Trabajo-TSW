@@ -30,9 +30,10 @@ $currentuserMail = $view->getVariable("currentusermail");
                 <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
             </div>
 
-            <form action="index.php?action=index" method="get">
-                <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
-            </form>
+            <a href="index.php?action=logout">
+        <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
+        
+        </a>
         </div>
     </header>
 

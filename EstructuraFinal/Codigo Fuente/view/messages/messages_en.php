@@ -56,6 +56,7 @@ array(
 	
 	//project.php project_form
 	"Participantes" => "Participants",
+	"Ver" => "View",
 	
 	//project.php
 	"Proyecto" => "Project",
