@@ -62,7 +62,7 @@ class ProjectsController extends BaseController
 		$projects = array();
 		foreach ($projectsWithoutTasks as $p) {
 			$pWithTasks = $this->projectMapper->findByIdWithAll($p->getId());
-			array_push($users, $pWithTasks);
+			array_push($projects, $pWithTasks);
 		}
 
 		// put the array containing Post object to the view

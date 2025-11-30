@@ -93,9 +93,10 @@ class ProjectMapper
 			$stmt = $this->db->prepare("SELECT * FROM users WHERE user_mail IN (
 				SELECT user_mail FROM users_on_projects WHERE project_id=?)
 				");
+		
 			$stmt->execute(array($projectid));
 			$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+		
 
 			$users_array = array();
 			foreach ($users as $user) {
@@ -105,7 +106,7 @@ class ProjectMapper
 			$project_with_all->setUsers($users_array);
 
 			//recuperar tasks
-			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=?)");
+			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=?");
 			$stmt->execute(array($projectid));
 			$tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
