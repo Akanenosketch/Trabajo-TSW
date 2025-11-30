@@ -153,8 +153,7 @@ $project = $view->getVariable("project");
                 <button class="btn primary action-btn" id="openTaskModal"><?= i18n("+ Nueva Tarea") ?></button>
             </a>
             <a href="index.php?controller=projects&amp;action=edit&amp;id=<?= $project->getId() ?>">
-                <button class="btn action-btn" id="editProjBtn"
-                    style="margin-top:12px"><?= i18n("Editar Proyecto") ?></button>
+                <button class="btn action-btn" id="editProjBtn"><?= i18n("Editar Proyecto") ?></button>
             </a>
 
             <form method="post" action="index.php?controller=projects&amp;action=delete">
