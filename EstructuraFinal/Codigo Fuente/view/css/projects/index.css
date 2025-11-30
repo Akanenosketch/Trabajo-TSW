@@ -135,7 +135,6 @@ th, td {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    display: none;
     align-items: center;
     justify-content: center;
     background: rgba(0,0,0,0.8);

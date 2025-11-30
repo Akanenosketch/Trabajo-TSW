@@ -5,20 +5,20 @@ $errors = $view->getVariable("errors");
 $project = $view->getVariable("project");
 $users = $view->getVariable("users");
 $currentuserMail = $view->getVariable("currentusermail");
-$projectUsers = $view->getVariable("projectUsers");
+$projectUsers = $view->getVariable("projectUsers",array());
 ?>
 
 <!doctype html>
 <html>
-
-<body>
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/projects/form.css">
     <title><?= i18n("Formulario de Projectos") ?></title>
 </head>
-    <div id="newProjectModal" class="modal-overlay" aria-hidden="true">
+<body>
+
+<div id="newProjectModal" class="modal-overlay" >
         <div class="modal-box">
             <h3>
                 <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
@@ -40,7 +40,7 @@ $projectUsers = $view->getVariable("projectUsers");
 
                     <?php foreach ($users as $user): ?>
                         <div>
-                        <input type="checkbox" name="<?php $user->getUserMail() ?>" value="<?php $user->getUserMail() ?>"
+                        <input type="checkbox" name="<?= $user->getUserMail() ?>" value="<?= $user->getUserMail() ?>"
                         <?php if (in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?> required disabled<?php endif ?>     
                         />

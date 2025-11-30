@@ -24,7 +24,7 @@ $projectID = $view->getVariable("projectID");
 
     <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?>
                 <?php if (is_null($task)): ?>add<?php endif ?>" method="post">
-    <div id="taskModal" class="modal-overlay" aria-hidden="true">
+    <div id="taskModal" class="modal-overlay">
 
         <div class="modal-box">
             <div class="modal-content">
@@ -65,7 +65,7 @@ $projectID = $view->getVariable("projectID");
                     
                     <?php foreach ($users as $user): ?>
                       <div>
-                        <input type="checkbox" name="<?php $user->getUserMail() ?>" value="<?php $user->getUserMail() ?>"
+                        <input type="checkbox" name="<?= $user->getUserMail() ?>" value="<?= $user->getUserMail() ?>"
                          <?php if ($isViewing): ?>disabled<?php endif ?>
                          <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked required disabled<?php endif ?>     
                         />
