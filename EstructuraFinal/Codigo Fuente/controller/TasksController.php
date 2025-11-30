@@ -147,7 +147,7 @@ class TaskController extends BaseController
 	 */
 	public function add()
 	{
-		if ($this->currentUser != null) {
+		if ($this->currentUser == null) {
 			throw new Exception("Not in session. Adding tasks requires login");
 		}
 		if (!isset($_REQUEST["id"])) {
