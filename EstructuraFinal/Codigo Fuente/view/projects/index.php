@@ -38,9 +38,9 @@ $currentuserMail = $view->getVariable("currentusermail");
 
     <section class="project-list">
         <div class="add-project-container">
-            <form action="index.php?controller=projects&amp;action=add" method="get">
+            <a href="index.php?controller=projects&amp;action=add">
                 <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
-            </form>
+            </a>
         </div>
 
         <div class="content-center">

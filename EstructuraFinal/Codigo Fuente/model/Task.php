@@ -1,7 +1,7 @@
 <?php
 // file: model/Task.php
 
-require_once(__DIR__ . "/../core/ValidationException.php");
+require_once(__DIR__."/../core/ValidationException.php");
 
 /**
  * Class Task
@@ -24,6 +24,12 @@ class Task
 	 * @var string
 	 */
 	private $name;
+
+	/**
+	 * The description of the Task
+	 * @var string
+	 */
+	private $desc;
 
 	/**
 	 * The status of the Task
@@ -49,10 +55,11 @@ class Task
 	 * @param string $id The id of the Task
 	 * @param string $name The name of the Task
 	 */
-	public function __construct($id = NULL, $name = NULL, $projectID = NULL, $status = NULL, array $users = NULL)
+	public function __construct($id = NULL, $name = NULL,$desc = NULL, $projectID = NULL, $status = NULL, array $users = NULL)
 	{
 		$this->id = $id;
 		$this->name = $name;
+		$this->desc = $desc;
 		$this->projectID = $projectID;
 		$this->status = $status;
 		$this->users = $users;
@@ -89,6 +96,26 @@ class Task
 		$this->name = $name;
 	}
 
+	/**
+	 * Gets the desc of this Task
+	 *
+	 * @return string The desc of this Task
+	 */
+	public function getDesc()
+	{
+		return $this->desc;
+	}
+
+	/**
+	 * Sets the desc of the Task
+	 *
+	 * @param string $desc the desc of this Task
+	 * @return void
+	 */
+	public function setDesc($desc)
+	{
+		$this->desc = $desc;
+	}
 	/**
 	 * Gets the ProjectID of this Task
 	 *
@@ -170,12 +197,12 @@ class Task
 			$errors["name"] = "name is mandatory";
 		}
 
-		if (sizeof($this->users) < 1) {
-			$errors["users"] = "Task must have at least 1 user";
+		if (strlen(trim($this->desc)) < 1) {
+			$errors["desc"] = "desc is mandatory";
 		}
 
-		if (strlen(trim($this->projectID)) < 1) {
-			$errors["projectID"] = "projectID is mandatory";
+		if (sizeof($this->users) < 1) {
+			$errors["users"] = "Task must have at least 1 user";
 		}
 
 		if (strlen(trim($this->status)) < 1) {
@@ -190,5 +217,26 @@ class Task
 			throw new ValidationException($errors, "Task is not valid");
 		}
 	}
+
+		public function checkIsValidForUpdate()
+	{
+		$errors = array();
+
+		if (strlen(trim($this->projectID)) < 1) {
+			$errors["projectID"] = "projectID is mandatory";
+		}
+
+		try {
+			$this->checkIsValidForCreate();
+		} catch (ValidationException $ex) {
+			foreach ($ex->getErrors() as $key => $error) {
+				$errors[$key] = $error;
+			}
+		}
+		if (sizeof($errors) > 0) {
+			throw new ValidationException($errors, "project is not valid");
+		}
+	}
+
 }
 ?>

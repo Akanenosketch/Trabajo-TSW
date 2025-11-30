@@ -102,8 +102,11 @@ class UsersController extends BaseController {
 			//process login form
 			if ($this->userMapper->isValidUser($_POST["correo"], $_POST["contrasena"])) {
 
-				$_SESSION["currentuser"]= $this->userMapper->findByEmail($_POST["correo"])->getUsername();
-
+				$currentuser = $this->userMapper->findByEmail($_POST["correo"]);
+				$_SESSION["currentusername"]= $currentuser->getUsername();
+				$_SESSION["currentusermail"]= $currentuser->getUserMail();
+				$_SESSION["currentuserpass"]= $currentuser->getPasswd();
+				
 				// send user to the restricted area (HTTP 302 code)
 				$this->view->redirect("projects", "index");
 
@@ -113,7 +116,6 @@ class UsersController extends BaseController {
 				$this->view->setVariable("errors", $errors);
 			}
 		}
-
 		// render the view (/view/users/login.php)
 		$this->view->render("users", "login");
 	}
@@ -191,10 +193,5 @@ class UsersController extends BaseController {
 		$this->view->render("users", "register");
 
 	}
-
-
-
-
-
 }
 ?>

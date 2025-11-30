@@ -1,13 +1,13 @@
 <?php
 //file: controller/ProjectsController.php
 
-require_once(__DIR__ . "/../model/Project.php");
-require_once(__DIR__ . "/../model/Task.php");
-require_once(__DIR__ . "/../model/ProjectMapper.php");
-require_once(__DIR__ . "/../model/User.php");
+require_once(__DIR__."/../model/Project.php");
+require_once(__DIR__."/../model/Task.php");
+require_once(__DIR__."/../model/ProjectMapper.php");
+require_once(__DIR__."/../model/User.php");
 
-require_once(__DIR__ . "/../core/ViewManager.php");
-require_once(__DIR__ . "/../controller/BaseController.php");
+require_once(__DIR__."/../core/ViewManager.php");
+require_once(__DIR__."/../controller/BaseController.php");
 
 /**
  * Class ProjectsController
@@ -34,52 +34,43 @@ class ProjectsController extends BaseController
 	}
 
 
-	//ACCIONES DEFINITIVAS
-// list, add, edit, delete
-//VISTAS DEFINITIVAS
-//index form view
-//TODO no hay que verificar que estes logueado?????? yo croe que si 
-
-
-
 	/**
 	* Action to list projects.
 	*
 	* Loads all the projects from the database.
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>correo: The mailUsuario (via HTTP POST)</li>
-	* </ul>
 	*
 	* The views are:
 	* <ul>
 	* <li>projects/index (via include)</li>
-	* <li>users/welcomePage: If no user was passed (via include). Includes these view variables:</li>
-	* <ul>
-	* <li>errors: Array including validation errors</li>
 	* </ul>
 	* </ul>
-
 	*/
 	public function index()
 	{
-		if (isset($_SESSION["correo"])) {
-			$user_mail = $_SESSION["correo"];
 
-			// obtain the data from the database
-			$projects = $this->projectMapper->findAll($user_mail);
-
-			// put the array containing Post object to the view
-			$this->view->setVariable("projects", $projects);
-
-			// render the view (/view/projects/index.php)
-			$this->view->render("projects", "index");
-		} else {
-			$errors = array();
-			$errors["general"] = "user is not valid";
-			$this->view->setVariable("errors", $errors);
-			$this->view->redirect("users", "index");
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding tasks requires login");
 		}
+
+		$user_mail = $this->currentUser->getUserMail();
+
+		// obtain the data from the database
+		$projectsWithoutTasks = $this->projectMapper->findAll($user_mail);
+
+		$projects = array();
+		foreach ($projectsWithoutTasks as $p) {
+			$pWithTasks = $this->projectMapper->findByIdWithAll($p->getId());
+			array_push(array: $users, $pWithTasks);
+		}
+
+		// put the array containing Post object to the view
+		$this->view->setVariable("projects", $projects);
+		$this->view->setVariable("currentusername", $this->currentUser->getUsername());
+		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
+
+		// render the view (/view/projects/index.php)
+		$this->view->render("projects", "index");
+		
 	}
 
 
@@ -232,6 +223,7 @@ class ProjectsController extends BaseController
 		// die();
 		$this->view->redirect("projects", "index");
 	}
+}
 	?>
 
 
@@ -244,31 +236,6 @@ class ProjectsController extends BaseController
 
 
 
-
-
-
-
-
-
-
-
-
-	//index = al que llega desde login y desde ir atras en projects/view, get sobre list es el dashboard actual
-//form = solo se accede desde index a traves de gets sobre add y edit, tiene acciones post sobre esos mismos dependiendo de cual venga
-//view = vista de detalles de un concreto, se llega desde index con el id del proyecto como parametor
-
-	/*
-	list para mostrar la tabla de projectos
-	view para ver 1 en concreto
-	add y edit para mostrar el form con get, postear con post  (COMBINAR LO DE AÑADIR USUARIOS)
-	delete para borrar, solo post */
-
-	// projects/index
-// projects/view?id=project_id
-// projects/add
-// projects/add?id=project_id para el edit?
-
-	/*	
 
 
 			public function view(){
