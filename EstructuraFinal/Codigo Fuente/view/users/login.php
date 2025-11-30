@@ -33,8 +33,6 @@ $errors = $view->getVariable("errors");
                     placeholder="<?= i18n("Contraseña") ?>" />
             </div>
 
-            <div id="loginError" class="error" role="alert" style="display:none"></div>
-
             <div class="form-actions">
                 <a href="index.php?action=index">
                     <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>

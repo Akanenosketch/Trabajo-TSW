@@ -110,8 +110,9 @@ class ProjectsController extends BaseController
 		}
 
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Viewing projects requires login");
-		}
+			// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
+			$this->view->redirect( "projects", "index");
+		}else{
 
 		// Get the Project object from the database
 		$projectid = $_GET["id"];
@@ -131,6 +132,8 @@ class ProjectsController extends BaseController
 		$this->view->setVariable("project", $project);
 		// render the view (/view/projects/form.php)
 		$this->view->render("projects", "view");
+
+		}
 	}
 
 	/**
@@ -191,7 +194,7 @@ class ProjectsController extends BaseController
 				$this->projectMapper->save($project);
 
 				// POST-REDIRECT-GET 
-				$this->view->redirect("projects", "index");
+				$this->view->redirect( "projects", "index");
 			} catch (ValidationException $ex) {
 				$errors = $ex->getErrors();
 

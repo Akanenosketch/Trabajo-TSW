@@ -4,6 +4,7 @@
 $i18n_messages = 
 array(
 	"Pagina de Bienvenida" => "Welcome Page",
+	"Nombre de Usuario" => "User Name",
 	"Bienvenido" => "Welcome",
 	"Una app de administracion al estilo Kanban" => "A Kanban style manager app",
 	"Informacion:" => "Information:",
