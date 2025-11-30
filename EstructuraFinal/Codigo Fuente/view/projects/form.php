@@ -20,20 +20,57 @@ $projectUsers = $view->getVariable("projectUsers");
 </head>
     <div id="newProjectModal" class="modal-overlay" aria-hidden="true">
         <div class="modal-box">
-            <h3><?= i18n("Dashboard") ?>Nuevo Proyecto</h3>
-            <form id="addProjectForm">
+            <h3>
+                <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
+                <?php if (is_null($project)): ?><?= i18n("Nuevo Proyecto") ?><?php endif ?>
+            </h3>
+            <form id="addProjectForm" method="post"
+            action="index.php?controller=projects&amp;action=<?php if (!is_null($project)): ?>edit<?php endif ?>
+                <?php if (is_null($project)): ?>add<?php endif ?>">
+
                 <div class="form-row">
-                    <label><?= i18n("Dashboard") ?>Nombre del Proyecto</label>
-                    <input id="newProjectName" type="text" required>
+                    <label><?= i18n("Nombre del Proyecto") ?></label>
+                    <input id="newProjectName" type="text" name="name" required minlength="1">
                 </div>
                 <div class="form-row">
-                    <label><?= i18n("Dashboard") ?>Participantes</label>
-                    <div id="initialUsers" class="checkbox-list"></div>
+                    <label><?= i18n("Participantes") ?></label>
+                    <div id="initialUsers" class="checkbox-list">
+
+
+
+                    <?php foreach ($users as $user): ?>
+                        <div>
+                        <input type="checkbox" name="<?php $user->getUserMail() ?>" value="<?php $user->getUserMail() ?>"
+                        <?php if (in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
+                        ES USUARIO ACTUAL
+                        <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?> required disabled<?php endif ?>     
+                        />
+                        <label>
+                            <?= $user->getUserMail() ?>
+                        </label>
+                    </div>
+
+                    <?php endforeach; ?>
+
+
+                    </div>
+
                 </div>
-                <!--ESTE STYLE AL CSS-->
-                <div style="text-align:right;margin-top:12px">
-                    <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Dashboard") ?>Cancelar</button>
-                    <button type="submit" class="btn primary"><?= i18n("Dashboard") ?>Crear proyecto</button>
+                <div>
+                <?php if (is_null($project)): ?>
+                  <a href="index.php?controller=projects&amp;action=index">
+                <?php endif ?>
+                <?php if (!is_null($project)): ?>
+                  <a href="index.php?controller=projects&amp;action=view&amp;id=id=<?= $project->getId()?>">                    
+                <?php endif ?>
+                       <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
+                    </a>
+
+                    <button type="submit" class="btn primary">
+                        
+                          <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
+                <?php if (is_null($project)): ?><?= i18n("Crear proyecto") ?><?php endif ?>
+                        </button>
                 </div>
             </form>
         </div>

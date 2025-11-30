@@ -22,8 +22,8 @@ $projectID = $view->getVariable("projectID");
 
 <body>
 
-    <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($tasks) && !$isViewing): ?>edit<?php endif ?>
-                <?php if (is_null($tasks)): ?>add<?php endif ?>" method="post">
+    <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?>
+                <?php if (is_null($task)): ?>add<?php endif ?>" method="post">
     <div id="taskModal" class="modal-overlay" aria-hidden="true">
 
         <div class="modal-box">
@@ -93,15 +93,15 @@ $projectID = $view->getVariable("projectID");
                 ><?= i18n("Guardar") ?></button>
 
                 <input type="hidden" id="editingTaskId" name="task_id" value="
-                <?php if (!is_null($tasks)): ?>
+                <?php if (!is_null($task)): ?>
                             <?= $task->getId() ?>
                 <?php endif ?>
                 "/>
                 <input type="hidden" id="editingProjectId" name="id" value="
-                <?php if (!is_null($tasks)): ?>
+                <?php if (!is_null($task)): ?>
                             <?= $task->getProject() ?>
                 <?php endif ?>
-                <?php if (is_null($tasks)): ?>
+                <?php if (is_null($task)): ?>
                             <?= $projectID ?>
                 <?php endif ?>
                 "/>
