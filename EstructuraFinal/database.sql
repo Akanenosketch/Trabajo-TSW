@@ -1,6 +1,3 @@
--- Para la entrega hacer volcado de DB
-
-
 -- Eliminado de la base de datos
 DROP DATABASE IF EXISTS tswdb;
 
