@@ -39,7 +39,7 @@ $project = $view->getVariable("project");
                     <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
                 </div>
                 <a href="index.php?controller=projects&amp;action=index">
-                    <button class="btn primary"><?= i18n("Volver") ?></button>
+                    <button class="btn back"><?= i18n("Volver") ?></button>
                 </a>
             </div>
         </div>

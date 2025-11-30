@@ -44,10 +44,10 @@ $userNum = 1;
                         <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
                         <?php $userNum++ ?>
                         <?php if (in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
-                        />
+                        
                         <label>
                             <?= $user->getUserMail() ?>
-                        </label>
+                        </label>    
                     </div>
                     <?php endforeach; ?>
 
