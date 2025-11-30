@@ -7,6 +7,7 @@ $task = $view->getVariable("task");
 $users = $view->getVariable("users");
 $currentuserMail = $view->getVariable("currentusermail");
 $projectID = $view->getVariable("projectID"); 
+$userNum = 1;
 ?>
 
 
@@ -22,8 +23,7 @@ $projectID = $view->getVariable("projectID");
 
 <body>
 
-    <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?>
-                <?php if (is_null($task)): ?>add<?php endif ?>" method="post">
+    <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($task)): ?>add<?php endif ?>" method="post">
     <div id="taskModal" class="modal-overlay">
 
         <div class="modal-box">
@@ -65,9 +65,10 @@ $projectID = $view->getVariable("projectID");
                     
                     <?php foreach ($users as $user): ?>
                       <div>
-                        <input type="checkbox" name="<?= $user->getUserMail() ?>" value="<?= $user->getUserMail() ?>"
+                        <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
+                        <?php $userNum++ ?>
                          <?php if ($isViewing): ?>disabled<?php endif ?>
-                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked required disabled<?php endif ?>     
+                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked required<?php endif ?>     
                         />
                         <label>
                             <?= $user->getUserMail() ?>

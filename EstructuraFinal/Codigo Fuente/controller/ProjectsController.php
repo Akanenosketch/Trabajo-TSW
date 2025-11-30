@@ -173,10 +173,12 @@ class ProjectsController extends BaseController
 			$project->setName($_POST["name"]);
 
 			$projectUsers = array();
+			$userNum = 1;
 			foreach ($users as $user) {
-				if (isset($_POST[$user->getUserMail()])) {
+				if (isset($_POST["user".$userNum])) {
 					array_push($projectUsers, $user);
 				}
+				$userNum++;
 			}
 			$project->setUsers($projectUsers);
 

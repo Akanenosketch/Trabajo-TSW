@@ -142,7 +142,7 @@ class ProjectMapper
 		$stmt = $this->db->prepare("INSERT INTO users_on_projects(user_mail,project_id) values (?,?)");
 
 		foreach ($project->getUsers() as $user) {
-			$stmt->execute(array($user->getUserMail(), $project->getId()));
+			$stmt->execute(array($user->getUserMail(), $toRet));
 		}
 
 		return $toRet;

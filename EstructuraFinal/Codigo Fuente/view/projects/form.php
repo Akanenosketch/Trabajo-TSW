@@ -6,6 +6,7 @@ $project = $view->getVariable("project");
 $users = $view->getVariable("users");
 $currentuserMail = $view->getVariable("currentusermail");
 $projectUsers = $view->getVariable("projectUsers",array());
+$userNum = 1;
 ?>
 
 <!doctype html>
@@ -25,8 +26,7 @@ $projectUsers = $view->getVariable("projectUsers",array());
                 <?php if (is_null($project)): ?><?= i18n("Nuevo Proyecto") ?><?php endif ?>
             </h3>
             <form id="addProjectForm" method="post"
-            action="index.php?controller=projects&amp;action=<?php if (!is_null($project)): ?>edit<?php endif ?>
-                <?php if (is_null($project)): ?>add<?php endif ?>">
+            action="index.php?controller=projects&amp;action=<?php if (!is_null($project)): ?>edit<?php endif ?><?php if (is_null($project)): ?>add<?php endif ?>">
 
                 <div class="form-row">
                     <label><?= i18n("Nombre del Proyecto") ?></label>
@@ -40,15 +40,15 @@ $projectUsers = $view->getVariable("projectUsers",array());
 
                     <?php foreach ($users as $user): ?>
                         <div>
-                        <input type="checkbox" name="<?= $user->getUserMail() ?>" value="<?= $user->getUserMail() ?>"
-                        <?php if (in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
-                        <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?> required disabled<?php endif ?>     
+                        <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
+                        <?php $userNum++ ?>
+                        <?php if (strcmp($currentuserMail, $user->getUserMail()) != 0 && in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
+                        <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?> checked required<?php endif ?>     
                         />
                         <label>
                             <?= $user->getUserMail() ?>
                         </label>
                     </div>
-
                     <?php endforeach; ?>
 
 

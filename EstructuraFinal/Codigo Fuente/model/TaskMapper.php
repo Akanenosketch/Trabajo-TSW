@@ -42,7 +42,7 @@ class TaskMapper
 		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
 
 		foreach ($task->getUsers() as $user) {
-			$stmt->execute(array($user->getUserMail(), $task->getProject(), $task->getId()));
+			$stmt->execute(array($user->getUserMail(), $task->getProject(), $toRet));
 		}
 
 		return $toRet;
