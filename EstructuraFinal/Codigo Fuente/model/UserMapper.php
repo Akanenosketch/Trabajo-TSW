@@ -83,7 +83,7 @@ class UserMapper
 
 		if ($user != null) {
 			return new user(
-				$user["user_name"],
+				$user["username"],
 				$user["user_mail"],
 				$user["passwd"]
 			);
@@ -103,7 +103,7 @@ class UserMapper
 
 		foreach ($users_DB as $user) {
 			array_push($users, new User(
-				$user["user_name"],
+				$user["username"],
 				$user["user_mail"],
 				$user["passwd"]
 			));
