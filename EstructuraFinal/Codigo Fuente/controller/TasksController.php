@@ -114,7 +114,6 @@ class TaskController extends BaseController
 		$this->view->setVariable("isViewing", true);
 		// render the view (/view/tasks/form.php)
 		$this->view->render("tasks", "form");
-
 	}
 
 
@@ -184,7 +183,7 @@ class TaskController extends BaseController
 					array_push($users, $user);
 				}
 			}
-
+			$task->setUsers($users);
 			try {
 				// validate Task object
 				$task->checkIsValidForCreate(); // if it fails, ValidationException
@@ -199,7 +198,8 @@ class TaskController extends BaseController
 
 				// Go back to the form to show errors.
 				$this->view->setVariable("errors", $errors);
-				// igual necesite el project id - df
+				$this->view->setVariable("users", $project->getUsers());
+				$this->view->setVariable("projectID", $_REQUEST["id"]);
 				$this->view->redirect("tasks", "form");
 			}
 		} else {
@@ -306,6 +306,9 @@ class TaskController extends BaseController
 						array_push($users, $user);
 					}
 				}
+				$task->setUsers($users);
+
+
 				// validate Task object
 				$task->checkIsValidForUpdate(); // if it fails, ValidationException
 				// update the Task object in the database
@@ -319,7 +322,8 @@ class TaskController extends BaseController
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
-
+				$this->view->setVariable("task", $task);
+				$this->view->setVariable("users", $project->getUsers());
 				$this->view->redirect("tasks", "form");
 			}
 		} else {

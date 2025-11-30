@@ -91,5 +91,25 @@ class UserMapper
 			return NULL;
 		}
 	}
+
+
+	public function findAll()
+	{
+		$stmt = $this->db->prepare("SELECT * FROM users");
+		$stmt->execute();
+		$users_DB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$users = array();
+
+		foreach ($users_DB as $user) {
+			array_push($users, new User(
+				$user["user_name"],
+				$user["user_mail"],
+				$user["passwd"]
+			));
+		}
+
+		return $users;
+	}
 }
 ?>

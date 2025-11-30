@@ -33,14 +33,14 @@ $projectID = $view->getVariable("projectID");
                 <div class="form-row">
                     <label><?= i18n(key: "Nombre") ?></label>
                     <input id="modalTaskName" name="title" type="text" required 
-                    value="<?php if (!is_null($task)): ?>$task.getName()<?php endif ?>"
+                    value="<?php if (!is_null($task)): ?><?= $task->getName() ?><?php endif ?>"
                     <?php if ($isViewing): ?>readonly<?php endif ?>
                     />
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Descripcion") ?></label>
                     <textarea id="modalTaskDesc" name="desc" rows="3"
-                     text="<?php if (!is_null($task)): ?>$task.getDesc()<?php endif ?>"
+                     text="<?php if (!is_null($task)): ?><?= $task->getDesc() ?><?php endif ?>"
                     <?php if ($isViewing): ?>readonly<?php endif ?>
                     ></textarea>
                 </div>
@@ -71,7 +71,7 @@ $projectID = $view->getVariable("projectID");
                          <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked<?php endif ?>     
                         />
                         <label>
-                             <!--$user.getUserMail()-->
+                            <?= $user->getUserMail() ?>
                         </label>
                     </div>
 
@@ -95,15 +95,15 @@ $projectID = $view->getVariable("projectID");
 
                 <input type="hidden" id="editingTaskId" name="task_id" value="
                 <?php if (!is_null($tasks)): ?>
-                    $task->getId()
+                            <?= $task->getId() ?>
                 <?php endif ?>
                 "/>
                 <input type="hidden" id="editingProjectId" name="id" value="
                 <?php if (!is_null($tasks)): ?>
-                    $task->getProject()
+                            <?= $task->getProject() ?>
                 <?php endif ?>
                 <?php if (is_null($tasks)): ?>
-                    $projectID
+                            <?= $projectID ?>
                 <?php endif ?>
                 "/>
             </div>

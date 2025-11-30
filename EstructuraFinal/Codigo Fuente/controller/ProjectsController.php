@@ -31,6 +31,7 @@ class ProjectsController extends BaseController
 		parent::__construct();
 
 		$this->projectMapper = new ProjectMapper();
+		$this->userMapper = new UserMapper();
 	}
 
 
@@ -66,7 +67,7 @@ class ProjectsController extends BaseController
 		// put the array containing Post object to the view
 		$this->view->setVariable("projects", $projects);
 		$this->view->setVariable("currentusername", $this->currentUser->getUsername());
-		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
+		$this->view->setVariable("currentusermail", $user_mail);
 
 		// render the view (/view/projects/index.php)
 		$this->view->render("projects", "index");
@@ -103,6 +104,32 @@ class ProjectsController extends BaseController
 	 */
 	public function view()
 	{
+		if (!isset($_GET["id"])) {
+			throw new Exception("A project id is mandatory");
+		}
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Viewing tasks requires login");
+		}
+
+		// Get the Project object from the database
+		$projectid = $_GET["id"];
+		$project = $this->projectMapper->findByIdWithAll($projectid);
+
+		// Does the project exist?
+		if ($project == NULL) {
+			throw new Exception("no such project with id: ".$projectid);
+		}
+
+		// Check if the currentUser (in Session) is in the Project
+		if (!in_array($this->currentUser, $project->getUsers())) {
+			throw new Exception("logged user does not exist in the project");
+		}
+
+		$this->view->setVariable("project", $project);
+		$this->view->setVariable("isViewing", true);
+		// render the view (/view/tasks/form.php)
+		$this->view->render("tasks", "form");
 	}
 
 	/**
@@ -113,7 +140,7 @@ class ProjectsController extends BaseController
 	 * 
 	 * The expected HTTP parameters are:
 	 * <ul>
-	 * <li>title: Title of the project (via HTTP POST)</li>
+	 * <li>name: Name of the project (via HTTP POST)</li>
 	 * <li>users: emails of the users to be assigned to the project (via HTTP POST)</li>
 	 * </ul>
 	 *
@@ -133,8 +160,49 @@ class ProjectsController extends BaseController
 	 */
 	public function add()
 	{
-	}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding tasks requires login");
+		}
 
+		$users = $this->userMapper->findAll();
+
+		if (isset($_POST["name"])) { // reaching via HTTP Post...
+			// Create and populate the Project object
+			$project = new Project();
+
+			$project->setName($_POST["name"]);
+
+			$projectUsers = array();
+			foreach ($users as $user) {
+				if (isset($_POST[$user->getUserMail()])) {
+					array_push($projectUsers, $user);
+				}
+			}
+			$project->setUsers($projectUsers);
+
+			try {
+				// validate Project object
+				$project->checkIsValidForCreate(); // if it fails, ValidationException
+
+				// save the Project object into the database
+				$this->projectMapper->save($project);
+
+				// POST-REDIRECT-GET 
+				$this->view->redirect("projects", "index");
+			} catch (ValidationException $ex) {
+				$errors = $ex->getErrors();
+
+				// Go back to the form to show errors.
+				$this->view->setVariable("errors", $errors);
+				$this->view->setVariable("users",$users);
+				$this->view->redirect("projects", "form");
+			}
+		} else {
+			// render the view (/view/projects/form.php)
+			$this->view->setVariable("users",$users);
+			$this->view->render("projects", "form");
+		}
+	}
 
 	/**
 	 * Action to edit a project
@@ -169,6 +237,7 @@ class ProjectsController extends BaseController
 	 */
 	public function edit()
 	{
+
 	}
 
 
@@ -202,7 +271,7 @@ class ProjectsController extends BaseController
 		}
 
 		// Get the project object from the database
-		$projectid = $_REQUEST["id"];
+		$projectid = $_POST["id"];
 		$project = $this->projectMapper->findById($projectid);
 		// Does the project exist?
 		if ($project == NULL) {
@@ -211,7 +280,7 @@ class ProjectsController extends BaseController
 
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exits int the project");
+			throw new Exception("logged user does not exist in the project");
 		}
 
 		// Delete the project object from the database
@@ -238,86 +307,8 @@ class ProjectsController extends BaseController
 
 
 
-			public function view(){
-			if (!isset($_GET["id"])) {
-				throw new Exception("id is mandatory");
-			}
 
-			$postid = $_GET["id"];
-
-			// find the Post object in the database
-			$post = $this->postMapper->findByIdWithComments($postid);
-
-			if ($post == NULL) {
-				throw new Exception("no such post with id: ".$postid);
-			}
-
-			// put the Post object to the view
-			$this->view->setVariable("post", $post);
-
-			// check if comment is already on the view (for example as flash variable)
-			// if not, put an empty Comment for the view
-			$comment = $this->view->getVariable("comment");
-			$this->view->setVariable("comment", ($comment==NULL)?new Comment():$comment);
-
-			// render the view (/view/posts/view.php)
-			$this->view->render("posts", "view");
-
-		}
-
-
-	public function add()
-	{
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Adding posts requires login");
-		}
-
-		$post = new Post();
-
-		if (isset($_POST["submit"])) { // reaching via HTTP Post...
-
-			// populate the Post object with data form the form
-			$post->setTitle($_POST["title"]);
-			$post->setContent($_POST["content"]);
-
-			// The user of the Post is the currentUser (user in session)
-			$post->setAuthor($this->currentUser);
-
-			try {
-				// validate Post object
-				$post->checkIsValidForCreate(); // if it fails, ValidationException
-
-				// save the Post object into the database
-				$this->postMapper->save($post);
-
-				// POST-REDIRECT-GET
-				// Everything OK, we will redirect the user to the list of posts
-				// We want to see a message after redirection, so we establish
-				// a "flash" message (which is simply a Session variable) to be
-				// get in the view after redirection.
-				$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully added."), $post->getTitle()));
-
-				// perform the redirection. More or less:
-				// header("Location: index.php?controller=posts&action=index")
-				// die();
-				$this->view->redirect("posts", "index");
-
-			} catch (ValidationException $ex) {
-				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
-		}
-
-		// Put the Post object visible to the view
-		$this->view->setVariable("post", $post);
-
-		// render the view (/view/posts/add.php)
-		$this->view->render("posts", "add");
-
-	}
-
+	
 	public function edit()
 	{
 		if (!isset($_REQUEST["id"])) {
