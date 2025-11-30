@@ -90,9 +90,7 @@ class ProjectMapper
 			//retrievear todas las task y todas los users
 			
 			//recuperar usuarios
-			$stmt = $this->db->prepare("SELECT * FROM users WHERE user_mail IN (
-				SELECT user_mail FROM users_on_projects WHERE project_id=?)
-				");
+			$stmt = $this->db->prepare("SELECT * FROM users WHERE user_mail IN (SELECT user_mail FROM users_on_projects WHERE project_id=?)");
 		
 			$stmt->execute(array($projectid));
 			$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -113,11 +111,11 @@ class ProjectMapper
 			$tasks_array = array();
 				foreach ($tasks as $task) {
 					$task = new Task(
-						$task["task.id"],
-						$task["task.name"],
-						$task["task.desc"],
-						$task["project.id"],
-						$task["task.status"]
+						$task["task_id"],
+						$task["task_name"],
+						$task["task_desc"],
+						$task["project_id"],
+						$task["task_status"]
 					);
 					array_push($tasks_array, $task);
 				}

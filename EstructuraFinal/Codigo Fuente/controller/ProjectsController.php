@@ -121,9 +121,10 @@ class ProjectsController extends BaseController
 		if ($project == NULL) {
 			throw new Exception("no such project with id: ".$projectid);
 		}
-
+		$users = $project->getUsers();
+		
 		// Check if the currentUser (in Session) is in the Project
-		if (!in_array($this->currentUser, $project->getUsers())) {
+		if (!in_array($this->currentUser, $users)) {
 			throw new Exception("logged user does not exist in the project");
 		}
 

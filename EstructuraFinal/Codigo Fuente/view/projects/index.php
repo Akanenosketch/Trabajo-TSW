@@ -25,7 +25,7 @@ $currentuserMail = $view->getVariable("currentusermail");
         </div>
         <div>
             <div class="lang-switch">
-                <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">ES</a>
+                <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
                 <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
             </div>
 
