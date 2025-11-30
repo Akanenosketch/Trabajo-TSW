@@ -35,7 +35,7 @@ array(
 	"Participantes" => "Participants",
 	"Ver" => "View",
 	"Editar" => "Edit",
-	"Borrarr" => "Delete",
+	"Borrar" => "Delete",
 	"Proyecto" => "Project",
 	"Tareas Totales" => "Total Tasks",
 	"Completado" => "Completed",

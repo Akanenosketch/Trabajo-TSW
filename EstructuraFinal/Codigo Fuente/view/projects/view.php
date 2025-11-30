@@ -117,7 +117,7 @@ $project = $view->getVariable("project");
                     <h4><?= i18n("Done") ?></h4>
                     <div id="col-done">
                         <?php foreach ($project->getTasks() as $task): ?>
-                            <?php if (strcmp($task->getStatus(), "Working") == 0): ?>
+                            <?php if (strcmp($task->getStatus(), "Done") == 0): ?>
                                 <div class="task">
                                     <span><?= $task->getName() ?>
                                     <span class="small">

@@ -106,12 +106,6 @@ class TasksController extends BaseController
 			throw new Exception("no such task with id: ".$taskid);
 		}
 
-		// Check if the user is assigned to task
-		if (!in_array($this->currentUser, $task->getUsers())) {
-			throw new Exception("logged user does not exists in the task");
-		}
-
-
 		$this->view->setVariable("users", $project->getUsers());
 		$this->view->setVariable("task", $task);
 		$this->view->setVariable("projectID", $_REQUEST["id"]);
@@ -292,26 +286,24 @@ class TasksController extends BaseController
 			throw new Exception("no such task with id: ".$taskid);
 		}
 
-		// Check if the user is assigned to task
-		if (!in_array($this->currentUser, $task->getUsers())) {
-			throw new Exception("logged user does not exists in the task");
-		}
-
 		if (isset($_POST["id"])) { // reaching via HTTP Post...
 
 			try {
 				$task->setProject($projectid);
 				$task->setName($_POST["title"]);
 				$task->setStatus($_POST["status"]);
-				$task->setDesc($_POST["description"]);
+				$task->setDesc($_POST["desc"]);
 
-				$users = array();
-				foreach ($project->getUsers() as $user) {
-					if (isset($_POST[$user->getUserMail()])) {
-						array_push($users, $user);
-					}
-				}
-				$task->setUsers($users);
+			$users = array();
+			$userNum = 1;
+			
+			foreach ($project->getUsers() as $user) {
+				if (isset($_POST["user".$userNum])) {
+					array_push($users, $user);
+				}	
+				$userNum++;
+			}
+			$task->setUsers($users);
 
 
 				// validate Task object

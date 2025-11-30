@@ -63,8 +63,12 @@ class TaskMapper
 
 		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_tasks WHERE task_id=?");
 		$stmt->execute(array($task->getId()));
-		$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$users = array();
+		foreach ($users_db as $user) {
+				array_push($users, $user["user_mail"]);
 
+		}
 		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
 		$stmt2 = $this->db->prepare("DELETE FROM users_on_tasks WHERE user_mail=?");
 		$repeatedUsers = array();

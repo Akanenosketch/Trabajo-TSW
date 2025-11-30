@@ -69,7 +69,9 @@ $userNum = 1;
                         <?php $userNum++ ?>
                          <?php if ($isViewing): ?>disabled<?php endif ?>
                          <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked required<?php endif ?>     
-                        />
+                         <?php if (strcmp($currentuserMail, $user->getUserMail()) != 0 && in_array($user, $task->getUsers()) ): ?> checked<?php endif ?>     
+  
+                            />
                         <label>
                             <?= $user->getUserMail() ?>
                         </label>
