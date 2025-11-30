@@ -2,6 +2,7 @@
 // file: model/Task.php
 
 require_once(__DIR__."/../core/ValidationException.php");
+require_once(__DIR__."/../core/I18n.php");
 
 /**
  * Class Task
@@ -194,27 +195,27 @@ class Task
 		$errors = array();
 
 		if (strlen(trim($this->name)) < 1) {
-			$errors["name"] = "name is mandatory";
+			$errors["name"] = i18n("nombre es obligatorio");
 		}
 
 		if (strlen(trim($this->desc)) < 1) {
-			$errors["desc"] = "desc is mandatory";
+			$errors["desc"] = i18n("descripcion es obligatoria");
 		}
 
 		if (sizeof($this->users) < 1) {
-			$errors["users"] = "Task must have at least 1 user";
+			$errors["users"] = i18n("La tarea debe tener al menos 1 usuario");
 		}
 
 		if (strlen(trim($this->status)) < 1) {
-			$errors["status"] = "status is mandatory";
+			$errors["status"] = i18n("Estado es obligatorio");
 		}
 
 		if (strcmp(trim($this->status), "ToDo") != 0 and strcmp(trim($this->status), "Working") != 0 and strcmp(trim($this->status), "Done") != 0) {
-			$errors["statusValue"] = "status is not valid";
+			$errors["statusValue"] = i18n("Estado no valido");
 		}
 
 		if (sizeof($errors) > 0) {
-			throw new ValidationException($errors, "Task is not valid");
+			throw new ValidationException($errors, i18n("Tarea no Valida"));
 		}
 	}
 

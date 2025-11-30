@@ -2,6 +2,7 @@
 // file: model/User.php
 
 require_once(__DIR__."/../core/ValidationException.php");
+require_once(__DIR__."/../core/I18n.php");
 
 /**
  * Class User
@@ -123,19 +124,19 @@ class User
 
 		// Correos de la forma example123@example123.example
 		if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $this->user_mail) < 1) {
-			$errors["user_mail"] = "Usermail must use a valid format example@example";
+			$errors["user_mail"] = i18n("Correo debe usar un formato valido example@example.ex");
 		}
 
 		if (strlen(trim($this->username)) < 4) {
-			$errors["username"] = "Username is mandatory";
+			$errors["username"] = i18n("nombre es obligatorio");
 
 		}
 		if (strlen(trim($this->passwd)) < 6) {
-			$errors["passwd"] = "Password is mandatory";
+			$errors["passwd"] = i18n("Contraseña es obligatoria");
 		}
 
 		if (sizeof($errors) > 0) {
-			throw new ValidationException($errors, "user is not valid");
+			throw new ValidationException($errors, i18n("usuario no valido"));
 		}
 	}
 }

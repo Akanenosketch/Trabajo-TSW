@@ -2,6 +2,7 @@
 // file: model/Project.php
 
 require_once(__DIR__."/../core/ValidationException.php");
+require_once(__DIR__."/../core/I18n.php");
 
 /**
  * Class Project
@@ -140,15 +141,15 @@ class Project
 	{
 		$errors = array();
 		if (strlen(trim($this->name)) == 0) {
-			$errors["name"] = "name is mandatory";
+			$errors["name"] = i18n("nombre es obligatorio");
 		}
 
 		if (sizeof($this->users) < 1) {
-			$errors["users"] = "Project must have at least 1 user";
+			$errors["users"] = i18n("El projecto debe tener al menos 1 usuario");
 		}
 
 		if (sizeof($errors) > 0) {
-			throw new ValidationException($errors, "project is not valid");
+			throw new ValidationException($errors, i18n("Projecto no valido"));
 		}
 	}
 
@@ -166,7 +167,7 @@ class Project
 		$errors = array();
 
 		if (!isset($this->id)) {
-			$errors["id"] = "id is mandatory";
+			$errors["id"] = i18n("ID es obligatorio");
 		}
 
 		try {
@@ -177,7 +178,7 @@ class Project
 			}
 		}
 		if (sizeof($errors) > 0) {
-			throw new ValidationException($errors, "project is not valid");
+			throw new ValidationException($errors, i18n("Projecto no valido"));
 		}
 	}
 

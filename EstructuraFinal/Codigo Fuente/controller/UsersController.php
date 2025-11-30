@@ -118,7 +118,7 @@ class UsersController extends BaseController
 
 			} else {
 				$errors = array();
-				$errors["general"] = "user is not valid";
+				$errors["general"] = i18n("usuario no valido");
 				$this->view->setVariable("errors", $errors);
 			}
 		}
