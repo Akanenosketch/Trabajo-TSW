@@ -122,7 +122,7 @@ class ProjectsController extends BaseController
 			throw new Exception("no such project with id: ".$projectid);
 		}
 		$users = $project->getUsers();
-		
+
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $users)) {
 			throw new Exception("logged user does not exist in the project");
@@ -199,7 +199,7 @@ class ProjectsController extends BaseController
 				$this->view->setVariable("errors", $errors);
 			}
 		}
-	 	// render the view (/view/projects/form.php)
+		// render the view (/view/projects/form.php)
 		$this->view->setVariable("users", $users);
 		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 		$this->view->render("projects", "form");
@@ -268,10 +268,12 @@ class ProjectsController extends BaseController
 				$project->setName($_POST["name"]);
 
 				$projectUsers = array();
+				$userNum = 1;
 				foreach ($users as $user) {
-					if (isset($_POST[$user->getUserMail()])) {
+					if (isset($_POST["user".$userNum])) {
 						array_push($projectUsers, $user);
 					}
+					$userNum++;
 				}
 				$project->setUsers($projectUsers);
 
@@ -295,7 +297,7 @@ class ProjectsController extends BaseController
 		$this->view->setVariable("users", $users);
 		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 		// render the view (/view/projects/form.php)
-		$this->view->render("projects", "form");		
+		$this->view->render("projects", "form");
 	}
 
 	/**

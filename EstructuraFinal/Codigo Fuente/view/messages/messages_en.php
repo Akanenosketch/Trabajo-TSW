@@ -3,43 +3,24 @@
 
 $i18n_messages = 
 array(
-	//login.php
 	"Pagina de Bienvenida" => "Welcome Page",
 	"Bienvenido" => "Welcome",
 	"Una app de administracion al estilo Kanban" => "A Kanban style manager app",
 	"Informacion:" => "Information:",
 	"Proyecto Trabajo-TSW — Interfaz de Ejemplo." => "TSW-Work Project — Example Interface.",
 	"Contacto: equipo@example.com · Version 1.0" => "Contact: equipo@example.com · Version 1.0",
-	
-	
-	
-	
 	"Formulario de Projectos"=> "Project Form",
 	"Formulario de Tareas" => "Task Form",
-
-
-	//login.php & login_form
 	"Iniciar sesion" => "Login",
-	
-	//login.php & register_form
 	"Registrarse" => "Register",
-	
-	//login_form & register_form
 	"Contraseña" => "Password",
-
-	//login_form & register_form & project_form
 	"Cancelar" => "Cancel",
-	
-	// login_form
 	"Entrar" => "Enter",
 	"Login Form" => "Login Form",
 	"Escribe tu correo" => "Write your email",
-	//register_form
 	"Correo" => "Email",
 	"Crear Cuenta" => "Create Account",
 	"Register Form" => "Register Form",
-
-	//dashboard.php
 	"Dashboard" => "Dashboard",
 	"Usuario" => "User",
 	"Lista de Proyectos" => "Project List",
@@ -49,16 +30,12 @@ array(
 	"Tareas ToDo" => "ToDo Tasks",
 	"Tareas Working" => "Working Tasks",
 	"Tareas Done" => "Done Tasks",
-	
-	//project_form
 	"Nuevo Proyecto" => "New Project",
-	"Crear proyecto" => "Create Project",
-	
-	//project.php project_form
+	"Crear proyecto" => "Create Project",	
 	"Participantes" => "Participants",
 	"Ver" => "View",
-	
-	//project.php
+	"Editar" => "Edit",
+	"Borrarr" => "Delete",
 	"Proyecto" => "Project",
 	"Tareas Totales" => "Total Tasks",
 	"Completado" => "Completed",

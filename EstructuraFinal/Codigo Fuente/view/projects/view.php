@@ -68,10 +68,6 @@ $project = $view->getVariable("project");
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Editar") ?></button>
                                         </a>
-                                        <a
-                                            href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Editar") ?></button>
-                                        </a>
                                         <form
                                             action="index.php?controller=tasks&amp;action=delete&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn danger" type="submit"><?= i18n("Borrar") ?></button>
@@ -102,10 +98,6 @@ $project = $view->getVariable("project");
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Editar") ?></button>
                                         </a>
-                                        <a
-                                            href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Editar") ?></button>
-                                        </a>
                                         <form
                                             action="index.php?controller=tasks&amp;action=delete&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn danger" type="submit"><?= i18n("Borrar") ?></button>
@@ -131,10 +123,6 @@ $project = $view->getVariable("project");
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Ver") ?></button>
-                                        </a>
-                                        <a
-                                            href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Editar") ?></button>
                                         </a>
                                         <a
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">

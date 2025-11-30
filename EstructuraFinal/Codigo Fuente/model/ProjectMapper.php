@@ -107,7 +107,7 @@ class ProjectMapper
 			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=?");
 			$stmt->execute(array($projectid));
 			$tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			$stmt2 = $this->db->prepare("SELECT * FROM users where user_mail IN user_mail FROM users_on_tasks WHERE project_id=? AND task_id=?");
+			$stmt2 = $this->db->prepare("SELECT * FROM users where user_mail IN ( SELECT user_mail FROM users_on_tasks WHERE project_id=? AND task_id=?)");
 
 			$tasks_array = array();
 			foreach ($tasks as $task) {
@@ -118,7 +118,7 @@ class ProjectMapper
 					$task["project_id"],
 					$task["task_status"]
 				);
-				$stmt2->execute(array($projectid, $task["task_id"]));
+				$stmt2->execute(array($projectid, $task->getId()));
 				$usersOnTask = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				$users_task_array = array();
 				foreach ($usersOnTask as $usertask) {
@@ -128,6 +128,7 @@ class ProjectMapper
 				array_push($tasks_array, $task);
 
 			}
+			$project_with_all->setTasks($tasks_array);
 		}
 		return $project_with_all;
 	}

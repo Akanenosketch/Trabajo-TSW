@@ -64,6 +64,9 @@ $userNum = 1;
                 <?php endif ?>
                        <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
                     </a>
+                          <?php if (!is_null($project)): ?>
+                                 <input value="<?= $project->getId()?>" type="hidden" name="id">        
+                         <?php endif ?>
 
                     <button type="submit" class="btn primary">
                         
