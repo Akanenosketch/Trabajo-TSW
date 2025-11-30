@@ -66,12 +66,12 @@ $projectID = $view->getVariable("projectID");
                     
                     <?php foreach ($users as $user): ?>
                       <div>
-                        <input type="checkbox" name="<?php $user.getUserMail() ?>" value="<?php $user.getUserMail() ?>"
+                        <input type="checkbox" name="<?php $user->getUserMail() ?>" value="<?php $user->getUserMail() ?>"
                          <?php if ($isViewing): ?>disabled<?php endif ?>
-                         <?php if (strcmp($currentuserMail, $user.getUserMail()) == 0): ?>checked<?php endif ?>     
+                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked<?php endif ?>     
                         />
                         <label>
-                             $user.getUserMail()
+                             <!--$user.getUserMail()-->
                         </label>
                     </div>
 
