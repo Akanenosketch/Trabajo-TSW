@@ -10,14 +10,12 @@
     --danger: #ff3b3b;
 }
 
-
 body {
     margin: 0;
     background: var(--bg-dark);
     color: var(--text-bright);
-    font-family: 'Inter', system-ui, Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
-
 
 header {
     background: var(--surface-dark);
@@ -31,7 +29,6 @@ header {
     align-items: center;
 }
 
-
 .controls {
     display: flex;
     align-items: center;
@@ -44,12 +41,11 @@ header {
     right: 12px;
     display: flex;
     gap: 8px;
-
 }
 
 .lang-btn {
     background: var(--accent-neon);
-    display: flex   ;
+    display: flex;
     color: var(--bg-dark);
     padding: 5px 10px;
     border-radius: 5px;
@@ -92,7 +88,6 @@ header {
     box-shadow: 0 0 10px var(--accent-glow);
 }
 
-
 .project-title {
     font-size: 32px;
     font-weight: 700;
@@ -113,7 +108,6 @@ header {
     color: var(--accent-neon);
     font-weight: bold;
 }
-
 
 .project-content {
     padding: 32px;
@@ -141,7 +135,6 @@ header {
     font-weight: 600;
 }
 
-
 .task {
     background: var(--surface-lighter);
     padding: 16px;
@@ -159,7 +152,6 @@ header {
     border-color: var(--accent-neon);
     box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
 }
-
 
 .task .btn {
     padding: 5px 10px;
@@ -186,14 +178,15 @@ header {
     color: var(--bg-dark);
 }
 
-
 .task-actions {
     margin-top: 32px;
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 18px;
 }
+
 
 .action-btn {
     padding: 10px 18px;
@@ -233,14 +226,85 @@ header {
     color: var(--bg-dark);
 }
 
-.small{
+.small {
     border: var(--border-dark);
     padding: 2px 6px;
     border-radius: 4px;
     margin-top: 10pt;
 }
 
-.small.text{
+.small.text {
     font-size: 0.8rem;
     color: var(--text-bright);
+}
+
+@media (max-width: 1024px) {
+    .cols {
+        flex-direction: column;
+    }
+    .project-content {
+        padding: 20px;
+    }
+    .stats-container {
+        gap: 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 14px 20px;
+    }
+    .lang-switch {
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .task {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+    }
+    .task-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn.back {
+    margin-top: 0pt;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 26px;
+    }
+    .project-content {
+        padding: 16px;
+    }
+    .col {
+        padding: 14px;
+    }
+    .action-btn,
+    .btn.primary,
+    .btn.back {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .task {
+        padding: 12px;
+    }
+    .btn.back {
+    margin-top: 0pt;
+    }
 }
