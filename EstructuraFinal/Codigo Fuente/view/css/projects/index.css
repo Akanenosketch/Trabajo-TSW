@@ -14,9 +14,9 @@
 body {
     font-family: 'Inter', system-ui, Arial, sans-serif;
     background: var(--bg-dark);
-    margin: 0;
+    margin: 10pt;
     padding: 20px;
-    max-width: 1400px;
+    max-width: 100%;
     color: var(--text-bright);
 }
 
@@ -30,6 +30,7 @@ header {
     border: 1px solid var(--border-dark);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     margin-bottom: 32px;
+    margin-top: 20px;
     position: relative;
 }
 
@@ -46,14 +47,16 @@ header {
 
 .lang-switch {
     position: absolute;
-    top: 12px;
+    top: 10px;
     right: 12px;
     display: flex;
     gap: 8px;
+
 }
 
 .lang-btn {
     background: var(--accent-neon);
+    display: flex   ;
     color: var(--bg-dark);
     padding: 5px 10px;
     border-radius: 5px;
@@ -124,6 +127,7 @@ th, td {
     transition: all 0.3s ease;
     cursor: pointer;
     border: none;
+    margin-top: 15pt;
 }
 
 .add-btn:hover {

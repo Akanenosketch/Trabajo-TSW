@@ -26,7 +26,6 @@ class ProjectsController extends BaseController
 	 * @var ProjectMapper
 	 */
 	private $projectMapper;
-
 	/**
 	 * Reference to the UserMapper to interact
 	 * with the database

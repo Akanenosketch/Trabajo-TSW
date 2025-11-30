@@ -16,15 +16,17 @@ $errors = $view->getVariable("errors");
 
 <body>
     <main class="container">
-        <div class="lang-switch">
-            <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
-            <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
-        </div>
 
+    <div class="lang-switch">
+        <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
+        <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
+    </div>
         <div class="welcome-card" role="region" aria-labelledby="bienvenido">
             <h1 id="bienvenido"><?= i18n("Bienvenido") ?></h1>
             <p class="subtitle"><?= i18n("Una app de administracion al estilo Kanban") ?></p>
+            <div class="lang-switch">
 
+        </div>
             <a href="index.php?action=login">
                 <button id="openLogin" class="primary"><?= i18n("Iniciar sesion") ?></button>
             </a>

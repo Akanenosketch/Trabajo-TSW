@@ -18,17 +18,16 @@ $currentuserMail = $view->getVariable("currentusermail");
 </head>
 
 <body>
+    <div class="lang-switch">
+        <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
+        <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
+    </div>
+    
     <header>
         <div>
             <div class="username" id="userDisplay"><?= $currentuserName ?></div>
-            <div class="small" id="userEmail"><?= $currentuserMail ?></div>
         </div>
         <div>
-            <div class="lang-switch">
-                <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
-                <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
-            </div>
-
             <a href="index.php?action=logout">
                 <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
             </a>
@@ -36,11 +35,7 @@ $currentuserMail = $view->getVariable("currentusermail");
     </header>
 
     <section class="project-list">
-        <div class="add-project-container">
-            <a href="index.php?controller=projects&amp;action=add">
-                <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
-            </a>
-        </div>
+
 
         <div class="content-center">
             <div class="table-container">
@@ -69,6 +64,11 @@ $currentuserMail = $view->getVariable("currentusermail");
 
                     </tbody>
                 </table>
+                        <div class="add-project-container">
+            <a href="index.php?controller=projects&amp;action=add">
+                <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
+            </a>
+        </div>
             </div>
         </div>
     </section>

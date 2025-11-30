@@ -31,16 +31,21 @@ body {
 }
 
 /* ---- Selector de idioma ---- */
+
 .lang-switch {
     position: absolute;
-    top: 12px;
+    align-self: flex-end;
+    justify-content: flex-end;
+    top: 10px;
     right: 12px;
     display: flex;
     gap: 8px;
+
 }
 
 .lang-btn {
     background: var(--accent-neon);
+    display: flex   ;
     color: var(--bg-dark);
     padding: 5px 10px;
     border-radius: 5px;
