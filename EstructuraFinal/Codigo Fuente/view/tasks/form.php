@@ -39,7 +39,7 @@ $userNum = 1;
                 <div class="form-row">
                     <label><?= i18n("Descripcion") ?></label>
                     <textarea id="modalTaskDesc" name="desc" rows="3" minlength="1"
-                     text="<?php if (!is_null($task)): ?><?= $task->getDesc()?><?php endif ?>"
+                     <?php if (!is_null($task)): ?>text="<?= $task->getDesc()?>"<?php endif ?>
                     <?php if ($isViewing): ?>readonly<?php endif ?>
                     ></textarea>
                 </div>

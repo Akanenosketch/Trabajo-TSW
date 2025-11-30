@@ -404,7 +404,7 @@ class TasksController extends BaseController
 		// perform the redirection. More or less:
 		// header("Location: index.php?controller=projects&action=view&id=project_id")
 		// die();
-		$this->view->redirect("projects", "index", "id=".$projectid);
+		$this->view->redirect("projects", "view", "id=".$projectid);
 	}
 
 }
