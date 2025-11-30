@@ -43,8 +43,7 @@ $userNum = 1;
                         <div>
                         <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
                         <?php $userNum++ ?>
-                        <?php if (strcmp($currentuserMail, $user->getUserMail()) != 0 && in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
-                        <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?> checked required<?php endif ?>     
+                        <?php if (in_array($user, $projectUsers) ): ?> checked<?php endif ?>     
                         />
                         <label>
                             <?= $user->getUserMail() ?>

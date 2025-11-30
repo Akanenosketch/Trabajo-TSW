@@ -8,6 +8,8 @@ $users = $view->getVariable("users");
 $currentuserMail = $view->getVariable("currentusermail");
 $projectID = $view->getVariable("projectID"); 
 $userNum = 1;
+$taskUsers = array();
+if($task != null) $taskUsers = $task->getUsers();
 ?>
 
 
@@ -68,8 +70,7 @@ $userNum = 1;
                         <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
                         <?php $userNum++ ?>
                          <?php if ($isViewing): ?>disabled<?php endif ?>
-                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked required<?php endif ?>     
-                         <?php if (strcmp($currentuserMail, $user->getUserMail()) != 0 && in_array($user, $task->getUsers()) ): ?> checked<?php endif ?>     
+                         <?php if (in_array($user, $taskUsers) ): ?> checked<?php endif ?>     
   
                             />
                         <label>
