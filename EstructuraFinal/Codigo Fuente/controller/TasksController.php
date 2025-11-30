@@ -110,7 +110,11 @@ class TasksController extends BaseController
 		if (!in_array($this->currentUser, $task->getUsers())) {
 			throw new Exception("logged user does not exists in the task");
 		}
+
+
+		$this->view->setVariable("users", $project->getUsers());
 		$this->view->setVariable("task", $task);
+		$this->view->setVariable("projectID", $_REQUEST["id"]);
 		$this->view->setVariable("isViewing", true);
 		// render the view (/view/tasks/form.php)
 		$this->view->render("tasks", "form");
@@ -326,6 +330,7 @@ class TasksController extends BaseController
 			}
 		} 
 		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
+		$this->view->setVariable("projectID", $_REQUEST["id"]);
 		$this->view->setVariable("task", $task);
 		$this->view->setVariable("users", $project->getUsers());
 		// render the view (/view/tasks/form.php)

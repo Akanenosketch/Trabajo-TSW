@@ -119,7 +119,7 @@ class ProjectMapper
 					$task["task_status"]
 				);
 				$stmt2->execute(array($projectid, $task->getId()));
-				$usersOnTask = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				$usersOnTask = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 				$users_task_array = array();
 				foreach ($usersOnTask as $usertask) {
 					array_push($users_task_array, new User($usertask["username"], $usertask["user_mail"], $usertask["passwd"]));

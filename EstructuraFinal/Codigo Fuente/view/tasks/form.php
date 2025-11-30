@@ -38,24 +38,24 @@ $userNum = 1;
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Descripcion") ?></label>
-                    <textarea id="modalTaskDesc" name="desc" rows="3" minlength="1"
-                     <?php if (!is_null($task)): ?>text="<?= $task->getDesc()?>"<?php endif ?>
+                    <input id="modalTaskDesc" name="desc" type="text" required minlength="1"
+                    value="<?php if (!is_null($task)): ?><?= $task->getDesc() ?><?php endif ?>"
                     <?php if ($isViewing): ?>readonly<?php endif ?>
-                    ></textarea>
-                </div>
+                    />
+               </div>
                 <div class="form-row">
                     <label><?= i18n("Estado") ?></label>
                     <select id="modalTaskStatus" name="status" required
                     <?php if ($isViewing): ?>disabled<?php endif ?>
                     >
                         <option value="ToDo" 
-                        <?php if (!is_null($task) && strcmp(trim($task->status), "ToDo") == 0): ?>selected<?php endif ?>
+                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "ToDo") == 0): ?>selected<?php endif ?>
                             ><?= i18n("ToDo") ?></option>
                         <option value="Working"
-                        <?php if (!is_null($task) && strcmp(trim($task->status), "Working") == 0): ?>selected<?php endif ?>
+                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Working") == 0): ?>selected<?php endif ?>
                         ><?= i18n("Working") ?></option>
                         <option value="Done"
-                        <?php if (!is_null($task) && strcmp(trim($task->status), "Done") == 0): ?>selected<?php endif ?>
+                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Done") == 0): ?>selected<?php endif ?>
                         ><?= i18n("Done") ?></option>
                     </select>
                 </div>
