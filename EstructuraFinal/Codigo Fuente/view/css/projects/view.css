@@ -1,0 +1,160 @@
+/* Projects */
+
+:root {
+    --bg-dark: #0a0b0f;
+    --surface-dark: #1a1b23;
+    --surface-lighter: #22242e;
+    --accent-neon: #00ff9d;
+    --accent-glow: #00cc7e;
+    --text-bright: #ffffff;
+    --text-dim: #9da3b4;
+    --border-dark: #2a2d3a;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, Arial, sans-serif;
+    padding: 20px;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    max-width: 1400px;
+    margin: 0 auto
+}
+
+header {
+    margin-bottom: 24px;
+    background: var(--surface-dark);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.username {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.project-list {
+    width: 100%;
+}
+
+.lang-switch {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.lang-btn:hover {
+    background: var(--accent-glow);
+}
+
+
+.add-btn {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.add-btn:hover {
+    background: var(--accent-glow);
+}
+
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    padding: 14px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.project-link {
+    color: var(--accent-neon);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE  */
+
+
+@media (max-width: 1024px) {
+    body {
+        padding: 16px;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .add-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .lang-switch {
+        justify-content: center;
+    }
+
+    table {
+        min-width: 600px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    header {
+        padding: 18px;
+    }
+
+    .username {
+        font-size: 20px;
+    }
+
+    .lang-btn {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    table {
+        min-width: 500px;
+    }
+}

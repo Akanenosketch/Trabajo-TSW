@@ -1,0 +1,139 @@
+/* login para welcomePage.php */
+:root {
+    --bg-dark: #0a0b0f;
+    --surface-dark: #1a1b23;
+    --accent-neon: #00ff9d;
+    --text-bright: #ffffff;
+    --text-dim: #9da3b4;
+    --border-dark: #2a2d3a;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ---- Layout general ---- */
+body {
+    margin: 0;
+    background: linear-gradient(135deg, var(--bg-dark), #141721);
+    color: var(--text-bright);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---- Contenedor central ---- */
+.container {
+    max-width: 900px;
+    margin: 48px auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* ---- Selector de idioma ---- */
+.lang-switch {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.lang-btn:hover {
+    background: var(--accent-glow);
+}
+
+/* ---- Tarjeta central ---- */
+.welcome-card {
+    width: 100%;
+    background: var(--surface-dark);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 6px 24px rgba(0, 255, 157, 0.08);
+}
+
+.welcome-card h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    color: var(--accent-neon);
+}
+
+.welcome-card .subtitle {
+    margin: 0;
+    color: var(--text-dim);
+}
+
+/* ---- Botones ---- */
+button.primary,
+button.secondary {
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+button.primary {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+}
+
+button.secondary {
+    background: transparent;
+    color: var(--accent-neon);
+    border: 2px solid var(--accent-neon);
+}
+
+/* ---- Footer ---- */
+footer.site-footer {
+    margin-top: auto;
+    background: #0f1724;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+}
+
+footer .small {
+    opacity: 0.7;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+    .container {
+        margin: 24px 12px;
+        padding: 16px;
+    }
+
+    .welcome-card {
+        padding: 20px;
+    }
+    
+    .welcome-card h1 {
+        font-size: 28px;
+    }
+
+    button.primary,
+    button.secondary {
+        width: 100%;
+        border-top: 10pt;
+        padding: 14px;
+        
+    }
+}

@@ -3,37 +3,38 @@
 
 $i18n_messages = 
 array(
-	//login.php
 	"Pagina de Bienvenida" => "Welcome Page",
+	"Nombre de Usuario" => "User Name",
 	"Bienvenido" => "Welcome",
 	"Una app de administracion al estilo Kanban" => "A Kanban style manager app",
 	"Informacion:" => "Information:",
 	"Proyecto Trabajo-TSW — Interfaz de Ejemplo." => "TSW-Work Project — Example Interface.",
 	"Contacto: equipo@example.com · Version 1.0" => "Contact: equipo@example.com · Version 1.0",
-	
-
-
-	//login.php & login_form
+	"Formulario de Projectos"=> "Project Form",
+	"Formulario de Tareas" => "Task Form",
+	"Existe un usuario con el mismo correo" => "There already is a user with that mail",
 	"Iniciar sesion" => "Login",
-	
-	//login.php & register_form
+	"Tarea no Valida"=> "Task is not valid",
+	"Estado no valido"=> "status is not valid",
+	"Estado es obligatorio"=> "status is mandatory",
+	"La tarea debe tener al menos 1 usuario"=>   "Task must have at least 1 user",
+	"descripcion es obligatoria"=>  "desc is mandatory",
+	"Projecto no valido" => "project is not valid",
+	"ID es obligatorio"=> "ID is mandatory",
+	"El projecto debe tener al menos 1 usuario"=>   "Project must have at least 1 user",
+	"Contraseña es obligatoria" => "Password is mandatory",
+	"Correo debe usar un formato valido example@example.ex" =>"Usermail must use a valid format example@example.ex",
+	"nombre es obligatorio" => "name is mandatory",
+	"usuario no valido" =>"user is not valid",
 	"Registrarse" => "Register",
-	
-	//login_form & register_form
-	"Nombre de Usuario" => "Username",
 	"Contraseña" => "Password",
-
-	//login_form & register_form & project_form
 	"Cancelar" => "Cancel",
-	
-	// login_form
 	"Entrar" => "Enter",
-	
-	//register_form
+	"Login Form" => "Login Form",
+	"Escribe tu correo" => "Write your email",
 	"Correo" => "Email",
-	"Crear cuenta" => "Create Account",
-
-	//dashboard.php
+	"Crear Cuenta" => "Create Account",
+	"Register Form" => "Register Form",
 	"Dashboard" => "Dashboard",
 	"Usuario" => "User",
 	"Lista de Proyectos" => "Project List",
@@ -43,15 +44,12 @@ array(
 	"Tareas ToDo" => "ToDo Tasks",
 	"Tareas Working" => "Working Tasks",
 	"Tareas Done" => "Done Tasks",
-	
-	//project_form
 	"Nuevo Proyecto" => "New Project",
-	"Crear proyecto" => "Create Project",
-	
-	//project.php project_form
+	"Crear proyecto" => "Create Project",	
 	"Participantes" => "Participants",
-	
-	//project.php
+	"Ver" => "View",
+	"Editar" => "Edit",
+	"Borrar" => "Delete",
 	"Proyecto" => "Project",
 	"Tareas Totales" => "Total Tasks",
 	"Completado" => "Completed",

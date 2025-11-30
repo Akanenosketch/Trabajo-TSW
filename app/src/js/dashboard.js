@@ -73,26 +73,7 @@
                 list.innerHTML += `<div><label><input type="checkbox" value="${escapeHtml(u)}" id="${id}" ${checked}> ${escapeHtml(u)}</label></div>`;
             });
             
-            // Clear tasks except first
-            const tasksDiv = document.getElementById('initialTasks');
-            tasksDiv.innerHTML = `
-                <div class="task-input-group">
-                    <div style="flex:1">
-                        <input type="text" placeholder="Nombre de la tarea" class="task-input">
-                        <textarea placeholder="Descripción de la tarea" class="task-desc"></textarea>
-                        <select class="task-status" style="margin-top:8px">
-                            <option value="todo">ToDo</option>
-                            <option value="working">Working</option>
-                            <option value="done">Done</option>
-                        </select>
-                        <div class="task-assignees-select"></div>
-                    </div>
-                    <button type="button" class="btn remove-task" style="align-self:flex-start">×</button>
-                </div>
-            `;
             
-            // Add initial assignees checkboxes
-            updateTaskAssignees(tasksDiv.querySelector('.task-assignees-select'));
             
             openModal('newProjectModal');
         });
@@ -117,37 +98,8 @@
             `;
         }
 
-        document.getElementById('addTaskField').addEventListener('click', () => {
-            const div = document.createElement('div');
-            div.className = 'task-input-group';
-            div.innerHTML = `
-                <div style="flex:1">
-                    <input type="text" placeholder="Nombre de la tarea" class="task-input">
-                    <textarea placeholder="Descripción de la tarea" class="task-desc"></textarea>
-                    <div class="task-assignees-select"></div>
-                </div>
-                <div style="min-width:120px">
-                    <select class="task-status">
-                        <option value="todo">ToDo</option>
-                        <option value="working">Working</option>
-                        <option value="done">Done</option>
-                    </select>
-                </div>
-                <button type="button" class="btn remove-task">×</button>
-            `;
-            document.getElementById('initialTasks').appendChild(div);
-            updateTaskAssignees(div.querySelector('.task-assignees-select'));
-        });
+  
 
-        // Remove task input field
-        document.getElementById('initialTasks').addEventListener('click', e => {
-            if(e.target.classList.contains('remove-task')) {
-                const groups = document.querySelectorAll('.task-input-group');
-                if(groups.length > 1) {
-                    e.target.closest('.task-input-group').remove();
-                }
-            }
-        });
 
         document.getElementById('addProjectForm').addEventListener('submit', (e) => {
             e.preventDefault();
