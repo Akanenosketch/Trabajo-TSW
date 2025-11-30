@@ -50,7 +50,7 @@ class ProjectsController extends BaseController
 	public function index()
 	{
 
-		if (!isset($this->currentUser)) {
+		if ($this->currentUser == null) {
 			throw new Exception("Not in session. Viewing projects requires login");
 		}
 
