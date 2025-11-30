@@ -32,21 +32,21 @@ $projectID = $view->getVariable("projectID");
                 <h3 id="taskModalTitle"><?= i18n("Añadir Tarea") ?></h3>
                 <div class="form-row">
                     <label><?= i18n(key: "Nombre") ?></label>
-                    <input id="modalTaskName" name="title" type="text" required 
+                    <input id="modalTaskName" name="title" type="text" required minlength="1"
                     value="<?php if (!is_null($task)): ?><?= $task->getName() ?><?php endif ?>"
                     <?php if ($isViewing): ?>readonly<?php endif ?>
                     />
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Descripcion") ?></label>
-                    <textarea id="modalTaskDesc" name="desc" rows="3"
+                    <textarea id="modalTaskDesc" name="desc" rows="3" minlength="1"
                      text="<?php if (!is_null($task)): ?><?= $task->getDesc() ?><?php endif ?>"
                     <?php if ($isViewing): ?>readonly<?php endif ?>
                     ></textarea>
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Estado") ?></label>
-                    <select id="modalTaskStatus" name="status"
+                    <select id="modalTaskStatus" name="status" required
                     <?php if ($isViewing): ?>disabled<?php endif ?>
                     >
                         <option value="ToDo" 
@@ -68,7 +68,7 @@ $projectID = $view->getVariable("projectID");
                       <div>
                         <input type="checkbox" name="<?php $user->getUserMail() ?>" value="<?php $user->getUserMail() ?>"
                          <?php if ($isViewing): ?>disabled<?php endif ?>
-                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked<?php endif ?>     
+                         <?php if (strcmp($currentuserMail, $user->getUserMail()) == 0): ?>checked required disabled<?php endif ?>     
                         />
                         <label>
                             <?= $user->getUserMail() ?>
