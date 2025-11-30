@@ -1,5 +1,5 @@
 <?php
-// file: view/users/login.php
+// file: view/tasks/form.php
 $view = ViewManager::getInstance();
 $errors = $view->getVariable("errors");
 $isViewing = $view->getVariable("isViewing", false);
@@ -16,7 +16,7 @@ $projectID = $view->getVariable("projectID");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href=./view/css/tasks/form.css>
+    <link rel="stylesheet" type="text/css" href="./view/css/tasks/form.css">
     <title><?= i18n("Formulario de Tareas") ?></title>
 </head>
 
