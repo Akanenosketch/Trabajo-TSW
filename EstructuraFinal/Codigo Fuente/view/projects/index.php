@@ -1,6 +1,5 @@
 <?php
 //file: view/projects/index.php
-require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 
 $projects = $view->getVariable("projects");
@@ -31,9 +30,8 @@ $currentuserMail = $view->getVariable("currentusermail");
             </div>
 
             <a href="index.php?action=logout">
-        <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
-        
-        </a>
+                <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
+            </a>
         </div>
     </header>
 
