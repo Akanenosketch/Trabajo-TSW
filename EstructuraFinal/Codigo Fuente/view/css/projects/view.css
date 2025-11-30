@@ -43,21 +43,22 @@ header {
 }
 
 .lang-switch {
-    position: static;
+    position: absolute;
+    top: 12px;
+    right: 12px;
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
 }
 
 .lang-btn {
     background: var(--accent-neon);
     color: var(--bg-dark);
-    border: 1px solid var(--border-dark);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .2s;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
 }
 
 .lang-btn:hover {
