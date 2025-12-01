@@ -1,0 +1,3 @@
+En el rest hacer un get(usermail) y todo lo equivalebnte a metodos del controller
+
+traducir los echos en lo de rest? donde se muestran?

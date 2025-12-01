@@ -134,12 +134,9 @@ class ProjectsController extends BaseController
 			// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
 			$this->view->redirect( "projects", "index");
 		}else{
-
-
 		$this->view->setVariable("project", $project);
 		// render the view (/view/projects/form.php)
 		$this->view->render("projects", "view");
-
 		}
 	}
 
