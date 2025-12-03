@@ -1,0 +1,3 @@
+El manual hay que adaptarlo
+El readme meter los dnis
+El script se adapta sobre la marcha

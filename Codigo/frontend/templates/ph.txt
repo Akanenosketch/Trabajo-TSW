@@ -1,0 +1,6 @@
+los trozos de html, en algunos casos es cojer el de MVC y ya en otros hay que adaptar la plantilla
+
+
+Las traducciones ahora van a ser en front OJO
+
+se meteran luego en un div, los head y tal es unico del SPA
