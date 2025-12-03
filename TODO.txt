@@ -1,3 +1,32 @@
 En el rest hacer un get(usermail) y todo lo equivalebnte a metodos del controller
 
 traducir los echos en lo de rest? donde se muestran?
+
+
+la entrega 2 es mvc + spa
+
+hay que decidir ampliaciones
+
+
+Si se hace lo de categorias hay que filtrar
+
+
+lo de roles es bueno de hacerlo (admin edita proyecto y es el que crea, editor edita tareas, lector lee)
+
+
+El manual seria decirle las cosas extra y cambiar el link de uso/explicar como entrar al SPA vs el mvc (las ampliaciones las quiere por su identificador)
+
+LO NUEVO DE AMPLIACIONB HAY QUE HACERLO EN MVC TAMBIEN
+
+La DB hay que ampliar el script seguramente con lo extra solo
+
+Yo haria:
+-Editar usuario (desde la pag de projects/view)
+-Multiusuario (ya estaria)
+-Prioridad en tareas (seria 1 campo extra de select y mostrarlo en la view)
+
+-Gestion de roles creador = admin (puede hacer todo), editor no puede editar proyecto pero si tasks, lector como mucho marcar como done (si queremos esto proponerle ampliacion de que se pueda marcar el estado) 
+
+-Lo de bajas de usuario (lo tenemos a medias)
+
+muchas cosas del front esta delegado en fronty (el framework)

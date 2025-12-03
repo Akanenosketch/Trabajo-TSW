@@ -54,3 +54,6 @@ $userRest = new UserRest();
 URIDispatcher::getInstance()
 ->map("GET", "/users/$1", array($userRest,"login"))
 ->map("POST", "/users", array($userRest,"register"));
+
+
+//Esto es un CR de Users, estaria bien ampliarlo para tener CRUD

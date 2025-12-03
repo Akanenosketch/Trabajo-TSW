@@ -407,3 +407,9 @@ URIDispatcher::getInstance()
 ->map("POST", 	"/projects/$1/tasks", array($projectRest,"createTask"))
 ->map("PUT",	"/projects/$1/tasks/$2", array($projectRest,"updateTask"))
 ->map("DELETE", "/projects/$1/tasks/$2", array($projectRest,"deleteTask"));
+
+
+//Esto es un CRUDL de projectos + L de projectos de X usuario
+// Tiene CUD de Task
+
+//Aparte de esto estaria bien ampliaciones 
