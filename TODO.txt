@@ -30,3 +30,7 @@ Yo haria:
 -Lo de bajas de usuario (lo tenemos a medias)
 
 muchas cosas del front esta delegado en fronty (el framework)
+
+nombre de usuario no permitir espacios
+numero de tareas por tipos en la vista
+los working todo y eso traducirlo mejor
