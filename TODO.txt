@@ -12,23 +12,22 @@ Yo haria:
 Ampliaciones hechas
 -Tareas multiusuario
 -Sistema de prioridades (se puede mejorar)
+- Editar perfil de usuario (poner CSS al boton)
 
 
 TODO
 
 Ampliaciones posibles:
 
-Editar perfil de usuario
 
 SISTEMA DE ROLES
 Dar de baja usuarios
 
 SISTEMA DE CATEGORIAS
 
-(otros posibles)
+(otros posibles 1 mas para puntuar)
 
 Arreglar
-
 
 F3: Al visualizar directamente el nombre del proyecto en azul de enlaces se hace difícil leer con contraste del fondo oscuro.
 

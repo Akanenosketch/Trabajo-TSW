@@ -48,7 +48,6 @@ class TaskMapper
 		return $toRet;
 	}
 
-
 	/**
 	 * Updates a Task in the database
 	 *
@@ -86,7 +85,6 @@ class TaskMapper
 			}
 		}
 	}
-
 
 	/**
 	 * Deletes a Task from the database

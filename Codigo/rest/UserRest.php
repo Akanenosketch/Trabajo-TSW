@@ -43,6 +43,26 @@ class UserRest extends BaseRest
 		}
 	}
 
+	public function edit($usermail,$data)
+	{
+		$user = new User($data->username, $usermail, $data->password);
+		try {
+			$user->checkIsValidForRegister();
+			if ($this->userMapper->usermailExists($data->user_mail)) {
+				$this->userMapper->update($user);
+			} else {
+				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
+				echo ("No existe un usuario con el mismo correo");
+				return;
+			}
+			header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
+		} catch (ValidationException $e) {
+			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
+			header('Content-Type: application/json');
+			echo (json_encode($e->getErrors()));
+		}
+	}
+
 	public function login($usermail)
 	{
 
@@ -61,6 +81,7 @@ class UserRest extends BaseRest
 $userRest = new UserRest();
 URIDispatcher::getInstance()
 	->map("GET", "/users/$1", array($userRest, "login"))
+	->map("PUT", "/users/$1", array($userRest, "edit"))
 	->map("POST", "/users", array($userRest, "register"));
 
 

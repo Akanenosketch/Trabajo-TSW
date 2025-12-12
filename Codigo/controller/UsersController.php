@@ -143,7 +143,7 @@ class UsersController extends BaseController
 	 * The views are:
 	 * <ul>
 	 * <li>users/register: If this action is reached via HTTP GET (via include)</li>
-	 * <li>users/welcomePage: If register succeds (via redirect)</li>
+	 * <li>projects/index: If register succeds (via redirect)</li>
 	 * <li>users/register: If validation fails (via include). Includes these view variables:</li>
 	 * <ul>
 	 *	<li>errors: Array including validation errors</li>
@@ -154,7 +154,6 @@ class UsersController extends BaseController
 	 */
 	public function register()
 	{
-
 		$user = new User();
 
 		if (isset($_POST["correo"])) { // reaching via HTTP Post...
@@ -193,12 +192,79 @@ class UsersController extends BaseController
 			}
 		}
 
-		// Put the User object visible to the view
-		$this->view->setVariable("user", $user);
-
 		// render the view (/view/users/register.php)
 		$this->view->render("users", "register");
-
 	}
+
+
+
+	/**
+	 * Action to edit an user
+	 *
+	 * When called via GET, it shows the register form.
+	 * When called via POST, it tries to update the user
+	 *
+	 * The expected HTTP parameters are:
+	 * <ul>
+	 * <li>nombreUsuario: The nombreUsuario (via HTTP POST)</li>
+	 * <li>correo: The mailUsuario (via HTTP POST)</li>
+	 * <li>contrasena: The password (via HTTP POST)</li>
+	 * </ul>
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>users/register: If this action is reached via HTTP GET (via include)</li>
+	 * <li>projects/index: If register succeds (via redirect)</li>
+	 * <li>users/register: If validation fails (via include). Includes these view variables:</li>
+	 * <ul>
+	 *	<li>errors: Array including validation errors</li>
+	 * </ul>
+	 * </ul>
+	 *
+	 * @return void
+	 */
+	public function edit(){
+		$user = $this->currentUser;
+
+		if (isset($_POST["nombreUsuario"])) { // reaching via HTTP Post...
+			// populate the User object with data form the form
+			$user->setUsername($_POST["nombreUsuario"]);
+			$user->setPassword($_POST["contrasena"]);
+
+			try {
+				$user->checkIsValidForRegister(); // if it fails, ValidationException
+
+				// check if user exists in the database
+				if ($this->userMapper->usermailExists($_POST["correo"])) {
+
+					// save the User object into the database
+					$this->userMapper->update($user);
+
+					$_SESSION["currentusername"] = $user->getUsername();
+					$_SESSION["currentuserpass"] = $user->getPasswd();
+		
+					$this->view->redirect("projects", "index");
+				} else {
+					$errors = array();
+					$errors["user_mail"] = i18n("No existe un usuario con el mismo correo");
+					$this->view->setVariable("errors", $errors);
+				}
+			} catch (ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+				$this->view->setVariable("user", $user);
+				// render the view (/view/users/register.php)
+				$this->view->render("users", "register");
+			}
+		} else{
+			// Put the User object visible to the view
+			$this->view->setVariable("user", $user);
+			// render the view (/view/users/register.php)
+			$this->view->render("users", "register");
+		}
+	}
+	
 }
 ?>

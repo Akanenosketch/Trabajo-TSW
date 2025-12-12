@@ -30,8 +30,7 @@ class UserMapper
 	 * @throws PDOException if a database error occurs
 	 * @return void
 	 */
-	public function save($user)
-	{
+	public function save($user){
 		$stmt = $this->db->prepare("INSERT INTO users(user_mail,username,passwd) values (?,?,?)");
 		$stmt->execute(array($user->getUserMail(),$user->getUsername(), $user->getPasswd()));
 	}
@@ -42,8 +41,7 @@ class UserMapper
 	 * @param string $usermail the usermail to check
 	 * @return boolean true if the usermail exists, false otherwise
 	 */
-	public function usermailExists($usermail)
-	{
+	public function usermailExists($usermail){
 		$stmt = $this->db->prepare("SELECT count(user_mail) FROM users where user_mail=?");
 		$stmt->execute(array($usermail));
 
@@ -57,15 +55,12 @@ class UserMapper
 	 * @param string $passwd the password
 	 * @return boolean true the usermail/password exists, false otherwise.
 	 */
-	public function isValidUser($usermail, $passwd)
-	{
+	public function isValidUser($usermail, $passwd){
 		$stmt = $this->db->prepare("SELECT count(user_mail) FROM users where user_mail=? and passwd=?");
 		$stmt->execute(array($usermail, $passwd));
 
 			return $stmt->fetchColumn() > 0;
 	}
-
-
 
 	/**
 	 * Loads a user from the database given its email
@@ -75,8 +70,7 @@ class UserMapper
 	 * @return User The User instance. NULL
 	 * if the User is not found
 	 */
-	public function findByEmail($usermail)
-	{
+	public function findByEmail($usermail){
 		$stmt = $this->db->prepare("SELECT * FROM users where user_mail=?");
 		$stmt->execute(array($usermail));
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -92,6 +86,17 @@ class UserMapper
 		}
 	}
 
+	/**
+	 * Updates a User in the database
+	 *
+	 * @param User $user The User to be updated
+	 * @throws PDOException if a database error occurs
+	 * @return void
+	 */
+	public function update(User $user){
+		$stmt = $this->db->prepare("UPDATE users set username=?,passwd=?, where user_mail=?");
+		$stmt->execute(array($user->getUsername(), $user->getPasswd(),$user->getUserMail()));
+	}
 
 	public function findAll()
 	{
