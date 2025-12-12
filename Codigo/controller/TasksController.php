@@ -14,7 +14,6 @@ require_once(__DIR__."/../controller/BaseController.php");
  * Class TasksController
  *
  * Controller for tasks related use cases.
- *
  */
 class TasksController extends BaseController
 {
@@ -66,45 +65,9 @@ class TasksController extends BaseController
 	 */
 	public function view()
 	{
-		if (!isset($_REQUEST["id"])) {
-			throw new Exception("A project id is mandatory");
-		}
 
-		if (!isset($_REQUEST["task_id"])) {
-			throw new Exception("A task id is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Viewing tasks requires login");
-		}
-
-		// Get the Project object from the database
-		$projectid = $_REQUEST["id"];
-		$project = $this->projectMapper->findByIdWithAll($projectid);
-
-		// Does the project exist?
-		if ($project == NULL) {
-			throw new Exception("no such project with id: ".$projectid);
-		}
-
-		// Check if the currentUser (in Session) is in the Project
-		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exist in the project");
-		}
-
-		// Get the task object
-		$taskid = $_REQUEST["task_id"];
-		$task = NULL;
-
-		foreach ($project->getTasks() as $t) {
-			if ($t->getId() == $taskid) {
-				$task = $t;
-			}
-		}
-
-		if ($task == NULL) {
-			throw new Exception("no such task with id: ".$taskid);
-		}
+		$project = $this->retrieveProject();
+		$task = $this->retrieveTask($project);
 
 		$this->view->setVariable("users", $project->getUsers());
 		$this->view->setVariable("task", $task);
@@ -113,8 +76,6 @@ class TasksController extends BaseController
 		// render the view (/view/tasks/form.php)
 		$this->view->render("tasks", "form");
 	}
-
-
 
 	/**
 	 * Action to adds a task to a project
@@ -143,61 +104,21 @@ class TasksController extends BaseController
 	 * @throws Exception if no user is in session
 	 * @return void
 	 */
-	public function add()
-	{
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Adding tasks requires login");
-		}
-		if (!isset($_REQUEST["id"])) {
-			throw new Exception("A project id is mandatory");
-		}
-		// Get the Project object from the database
-		$projectid = $_REQUEST["id"];
-		$project = $this->projectMapper->findByIdWithAll($projectid);
-
-		// Does the project exist?
-		if ($project == NULL) {
-			throw new Exception("no such project with id: ".$projectid);
-		}
-
-		// Check if the currentUser (in Session) is in the Project
-		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exist in the project");
-		}
-
+	public function add(){
+		$project = $this->retrieveProject();
 		if (isset($_POST["id"])) { // reaching via HTTP Post...
-
 			// Create and populate the Task object
 			$task = new Task();
-
-			$task->setProject($projectid);
-			$task->setName($_POST["title"]);
-			$task->setStatus($_POST["status"]);
-			$task->setDesc($_POST["desc"]);
-
-			$users = array();
-			$userNum = 1;
-			
-			foreach ($project->getUsers() as $user) {
-				if (isset($_POST["user".$userNum])) {
-					array_push($users, $user);
-				}	
-				$userNum++;
-			}
-			$task->setUsers($users);
-			
+			$task = $this->loadTask($project, $task);
 			try {
 				// validate Task object
 				$task->checkIsValidForCreate(); // if it fails, ValidationException
-
 				// save the Comment object into the database
 				$this->taskMapper->save($task);
-
 				// POST-REDIRECT-GET projects/view?id=project_id
-				$this->view->redirect("projects", "view", "id=".$projectid);
+				$this->view->redirect("projects", "view", "id=".$project->getId());
 			} catch (ValidationException $ex) {
 				$errors = $ex->getErrors();
-
 				// Go back to the form to show errors.
 				$this->view->setVariable("errors", $errors);
 			}
@@ -208,7 +129,6 @@ class TasksController extends BaseController
 		$this->view->setVariable("projectID", $_REQUEST["id"]);
 		$this->view->render("tasks", "form");
 	}
-
 
 	/**
 	 * Action to edit a task
@@ -244,83 +164,26 @@ class TasksController extends BaseController
 	 * @throws Exception if the current logged user is not assigned to the project
 	 * @return void
 	 */
-	public function edit()
-	{
-		if (!isset($_REQUEST["id"])) {
-			throw new Exception("A project id is mandatory");
-		}
-
-		if (!isset($_REQUEST["task_id"])) {
-			throw new Exception("A task id is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing tasks requires login");
-		}
-
-		// Get the Project object from the database
-		$projectid = $_REQUEST["id"];
-		$project = $this->projectMapper->findByIdWithAll($projectid);
-
-		// Does the project exist?
-		if ($project == NULL) {
-			throw new Exception("no such project with id: ".$projectid);
-		}
-
-		// Check if the currentUser (in Session) is in the Project
-		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exist in the project");
-		}
-
-		// Get the task object
-		$taskid = $_REQUEST["task_id"];
-		$task = NULL;
-
-		foreach ($project->getTasks() as $t) {
-			if ($t->getId() == $taskid) {
-				$task = $t;
-			}
-		}
-
-		if ($task == NULL) {
-			throw new Exception("no such task with id: ".$taskid);
-		}
+	public function edit(){
+		$project = $this->retrieveProject();
+		$task = $this->retrieveTask($project);
 
 		if (isset($_POST["id"])) { // reaching via HTTP Post...
-
 			try {
-				$task->setProject($projectid);
-				$task->setName($_POST["title"]);
-				$task->setStatus($_POST["status"]);
-				$task->setDesc($_POST["desc"]);
-
-			$users = array();
-			$userNum = 1;
-			
-			foreach ($project->getUsers() as $user) {
-				if (isset($_POST["user".$userNum])) {
-					array_push($users, $user);
-				}	
-				$userNum++;
-			}
-			$task->setUsers($users);
-
-
+				$task = $this->loadTask($project, $task);
 				// validate Task object
 				$task->checkIsValidForUpdate(); // if it fails, ValidationException
 				// update the Task object in the database
 				$this->taskMapper->update($task);
-
 				// POST-REDIRECT-GET
-				$this->view->redirect("projects", "view", "id=".$projectid);
-
+				$this->view->redirect("projects", "view", "id=".$project->getId());
 			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
 			}
-		} 
+		}
 		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 		$this->view->setVariable("projectID", $_REQUEST["id"]);
 		$this->view->setVariable("task", $task);
@@ -328,7 +191,6 @@ class TasksController extends BaseController
 		// render the view (/view/tasks/form.php)
 		$this->view->render("tasks", "form");
 	}
-
 
 	/**
 	 * Action to delete a task
@@ -351,23 +213,39 @@ class TasksController extends BaseController
 	 * @throws Exception if the current logged user is not assigned to the project
 	 * @return void
 	 */
-	public function delete()
-	{
+	public function delete(){
+		$project = $this->retrieveProject();
+		$task = $this->retrieveTask($project);
 
-		if (!isset($_POST["id"])) {
-			throw new Exception("No project id given");
-		}
-		if (!isset($_POST["task_id"])) {
-			throw new Exception("No task id given");
+		// Delete the task object from the database
+		$this->taskMapper->delete($task->getId());
+
+		// POST-REDIRECT-GET
+		// perform the redirection. More or less:
+		// header("Location: index.php?controller=projects&action=view&id=project_id")
+		// die();
+		$this->view->redirect("projects", "view", "id=".$project->getId());
+	}
+
+	/**
+	 * Checks the given info to retrieve a project.
+	 * 
+	 * Throws exceptions if info is not valid, or returns the project
+	 * 
+	 * @return Project
+	 */
+	private function retrieveProject(): Project{
+
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("A project id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Deleting tasks requires login");
+			throw new Exception("Not in session. Operating with tasks requires login");
 		}
 
-		// Get the project object from the database
+		// Get the Project object from the database
 		$projectid = $_REQUEST["id"];
 		$project = $this->projectMapper->findByIdWithAll($projectid);
-
 
 		// Does the project exist?
 		if ($project == NULL) {
@@ -379,6 +257,20 @@ class TasksController extends BaseController
 			throw new Exception("logged user does not exist in the project");
 		}
 
+		return $project;
+	}
+
+	/**
+	 * Checks the given info to retrieve a task.
+	 * 
+	 * Throws exceptions if info is not valid, or returns the task
+	 * 
+	 * @return Task
+	 */
+	private function retrieveTask($project): Task{
+		if (!isset($_REQUEST["task_id"])) {
+			throw new Exception("No task id given");
+		}
 		//Check if the task exists
 		$taskid = $_REQUEST["task_id"];
 
@@ -388,20 +280,38 @@ class TasksController extends BaseController
 				$task = $t;
 			}
 		}
-
 		if ($task == NULL) {
 			throw new Exception("no such task with id: ".$taskid);
-
 		}
 
-		// Delete the task object from the database
-		$this->taskMapper->delete($taskid);
+		return $task;
+	}
 
-		// POST-REDIRECT-GET
-		// perform the redirection. More or less:
-		// header("Location: index.php?controller=projects&action=view&id=project_id")
-		// die();
-		$this->view->redirect("projects", "view", "id=".$projectid);
+	/**
+	 * Checks the given info to populate a task.
+	 * Returns the task
+	 * 
+	 * @return Task
+	 */
+	private function loadTask($project, $task): Task {
+
+		$task->setProject($project->getId());
+		$task->setName($_POST["title"]);
+		$task->setStatus($_POST["status"]);
+		$task->setDesc($_POST["desc"]);
+
+		$users = array();
+		$userNum = 1;
+
+		foreach ($project->getUsers() as $user) {
+			if (isset($_POST["user".$userNum])) {
+				array_push($users, $user);
+			}
+			$userNum++;
+		}
+		$task->setUsers($users);
+
+		return $task;
 	}
 
 }
