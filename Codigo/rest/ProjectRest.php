@@ -21,7 +21,9 @@ require_once(__DIR__."/BaseRest.php");
  */
 class ProjectRest extends BaseRest
 {
+
 	private $projectMapper;
+
 	private $userMapper;
 
 	public function __construct(){
@@ -78,53 +80,10 @@ class ProjectRest extends BaseRest
 		echo(json_encode($posts_array));*/
 	}
 
-	public function createProject($data){
-		$currentUser = parent::authenticateUser();
-		$project = new Project();
-
-		if (isset($data->name) && isset($data->users)) {
-			$project->setName($data->name);
-			$projectUsers = array();
-
-			$users = $this->userMapper->findAll();
-			$userNum = 1;
-			foreach ($users as $user) {
-				if (isset($data->users["user".$userNum])) {
-					array_push($projectUsers, $user);
-				}
-				$userNum++;
-			}
-			$project->setUsers($projectUsers);
-		}
-		try {
-			// validate Post object
-			$project->checkIsValidForCreate(); // if it fails, ValidationException
-
-			// save the Project object into the database
-			$projectId = $this->projectMapper->save($project);
-
-			// response OK. Also send project in content
-			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
-			header('Location: '.$_SERVER['REQUEST_URI']."/".$postId);
-			header('Content-Type: application/json');
-			/*
-						echo(json_encode(array(
-							"id"=>$postId,
-							"title"=>$post->getTitle(),
-							"content" => $post->getContent()
-						)));
-
-						en el de crear task no lo envia?
-						como mostrar los arrays de tareas y de users?
-			*/
-		} catch (ValidationException $e) {
-			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
-			header('Content-Type: application/json');
-			echo (json_encode($e->getErrors()));
-		}
-	}
-
 	public function getProject($projectId){
+
+		$project = $this->retrieveProject($projectId);
+
 		/*
 		if (!isset($_GET["id"])) {
 					throw new Exception("A project id is mandatory");
@@ -189,38 +148,38 @@ class ProjectRest extends BaseRest
 		echo(json_encode($post_array));*/
 	}
 
+	public function createProject($data){
+		$currentUser = parent::authenticateUser();
+		$project = new Project();
+
+		if (isset($data->name) && isset($data->users)) {
+			$project = $this->loadProject($project, $data);
+		}
+		try {
+			// validate Post object
+			$project->checkIsValidForCreate(); // if it fails, ValidationException
+
+			// save the Project object into the database
+			$projectId = $this->projectMapper->save($project);
+
+			// response OK. Also send project in content
+			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
+			header('Location: '.$_SERVER['REQUEST_URI']."/".$projectId);
+			header('Content-Type: application/json');
+			$encoded_project = $this->encodeProject($project);
+			echo(json_encode($encoded_project));
+		} catch (ValidationException $e) {
+			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
+			header('Content-Type: application/json');
+			echo (json_encode($e->getErrors()));
+		}
+	}
+
 	public function updateProject($projectId, $data){
 
-		$currentUser = parent::authenticateUser();
-
-		$project = $this->projectMapper->findByIdWithAll($projectId);
-
-		if ($project == NULL) {
-			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
-			echo ("Project with id ".$projectId." not found");
-			return;
-		}
-		//Comprobar si el current pertenece al proyecto
-		if (!in_array($currentUser, $project->getUsers())) {
-			header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
-			echo ("you are not registered to this project");
-			return;
-		}
-		$users = $this->userMapper->findAll();
-
-		try {
-
-			$project->setName($data->name);
-			$projectUsers = array();
-			$userNum = 1;
-			foreach ($users as $user) {
-				if (isset($data->users["user".$userNum])) {
-					array_push($projectUsers, $user);
-				}
-				$userNum++;
-			}
-			$project->setUsers($projectUsers);
-
+		$project = $this->retrieveProject($projectId);
+		$project = $this->loadProject($project, $data);
+		try {			
 			// validate Project object
 			$project->checkIsValidForUpdate(); // if it fails, ValidationException
 			// update the Project object in the database
@@ -233,30 +192,87 @@ class ProjectRest extends BaseRest
 		}
 	}
 
-	public function deleteProject($projectId){
-		$currentUser = parent::authenticateUser();
-		$project = $this->projectMapper->findById($projectId);
+	public function deleteProject($projectId)
+	{
+		$project = $this->retrieveProject($projectId);
+		$this->projectMapper->delete($project);
+		header($_SERVER['SERVER_PROTOCOL'].' 204 No Content');
+	}
 
+	private function retrieveProject($projectId): Project{
+		$currentUser = parent::authenticateUser();
+
+		// Get the Project object from the database
+		$project = $this->projectMapper->findByIdWithAll($projectId);
 		if ($project == NULL) {
 			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
 			echo ("Project with id ".$projectId." not found");
-			return;
+			die;
 		}
 		//Comprobar si el current pertenece al proyecto
 		if (!in_array($currentUser, $project->getUsers())) {
 			header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
 			echo ("you are not registered to this project");
-			return;
+			die;
 		}
-
-		$this->projectMapper->delete($project);
-		header($_SERVER['SERVER_PROTOCOL'].' 204 No Content');
+		return $project;
 	}
 
+	private function loadProject($project, $data): Project{
 
+		$users = $this->userMapper->findAll();
+		$project->setName($data->name);
+		$projectUsers = array();
+		$userNum = 1;
+		foreach ($users as $user) {
+			if (isset($data->users["user".$userNum])) {
+				array_push($projectUsers, $user);
+			}
+			$userNum++;
+		}
+		$project->setUsers($projectUsers);
+		
+		return $project;
+	}
 
+	private function encodeProject($project){
+		$encodedTasks = array();
+		foreach ($project->getTasks() as $task) {
+			$taskUsers = array();
+			foreach ($task->getUsers() as $user) {
+				array_push($taskUsers,array( 
+					"username"=>$user->getUsername(),
+					"user_mail"=>$user->getUserMail(),
+					"passwd"=>$user->getPasswd()
+				));
+			}
+			array_push($encodedTasks, array(
+				"id"=>$task->getId(),
+				"name"=>$task->getName(),
+				"desc"=>$task->getDesc(),
+				"projectID"=>$task->getProject(),
+				"status"=>$task->getStatus(),
+				"users"=> $taskUsers
+			));
+		}
+		$encodedUsers = array();
+		foreach ($project->getUsers() as $user) {
+			array_push($encodedUsers,array(
+				"username"=>$user->getUsername(),
+				"user_mail"=>$user->getUserMail(),
+				"passwd"=>$user->getPasswd()
+			));
+		}
 
+		$encoded = array(
+			"id"=>$project->getId(),
+			"name"=>$project->getName(),
+			"users"=> $encodedUsers,
+			"tasks"=> $encodedTasks
+		);
 
+		return $encoded;
+	}
 
 }
 
