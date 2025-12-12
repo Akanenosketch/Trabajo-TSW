@@ -8,9 +8,6 @@ la entrega 2 es mvc + spa
 hay que decidir ampliaciones
 
 
-Si se hace lo de categorias hay que filtrar
-
-
 lo de roles es bueno de hacerlo (admin edita proyecto y es el que crea, editor edita tareas, lector lee)
 
 
@@ -28,15 +25,6 @@ Yo haria:
 -Gestion de roles creador = admin (puede hacer todo), editor no puede editar proyecto pero si tasks, lector como mucho marcar como done (si queremos esto proponerle ampliacion de que se pueda marcar el estado) 
 
 -Lo de bajas de usuario (lo tenemos a medias)
-
-muchas cosas del front esta delegado en fronty (el framework)
-
-nombre de usuario no permitir espacios
-numero de tareas por tipos en la vista
-los working todo y eso traducirlo mejor
-
-
-
 
 
 
