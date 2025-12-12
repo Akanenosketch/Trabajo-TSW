@@ -9,11 +9,23 @@ Yo haria:
 -Gestion de roles creador = admin (puede hacer todo), editor no puede editar proyecto pero si tasks, lector como mucho marcar como done (si queremos esto proponerle ampliacion de que se pueda marcar el estado) 
 -Lo de bajas de usuario (lo tenemos a medias)
 
+Ampliaciones hechas
+-Tareas multiusuario
+-Sistema de prioridades (se puede mejorar)
 
 
 TODO
 
+Ampliaciones posibles:
 
+Editar perfil de usuario
+
+SISTEMA DE ROLES
+Dar de baja usuarios
+
+SISTEMA DE CATEGORIAS
+
+(otros posibles)
 
 Arreglar
 

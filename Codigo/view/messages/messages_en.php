@@ -3,6 +3,10 @@
 
 $i18n_messages = 
 array(
+	"Low"=> "Low",
+	"Medium"=> "Medium",
+	"High"=> "High",
+	"Prioridad"=> "Priority",
 	"Pagina de Bienvenida" => "Welcome Page",
 	"Nombre de Usuario" => "User Name",
 	"Bienvenido" => "Welcome",
@@ -15,6 +19,8 @@ array(
 	"Existe un usuario con el mismo correo" => "There already is a user with that mail",
 	"Iniciar sesion" => "Login",
 	"Tarea no Valida"=> "Task is not valid",
+	"Prioridad es obligatoria"=> "Priority is mandatory",
+	"Prioridad no valida"=> "Priority is not valid",
 	"Tareas Pendientes"=> "ToDo Tasks",
 	"Tareas En Proceso"=> "Working Tasks",
 	"Tareas Completadas"=> "Done Tasks",

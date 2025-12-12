@@ -7,8 +7,11 @@ $i18n_messages = array(
 	"ToDo" => "Por Hacer",
 	"Working" => "En Proceso",
 	"Done" => "Acabado",
-    "Tareas ToDo" => "Tareas Por Hacer",
-    "Tareas Working" => "Tareas En Proceso",
+	"Tareas ToDo" => "Tareas Por Hacer",
+	"Tareas Working" => "Tareas En Proceso",
+	"Low" => "Baja",
+	"Medium" => "Media",
+	"High" => "Alta",
 	"Tareas Done" => "Tareas Acabadas"
 
 )

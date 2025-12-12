@@ -299,6 +299,7 @@ class TasksController extends BaseController
 		$task->setName($_POST["title"]);
 		$task->setStatus($_POST["status"]);
 		$task->setDesc($_POST["desc"]);
+		$task->setPriority($_POST["priority"]);
 
 		$users = array();
 		$userNum = 1;

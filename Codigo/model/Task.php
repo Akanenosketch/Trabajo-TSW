@@ -39,6 +39,11 @@ class Task
 	private $status;
 
 	/**
+	 * The priority of the Task
+	 * @var string
+	 */
+	private $priority;
+	/**
 	 * The list of users of this project
 	 * @var mixed
 	 */
@@ -56,7 +61,7 @@ class Task
 	 * @param string $id The id of the Task
 	 * @param string $name The name of the Task
 	 */
-	public function __construct($id = NULL, $name = NULL,$desc = NULL, $projectID = NULL, $status = NULL, array $users = NULL)
+	public function __construct($id = NULL, $name = NULL,$desc = NULL, $projectID = NULL, $status = NULL, array $users = NULL, $priority = NULL)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -64,6 +69,7 @@ class Task
 		$this->projectID = $projectID;
 		$this->status = $status;
 		$this->users = $users;
+		$this->priority = $priority;		
 	}
 
 	/**
@@ -160,6 +166,25 @@ class Task
 	}
 
 	/**
+	 * Gets the priority of this Task
+	 *
+	 * @return string The priority of this Task
+	 */
+	public function getPriority(){
+		return $this->priority;
+	}
+
+	/**
+	 * Sets the priority of the Task
+	 *
+	 * @param string $priority the priority of this Task
+	 * @return void
+	 */
+	public function setPriority($priority){
+		$this->priority = $priority;
+	}
+
+	/**
 	 * Gets the list of users of this Task
 	 *
 	 * @return mixed The list of users of this Task
@@ -179,7 +204,6 @@ class Task
 	{
 		$this->users = $users;
 	}
-
 
 	/**
 	 * Checks if the current instance is valid
@@ -212,6 +236,14 @@ class Task
 
 		if (strcmp(trim($this->status), "ToDo") != 0 and strcmp(trim($this->status), "Working") != 0 and strcmp(trim($this->status), "Done") != 0) {
 			$errors["statusValue"] = i18n("Estado no valido");
+		}
+
+		if (strlen(trim($this->priority)) < 1) {
+			$errors["priority"] = i18n("Prioridad es obligatoria");
+		}
+
+		if (strcmp(trim($this->priority), "Low") != 0 and strcmp(trim($this->priority), "Medium") != 0 and strcmp(trim($this->priority), "High") != 0) {
+			$errors["priorityValue"] = i18n("Prioridad no valida");
 		}
 
 		if (sizeof($errors) > 0) {

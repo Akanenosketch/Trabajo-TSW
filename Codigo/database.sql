@@ -36,6 +36,7 @@ CREATE TABLE tasks (
 	task_desc VARCHAR(255) NOT NULL,
 	project_id INT NOT NULL,
     task_status ENUM("ToDo","Working","Done") NOT NULL,
+    task_priority ENUM("Low","Medium","High") NOT NULL,
     
 	FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
     CONSTRAINT PK_Task PRIMARY KEY (task_id, project_id)
@@ -73,13 +74,13 @@ INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw@uvigo.es',1);
 INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw@uvigo.es',2);
 INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw2@uvigo.es',1);
 
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestToDO',1,"ToDo","desc");
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestWork',1,"Working","des2");
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestDone',1,"Done","desc3");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc,task_priority) VALUES ('TSWTestToDO',1,"ToDo","desc","High");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc,task_priority) VALUES ('TSWTestWork',1,"Working","des2","Low");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc,task_priority) VALUES ('TSWTestDone',1,"Done","desc3","Medium");
 
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestToDO',2,"ToDo","desc4");
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestWork',2,"Working","desc5");
-INSERT INTO tasks (task_name,project_id,task_status,task_desc) VALUES ('TSWTestDone',2,"Done","desc6");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc,task_priority) VALUES ('TSWTestToDO',2,"ToDo","desc4","Medium");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc,task_priority) VALUES ('TSWTestWork',2,"Working","desc5","High");
+INSERT INTO tasks (task_name,project_id,task_status,task_desc,task_priority) VALUES ('TSWTestDone',2,"Done","desc6","Low");
 
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,1);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,2);

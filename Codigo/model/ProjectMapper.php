@@ -103,8 +103,8 @@ class ProjectMapper
 
 			$project_with_all->setUsers($users_array);
 
-			//recuperar tasks
-			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=?");
+			//recuperar tasks, ordenadas por prioridad
+			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE project_id=? ORDER BY task_priority DESC");
 			$stmt->execute(array($projectid));
 			$tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			$stmt2 = $this->db->prepare("SELECT * FROM users where user_mail IN ( SELECT user_mail FROM users_on_tasks WHERE project_id=? AND task_id=?)");
@@ -116,7 +116,8 @@ class ProjectMapper
 					$task["task_name"],
 					$task["task_desc"],
 					$task["project_id"],
-					$task["task_status"]
+					$task["task_status"],
+				priority:	$task["task_priority"]
 				);
 				$stmt2->execute(array($projectid, $task->getId()));
 				$usersOnTask = $stmt2->fetchAll(PDO::FETCH_ASSOC);

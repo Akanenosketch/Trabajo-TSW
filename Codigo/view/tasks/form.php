@@ -64,6 +64,22 @@ if($task != null) $taskUsers = $task->getUsers();
                     </select>
                 </div>
                 <div class="form-row">
+                    <label><?= i18n("Prioridad") ?></label>
+                    <select id="modalTaskPriority" name="priority" required
+                    <?php if ($isViewing): ?>disabled<?php endif ?>
+                    >
+                        <option value="Low" 
+                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Low") == 0): ?>selected<?php endif ?>
+                            ><?= i18n("Low") ?></option>
+                        <option value="Medium"
+                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Medium") == 0): ?>selected<?php endif ?>
+                        ><?= i18n("Medium") ?></option>
+                        <option value="High"
+                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "High") == 0): ?>selected<?php endif ?>
+                        ><?= i18n("High") ?></option>
+                    </select>
+                </div>
+                <div class="form-row">
                     <label><?= i18n("Asignar a") ?></label>
                     <div id="modalTaskAssignees" class="checkbox-list">
                     

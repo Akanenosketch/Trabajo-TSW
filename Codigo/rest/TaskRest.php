@@ -120,6 +120,7 @@ class TaskRest extends BaseRest
 		$task->setName($data->name);
 		$task->setStatus($data->status);
 		$task->setDesc($data->desc);
+		$task->setPriority($data->priority);
 
 		//Esta parte cambiarla
 		$users = array();
