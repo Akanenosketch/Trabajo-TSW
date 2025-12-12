@@ -32,18 +32,16 @@ $userNum = 1;
 
                 <div class="form-row">
                     <label><?= i18n("Nombre del Proyecto") ?></label>
-                    <input id="newProjectName" type="text" name="name" required minlength="1" />
-                    value="<?php if (!is_null($project)): ?><?= $project->getName() ?><?php endif ?>">
+                    <input id="newProjectName" type="text" name="name" required minlength="1" 
+                    value="<?php if (!is_null($project)): ?><?= $project->getName() ?><?php endif ?>"/>
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Participantes") ?></label>
                     <div id="initialUsers" class="checkbox-list">
 
-
-
                         <?php foreach ($users as $user): ?>
                             <div>
-                                <input type="checkbox" name="<?= "user" . $userNum ?>" value="<?= $user->getUserMail() ?>" />
+                                <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>" />
                                 <?php $userNum++ ?>
                                 <?php if (in_array($user, $projectUsers)): ?> checked<?php endif ?>
 
