@@ -34,118 +34,23 @@ class ProjectRest extends BaseRest
 	}
 
 	public function getProjects(){
-		/*
-		$posts = $this->postMapper->findAll();
-
-		// json_encode Post objects.
-		// since Post objects have private fields, the PHP json_encode will not
-		// encode them, so we will create an intermediate array using getters and
-		// encode it finally
-		$posts_array = array();
-		foreach($posts as $post) {
-			array_push($posts_array, array(
-				"id" => $post->getId(),
-				"title" => $post->getTitle(),
-				"content" => $post->getContent(),
-				"author_id" => $post->getAuthor()->getusername()
-			));
+		$currentUser = parent::authenticateUser();
+		$projectsWithoutTasks = $this->projectMapper->findAll($currentUser->getUserMail());
+		$projects = array();
+		foreach($projectsWithoutTasks as $project){
+			$t = $this->retrieveProject($project->getId(),$currentUser);
+			array_push($projects, $this->encodeProject($t));
 		}
-
 		header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
 		header('Content-Type: application/json');
-		echo(json_encode($posts_array));*/
-	}
-
-	//devuelve los proyectos del usuario X
-	public function getProjects($usermail){
-		/*
-		$posts = $this->postMapper->findAll();
-
-		// json_encode Post objects.
-		// since Post objects have private fields, the PHP json_encode will not
-		// encode them, so we will create an intermediate array using getters and
-		// encode it finally
-		$posts_array = array();
-		foreach($posts as $post) {
-			array_push($posts_array, array(
-				"id" => $post->getId(),
-				"title" => $post->getTitle(),
-				"content" => $post->getContent(),
-				"author_id" => $post->getAuthor()->getusername()
-			));
-		}
-
-		header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
-		header('Content-Type: application/json');
-		echo(json_encode($posts_array));*/
+		echo(json_encode($projects));
 	}
 
 	public function getProject($projectId){
-
 		$project = $this->retrieveProject($projectId);
-
-		/*
-		if (!isset($_GET["id"])) {
-					throw new Exception("A project id is mandatory");
-				}
-
-				if (!isset($this->currentUser)) {
-					// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
-					throw new Exception("Not in session. Viewing projects requires login");
-				}
-				// Get the Project object from the database
-				$projectid = $_GET["id"];
-				$project = $this->projectMapper->findByIdWithAll($projectid);
-
-				// Does the project exist?
-				if ($project == NULL) {
-					throw new Exception("no such project with id: ".$projectid);
-				}
-				$users = $project->getUsers();
-
-				// Check if the currentUser (in Session) is in the Project
-				if (!in_array($this->currentUser, $users)) {
-					// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
-					$this->view->redirect( "projects", "index");
-				}else{
-
-
-				$this->view->setVariable("project", $project);
-				// render the view (/view/projects/form.php)
-				$this->view->render("projects", "view");
-
-		*/
-
-		/*
-		// find the Post object in the database
-		$post = $this->postMapper->findByIdWithComments($postId);
-		if ($post == NULL) {
-			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
-			echo("Post with id ".$postId." not found");
-			return;
-		}
-
-		$post_array = array(
-			"id" => $post->getId(),
-			"title" => $post->getTitle(),
-			"content" => $post->getContent(),
-			"author_id" => $post->getAuthor()->getusername()
-
-		);
-
-		//add comments
-		$post_array["comments"] = array();
-		foreach ($post->getComments() as $comment) {
-			array_push($post_array["comments"], array(
-				"id" => $comment->getId(),
-				"content" => $comment->getContent(),
-				"author" => $comment->getAuthor()->getusername()
-			));
-		}
-
 		header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
 		header('Content-Type: application/json');
-		echo(json_encode($post_array));*/
+		echo(json_encode($this->encodeProject($project)));
 	}
 
 	public function createProject($data){
@@ -199,8 +104,8 @@ class ProjectRest extends BaseRest
 		header($_SERVER['SERVER_PROTOCOL'].' 204 No Content');
 	}
 
-	private function retrieveProject($projectId): Project{
-		$currentUser = parent::authenticateUser();
+	private function retrieveProject($projectId,$currentUser = NULL): Project{
+		if($currentUser == NULL) $currentUser = parent::authenticateUser();
 
 		// Get the Project object from the database
 		$project = $this->projectMapper->findByIdWithAll($projectId);
@@ -276,12 +181,10 @@ class ProjectRest extends BaseRest
 
 }
 
-
 // URI-MAPPING for this Rest endpoint
 $projectRest = new ProjectRest();
 URIDispatcher::getInstance()
 	->map("GET", "/projects", array($projectRest, "getProjects"))
-	->map("GET", "/projects/users/$1", array($projectRest, "getProjects"))
 	->map("GET", "/projects/$1", array($projectRest, "getProject"))
 	->map("POST", "/projects", array($projectRest, "createProject"))
 	->map("PUT", "/projects/$1", array($projectRest, "updateProject"))
