@@ -54,13 +54,13 @@ if($task != null) $taskUsers = $task->getUsers();
                     >
                         <option value="ToDo" 
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "ToDo") == 0): ?>selected<?php endif ?>
-                            ><?= i18n("ToDo") ?></option>
+                            ><?= i18n("Por hacer") ?></option>
                         <option value="Working"
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Working") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Working") ?></option>
+                        ><?= i18n("En proceso") ?></option>
                         <option value="Done"
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Done") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Done") ?></option>
+                        ><?= i18n("Completada") ?></option>
                     </select>
                 </div>
                 <div class="form-row">
