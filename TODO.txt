@@ -34,3 +34,18 @@ muchas cosas del front esta delegado en fronty (el framework)
 nombre de usuario no permitir espacios
 numero de tareas por tipos en la vista
 los working todo y eso traducirlo mejor
+
+
+
+
+
+
+Arreglar
+
+Controladores con lógica repetida (ej: $projectUsers). Mejor crear funciones que engloben código común y evitar duplicidades.
+
+F3: Al visualizar directamente el nombre del proyecto en azul de enlaces se hace difícil leer con contraste del fondo oscuro.
+
+F5: El botón de volver en la cabecera no es muy intuitivo.
+
+El link del manual esta mal

@@ -61,6 +61,8 @@ array(
 	"Editar Proyecto" => "Edit Project",
 	"Eliminar Proyecto" => "Delete Project",
 	"Añadir Tarea" => "Add Task",
+	"Editar Tarea" => "Edit Task",
+	"Datos de Tarea" => "Task Info",
 	"Nombre" => "Name",
 	"Descripcion" => "Description",
 	"Estado" => "Status",

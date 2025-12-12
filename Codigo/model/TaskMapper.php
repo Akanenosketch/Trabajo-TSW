@@ -35,7 +35,7 @@ class TaskMapper
 	 */
 	public function save(Task $task)
 	{
-		$stmt = $this->db->prepare("INSERT INTO Tasks(task_name, project_id, task_status,task_desc) values (?,?,?,?)");
+		$stmt = $this->db->prepare("INSERT INTO tasks(task_name, project_id, task_status,task_desc) values (?,?,?,?)");
 		$stmt->execute(array($task->getName(), $task->getProject(), $task->getStatus(), $task->getDesc()));
 		$toRet = $this->db->lastInsertId();
 
@@ -58,7 +58,7 @@ class TaskMapper
 	 */
 	public function update(Task $task)
 	{
-		$stmt = $this->db->prepare("UPDATE Tasks set task_name=?,task_status=?,task_desc=? where task_id=?");
+		$stmt = $this->db->prepare("UPDATE tasks set task_name=?,task_status=?,task_desc=? where task_id=?");
 		$stmt->execute(array($task->getName(), $task->getStatus(), $task->getDesc(), $task->getId()));
 
 		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_tasks WHERE task_id=?");

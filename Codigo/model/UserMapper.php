@@ -33,7 +33,7 @@ class UserMapper
 	public function save($user)
 	{
 		$stmt = $this->db->prepare("INSERT INTO users(user_mail,username,passwd) values (?,?,?)");
-		$stmt->execute(array($user->getUsername(),$user->getUserMail(), $user->getPasswd()));
+		$stmt->execute(array($user->getUserMail(),$user->getUsername(), $user->getPasswd()));
 	}
 
 	/**
@@ -108,7 +108,6 @@ class UserMapper
 				$user["passwd"]
 			));
 		}
-
 		return $users;
 	}
 }

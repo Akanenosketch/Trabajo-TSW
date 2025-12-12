@@ -30,7 +30,9 @@ if($task != null) $taskUsers = $task->getUsers();
 
         <div class="modal-box">
             <div class="modal-content">
-                <h3 id="taskModalTitle"><?= i18n("Añadir Tarea") ?></h3>
+                <h3 id="taskModalTitle">
+                <?php if (!is_null($task) && !$isViewing): ?><?= i18n("Editar Tarea") ?><?php endif ?><?php if (is_null($task)): ?><?= i18n("Añadir Tarea") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Tarea") ?><?php endif ?>
+                </h3>
                 <div class="form-row">
                     <label><?= i18n(key: "Nombre") ?></label>
                     <input id="modalTaskName" name="title" type="text" required minlength="1"
