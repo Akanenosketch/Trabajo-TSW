@@ -49,7 +49,7 @@ $project = $view->getVariable("project");
         <div class="tasks-container">
             <div class="cols">
                 <div class="col">
-                    <h4><?= i18n("Por hacer") ?></h4>
+                    <h4><?= i18n("ToDo") ?></h4>
                     <div id="col-todo">
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "ToDo") == 0): ?>
@@ -82,7 +82,7 @@ $project = $view->getVariable("project");
                     </div>
                 </div>
                 <div class="col">
-                    <h4><?= i18n("En proceso") ?></h4>
+                    <h4><?= i18n("Working") ?></h4>
                     <div id="col-working">
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "Working") == 0): ?>
@@ -114,7 +114,7 @@ $project = $view->getVariable("project");
                     </div>
                 </div>
                 <div class="col">
-                    <h4><?= i18n("Completada") ?></h4>
+                    <h4><?= i18n("Done") ?></h4>
                     <div id="col-done">
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "Done") == 0): ?>

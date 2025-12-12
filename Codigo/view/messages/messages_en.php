@@ -73,9 +73,6 @@ array(
 	"Añadir Nuevo Usuario" => "Add New User",
 	"Guardar Cambios" => "Save changes",
 	"¿Estás seguro de que deseas eliminar este proyecto? Esta acción no se puede deshacer y se perderán todas las tareas asociadas." 
-	=> "Are you sure you wish to delete this project? This action cannot be undone and all associated tasks will be lost.",
-	"Por hacer" => "ToDo",
-	"En proceso" => "Working",
-	"Completada" => "Done"
+	=> "Are you sure you wish to delete this project? This action cannot be undone and all associated tasks will be lost."
 )
 ?>
