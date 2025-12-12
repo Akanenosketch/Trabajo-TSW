@@ -16,8 +16,7 @@ require_once(__DIR__."/../controller/BaseController.php");
  * Controller to make a CRUDL of Project entities
  *
  */
-class ProjectsController extends BaseController
-{
+class ProjectsController extends BaseController{
 
 	/**
 	 * Reference to the ProjectMapper to interact
@@ -26,6 +25,7 @@ class ProjectsController extends BaseController
 	 * @var ProjectMapper
 	 */
 	private $projectMapper;
+
 	/**
 	 * Reference to the UserMapper to interact
 	 * with the database
@@ -33,6 +33,7 @@ class ProjectsController extends BaseController
 	 * @var UserMapper
 	 */
 	private $userMapper;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -81,8 +82,6 @@ class ProjectsController extends BaseController
 
 	}
 
-
-
 	/**
 	 * Action to view a given project.
 	 *
@@ -109,34 +108,16 @@ class ProjectsController extends BaseController
 	 * @return void
 	 *
 	 */
-	public function view()
-	{
-		if (!isset($_GET["id"])) {
-			throw new Exception("A project id is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
-			throw new Exception("Not in session. Viewing projects requires login");
-		}
-		// Get the Project object from the database
-		$projectid = $_GET["id"];
-		$project = $this->projectMapper->findByIdWithAll($projectid);
-
-		// Does the project exist?
-		if ($project == NULL) {
-			throw new Exception("no such project with id: ".$projectid);
-		}
-		$users = $project->getUsers();
-
+	public function view(){
+		$project = $this->retrieveProject(true);
 		// Check if the currentUser (in Session) is in the Project
-		if (!in_array($this->currentUser, $users)) {
+		if ($project == NULL) {
 			// Es posible quitarse permisos de un proyecto al editarlo e intentar verlo de nuevo
-			$this->view->redirect( "projects", "index");
-		}else{
-		$this->view->setVariable("project", $project);
-		// render the view (/view/projects/form.php)
-		$this->view->render("projects", "view");
+			$this->view->redirect("projects", "index");
+		} else {
+			$this->view->setVariable("project", $project);
+			// render the view (/view/projects/form.php)
+			$this->view->render("projects", "view");
 		}
 	}
 
@@ -166,8 +147,7 @@ class ProjectsController extends BaseController
 	 * @throws Exception if no user is in session
 	 * @return void
 	 */
-	public function add()
-	{
+	public function add(){
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding projects requires login");
 		}
@@ -177,18 +157,7 @@ class ProjectsController extends BaseController
 		if (isset($_POST["name"])) { // reaching via HTTP Post...
 			// Create and populate the Project object
 			$project = new Project();
-
-			$project->setName($_POST["name"]);
-
-			$projectUsers = array();
-			$userNum = 1;
-			foreach ($users as $user) {
-				if (isset($_POST["user".$userNum])) {
-					array_push($projectUsers, $user);
-				}
-				$userNum++;
-			}
-			$project->setUsers($projectUsers);
+			$project = $this->loadProject($project, $users);
 
 			try {
 				// validate Project object
@@ -198,7 +167,7 @@ class ProjectsController extends BaseController
 				$this->projectMapper->save($project);
 
 				// POST-REDIRECT-GET 
-				$this->view->redirect( "projects", "index");
+				$this->view->redirect("projects", "index");
 			} catch (ValidationException $ex) {
 				$errors = $ex->getErrors();
 
@@ -243,46 +212,14 @@ class ProjectsController extends BaseController
 	 * @throws Exception if the current logged user is not assigned to the project
 	 * @return void
 	 */
-	public function edit()
-	{
-		if (!isset($_REQUEST["id"])) {
-			throw new Exception("A project id is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing projects requires login");
-		}
-
-		// Get the Project object from the database
-		$projectid = $_REQUEST["id"];
-		$project = $this->projectMapper->findByIdWithAll($projectid);
-
-		// Does the project exist?
-		if ($project == NULL) {
-			throw new Exception("no such project with id: ".$projectid);
-		}
-
-		// Check if the currentUser (in Session) is in the Project
-		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exist in the project");
-		}
+	public function edit(){
+		$project = $this->retrieveProject();
 
 		$users = $this->userMapper->findAll();
 
 		if (isset($_POST["id"])) { // reaching via HTTP Post...
-
 			try {
-				$project->setName($_POST["name"]);
-
-				$projectUsers = array();
-				$userNum = 1;
-				foreach ($users as $user) {
-					if (isset($_POST["user".$userNum])) {
-						array_push($projectUsers, $user);
-					}
-					$userNum++;
-				}
-				$project->setUsers($projectUsers);
+				$project = $this->loadProject($project, $users);
 
 				// validate Project object
 				$project->checkIsValidForUpdate(); // if it fails, ValidationException
@@ -290,7 +227,7 @@ class ProjectsController extends BaseController
 				$this->projectMapper->update($project);
 
 				// POST-REDIRECT-GET
-				$this->view->redirect("projects", "view", "id=".$projectid);
+				$this->view->redirect("projects", "view", "id=".$project->getId());
 
 			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
@@ -327,17 +264,35 @@ class ProjectsController extends BaseController
 	 * @throws Exception if the current logged user is not assigned to the project
 	 * @return void
 	 */
-	public function delete()
-	{
-		if (!isset($_POST["id"])) {
+	public function delete(){
+		$project = $this->retrieveProject();
+		// Delete the project object from the database
+		$this->projectMapper->delete($project);
+		// POST-REDIRECT-GET
+		// perform the redirection. More or less:
+		// header("Location: index.php?controller=projects&action=index")
+		// die();
+		$this->view->redirect("projects", "index");
+	}
+
+	/**
+	 * Checks the given info to retrieve a project.
+	 * 
+	 * Throws exceptions if info is not valid, or returns the project, or returns null in a special case when user editted away their viewing privileges
+	 * 
+	 * @return Project
+	 */
+	private function retrieveProject($viewFromDeleteEdit = false): Project{
+		if (!isset($_REQUEST["id"])) {
 			throw new Exception("No project id given");
 		}
+
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Deleting projects requires login");
+			throw new Exception("Not in session. Operating with projects requires login");
 		}
 
 		// Get the project object from the database
-		$projectid = $_POST["id"];
+		$projectid = $_REQUEST["id"];
 		$project = $this->projectMapper->findByIdWithAll($projectid);
 		// Does the project exist?
 		if ($project == NULL) {
@@ -346,17 +301,35 @@ class ProjectsController extends BaseController
 
 		// Check if the currentUser (in Session) is in the Project
 		if (!in_array($this->currentUser, $project->getUsers())) {
-			throw new Exception("logged user does not exist in the project");
+			if ($viewFromDeleteEdit)
+				return NULL;
+			else
+				throw new Exception("logged user does not exist in the project");
 		}
-
-		// Delete the project object from the database
-		$this->projectMapper->delete($project);
-
-		// POST-REDIRECT-GET
-		// perform the redirection. More or less:
-		// header("Location: index.php?controller=projects&action=index")
-		// die();
-		$this->view->redirect("projects", "index");
+		return $project;
 	}
+
+	/**
+	 * Checks the given info to populate a project.
+	 * Returns the project
+	 * 
+	 * @return Project
+	 */
+	private function loadProject($project, $users): Project{
+		
+		$project->setName($_POST["name"]);
+
+		$projectUsers = array();
+		$userNum = 1;
+		foreach ($users as $user) {
+			if (isset($_POST["user".$userNum])) {
+				array_push($projectUsers, $user);
+			}
+			$userNum++;
+		}
+		$project->setUsers($projectUsers);
+		return $project;
+	}
+
 }
 ?>
