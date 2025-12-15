@@ -115,8 +115,7 @@ th, td {
     text-align: center;
 }
 
-
-.add-btn {
+.add-btn{
     padding: 12px 24px;
     background: var(--accent-neon);
     color: var(--bg-dark);
@@ -135,6 +134,19 @@ th, td {
     box-shadow: 0 0 30px rgba(0,255,157,0.4);
 }
 
+#editUser{
+    padding: 12px 24px;
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    margin-top: 15pt;
+}
 
 .modal-overlay {
     position: fixed;
@@ -158,6 +170,13 @@ th, td {
     width: 90%;
     max-width: 450px;
     box-shadow: 0 0 40px rgba(0,255,157,0.1);
+}
+
+.project-link {
+    color: var(--accent-neon);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
 }
 
 /* responsive*/

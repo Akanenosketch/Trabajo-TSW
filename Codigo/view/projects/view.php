@@ -24,15 +24,15 @@ $project = $view->getVariable("project");
                         <span class="stat-label"><?= i18n("Participantes") ?></span>
                     </div>
                     <div class="stat-item">
-                        <span id="todoTasks"><?= count($project->getTaskNumberByType("ToDo")) ?></span>
+                        <span id="todoTasks"><?= $project->getTaskNumberByType("ToDo") ?></span>
                         <span class="stat-label"><?= i18n("Tareas Pendientes") ?></span>
                     </div>
                     <div class="stat-item">
-                        <span id="workingTasks"><?= count($project->getTaskNumberByType("Working")) ?></span>
+                        <span id="workingTasks"><?= $project->getTaskNumberByType("Working") ?></span>
                         <span class="stat-label"><?= i18n("Tareas En Proceso") ?></span>
                     </div>
                     <div class="stat-item">
-                        <span id="doneTasks"><?= count($project->getTaskNumberByType("Done")) ?></span>
+                        <span id="doneTasks"><?= $project->getTaskNumberByType("Done") ?></span>
                         <span class="stat-label"><?= i18n("Tareas Completadas") ?></span>
                     </div>
                     <div class="stat-item">

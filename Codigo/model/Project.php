@@ -188,7 +188,7 @@ class Project
  			 if (strcmp($task->getStatus(), $type) == 0 ){
 				$toRet++;
 			 }	
-	}
+		}
 		return $toRet; 
 	}
 
