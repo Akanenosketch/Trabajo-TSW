@@ -30,7 +30,7 @@ $currentuserMail = $view->getVariable("currentusermail");
         <div>
             <!--Mejorar esto y meter en el CSS-->
             <a href="index.php?action=edit">
-                <button id="editUser" class="primary"><?= i18n("Editar Usuario") ?></button>
+                <button type="button" class="add-btn"><?= i18n("Editar Usuario") ?></button>
             </a>
 
             <a href="index.php?action=logout">
