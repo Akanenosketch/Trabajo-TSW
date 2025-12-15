@@ -156,6 +156,9 @@ class ProjectRest extends BaseRest
 				"name"=>$task->getName(),
 				"desc"=>$task->getDesc(),
 				"projectID"=>$task->getProject(),
+				"priority"=>$task->getPriority(),
+				"beginDate"=>$task->getBeginDate(),
+				"endDate"=>$task->getEndDate(),
 				"status"=>$task->getStatus(),
 				"users"=> $taskUsers
 			));

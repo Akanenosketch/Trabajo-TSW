@@ -112,12 +112,14 @@ class ProjectMapper
 			$tasks_array = array();
 			foreach ($tasks as $task) {
 				$task = new Task(
-					$task["task_id"],
-					$task["task_name"],
-					$task["task_desc"],
-					$task["project_id"],
-					$task["task_status"],
-				priority:	$task["task_priority"]
+					id: $task["task_id"],
+					name: $task["task_name"],
+					desc: $task["task_desc"],
+					projectID: $task["project_id"],
+					status: $task["task_status"],
+				priority:	$task["task_priority"],
+				beginDate:	$task["begin_date"],
+				endDate:	$task["end_date"]
 				);
 				$stmt2->execute(array($projectid, $task->getId()));
 				$usersOnTask = $stmt2->fetchAll(PDO::FETCH_ASSOC);

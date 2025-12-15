@@ -35,8 +35,8 @@ class TaskMapper
 	 */
 	public function save(Task $task)
 	{
-		$stmt = $this->db->prepare("INSERT INTO tasks(task_name, project_id, task_status,task_des, task_priority) values (?,?,?,?,?)");
-		$stmt->execute(array($task->getName(), $task->getProject(), $task->getStatus(), $task->getDesc(), $task->getPriority()));
+		$stmt = $this->db->prepare("INSERT INTO tasks(task_name, project_id, task_status,task_des, task_priority,begin_date,end_date) values (?,?,?,?,?,?,?)");
+		$stmt->execute(array($task->getName(), $task->getProject(), $task->getStatus(), $task->getDesc(), $task->getPriority(), $task->getBeginDate(), $task->getEndDate()));
 		$toRet = $this->db->lastInsertId();
 
 		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
@@ -57,8 +57,8 @@ class TaskMapper
 	 */
 	public function update(Task $task)
 	{
-		$stmt = $this->db->prepare("UPDATE tasks set task_name=?,task_status=?,task_desc=?,task_priority=? where task_id=?");
-		$stmt->execute(array($task->getName(), $task->getStatus(), $task->getDesc(),$task->getPriority(), $task->getId()));
+		$stmt = $this->db->prepare("UPDATE tasks set task_name=?,task_status=?,task_desc=?,task_priority=?,begin_date=?,end_date=? where task_id=?");
+		$stmt->execute(array($task->getName(), $task->getStatus(), $task->getDesc(),$task->getPriority(), $task->getBeginDate(), $task->getEndDate(), $task->getId()));
 
 		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_tasks WHERE task_id=?");
 		$stmt->execute(array($task->getId()));

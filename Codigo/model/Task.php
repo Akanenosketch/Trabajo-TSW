@@ -43,6 +43,18 @@ class Task
 	 * @var string
 	 */
 	private $priority;
+
+	/**
+	 * The start date of the Task
+	 * @var string
+	 */
+	private $beginDate;
+
+	/**
+	 * The end date of the Task
+	 * @var string
+	 */
+	private $endDate;
 	/**
 	 * The list of users of this project
 	 * @var mixed
@@ -61,7 +73,7 @@ class Task
 	 * @param string $id The id of the Task
 	 * @param string $name The name of the Task
 	 */
-	public function __construct($id = NULL, $name = NULL,$desc = NULL, $projectID = NULL, $status = NULL, array $users = NULL, $priority = NULL)
+	public function __construct($id = NULL, $name = NULL,$desc = NULL, $projectID = NULL, $status = NULL, array $users = NULL, $priority = NULL,$beginDate = NULL,$endDate = NULL)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -69,7 +81,9 @@ class Task
 		$this->projectID = $projectID;
 		$this->status = $status;
 		$this->users = $users;
-		$this->priority = $priority;		
+		$this->priority = $priority;	
+		$this->beginDate = $beginDate;
+		$this->endDate = $endDate;
 	}
 
 	/**
@@ -185,6 +199,44 @@ class Task
 	}
 
 	/**
+	 * Gets the start date of this Task
+	 *
+	 * @return string The start date of this Task
+	 */
+	public function getBeginDate(){
+		return $this->beginDate;
+	}
+
+	/**
+	 * Sets the start date of the Task
+	 *
+	 * @param string $beginDate the start date of this Task
+	 * @return void
+	 */
+	public function setBeginDate($beginDate){
+		$this->beginDate = $beginDate;
+	}
+
+	/**
+	 * Gets the end date of this Task
+	 *
+	 * @return string The end date of this Task
+	 */
+	public function getEndDate(){
+		return $this->endDate;
+	}
+
+	/**
+	 * Sets the end date of the Task
+	 *
+	 * @param string $endDate the end date of this Task
+	 * @return void
+	 */
+	public function setEndDate($endDate){
+		$this->endDate = $endDate;
+	}
+
+	/**
 	 * Gets the list of users of this Task
 	 *
 	 * @return mixed The list of users of this Task
@@ -246,9 +298,28 @@ class Task
 			$errors["priorityValue"] = i18n("Prioridad no valida");
 		}
 
+		// Fechas de la forma AAAA-MM-DD
+		if (preg_match('/\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $this->beginDate) < 1) {
+			$errors["beginDate"] = i18n("Fecha de inicio no valida, debe seguir el formato AAAA-MM-DD");
+		}
+
+		if (preg_match('/\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/', $this->endDate) < 1) {
+			$errors["endDate"] = i18n("Fecha de fin no valida, debe seguir el formato AAAA-MM-DD");
+		}
+
+		if () {
+			$errors["dates"] = i18n("Fecha de fin no valida, debe ser posterior a la fecha de inicio");
+		}
+
+//orden de numeros 0123456789abcdefghijklmnopqrstuvwxyz
+
+
+
+
 		if (sizeof($errors) > 0) {
 			throw new ValidationException($errors, i18n("Tarea no Valida"));
 		}
+		
 	}
 
 		public function checkIsValidForUpdate()

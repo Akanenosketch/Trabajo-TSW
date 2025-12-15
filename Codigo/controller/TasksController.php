@@ -300,6 +300,8 @@ class TasksController extends BaseController
 		$task->setStatus($_POST["status"]);
 		$task->setDesc($_POST["desc"]);
 		$task->setPriority($_POST["priority"]);
+		$task->setBeginDate($_POST["beginDate"]);
+		$task->setEndDate($_POST["endDate"]);
 
 		$users = array();
 		$userNum = 1;

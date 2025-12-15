@@ -48,6 +48,20 @@ if($task != null) $taskUsers = $task->getUsers();
                     />
                </div>
                 <div class="form-row">
+                    <label><?= i18n("Fecha de Inicio") ?></label>
+                    <input id="modalTaskBegin" name="beginDate" type="date" required 
+                    value="<?php if (!is_null($task)): ?><?= $task->getBeginDate() ?><?php endif ?>"
+                    <?php if ($isViewing): ?>readonly<?php endif ?>
+                    />
+               </div>
+                 <div class="form-row">
+                    <label><?= i18n("Fecha de Fin") ?></label>
+                    <input id="modalTaskEnd" name="endDate" type="date" required
+                    value="<?php if (!is_null($task)): ?><?= $task->getEndDate() ?><?php endif ?>"
+                    <?php if ($isViewing): ?>readonly<?php endif ?>
+                    />
+               </div>
+                <div class="form-row">
                     <label><?= i18n("Estado") ?></label>
                     <select id="modalTaskStatus" name="status" required
                     <?php if ($isViewing): ?>disabled<?php endif ?>

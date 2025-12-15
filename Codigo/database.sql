@@ -37,7 +37,9 @@ CREATE TABLE tasks (
 	project_id INT NOT NULL,
     task_status ENUM("ToDo","Working","Done") NOT NULL,
     task_priority ENUM("Low","Medium","High") NOT NULL,
-    
+    begin_date VARCHAR(10) NOT NULL,
+	end_date VARCHAR(10) NOT NULL,
+
 	FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
     CONSTRAINT PK_Task PRIMARY KEY (task_id, project_id)
 ) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
