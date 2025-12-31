@@ -9,6 +9,7 @@ $errors = $view->getVariable("errors");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
     <link rel="stylesheet" type="text/css" href="./view/css/users/register.css">
     <title><?= i18n("Register Form") ?></title>
 </head>
@@ -17,6 +18,7 @@ $errors = $view->getVariable("errors");
     <div class="modal">
         <header>
             <h2 id="registerTitle"><?= i18n("Registrarse") ?></h2>
+            <button id="themeToggle" class="theme-toggle" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
         </header>
 
         <form id="registerForm" method="post">
@@ -48,6 +50,7 @@ $errors = $view->getVariable("errors");
         </form>
     </div>
 </div>    
+    <script src="./view/js/theme.js"></script>
 </body>
 
 <?php if (!is_null($errors)): ?>

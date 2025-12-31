@@ -1,0 +1,48 @@
+/* Shared theme overrides: light mode variables and toggle styles */
+
+/* Light theme overrides (applied when <body> has class "light-theme") */
+.light-theme {
+    --bg-dark: #f6f7fb;
+    --surface-dark: #ffffff;
+    --surface-lighter: #f5f6fa;
+    --accent-neon: #00664d; /* slightly muted for light background */
+    --text-bright: #0a0b0f;
+    --border-dark: #e6e7ee;
+    --danger: #c0392b;
+}
+
+/* Theme toggle button */
+.modal header {
+    position: relative;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--accent-neon);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid rgba(0,0,0,0.08);
+}
+
+/* Smooth transitions for background and color changes */
+body, .modal, input, button {
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* Global placement for pages without modal header */
+.theme-toggle.global {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
+    background: rgba(255,255,255,0.02);
+}
