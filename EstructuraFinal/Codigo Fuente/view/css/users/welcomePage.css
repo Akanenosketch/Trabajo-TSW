@@ -1,6 +1,7 @@
 /* login para welcomePage.php */
 :root {
     --bg-dark: #0a0b0f;
+    --bg-light: #141721;
     --surface-dark: #1a1b23;
     --accent-neon: #00ff9d;
     --text-bright: #ffffff;
@@ -12,7 +13,7 @@
 /* ---- Layout general ---- */
 body {
     margin: 0;
-    background: linear-gradient(135deg, var(--bg-dark), #141721);
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
     color: var(--text-bright);
     min-height: 100vh;
     display: flex;
@@ -108,8 +109,9 @@ button.secondary {
 /* ---- Footer ---- */
 footer.site-footer {
     margin-top: auto;
-    background: #0f1724;
-    color: white;
+    background: transparent;
+    /*background: #0f1724;  ---- Old setting*/
+    color: var(--text-bright);
     text-align: center;
     padding: 16px;
     font-size: 14px;
