@@ -3,10 +3,14 @@
     --bg-dark: #0a0b0f;
     --bg-light: #141721;
     --surface-dark: #1a1b23;
+    --surface-lighter: #22242e;
     --accent-neon: #00ff9d;
+    --accent-glow: #00cc7e;
     --text-bright: #ffffff;
     --text-dim: #9da3b4;
+    --btn-text-primary: #000;
     --border-dark: #2a2d3a;
+    --danger: #ff3b3b;
     font-family: 'Inter', system-ui, sans-serif;
 }
 
