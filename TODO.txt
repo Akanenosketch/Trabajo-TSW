@@ -1,65 +1,36 @@
-Hay un div con el css incrustado en dashboard hay que pasarlo al css
-CSS responsive
-Centrar la tabla pls
-manual de usuario
-Poner los dnis AL ENTREGAR SIN COMMITEAR
-El script sql meterle el dump de la db
-en el form al menos 1 participante (por defecto el propio)
-hay cosas que usan alert y otras no
-Montar y probar el lamp server
-Montar el server codigo
-Para añadir usuarios a un proyecto es por email, metodos de recuperacion de email en el UserMapper
-Identificacion es solo con el correo no con el usuario
-Comprobar que en el resto de tablas se elimina lo que toca cuando se borra un proyecto/usuario/tarea   FK delete on cascade
-Comprobar que los mapper funcionan
+lo de roles es bueno de hacerlo (admin edita proyecto y es el que crea, editor edita tareas, lector lee)
+El manual seria decirle las cosas extra y cambiar el link de uso/explicar como entrar al SPA vs el mvc (las ampliaciones las quiere por su identificador)
+LO NUEVO DE AMPLIACIONB HAY QUE HACERLO EN MVC TAMBIEN
+La DB hay que ampliar el script seguramente con lo extra solo
+Yo haria:
+-Editar usuario (desde la pag de projects/view)
+-Multiusuario (ya estaria)
+-Prioridad en tareas (seria 1 campo extra de select y mostrarlo en la view)
+-Gestion de roles creador = admin (puede hacer todo), editor no puede editar proyecto pero si tasks, lector como mucho marcar como done (si queremos esto proponerle ampliacion de que se pueda marcar el estado) 
+-Lo de bajas de usuario (lo tenemos a medias)
 
-Model, core y el index.php estan en principio acabados
-En el dashboard quite una cosa del formulario revisar el JS pq peta
-Tal vez no acepte modales preguntarle en clase
-
-
-Falta por hacer: Controllers, Vistas, manual de usuario, dump de la db, probar con lampserver
-
-
-el css al separar las vistas era 1 por vista o el del login form es el mismo que el de la pagina de bienvenida?
-
-
-hacer el html poliglota (html5 y xhmtl)
-
-ponerle a los views las acciones para cambiar de pagina
-cambiar el lang del html con las cookies
-meter la parte de languaje
-
-hay que tocar el viewManager si no se usan layouts
-Los errores que sueltan los controllers como los mostramos xd, habria que meterle un alert o algo y ponerle traduccion
-revisar los mensajes traducidos al acabar
-
-(20/11 9:05) Validaciones en los formularios
-
-
-Dashboard tiene una tabla con el nombre del proyecto y el numero de tareas por tipo, nombre de usuario arriba, proyectos los del user
-
-project tiene nombre proyecto, num participantes, tareas y % completado, boton de volver a dashboard
-boton de nueva tarea, editar proyecto, eliminar proyecto, borrar tarea, editar tarea, muestra todas las tareas, tiene un select del tipo de tarea para editar facil, para añadir usuarios
-
- 
-
-Views de user le faltan lo de traducciones y meter mensajes de error traducidos y comprobar el css
-revisar en los de ir atras si funciona con post CONFIMRO FUNCIONA PERO CUIDADO 
+Ampliaciones hechas
+-(FP1) Editar el perfil del usuario. (poner css al boton)
+-(FP2) Permitir tareas compartidas (multiusuario).
+-(FP3) Añadir un sistema de prioridad (baja, media, alta) en las tareas. (se puede mejorar)
+-(FP7) Ampliar los datos de las tareas:
 
 
 
-meter descripcion al task en db, model, mappers
-login register welcome page traduccion errores y faltaria revisar css
+TODO
 
 
-hacr que copiar a lamp sea mas facil, cambiar el nombre del fichero por el espacio y que sea pegarlo
-
-un delete para tasks
-un get para tasks
+comprobar end date posterior a begin date
 
 
-suicidarse
 
+Ampliaciones por hacer:
 
-abandona
+-(FP5) Modo claro / modo oscuro como preferencia de usuario.
+-(FP4) Gestionar la baja de usuarios en un proyecto.
+-(FP8) Añadir fechas a las tareas (por ejemplo, fecha de inicio y duración) y la posibilidad de editarlas.
+-(FP9) Ver estadísticas de usuario (tareas asignadas, completadas, pendientes, porcentaje de participación).
+-(FP12) Asignar múltiples categorías a los proyectos (depende de FG1).
+
+-(FG3) Asignar roles dentro del proyecto (admin, editor, lector), con control de permisos.
+-(FG1) Crear un sistema de categorías para proyectos (desarrollo, ocio, etc.) y que en el CRUD de proyectos se pueda seleccionar alguna categoría.
