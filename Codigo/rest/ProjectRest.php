@@ -19,8 +19,7 @@ require_once(__DIR__."/BaseRest.php");
  * are intended to be mapped as callbacks using the URIDispatcher class.
  *
  */
-class ProjectRest extends BaseRest
-{
+class ProjectRest extends BaseRest{
 
 	private $projectMapper;
 
