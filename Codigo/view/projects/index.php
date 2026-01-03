@@ -48,9 +48,9 @@ $currentuserMail = $view->getVariable("currentusermail");
                     <thead>
                         <tr>
                             <th><?= i18n("Nombre del Proyecto") ?></th>
-                            <th><?= i18n("Tareas ToDo") ?></th>
-                            <th><?= i18n("Tareas Working") ?></th>
-                            <th><?= i18n("Tareas Done") ?></th>
+                            <th><?= i18n("Tareas Pendientes") ?></th>
+                            <th><?= i18n("Tareas En Proceso") ?></th>
+                            <th><?= i18n("Tareas Completadas") ?></th>
                         </tr>
                     </thead>
                     <tbody id="projectsContainer">

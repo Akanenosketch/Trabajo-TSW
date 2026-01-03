@@ -78,6 +78,7 @@ $userNum = 1;
         </div>
     </div>
 </body>
+
 <?php if (!is_null($errors)): ?>
     <?php foreach ($errors as $error): ?>
         <script>

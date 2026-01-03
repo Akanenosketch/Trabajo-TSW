@@ -68,13 +68,13 @@ if ($task != null) $taskUsers = $task->getUsers();
                     >
                         <option value="ToDo" 
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "ToDo") == 0): ?>selected<?php endif ?>
-                            ><?= i18n("ToDo") ?></option>
+                            ><?= i18n("Por Hacer") ?></option>
                         <option value="Working"
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Working") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Working") ?></option>
+                        ><?= i18n("En Proceso") ?></option>
                         <option value="Done"
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Done") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Done") ?></option>
+                        ><?= i18n("Acabado") ?></option>
                     </select>
                 </div>
                 <div class="form-row">
@@ -84,13 +84,13 @@ if ($task != null) $taskUsers = $task->getUsers();
                     >
                         <option value="Low" 
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Low") == 0): ?>selected<?php endif ?>
-                            ><?= i18n("Low") ?></option>
+                            ><?= i18n("Baja") ?></option>
                         <option value="Medium"
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Medium") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Medium") ?></option>
+                        ><?= i18n("Media") ?></option>
                         <option value="High"
                         <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "High") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("High") ?></option>
+                        ><?= i18n("Alta") ?></option>
                     </select>
                 </div>
                 <div class="form-row">
@@ -120,11 +120,11 @@ if ($task != null) $taskUsers = $task->getUsers();
                         <select id="modalTaskStatus" name="status" required
                             <?php if ($isViewing): ?>disabled<?php endif ?>>
                             <option value="ToDo"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "ToDo") == 0): ?>selected<?php endif ?>><?= i18n("ToDo") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "ToDo") == 0): ?>selected<?php endif ?>><?= i18n("Por Hacer") ?></option>
                             <option value="Working"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Working") == 0): ?>selected<?php endif ?>><?= i18n("Working") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Working") == 0): ?>selected<?php endif ?>><?= i18n("En Proceso") ?></option>
                             <option value="Done"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Done") == 0): ?>selected<?php endif ?>><?= i18n("Done") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Done") == 0): ?>selected<?php endif ?>><?= i18n("Acabado") ?></option>
                         </select>
                     </div>
                     <div class="form-row">
@@ -132,11 +132,11 @@ if ($task != null) $taskUsers = $task->getUsers();
                         <select id="modalTaskPriority" name="priority" required
                             <?php if ($isViewing): ?>disabled<?php endif ?>>
                             <option value="Low"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Low") == 0): ?>selected<?php endif ?>><?= i18n("Low") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Low") == 0): ?>selected<?php endif ?>><?= i18n("Baja") ?></option>
                             <option value="Medium"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Medium") == 0): ?>selected<?php endif ?>><?= i18n("Medium") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Medium") == 0): ?>selected<?php endif ?>><?= i18n("Media") ?></option>
                             <option value="High"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "High") == 0): ?>selected<?php endif ?>><?= i18n("High") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "High") == 0): ?>selected<?php endif ?>><?= i18n("Alta") ?></option>
                         </select>
                     </div>
                     <div class="form-row">
@@ -191,6 +191,6 @@ if ($task != null) $taskUsers = $task->getUsers();
             alert(errorMsg);
         </script>
     <?php endforeach; ?>
-<?php endif ?>
+<?php endif?>
 
 </html>
