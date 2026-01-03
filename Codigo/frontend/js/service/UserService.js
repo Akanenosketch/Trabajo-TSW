@@ -1,7 +1,6 @@
 class UserService {
 
     constructor() {
-
         this.baseUrl = AppConfig.backendServer + 'users/'
     }
 
@@ -99,7 +98,7 @@ class UserService {
         var pass = user.password;
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: this.baseUrl+ login,
+                url: this.baseUrl + login,
                 method: 'PUT',
                 data: JSON.stringify(user),
                 contentType: 'application/json'
