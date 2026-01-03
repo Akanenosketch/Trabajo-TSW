@@ -49,3 +49,12 @@ F3: Al visualizar directamente el nombre del proyecto en azul de enlaces se hace
 F5: El botón de volver en la cabecera no es muy intuitivo.
 
 El link del manual esta mal
+
+
+
+
+
+La jerarquia de la ilustracion 1 habra que actualizarla al acabar
+En lo de acceso a la aplicacion el link esta mal y habria que distinguir acceso SPA o MVC
+Capturas ns si habria que actualizar
+Lo de ampliaciones creo que serviria mismo hacer asi la lista añadiendoles lo del identificador

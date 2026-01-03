@@ -307,14 +307,10 @@ class Task
 			$errors["endDate"] = i18n("Fecha de fin no valida, debe seguir el formato AAAA-MM-DD");
 		}
 
-		if () {
+		//Fecha de inicio anterior a fin
+		if (strcmp($this->beginDate,$this->endDate) < 0) {
 			$errors["dates"] = i18n("Fecha de fin no valida, debe ser posterior a la fecha de inicio");
 		}
-
-//orden de numeros 0123456789abcdefghijklmnopqrstuvwxyz
-
-
-
 
 		if (sizeof($errors) > 0) {
 			throw new ValidationException($errors, i18n("Tarea no Valida"));
