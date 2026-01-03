@@ -35,7 +35,7 @@ class TaskMapper
 	 */
 	public function save(Task $task)
 	{
-		$stmt = $this->db->prepare("INSERT INTO tasks(task_name, project_id, task_status,task_des, task_priority,begin_date,end_date) values (?,?,?,?,?,?,?)");
+		$stmt = $this->db->prepare("INSERT INTO tasks(task_name, project_id, task_status,task_desc, task_priority,begin_date,end_date) values (?,?,?,?,?,?,?)");
 		$stmt->execute(array($task->getName(), $task->getProject(), $task->getStatus(), $task->getDesc(), $task->getPriority(), $task->getBeginDate(), $task->getEndDate()));
 		$toRet = $this->db->lastInsertId();
 
