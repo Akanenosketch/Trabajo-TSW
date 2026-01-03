@@ -24,7 +24,7 @@ var AppConfig = {
 
 //Revisar y añadir los templates que se usen
 //Carga las plantillas, las compila, y las almacena
-Handlebars.templates = {};
+Handlebars.templates = {}; //TODO AÑADIR LO REAL SON TODOS LOS ARCHIVOS DE COMPONENTS
 Promise.all([
     I18n.initializeCurrentLanguage('js/i18n'),
     loadTextFile('templates/components/main.hbs').then((source) =>
