@@ -16,9 +16,9 @@ function loadTextFile(url) {
 }
 
 
-// Configuration del backend, por defecto esta bien
+// Configuration del backend
 var AppConfig = {
-  backendServer: 'http://localhost'
+  backendServer: 'http://localhost/rest'
 }
 
 

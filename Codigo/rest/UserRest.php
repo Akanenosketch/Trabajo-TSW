@@ -12,18 +12,15 @@ require_once(__DIR__."/BaseRest.php");
  * are intended to be mapped as callbacks using the URIDispatcher class.
  *
  */
-class UserRest extends BaseRest
-{
+class UserRest extends BaseRest{
 	private $userMapper;
 
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->userMapper = new UserMapper();
 	}
 
-	public function register($data)
-	{
+	public function register($data){
 		$user = new User($data->username, $data->user_mail, $data->password);
 		try {
 			$user->checkIsValidForRegister();
@@ -43,10 +40,17 @@ class UserRest extends BaseRest
 		}
 	}
 
-	public function edit($usermail,$data)
-	{
-		$user = new User($data->username, $usermail, $data->password);
+	public function edit($usermail,$data){
+		$currentLogged = parent::authenticateUser();
+		$user = new User($data->username, $data->user_mail, $data->password);
 		try {
+			if(strcmp($usermail, $currentLogged->getUserMail()) != 0 
+			|| strcmp($usermail, $data->user_mail) != 0){
+			
+				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
+				echo ("You are not authorized to edit anyone but you");
+				return;
+			}
 			$user->checkIsValidForRegister();
 			if ($this->userMapper->usermailExists($data->user_mail)) {
 				$this->userMapper->update($user);
@@ -63,9 +67,7 @@ class UserRest extends BaseRest
 		}
 	}
 
-	public function login($usermail)
-	{
-
+	public function login($usermail){
 		$currentLogged = parent::authenticateUser();
 		if (strcmp($currentLogged->getUserMail(), $usermail) != 0) {
 			header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
@@ -75,6 +77,7 @@ class UserRest extends BaseRest
 			echo ("Hello ".$usermail);
 		}
 	}
+
 }
 
 // URI-MAPPING for this Rest endpoint
