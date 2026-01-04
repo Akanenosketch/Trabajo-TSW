@@ -74,11 +74,11 @@ if ($task != null) $taskUsers = $task->getUsers();
                         <select id="modalTaskPriority" name="priority" required
                             <?php if ($isViewing): ?>disabled<?php endif ?>>
                             <option value="Low"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Low") == 0): ?>selected<?php endif ?>><?= i18n("Baja") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getPriority()), "Low") == 0): ?>selected<?php endif ?>><?= i18n("Baja") ?></option>
                             <option value="Medium"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Medium") == 0): ?>selected<?php endif ?>><?= i18n("Media") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getPriority()), "Medium") == 0): ?>selected<?php endif ?>><?= i18n("Media") ?></option>
                             <option value="High"
-                                <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "High") == 0): ?>selected<?php endif ?>><?= i18n("Alta") ?></option>
+                                <?php if (!is_null($task) && strcmp(trim($task->getPriority()), "High") == 0): ?>selected<?php endif ?>><?= i18n("Alta") ?></option>
                         </select>
                     </div>
                     <div class="form-row">

@@ -1,9 +1,9 @@
 <?php
 // file: model/TaskMapper.php
 
-require_once(__DIR__."/../core/PDOConnection.php");
+require_once(__DIR__ . "/../core/PDOConnection.php");
 
-require_once(__DIR__."/../model/Task.php");
+require_once(__DIR__ . "/../model/Task.php");
 
 /**
  * Class TaskMapper
@@ -57,32 +57,28 @@ class TaskMapper
 	 */
 	public function update(Task $task)
 	{
-		$stmt = $this->db->prepare("UPDATE tasks set task_name=?,task_status=?,task_desc=?,task_priority=?,begin_date=?,end_date=? where task_id=?");
-		$stmt->execute(array($task->getName(), $task->getStatus(), $task->getDesc(),$task->getPriority(), $task->getBeginDate(), $task->getEndDate(), $task->getId()));
+		// 1. Update the main task details
+		$stmt = $this->db->prepare("UPDATE tasks SET task_name=?, task_status=?, task_desc=?, task_priority=?, begin_date=?, end_date=? WHERE task_id=?");
+		$stmt->execute(array(
+			$task->getName(),
+			$task->getStatus(),
+			$task->getDesc(),
+			$task->getPriority(), 
+			$task->getBeginDate(),
+			$task->getEndDate(),
+			$task->getId()
+		));
 
-		$stmt = $this->db->prepare("SELECT user_mail FROM users_on_tasks WHERE task_id=?");
-		$stmt->execute(array($task->getId()));
-		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$users = array();
-		foreach ($users_db as $user) {
-				array_push($users, $user["user_mail"]);
-		}
-		$stmt = $this->db->prepare("INSERT INTO users_on_tasks(user_mail,project_id,task_id) values (?,?,?)");
-		$stmt2 = $this->db->prepare("DELETE FROM users_on_tasks WHERE user_mail=? and task_id=?");
-		$repeatedUsers = array();
+		// 2. Clear all existing users for this task first
+		$stmtDel = $this->db->prepare("DELETE FROM users_on_tasks WHERE task_id = ?");
+		$stmtDel->execute(array($task->getId()));
+
+		// 3. Insert the currently selected users
+		$stmtIns = $this->db->prepare("INSERT INTO users_on_tasks (user_mail, project_id, task_id) VALUES (?,?,?)");
 		foreach ($task->getUsers() as $user) {
-			if (!in_array($user->getUserMail(), $users)) {
-				$stmt->execute(array($user->getUserMail(), $task->getProject(), $task->getId()));
-			} else{
-				array_push($repeatedUsers,$user->getUserMail()); 
-			}
-		}
-
-		//Remove users from task
-		foreach ($users as $user) {
-			if (!in_array($user, $repeatedUsers)) {
-				$stmt2->execute(array($user,$task->getId()));
-			}
+			// Handle both User objects or raw strings
+			$mail = is_object($user) ? $user->getUserMail() : $user;
+			$stmtIns->execute(array($mail, $task->getProject(), $task->getId()));
 		}
 	}
 
@@ -99,4 +95,3 @@ class TaskMapper
 		$stmt->execute(array($id));
 	}
 }
-?>
