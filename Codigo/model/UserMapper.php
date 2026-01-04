@@ -94,7 +94,7 @@ class UserMapper
 	 * @return void
 	 */
 	public function update(User $user){
-		$stmt = $this->db->prepare("UPDATE users set username=?,passwd=?, where user_mail=?");
+		$stmt = $this->db->prepare("UPDATE users set username=?,passwd=? where user_mail=?");
 		$stmt->execute(array($user->getUsername(), $user->getPasswd(),$user->getUserMail()));
 	}
 

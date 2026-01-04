@@ -29,7 +29,7 @@ $errors = $view->getVariable("errors");
                      required minlength="4" />
             </div>
 
-            <?php if (!is_null($user)): ?>
+            <?php if (is_null($user)): ?>
                 <div class="form-row">
                 <label for="regCorreo"><?= i18n("Correo") ?></label>
                 <input id="regCorreo" name="correo" type="email" placeholder="ivan.martinez.estevez@uvigo.es" required

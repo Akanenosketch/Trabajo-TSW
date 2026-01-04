@@ -76,7 +76,6 @@ INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw@uvigo.es',1);
 INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw@uvigo.es',2);
 INSERT INTO users_on_projects (user_mail,project_id) VALUES ('tsw2@uvigo.es',1);
 
--- UPDATED: Added begin_date and end_date columns and values
 INSERT INTO tasks (task_name, project_id, task_status, task_desc, task_priority, begin_date, end_date) 
 VALUES ('TSWTestToDO', 1, "ToDo", "desc", "High", '2024-01-01', '2024-01-10');
 
@@ -85,6 +84,15 @@ VALUES ('TSWTestWork', 1, "Working", "des2", "Low", '2024-01-05', '2024-01-15');
 
 INSERT INTO tasks (task_name, project_id, task_status, task_desc, task_priority, begin_date, end_date) 
 VALUES ('TSWTestDone', 1, "Done", "desc3", "Medium", '2024-01-10', '2024-01-20');
+
+INSERT INTO tasks (task_name, project_id, task_status, task_desc, task_priority, begin_date, end_date) 
+VALUES ('TSWPrioAlta', 1, "ToDo", "desc", "High", '2024-01-01', '2024-01-10');
+
+INSERT INTO tasks (task_name, project_id, task_status, task_desc, task_priority, begin_date, end_date) 
+VALUES ('TSWPrioBaja', 1, "ToDo", "des2", "Low", '2024-01-05', '2024-01-15');
+
+INSERT INTO tasks (task_name, project_id, task_status, task_desc, task_priority, begin_date, end_date) 
+VALUES ('TSWPrioMedia', 1, "ToDo", "desc3", "Medium", '2024-01-10', '2024-01-20');
 
 INSERT INTO tasks (task_name, project_id, task_status, task_desc, task_priority, begin_date, end_date) 
 VALUES ('TSWTestToDO', 2, "ToDo", "desc4", "Medium", '2024-02-01', '2024-02-10');

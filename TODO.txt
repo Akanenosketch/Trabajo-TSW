@@ -1,8 +1,8 @@
 
 Ampliaciones hechas
--(FP1) Editar el perfil del usuario. (poner css al boton)
+-(FP1) Editar el perfil del usuario.
 -(FP2) Permitir tareas compartidas (multiusuario).
--(FP3) Añadir un sistema de prioridad (baja, media, alta) en las tareas. (se puede mejorar)
+-(FP3) Añadir un sistema de prioridad (baja, media, alta) en las tareas. 
 -(FP7) Ampliar los datos de las tareas:
 -(FP8) Añadir fechas a las tareas (por ejemplo, fecha de inicio y duración) y la posibilidad de editarlas. (creo)
 

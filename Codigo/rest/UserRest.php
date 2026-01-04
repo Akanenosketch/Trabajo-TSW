@@ -42,17 +42,16 @@ class UserRest extends BaseRest{
 
 	public function edit($usermail,$data){
 		$currentLogged = parent::authenticateUser();
-		$user = new User($data->username, $data->user_mail, $data->password);
+		$user = new User($data->username, $usermail, $data->password);
 		try {
-			if(strcmp($usermail, $currentLogged->getUserMail()) != 0 
-			|| strcmp($usermail, $data->user_mail) != 0){
+			if(strcmp($usermail, $currentLogged->getUserMail()) != 0){
 			
 				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
 				echo ("You are not authorized to edit anyone but you");
 				return;
 			}
 			$user->checkIsValidForRegister();
-			if ($this->userMapper->usermailExists($data->user_mail)) {
+			if ($this->userMapper->usermailExists($usermail)) {
 				$this->userMapper->update($user);
 			} else {
 				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');

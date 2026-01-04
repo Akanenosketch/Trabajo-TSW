@@ -235,19 +235,24 @@ class UsersController extends BaseController
 				$user->checkIsValidForRegister(); // if it fails, ValidationException
 
 				// check if user exists in the database
-				if ($this->userMapper->usermailExists($_POST["correo"])) {
+				if ($this->userMapper->usermailExists($user->getUserMail())) {
 
 					// save the User object into the database
 					$this->userMapper->update($user);
 
 					$_SESSION["currentusername"] = $user->getUsername();
 					$_SESSION["currentuserpass"] = $user->getPasswd();
-		
+					$this->currentUser = $user;
+
 					$this->view->redirect("projects", "index");
 				} else {
 					$errors = array();
 					$errors["user_mail"] = i18n("No existe un usuario con el mismo correo");
 					$this->view->setVariable("errors", $errors);
+					// Put the User object visible to the view
+					$this->view->setVariable("user", $user);
+					// render the view (/view/users/register.php)
+					$this->view->render("users", "register");
 				}
 			} catch (ValidationException $ex) {
 				// Get the errors array inside the exepction...
