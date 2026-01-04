@@ -272,7 +272,8 @@ class TasksController extends BaseController
 			throw new Exception("No task id given");
 		}
 		//Check if the task exists
-		$taskid = $_REQUEST["task_id"];
+		$taskid = trim($_REQUEST["task_id"]);
+		//echo "Retrieving task id: ".$taskid; This was for logging purposes
 
 		$task = null;
 		foreach ($project->getTasks() as $t) {
