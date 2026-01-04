@@ -29,7 +29,7 @@ Ampliaciones por hacer: (0.9 pts)
 
 Arreglar
 
-tasks/form tiene un error raro
+Scroll a los forms
 
 F3: Al visualizar directamente el nombre del proyecto en azul de enlaces se hace difícil leer con contraste del fondo oscuro.
 
