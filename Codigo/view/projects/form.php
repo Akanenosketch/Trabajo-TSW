@@ -32,8 +32,8 @@ $userNum = 1;
 
                 <div class="form-row">
                     <label><?= i18n("Nombre del Proyecto") ?></label>
-                    <input id="newProjectName" type="text" name="name" required minlength="1" 
-                    value="<?php if (!is_null($project)): ?><?= $project->getName() ?><?php endif ?>"/>
+                    <input id="newProjectName" type="text" name="name" required minlength="1"
+                        value="<?php if (!is_null($project)): ?><?= $project->getName() ?><?php endif ?>" />
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Participantes") ?></label>
@@ -41,13 +41,16 @@ $userNum = 1;
 
                         <?php foreach ($users as $user): ?>
                             <div>
-                                <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>" />
-                                <?php $userNum++ ?>
-                                <?php if (in_array($user, $projectUsers)): ?> checked<?php endif ?>
+                                <input type="checkbox"
+                                    name="<?= "user" . $userNum ?>"
+                                    value="<?= $user->getUserMail() ?>"
+                                    <?php if (in_array($user, $projectUsers)): ?> checked="checked" <?php endif ?> />
 
-                                    <label>
-                                        <?= $user->getUserMail() ?>
-                                    </label>
+                                <?php $userNum++ ?>
+                                <input type="hidden" name="project_id" value="<?= $project->getId() ?>">
+                                <label>
+                                    <?= $user->getUserMail() ?>
+                                </label>
                             </div>
                         <?php endforeach; ?>
 
