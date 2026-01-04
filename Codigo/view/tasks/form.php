@@ -28,91 +28,33 @@ if ($task != null) $taskUsers = $task->getUsers();
     <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($task)): ?>add<?php endif ?>" method="post">
         <div id="taskModal" class="modal-overlay">
 
-        <div class="modal-box">
-            <div class="modal-content">
-                <h3 id="taskModalTitle">
-                <?php if (!is_null($task) && !$isViewing): ?><?= i18n("Editar Tarea") ?><?php endif ?><?php if (is_null($task)): ?><?= i18n("Añadir Tarea") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Tarea") ?><?php endif ?>
-                </h3>
-                <div class="form-row">
-                    <label><?= i18n(key: "Nombre") ?></label>
-                    <input id="modalTaskName" name="title" type="text" required minlength="1"
-                    value="<?php if (!is_null($task)): ?><?= $task->getName() ?><?php endif ?>"
-                    <?php if ($isViewing): ?>readonly<?php endif ?>
-                    />
-                </div>
-                <div class="form-row">
-                    <label><?= i18n("Descripcion") ?></label>
-                    <input id="modalTaskDesc" name="desc" type="text" required minlength="1"
-                    value="<?php if (!is_null($task)): ?><?= $task->getDesc() ?><?php endif ?>"
-                    <?php if ($isViewing): ?>readonly<?php endif ?>
-                    />
-               </div>
-                <div class="form-row">
-                    <label><?= i18n("Fecha de Inicio") ?></label>
-                    <input id="modalTaskBegin" name="beginDate" type="date" required 
-                    value="<?php if (!is_null($task)): ?><?= $task->getBeginDate() ?><?php endif ?>"
-                    <?php if ($isViewing): ?>readonly<?php endif ?>
-                    />
-               </div>
-                 <div class="form-row">
-                    <label><?= i18n("Fecha de Fin") ?></label>
-                    <input id="modalTaskEnd" name="endDate" type="date" required
-                    value="<?php if (!is_null($task)): ?><?= $task->getEndDate() ?><?php endif ?>"
-                    <?php if ($isViewing): ?>readonly<?php endif ?>
-                    />
-               </div>
-                <div class="form-row">
-                    <label><?= i18n("Estado") ?></label>
-                    <select id="modalTaskStatus" name="status" required
-                    <?php if ($isViewing): ?>disabled<?php endif ?>
-                    >
-                        <option value="ToDo" 
-                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "ToDo") == 0): ?>selected<?php endif ?>
-                            ><?= i18n("Por Hacer") ?></option>
-                        <option value="Working"
-                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Working") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("En Proceso") ?></option>
-                        <option value="Done"
-                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Done") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Acabado") ?></option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <label><?= i18n("Prioridad") ?></label>
-                    <select id="modalTaskPriority" name="priority" required
-                    <?php if ($isViewing): ?>disabled<?php endif ?>
-                    >
-                        <option value="Low" 
-                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Low") == 0): ?>selected<?php endif ?>
-                            ><?= i18n("Baja") ?></option>
-                        <option value="Medium"
-                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "Medium") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Media") ?></option>
-                        <option value="High"
-                        <?php if (!is_null($task) && strcmp(trim($task->getStatus()), "High") == 0): ?>selected<?php endif ?>
-                        ><?= i18n("Alta") ?></option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <label><?= i18n("Asignar a") ?></label>
-                    <div id="modalTaskAssignees" class="checkbox-list">
-                    
-                    <?php foreach ($users as $user): ?>
-                      <div>
-                        <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
-                        <?php $userNum++ ?>
-                         <?php if ($isViewing): ?>disabled<?php endif ?>
-                         <?php if (in_array($user, $taskUsers) ): ?> checked<?php endif ?>     
-  
-                            />
-                        <label>
-                            <?= $user->getUserMail() ?>
-                        </label>
+            <div class="modal-box">
+                <div class="modal-content">
+                    <h3 id="taskModalTitle">
+                        <?php if (!is_null($task) && !$isViewing): ?><?= i18n("Editar Tarea") ?><?php endif ?><?php if (is_null($task)): ?><?= i18n("Añadir Tarea") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Tarea") ?><?php endif ?>
+                    </h3>
+                    <div class="form-row">
+                        <label><?= i18n(key: "Nombre") ?></label>
+                        <input id="modalTaskName" name="title" type="text" required minlength="1"
+                            value="<?php if (!is_null($task)): ?><?= $task->getName() ?><?php endif ?>"
+                            <?php if ($isViewing): ?>readonly<?php endif ?> />
                     </div>
                     <div class="form-row">
                         <label><?= i18n("Descripcion") ?></label>
                         <input id="modalTaskDesc" name="desc" type="text" required minlength="1"
                             value="<?php if (!is_null($task)): ?><?= $task->getDesc() ?><?php endif ?>"
+                            <?php if ($isViewing): ?>readonly<?php endif ?> />
+                    </div>
+                    <div class="form-row">
+                        <label><?= i18n("Fecha de Inicio") ?></label>
+                        <input id="modalTaskBegin" name="beginDate" type="date" required
+                            value="<?php if (!is_null($task)): ?><?= $task->getBeginDate() ?><?php endif ?>"
+                            <?php if ($isViewing): ?>readonly<?php endif ?> />
+                    </div>
+                    <div class="form-row">
+                        <label><?= i18n("Fecha de Fin") ?></label>
+                        <input id="modalTaskEnd" name="endDate" type="date" required
+                            value="<?php if (!is_null($task)): ?><?= $task->getEndDate() ?><?php endif ?>"
                             <?php if ($isViewing): ?>readonly<?php endif ?> />
                     </div>
                     <div class="form-row">
@@ -153,32 +95,28 @@ if ($task != null) $taskUsers = $task->getUsers();
                                         <?= $user->getUserMail() ?>
                                     </label>
                                 </div>
-
                             <?php endforeach; ?>
-
-
                         </div>
                     </div>
-                </div>
 
-                <div class="modal-footer">
-                    <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $projectID ?>">
-                        <button class="btn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
-                    </a>
-                    <button class="btn primary" type="submit" id="saveTaskBtn"
-                        <?php if ($isViewing): ?>
-                        hidden="hidden"
-                        <?php endif ?>><?= i18n("Guardar") ?></button>
+                    <div class="modal-footer">
+                        <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $projectID ?>">
+                            <button class="btn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
+                        </a>
+                        <button class="btn primary" type="submit" id="saveTaskBtn"
+                            <?php if ($isViewing): ?>
+                            hidden="hidden"
+                            <?php endif ?>><?= i18n("Guardar") ?></button>
 
-                    <input type="hidden" id="editingTaskId" name="task_id" value="
+                        <input type="hidden" id="editingTaskId" name="task_id" value="
                 <?php if (!is_null($task)): ?>
                             <?= $task->getId() ?>
                 <?php endif ?>
                 " />
-                    <input type="hidden" id="editingProjectId" name="id" value="<?php if (!is_null($task)): ?><?= $task->getProject() ?><?php endif ?><?php if (is_null($task)): ?><?= $projectID ?><?php endif ?>" />
+                        <input type="hidden" id="editingProjectId" name="id" value="<?php if (!is_null($task)): ?><?= $task->getProject() ?><?php endif ?><?php if (is_null($task)): ?><?= $projectID ?><?php endif ?>" />
+                    </div>
                 </div>
             </div>
-        </div>
     </form>
 
 </body>
@@ -191,6 +129,6 @@ if ($task != null) $taskUsers = $task->getUsers();
             alert(errorMsg);
         </script>
     <?php endforeach; ?>
-<?php endif?>
+<?php endif ?>
 
 </html>
