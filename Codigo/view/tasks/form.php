@@ -87,7 +87,7 @@ if ($task != null) $taskUsers = $task->getUsers();
 
                             <?php foreach ($users as $user): ?>
                                 <div>
-                                    <input type="checkbox" name="<?= "user" . $userNum ?>" value="<?= $user->getUserMail() ?>"
+                                    <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
                                         <?php $userNum++ ?>
                                         <?php if ($isViewing): ?>disabled<?php endif ?>
                                         <?php if (in_array($user, $taskUsers)): ?> checked<?php endif ?> />
@@ -108,11 +108,7 @@ if ($task != null) $taskUsers = $task->getUsers();
                             hidden="hidden"
                             <?php endif ?>><?= i18n("Guardar") ?></button>
 
-                        <input type="hidden" id="editingTaskId" name="task_id" value="
-                <?php if (!is_null($task)): ?>
-                            <?= $task->getId() ?>
-                <?php endif ?>
-                " />
+                        <input type="hidden" id="editingTaskId" name="task_id" value="<?php if (!is_null($task)):?><?= $task->getId() ?><?php endif ?>" />
                         <input type="hidden" id="editingProjectId" name="id" value="<?php if (!is_null($task)): ?><?= $task->getProject() ?><?php endif ?><?php if (is_null($task)): ?><?= $projectID ?><?php endif ?>" />
                     </div>
                 </div>

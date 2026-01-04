@@ -103,7 +103,7 @@ class ProjectRest extends BaseRest{
 		header($_SERVER['SERVER_PROTOCOL'].' 204 No Content');
 	}
 
-	private function retrieveProject($projectId,$currentUser = NULL): Project{
+	private function retrieveProject($projectId,$currentUser = NULL){
 		if($currentUser == NULL) $currentUser = parent::authenticateUser();
 
 		// Get the Project object from the database

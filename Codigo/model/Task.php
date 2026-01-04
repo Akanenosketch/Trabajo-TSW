@@ -308,7 +308,7 @@ class Task
 		}
 
 		//Fecha de inicio anterior a fin
-		if (strcmp($this->beginDate,$this->endDate) > 0) {
+		if (strcmp($this->beginDate,$this->endDate) >= 0) {
 			$errors["dates"] = i18n("Fecha de fin no valida, debe ser posterior a la fecha de inicio");
 		}
 

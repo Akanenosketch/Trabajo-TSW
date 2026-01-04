@@ -282,7 +282,7 @@ class ProjectsController extends BaseController{
 	 * 
 	 * @return Project
 	 */
-	private function retrieveProject($viewFromDeleteEdit = false): ?Project{
+	private function retrieveProject($viewFromDeleteEdit = false) {
 		if (!isset($_REQUEST["id"])) {
 			throw new Exception("No project id given");
 		}

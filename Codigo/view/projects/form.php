@@ -42,10 +42,9 @@ $userNum = 1;
                         <?php foreach ($users as $user): ?>
                             <div>
                                 <input type="checkbox"
-                                    name="<?= "user" . $userNum ?>"
-                                    value="<?= $user->getUserMail() ?>"
+                                    name="<?="user".$userNum?>"
+                                    value="<?=$user->getUserMail()?>"
                                     <?php if (in_array($user, $projectUsers)): ?> checked="checked" <?php endif ?> />
-
                                 <?php $userNum++ ?>
                                 <input type="hidden" name="project_id" value="<?= $project->getId() ?>">
                                 <label>
