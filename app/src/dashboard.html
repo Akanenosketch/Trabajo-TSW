@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../style/dashboard.css">
+    <title>Dashboard</title>
+    
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="username" id="userDisplay">Usuario</div>
+            <div class="small" id="userEmail">Lista de Proyectos</div>
+        </div>
+        <div>
+            <button onclick="logout()" class="add-btn">Cerrar sesion</button>
+        </div>
+    </header>
+
+    <section class="project-list">
+        <div class="add-project-container">
+            <button id="openNewProjectModal" class="add-btn">Añadir Proyecto</button>
+        </div>
+
+        <div class="content-center">
+            <div class="table-container">
+                <table id="projectsTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Proyecto</th>
+                            <th>Tareas ToDo</th>
+                            <th>Tareas Working</th>
+                            <th>Tareas Done</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projectsContainer"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para nuevo proyecto -->
+    <div id="newProjectModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-box">
+            <h3>Nuevo Proyecto</h3>
+            <form id="addProjectForm">
+                <div class="form-row">
+                    <label>Nombre del Proyecto</label>
+                    <input id="newProjectName" type="text" required>
+                </div>
+                <div class="form-row">
+                    <label>Participantes</label>
+                    <div id="initialUsers" class="checkbox-list"></div>
+                </div>
+                <!--ESTE STYLE AL CSS-->
+                <div style="text-align:right;margin-top:12px">
+                    <button type="button" class="btn" id="cancelProjectBtn">Cancelar</button>
+                    <button type="submit" class="btn primary">Crear proyecto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/dashboard.js"></script>
+</body>
+
+</html>
