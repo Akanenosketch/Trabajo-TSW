@@ -13,6 +13,7 @@ $currentuserMail = $view->getVariable("currentusermail");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
     <link rel="stylesheet" type="text/css" href="./view/css/projects/index.css">
     <title><?= i18n("Dashboard") ?></title>
 </head>
@@ -76,6 +77,7 @@ $currentuserMail = $view->getVariable("currentusermail");
             </div>
         </div>
     </section>
+    <script src="./view/js/theme.js"></script>
 </body>
 
 </html>
