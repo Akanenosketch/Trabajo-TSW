@@ -1,36 +1,42 @@
-lo de roles es bueno de hacerlo (admin edita proyecto y es el que crea, editor edita tareas, lector lee)
-El manual seria decirle las cosas extra y cambiar el link de uso/explicar como entrar al SPA vs el mvc (las ampliaciones las quiere por su identificador)
-LO NUEVO DE AMPLIACIONB HAY QUE HACERLO EN MVC TAMBIEN
-La DB hay que ampliar el script seguramente con lo extra solo
-Yo haria:
--Editar usuario (desde la pag de projects/view)
--Multiusuario (ya estaria)
--Prioridad en tareas (seria 1 campo extra de select y mostrarlo en la view)
--Gestion de roles creador = admin (puede hacer todo), editor no puede editar proyecto pero si tasks, lector como mucho marcar como done (si queremos esto proponerle ampliacion de que se pueda marcar el estado) 
--Lo de bajas de usuario (lo tenemos a medias)
 
 Ampliaciones hechas
--(FP1) Editar el perfil del usuario. (poner css al boton)
+-(FP1) Editar el perfil del usuario.
 -(FP2) Permitir tareas compartidas (multiusuario).
--(FP3) Añadir un sistema de prioridad (baja, media, alta) en las tareas. (se puede mejorar)
+-(FP3) Añadir un sistema de prioridad (baja, media, alta) en las tareas. 
 -(FP7) Ampliar los datos de las tareas:
+-(FP8) Añadir fechas a las tareas (por ejemplo, fecha de inicio y duración) y la posibilidad de editarlas. (creo)
 
 
 
 TODO
 
+-(FP5) Modo claro / modo oscuro como preferencia de usuario. (En proceso manu)
 
-comprobar end date posterior a begin date
+La parte de frontend
+probar que el MVC actual funciona
 
 
 
-Ampliaciones por hacer:
+Ampliaciones por hacer: (0.9 pts)
 
--(FP5) Modo claro / modo oscuro como preferencia de usuario.
 -(FP4) Gestionar la baja de usuarios en un proyecto.
--(FP8) Añadir fechas a las tareas (por ejemplo, fecha de inicio y duración) y la posibilidad de editarlas.
 -(FP9) Ver estadísticas de usuario (tareas asignadas, completadas, pendientes, porcentaje de participación).
 -(FP12) Asignar múltiples categorías a los proyectos (depende de FG1).
 
 -(FG3) Asignar roles dentro del proyecto (admin, editor, lector), con control de permisos.
 -(FG1) Crear un sistema de categorías para proyectos (desarrollo, ocio, etc.) y que en el CRUD de proyectos se pueda seleccionar alguna categoría.
+
+
+Arreglar
+
+Scroll a los forms
+
+F3: Al visualizar directamente el nombre del proyecto en azul de enlaces se hace difícil leer con contraste del fondo oscuro.
+
+F5: El botón de volver en la cabecera no es muy intuitivo.
+
+El link del manual esta mal
+La jerarquia de la ilustracion 1 habra que actualizarla al acabar
+En lo de acceso a la aplicacion el link esta mal y habria que distinguir acceso SPA o MVC
+Capturas ns si habria que actualizar
+Lo de ampliaciones creo que serviria mismo hacer asi la lista añadiendoles lo del identificador

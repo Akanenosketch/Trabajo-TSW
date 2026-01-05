@@ -1,0 +1,53 @@
+/* Main tswapp-front script */
+
+//load external resources
+function loadTextFile(url) {
+  return new Promise((resolve, reject) => {
+    $.get({
+      url: url,
+      cache: true,
+      beforeSend: function( xhr ) {
+        xhr.overrideMimeType( "text/plain" );
+      }
+    }).then((source) => {
+      resolve(source);
+    }).fail(() => reject());
+  });
+}
+
+
+// Configuration del backend
+var AppConfig = {
+  backendServer: 'http://localhost/rest'
+}
+
+
+//Revisar y añadir los templates que se usen
+//Carga las plantillas, las compila, y las almacena
+Handlebars.templates = {}; //TODO AÑADIR LO REAL SON TODOS LOS ARCHIVOS DE COMPONENTS
+Promise.all([
+    I18n.initializeCurrentLanguage('js/i18n'),
+    loadTextFile('templates/components/main.hbs').then((source) =>
+      Handlebars.templates.main = Handlebars.compile(source)),
+    loadTextFile('templates/components/language.hbs').then((source) =>
+      Handlebars.templates.language = Handlebars.compile(source)),
+    loadTextFile('templates/components/user.hbs').then((source) =>
+      Handlebars.templates.user = Handlebars.compile(source)),
+    loadTextFile('templates/components/login.hbs').then((source) =>
+      Handlebars.templates.login = Handlebars.compile(source)),
+    loadTextFile('templates/components/posts-table.hbs').then((source) =>
+      Handlebars.templates.poststable = Handlebars.compile(source)),
+    loadTextFile('templates/components/post-edit.hbs').then((source) =>
+      Handlebars.templates.postedit = Handlebars.compile(source)),
+    loadTextFile('templates/components/post-view.hbs').then((source) =>
+      Handlebars.templates.postview = Handlebars.compile(source)),
+    loadTextFile('templates/components/post-row.hbs').then((source) =>
+      Handlebars.templates.postrow = Handlebars.compile(source))
+  ])
+  .then(() => {
+    $(() => {
+      new MainComponent().start(); //Arranca la App
+    });
+  }).catch((err) => {
+    alert('FATAL: could not start app ' + err);
+  });
