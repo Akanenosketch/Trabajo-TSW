@@ -46,7 +46,6 @@ $userNum = 1;
                                     value="<?=$user->getUserMail()?>"
                                     <?php if (in_array($user, $projectUsers)): ?> checked="checked" <?php endif ?> />
                                 <?php $userNum++ ?>
-                                <input type="hidden" name="project_id" value="<?= $project->getId() ?>">
                                 <label>
                                     <?= $user->getUserMail() ?>
                                 </label>
