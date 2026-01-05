@@ -26,4 +26,5 @@ class ProjectsModel extends Fronty.Model {
       self.projects = projects;
     });
   }
+  
 }

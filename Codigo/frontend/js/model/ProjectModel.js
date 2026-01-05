@@ -28,6 +28,19 @@ class ProjectModel extends Fronty.Model {
 
     }
 
+    /**
+     * Usado para JSON.stringify, puede que el super() genere otros atributos que no queremos
+     * @returns El objeto como string
+     */
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name,
+            users: this.users,
+            tasks: this.tasks
+        };
+    }
+
     setName(name) {
         this.set((self) => {
             self.name = name;
