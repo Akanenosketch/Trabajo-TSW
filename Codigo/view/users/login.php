@@ -18,7 +18,6 @@ $errors = $view->getVariable("errors");
     <div class="modal">
         <header>
             <h2 id="loginTitle"><?= i18n("Iniciar sesion") ?></h2>
-            <button id="themeToggle" class="theme-toggle" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
         </header>
 
         <form id="loginForm">
