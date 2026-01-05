@@ -17,7 +17,9 @@ $errors = $view->getVariable("errors");
 <div id="registerOverlay" class="overlay">
     <div class="modal">
         <header>
-            <h2 id="registerTitle"><?php if (!is_null($user)): ?><?= i18n("Editar Usuario") ?><?php endif ?><?php if (is_null($user)): ?><?= i18n("Registrarse") ?><?php endif ?>
+            <h2 id="registerTitle">
+                <?php if (!is_null($user)): ?><?= i18n("Editar Usuario") ?><?php endif ?>
+                <?php if (is_null($user)): ?><?= i18n("Registrarse") ?><?php endif ?>
             </h2>
         </header>
 
