@@ -73,7 +73,7 @@ class UserRest extends BaseRest{
 			echo ("You are not authorized to login as anyone but you");
 		} else {
 			header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
-			echo ("Hello ".$usermail);
+			echo(json_encode($currentLogged));
 		}
 	}
 

@@ -46,6 +46,7 @@ class MainComponent extends Fronty.RouterComponent { //Va a ser el enrutador en 
     // in sessionStorage, so we try to do a relogin and start the main component
     // only when login is checked
     this.userService.loginWithSessionData()
+    //Para lo nuestro, en el then parametro user recibe un objeto user
       .then((logged) => {
         if (logged != null) {
           this.userModel.setLoggeduser(logged);

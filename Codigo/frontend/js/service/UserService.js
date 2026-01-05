@@ -14,8 +14,8 @@ class UserService {
             if (window.sessionStorage.getItem('login') &&
                 window.sessionStorage.getItem('pass')) {
                 self.login(window.sessionStorage.getItem('login'), window.sessionStorage.getItem('pass'))
-                    .then(() => {
-                        resolve(window.sessionStorage.getItem('login'));
+                    .then((data) => {
+                        resolve(data);
                     })
                     .catch(() => {
                         reject();
@@ -41,7 +41,7 @@ class UserService {
                     xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                 }
             })
-                .then(() => {
+                .then((data) => {
                     //keep this authentication forever
                     window.sessionStorage.setItem('login', login);
                     window.sessionStorage.setItem('pass', pass);
@@ -50,7 +50,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve();
+                    resolve(data);
                 })
                 .fail((error) => {
                     window.sessionStorage.removeItem('login');
@@ -91,7 +91,7 @@ class UserService {
 
     /**
      * Edits the current user
-     * @param  user the editted user 
+     * @param  user the editted user (UserModel?) 
      */
     edit(user) {
         var login = window.sessionStorage.getItem('login');
