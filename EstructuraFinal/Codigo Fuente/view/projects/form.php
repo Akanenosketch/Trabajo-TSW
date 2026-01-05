@@ -14,6 +14,7 @@ $userNum = 1;
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
     <link rel="stylesheet" type="text/css" href="./view/css/projects/form.css">
     <title><?= i18n("Formulario de Projectos") ?></title>
 </head>
@@ -77,6 +78,7 @@ $userNum = 1;
             </form>
         </div>
     </div>
+    <script src="./view/js/theme.js"></script>
 </body>
 <?php if (!is_null($errors)): ?>
     <?php foreach ($errors as $error): ?>
