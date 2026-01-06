@@ -1,14 +1,11 @@
 class ProjectEditComponent extends Fronty.ModelComponent {
 
-    constructor(projectsModel, usersModel, userModel, router) {
+    constructor(projectsModel, usersModel, router) {
 
         super(Handlebars.templates.projectForm, projectsModel);
 
         //Config Models
         this.projectsModel = projectsModel;
-
-        this.userModel = userModel;
-        this.addModel('user', userModel);
 
         this.usersModel = usersModel;
         this.addModel('users', usersModel);
