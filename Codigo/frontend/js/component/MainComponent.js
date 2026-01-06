@@ -20,38 +20,56 @@ class MainComponent extends Fronty.RouterComponent {
     }
 
     configRouter() {
-
-        //ProjectView pagina de edit ProjectIndex
-
         super.setRouterConfig({
-            /*
-            posts: {
-                component: new PostsComponent(this.postsModel, this.userModel, this),
-                title: 'Posts'
+            'WelcomePage': {
+                //                component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'WelcomePage'
             },
-            'view-post': { //view post es el nombre para hacer go to, title ni idea, index.html#view-post
-                component: new PostViewComponent(this.postsModel, this.userModel, this),
-                title: 'Post'
+            'Register': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'Register'
             },
-            'edit-post': {
-                component: new PostEditComponent(this.postsModel, this.userModel, this),
-                title: 'Edit Post'
-            },
-            'add-post': {
-                component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'Add Post'
-            },
-            login: {
-                component: new LoginComponent(this.userModel, this),
+            'Login': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
                 title: 'Login'
             },
-            defaultRoute: 'posts' //lo que se visualiza por defecto, ponerla la welcome
-            */
+            'UserEdit': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'UserEdit'
+            },
+            'ProjectIndex': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'ProjectIndex'
+            },
+            'ProjectAdd': {
+                component: new ProjectAddComponent(this.projectsModel, this.usersModel, this),
+                title: 'ProjectAdd'
+            },
+            'ProjectEdit': {
+                component: new ProjectEditComponent(this.projectsModel, this.usersModel, this),
+                title: 'ProjectEdit'
+            },
+            'ProjectView': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'ProjectView'
+            },
+            'TaskView': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'TaskView'
+            },
+            'TaskEdit': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'TaskEdit'
+            },
+            'TaskAdd': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'TaskAdd'
+            },
+
+            defaultRoute: 'WelcomePage' //lo que se visualiza por defecto
         });
 
     }
-
-
 
     createOptionsComponent() {
         let options = new Fronty.ModelComponent(Handlebars.templates.options, this.routerModel, 'langThemeOptions');
