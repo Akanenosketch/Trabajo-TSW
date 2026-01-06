@@ -119,4 +119,12 @@ class UserService {
         });
 
     }
+
+    /**
+    * Lists the emails of all existing users. 
+    */
+    listAllUsers(){
+        return $.get(this.baseUrl);
+    }
+
 }
