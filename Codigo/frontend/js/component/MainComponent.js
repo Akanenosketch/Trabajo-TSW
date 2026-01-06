@@ -21,25 +21,9 @@ class MainComponent extends Fronty.RouterComponent {
 
     configRouter() {
         super.setRouterConfig({
-            'WelcomePage': {
-                //                component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'WelcomePage'
-            },
-            'Register': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'Register'
-            },
             'Login': {
                 //       component: new PostAddComponent(this.postsModel, this.userModel, this),
                 title: 'Login'
-            },
-            'UserEdit': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'UserEdit'
-            },
-            'ProjectIndex': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'ProjectIndex'
             },
             'ProjectAdd': {
                 component: new ProjectAddComponent(this.projectsModel, this.usersModel, this),
@@ -49,23 +33,38 @@ class MainComponent extends Fronty.RouterComponent {
                 component: new ProjectEditComponent(this.projectsModel, this.usersModel, this),
                 title: 'ProjectEdit'
             },
+            'ProjectIndex': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'ProjectIndex'
+            },
             'ProjectView': {
                 //       component: new PostAddComponent(this.postsModel, this.userModel, this),
                 title: 'ProjectView'
             },
-            'TaskView': {
+            'Register': {
                 //       component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'TaskView'
-            },
-            'TaskEdit': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
-                title: 'TaskEdit'
+                title: 'Register'
             },
             'TaskAdd': {
                 //       component: new PostAddComponent(this.postsModel, this.userModel, this),
                 title: 'TaskAdd'
             },
-
+            'TaskEdit': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'TaskEdit'
+            },
+            'TaskView': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'TaskView'
+            },
+            'UserEdit': {
+                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'UserEdit'
+            },
+            'WelcomePage': {
+                //                component: new PostAddComponent(this.postsModel, this.userModel, this),
+                title: 'WelcomePage'
+            },
             defaultRoute: 'WelcomePage' //lo que se visualiza por defecto
         });
 
