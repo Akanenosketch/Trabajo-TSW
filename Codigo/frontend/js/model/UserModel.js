@@ -1,5 +1,5 @@
 class UserModel extends Fronty.Model {
-    constructor(mode,username, user_mail, passwd) {
+    constructor(mode, username, user_mail, passwd) {
         super('UserModel');
 
         if (username) {
@@ -16,8 +16,10 @@ class UserModel extends Fronty.Model {
 
         this.isLogged = false;
 
-        this.mode = mode;
-        
+        if (mode) {
+            this.mode = mode;
+        }
+
     }
 
     /**
