@@ -13,6 +13,7 @@ $currentuserMail = $view->getVariable("currentusermail");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
     <link rel="stylesheet" type="text/css" href="./view/css/projects/index.css">
     <title><?= i18n("Dashboard") ?></title>
 </head>
@@ -22,13 +23,12 @@ $currentuserMail = $view->getVariable("currentusermail");
         <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
         <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
     </div>
-    
+    <button id="themeToggle" class="theme-toggle global" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
     <header>
         <div>
             <div class="username" id="userDisplay"><?= $currentuserName ?></div>
         </div>
         <div>
-            <!--Mejorar esto y meter en el CSS-->
             <a href="index.php?action=edit">
                 <button type="button" class="add-btn"><?= i18n("Editar Usuario") ?></button>
             </a>
@@ -77,6 +77,7 @@ $currentuserMail = $view->getVariable("currentusermail");
             </div>
         </div>
     </section>
+    <script src="./view/js/theme.js"></script>
 </body>
 
 </html>

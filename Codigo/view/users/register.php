@@ -10,6 +10,7 @@ $errors = $view->getVariable("errors");
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
     <link rel="stylesheet" type="text/css" href="./view/css/users/register.css">
     <title><?= i18n("Form de Registro") ?></title>
 </head>
@@ -57,6 +58,7 @@ $errors = $view->getVariable("errors");
         </form>
     </div>
 </div>    
+    <script src="./view/js/theme.js"></script>
 </body>
 
 <?php if (!is_null($errors)): ?>
