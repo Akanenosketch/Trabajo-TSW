@@ -13,11 +13,11 @@ class ProjectAddComponent extends Fronty.ModelComponent {
         this.usersModel = usersModel;
         this.addModel('users', usersModel);
 
-        //Config Router
-        this.router = router;
-
         //Config Services
         this.projectService = new ProjectService();
+
+        //Config Router
+        this.router = router;
 
         setupListeners();
     }

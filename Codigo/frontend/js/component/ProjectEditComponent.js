@@ -13,11 +13,11 @@ class ProjectEditComponent extends Fronty.ModelComponent {
         this.usersModel = usersModel;
         this.addModel('users', usersModel);
 
-        //Config Router
-        this.router = router;
-
         //Config Services
         this.projectService = new ProjectService();
+
+        //Config Router
+        this.router = router;
 
         setupListeners();
     }
@@ -57,8 +57,8 @@ class ProjectEditComponent extends Fronty.ModelComponent {
         let newUsers = {};
         let count = this.usersModel.usercount;
         for (let index = 0; index < count; index++) {
-            if ($('#user'+index).is(':checked')) {
-                newUsers['##user'+index] = $('#user'+index).val();
+            if ($('#user' + index).is(':checked')) {
+                newUsers['##user' + index] = $('#user' + index).val();
                 // Proceed with value
             }
         }
