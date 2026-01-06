@@ -1,11 +1,4 @@
-/*    // los errores, el projecto a editar, los users DE TODA LA APP, el email
-    actual, los users ACTUALES para edit, un contador de usuarios (lo de usernum
-    hay que mantenerlo como esta en rest, usernum1 = email)
-    //modelos = project, users,user
-
-
-    TODO*/
-class ProjectViewComponent extends Fronty.ModelComponent {
+class ProjectEditComponent extends Fronty.ModelComponent {
 
     constructor(projectsModel, usersModel, userModel, router) {
 
@@ -49,7 +42,7 @@ class ProjectViewComponent extends Fronty.ModelComponent {
 
     loadProject(projectID) {
         if (projectID != null) {
-            this.projectService.findPost(postId)
+            this.projectService.getProject(projectID)
                 .then((project) => {
                     this.projectsModel.setSelectedProject(
                         new ProjectModel(false, project.id, project.name, project.users, project.tasks)
@@ -64,14 +57,14 @@ class ProjectViewComponent extends Fronty.ModelComponent {
         let newUsers = {};
         let count = this.usersModel.usercount;
         for (let index = 0; index < count; index++) {
-            if ($('#user'+index).length > 0) {
-                newUsers['##user'+index] =$('#user'+index).val();
+            if ($('#user'+index).is(':checked')) {
+                newUsers['##user'+index] = $('#user'+index).val();
                 // Proceed with value
             }
         }
         this.projectsModel.selectedProject.users = newUsers;
 
-        this.projectService.createProject(this.projectsModel.selectedProject)
+        this.projectService.updateProject(this.projectsModel.selectedProject.id, this.projectsModel.selectedProject)
             .then(() => {
                 this.projectsModel.set((model) => {
                     model.errors = []
