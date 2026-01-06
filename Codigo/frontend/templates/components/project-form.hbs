@@ -1,0 +1,66 @@
+{{! Project Form, para edit y add}}
+<div id="newProjectModal" class="modal-overlay">
+    <div class="modal-box">
+        <h3>
+            {{#if editing}}
+            {{i18n "Editar Proyecto"}}
+            {{else}}
+            {{i18n "Nuevo Proyecto"}}
+            {{/if}}
+        </h3>
+        <form id="addProjectForm">
+
+            <div class="form-row">
+                <label>{{i18n "Nombre del Proyecto"}}</label>
+                <input id="newProjectName" type="text" name="name"
+                    required="required"
+                    minlength="1"
+                    value {{#if editing}}{{name}}{{/if}}"" />
+                <span
+                    class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+            </div>
+            <div class="form-row">
+                <label>{{i18n "Participantes"}}</label>
+                <div id="initialUsers" class="checkbox-list">
+
+                {{!-- Recorre el array de emails de UsersModel --}}
+                 {{#each users.users}}
+                        <div>
+                            {{!-- @index indexa segun el each, inicia en 0 --}}
+                            <input type="checkbox"
+                                name="user{{@index}}"
+                                value="{{this}}"
+                                {{!-- Si pertenecen al proyecto los marca --}}
+                                {{#ifIncludes this emails}}checked="checked"{{/ifIncludes}}
+                                />
+                            <label>
+                                {{this}}
+                            </label>
+                        </div>
+                    {{/each}}
+                </div>
+                <span
+                    class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+            </div>
+            <div>
+
+                <button type="button" class="btn"
+                    id="cancelProjectBtn">{{i18n "Cancelar"}}
+                </button>
+
+                {{#if editing}}
+                <input value="{{id}}" type="hidden"
+                    name="id" />
+                {{/if}}
+
+                <button type="button" class="btn primary">
+                    {{#if editing}}
+                    {{i18n "Editar Proyecto"}}
+                    {{else}}
+                    {{i18n "Crear proyecto"}}
+                    {{/if}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

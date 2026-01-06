@@ -127,7 +127,7 @@ class ProjectRest extends BaseRest{
 		$users = $this->userMapper->findAll();
 		$project->setName($data->name);
 		$projectUsers = array();
-		$userNum = 1;
+		$userNum = 0;
 		foreach ($users as $user) {
 			if (isset($data->users["user".$userNum])) {
 				array_push($projectUsers, $user);

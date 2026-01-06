@@ -7,7 +7,7 @@ class ProjectModel extends Fronty.Model {
     /**
      * Crea un modelo de un projecto con los datos recibidos
      */
-    constructor(id, name, users, tasks) {
+    constructor(toCreate, id, name, users, tasks) {
         super('ProjectModel');
 
         if (id) {
@@ -20,10 +20,17 @@ class ProjectModel extends Fronty.Model {
 
         if (users) {
             this.users = users;
+            this.emails = users.map((user) => user.user_mail);
         }
 
         if (tasks) {
             this.tasks = tasks;
+        }
+
+        if (toCreate) {
+            this.editing = !toCreate;
+        } else {
+            this.editing = true;
         }
 
     }

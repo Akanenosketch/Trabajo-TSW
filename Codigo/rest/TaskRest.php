@@ -126,7 +126,7 @@ class TaskRest extends BaseRest{
 
 		//Esta parte cambiarla
 		$users = array();
-		$userNum = 1;
+		$userNum = 0;
 		foreach ($project->getUsers() as $user) {
 			if (isset($data->users["user".$userNum])) {
 				array_push($users, $user);
