@@ -1,1 +1,70 @@
-TODO
+<div id="registerOverlay" class="overlay">
+    <div class="modal">
+        <header id="registerTitle">
+            {{#if_eq mode "register"}}
+            {{i18n "Editar Usuario"}}
+            {{/if_eq}}
+            {{#if_eq mode "edit"}}
+            {{i18n "Registrarse"}}
+            {{/if_eq}}
+            {{#if_eq mode "login"}}
+            {{i18n "Iniciar sesion"}}
+            {{/if_eq}}
+        </header>
+
+        <form id="registerForm">
+
+            {{#if_eq mode "login"}}
+            {{else}}
+            <div class="form-row">
+                <label for="regNombre">{{i18n "Nombre de Usuario"}}</label>
+                <input id="regNombre" name="nombreUsuario" type="text"
+                    placeholder="{{i18n " Nombre de Usuario"}}"
+                    value="{{#if_eq mode "edit"}}{{username}}{{/if}}"
+                    required="required" minlength="4" />
+            </div>
+            {{/if_eq}}
+
+            {{#if_eq mode "edit"}}
+            {{else}}
+            <div class="form-row">
+                <label for="regCorreo">{{i18n "Correo"}}</label>
+                <input id="regCorreo" name="correo" type="email"
+                    placeholder="{{#if_eq mode "register"}}ivan.martinez.estevez@uvigo.es
+                    {{else}}{{i18n "Escribe tu correo"}}{{/if}}"
+                    required="required"
+                    pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
+            </div>
+            {{/if_eq}}
+
+            <div class="form-row">
+                <label for="regPass">{{i18n "Contraseña"}}</label>
+                <input id="regPass" name="contrasena" type="password"
+                    placeholder="{{i18n "Contraseña"}}" required="required"
+                    minlength="6" />
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="secondary">
+                    {{i18n "Cancelar"}}
+                </button>
+
+                <button type="button" class="primary">
+                    {{#if_eq mode "register"}}
+                    {{i18n "Crear Cuenta"}}
+                    {{/if_eq}}
+                    {{#if_eq mode "edit"}}
+                    {{i18n "Editar Usuario"}}
+                    {{/if_eq}}
+                    {{#if_eq mode "login"}}
+                    {{i18n "Entrar"}}
+                    {{/if_eq}}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
