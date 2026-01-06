@@ -15,7 +15,7 @@
                 <input id="newProjectName" type="text" name="name"
                     required="required"
                     minlength="1"
-                    value {{#if selectedProject.editing}}{{selectedProject.name}}{{/if}}"" />
+                    value="{{#if selectedProject.editing}}{{selectedProject.name}}{{/if}}" />
                 <span
                     class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
             </div>

@@ -5,19 +5,20 @@ Ampliaciones hechas
 -(FP3) Añadir un sistema de prioridad (baja, media, alta) en las tareas. 
 -(FP7) Ampliar los datos de las tareas:
 -(FP8) Añadir fechas a las tareas (por ejemplo, fecha de inicio y duración) y la posibilidad de editarlas. (creo)
+-(FP5) Modo claro / modo oscuro como preferencia de usuario.
 
 
 
 TODO
 
--(FP5) Modo claro / modo oscuro como preferencia de usuario. (En proceso manu)
 
-La parte de frontend
-probar que el MVC actual funciona
+Acabar los components y templates
+Probar SPA y MVC finales
+CSS a SPA
 
 
 
-Ampliaciones por hacer: (0.9 pts)
+Ampliaciones posibles por hacer: (0.9 pts)
 
 -(FP4) Gestionar la baja de usuarios en un proyecto.
 -(FP9) Ver estadísticas de usuario (tareas asignadas, completadas, pendientes, porcentaje de participación).
@@ -31,9 +32,6 @@ Arreglar
 
 Scroll a los forms
 
-F3: Al visualizar directamente el nombre del proyecto en azul de enlaces se hace difícil leer con contraste del fondo oscuro.
-
-F5: El botón de volver en la cabecera no es muy intuitivo.
 
 El link del manual esta mal
 La jerarquia de la ilustracion 1 habra que actualizarla al acabar
