@@ -13,7 +13,7 @@ class ProjectsModel extends Fronty.Model {
    */
   setSelectedProject(project) {
     this.set((self) => {
-      self.setSelectedProject = project;
+      self.selectedProject = project;
     });
   }
 

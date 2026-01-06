@@ -2,7 +2,7 @@
 <div id="newProjectModal" class="modal-overlay">
     <div class="modal-box">
         <h3>
-            {{#if editing}}
+            {{#if selectedProject.editing}}
             {{i18n "Editar Proyecto"}}
             {{else}}
             {{i18n "Nuevo Proyecto"}}
@@ -15,7 +15,7 @@
                 <input id="newProjectName" type="text" name="name"
                     required="required"
                     minlength="1"
-                    value {{#if editing}}{{name}}{{/if}}"" />
+                    value {{#if selectedProject.editing}}{{selectedProject.name}}{{/if}}"" />
                 <span
                     class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
             </div>
@@ -31,7 +31,7 @@
                                 name="user{{@index}}"
                                 value="{{this}}"
                                 {{!-- Si pertenecen al proyecto los marca --}}
-                                {{#ifIncludes this emails}}checked="checked"{{/ifIncludes}}
+                                {{#ifIncludes this selectedProject.emails}}checked="checked"{{/ifIncludes}}
                                 />
                             <label>
                                 {{this}}
@@ -48,13 +48,13 @@
                     id="cancelProjectBtn">{{i18n "Cancelar"}}
                 </button>
 
-                {{#if editing}}
+                {{#if selectedProject.editing}}
                 <input value="{{id}}" type="hidden"
                     name="id" />
                 {{/if}}
 
-                <button type="button" class="btn primary">
-                    {{#if editing}}
+                <button type="button" class="btn primary" id="saveProjectBtn">
+                    {{#if selectedProject.editing}}
                     {{i18n "Editar Proyecto"}}
                     {{else}}
                     {{i18n "Crear proyecto"}}

@@ -5,6 +5,7 @@ class UsersModel extends Fronty.Model {
 
     // model attributes
     this.users = [];
+    this.usercount = 0;
   }
 
   /**
@@ -14,6 +15,7 @@ class UsersModel extends Fronty.Model {
   setUsers(users) {
     this.set((self) => {
       self.users = users;
+      self.usercount = users.length;
     });
   }
   
