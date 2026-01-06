@@ -47,7 +47,10 @@ $errors = $view->getVariable("errors");
             </div>
 
             <div class="form-actions">
-                <a href="index.php?action=index">
+                <?php if (!is_null($user)): ?><a href="index.php?controller=projects&amp;action=index"><?php endif ?>
+                <?php if (is_null($user)): ?><a href="index.php?action=index"><?php endif ?>
+
+                
                     <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>
                 </a>
                 <button type="submit" class="primary"
