@@ -10,7 +10,7 @@
     --btn-text-primary: #000;
     --border-dark: #2a2d3a;
     --danger: #ff3b3b;
-    /*font-family: 'Inter', system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;*/
+    font-family: 'Inter', system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
 
 body {
