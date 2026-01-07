@@ -1,10 +1,90 @@
-TODO errores
-Variables errores para todo menos view, el mode (view, add, edit), la task a
-mostrar, el array de users TOTALES DEL PROYECTO , el array de users de la tarea,
+class TaskAddComponent extends Fronty.ModelComponent {
 
+    constructor(projectsModel, router) {
+        let taskModel = new TaskModel("add");
+        super(Handlebars.templates.taskForm, taskModel);
 
-setear botones, guardar en edit y add
-projectID necesario en add
+        //Config Models
+        this.taskModel = taskModel;
 
+        this.projectsModel = projectsModel;
+        this.addModel('projects', projectsModel);
 
-Modelo= Task el principal, conocer los users del proyecto con ProjectModel (recibir el id y poder recuperarlo) 
+        //Config Services
+        this.projectService = new ProjectService();
+        this.taskService = new TaskService();
+
+        //Config Router
+        this.router = router;
+
+        setupListeners();
+
+    }
+
+    setupListeners() {
+        this.addEventListener('click', '#saveTaskBtn', () => {
+            saveTask();
+        });
+
+        this.addEventListener('click', '#cancelTaskBtn', () => {
+            this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
+        });
+
+    }
+
+    onStart() {
+        let projectId = this.router.getRouteQueryParam('projectId');
+        this.loadProject(projectId);
+    }
+
+    loadProject(projectID) {
+        if (projectID != null) {
+            this.projectService.getProject(projectID)
+                .then((project) => {
+                    this.projectsModel.setSelectedProject(
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks)
+                    );
+                });
+        }
+    }
+
+    saveTask() {
+
+        //Almacenar los datos de la task en el taskModel
+        //No editar ID o ProjectId
+        this.taskModel.setName($('#modalTaskName').val());
+        this.taskModel.setDesc($('#modalTaskDesc').val());
+        this.taskModel.setStatus($('#modalTaskStatus').val());
+
+        let newUsers = {};
+        let count = this.projectsModel.selectedProject.users.length;
+        for (let index = 0; index < count; index++) {
+            if ($('#user' + index).is(':checked')) {
+                newUsers['user' + index] = $('#user' + index).val();
+            }
+        }
+        this.taskModel.setUsers(newUsers);
+        this.taskModel.setPriority($('#modalTaskPriority').val());
+        this.taskModel.setBeginDate($('#modalTaskBegin').val());
+        this.taskModel.setEndDate($('#modalTaskEnd').val());
+
+        this.taskService.create(this.projectsModel.selectedProject.id, this.taskModel)
+            .then(() => {
+                this.taskModel.set((model) => {
+                    model.errors = []
+                });
+                this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
+            })
+            .fail((xhr, errorThrown, statusText) => {
+                if (xhr.status == 400) {
+                    this.taskModel.set((model) => {
+                        model.errors = xhr.responseJSON;
+                    });
+                } else {
+                    alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
+                }
+            });
+
+    }
+
+}

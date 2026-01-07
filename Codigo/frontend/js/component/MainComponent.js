@@ -46,7 +46,7 @@ class MainComponent extends Fronty.RouterComponent {
                 title: 'Register'
             },
             'TaskAdd': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                component: new TaskAddComponent(this.projectsModel, this),
                 title: 'TaskAdd'
             },
             'TaskEdit': {
