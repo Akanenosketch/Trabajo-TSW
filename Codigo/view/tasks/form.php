@@ -5,7 +5,6 @@ $errors = $view->getVariable("errors");
 $isViewing = $view->getVariable("isViewing", false);
 $task = $view->getVariable("task");
 $users = $view->getVariable("users");
-$currentuserMail = $view->getVariable("currentusermail");
 $projectID = $view->getVariable("projectID");
 $userNum = 1;
 $taskUsers = array();
