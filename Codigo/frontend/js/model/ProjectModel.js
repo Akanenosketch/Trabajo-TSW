@@ -48,6 +48,10 @@ class ProjectModel extends Fronty.Model {
         };
     }
 
+    getTaskByID(taskID){
+        return this.tasks.find(task => task.id == taskID);
+    }
+
     setName(name) {
         this.set((self) => {
             self.name = name;

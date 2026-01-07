@@ -68,6 +68,21 @@ class TaskModel extends Fronty.Model {
         };
     }
 
+    setTask(task) {
+        this.set((self) => {
+            self.id = task.id;
+            self.name = task.name;
+            self.desc = task.desc;
+            self.projectID = task.projectID;
+            self.status = task.status;
+            self.users = task.users;
+            self.emails = task.users.map((user) => user.user_mail);
+            self.priority = task.priority;
+            self.beginDate = task.beginDate;
+            self.endDate = task.endDate;
+        });
+    }
+
     setID(id) {
         this.set((self) => {
             self.id = id;
