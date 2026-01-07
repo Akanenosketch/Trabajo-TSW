@@ -22,7 +22,7 @@ class MainComponent extends Fronty.RouterComponent {
     configRouter() {
         super.setRouterConfig({
             'Login': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                component: new LoginComponent(this.userModel, this),
                 title: 'Login'
             },
             'ProjectAdd': {
