@@ -14,7 +14,7 @@ I18n.translations = {
   "Fecha de fin no valida, debe ser posterior a la fecha de inicio": "Invalid end date, must be later than start date",
   "Una app de administracion al estilo Kanban": "A Kanban style manager app",
   "Informacion:": "Information:",
-  "Proyecto Trabajo-TSW — Interfaz de Ejemplo.": "TSW-Work Project — Example Interface.",
+  "Proyecto Trabajo-TSW — Interfaz.": "TSW-Work Project — Interface.",
   "Contacto: equipo@example.com · Version 1.0": "Contact: equipo@example.com · Version 1.0",
   "Fecha de inicio no valida, debe seguir el formato AAAA-MM-DD": "Invalid begin date, must be AAAA-MM-DD",
   "Fecha de fin no valida, debe seguir el formato AAAA-MM-DD": "Invalid end date, must be AAAA-MM-DD",
