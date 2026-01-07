@@ -42,7 +42,7 @@ class MainComponent extends Fronty.RouterComponent {
                 title: 'ProjectView'
             },
             'Register': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                component: new RegisterComponent(this),
                 title: 'Register'
             },
             'TaskAdd': {
@@ -58,7 +58,7 @@ class MainComponent extends Fronty.RouterComponent {
                 title: 'TaskView'
             },
             'UserEdit': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                component: new UserEditComponent(this.userModel, this),
                 title: 'UserEdit'
             },
             'WelcomePage': {

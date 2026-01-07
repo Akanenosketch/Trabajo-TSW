@@ -1,8 +1,8 @@
-class ProjectEditComponent extends Fronty.ModelComponent {
+class UserEditComponent extends Fronty.ModelComponent {
 
     constructor(userModel, router) {
 
-        super(Handlebars.templates.projectForm, userModel);
+        super(Handlebars.templates.userForm, userModel);
 
         //Config Models
         this.userModel = userModel;

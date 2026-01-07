@@ -40,7 +40,7 @@ Promise.all([
   loadTextFile('templates/components/task-form.hbs').then((source) =>
     Handlebars.templates.taskForm = Handlebars.compile(source)),
   loadTextFile('templates/components/user-form.hbs').then((source) =>
-    Handlebars.templates.usertForm = Handlebars.compile(source)),
+    Handlebars.templates.userForm = Handlebars.compile(source)),
   loadTextFile('templates/components/welcome-page.hbs').then((source) =>
     Handlebars.templates.welcomePage = Handlebars.compile(source))
 
