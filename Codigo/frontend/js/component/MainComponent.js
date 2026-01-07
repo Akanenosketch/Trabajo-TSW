@@ -62,7 +62,7 @@ class MainComponent extends Fronty.RouterComponent {
                 title: 'UserEdit'
             },
             'WelcomePage': {
-                //                component: new PostAddComponent(this.postsModel, this.userModel, this),
+                component: new WelcomeComponent(this),
                 title: 'WelcomePage'
             },
             defaultRoute: 'WelcomePage' //lo que se visualiza por defecto
