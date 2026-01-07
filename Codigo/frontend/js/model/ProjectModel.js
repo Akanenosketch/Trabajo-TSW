@@ -57,6 +57,8 @@ class ProjectModel extends Fronty.Model {
     setUsers(users) {
         this.set((self) => {
             self.users = users;
+            self.emails = users.map((user) => user.user_mail);
+
         });
     }
 

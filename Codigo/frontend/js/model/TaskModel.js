@@ -4,7 +4,7 @@ class TaskModel extends Fronty.Model {
     /**
      * Crea un modelo de un projecto con los datos recibidos
      */
-    constructor(id, name, desc, projectID, status, users, priority, beginDate, endDate) {
+    constructor(mode, id, name, desc, projectID, status, users, priority, beginDate, endDate) {
         super('TaskModel');
 
         if (id) {
@@ -29,6 +29,7 @@ class TaskModel extends Fronty.Model {
 
         if (users) {
             this.users = users;
+            this.emails = users.map((user) => user.user_mail);
         }
 
         if (priority) {
@@ -41,6 +42,10 @@ class TaskModel extends Fronty.Model {
 
         if (endDate) {
             this.endDate = endDate;
+        }
+
+        if (mode) {
+            this.mode = mode;
         }
 
     }
@@ -96,6 +101,7 @@ class TaskModel extends Fronty.Model {
     setUsers(users) {
         this.set((self) => {
             self.users = users;
+            self.emails = users.map((user) => user.user_mail);
         });
     }
 
@@ -117,5 +123,10 @@ class TaskModel extends Fronty.Model {
         });
     }
 
+    setMode(mode) {
+        this.set((self) => {
+            self.mode = mode;
+        });
+    }
 
 }
