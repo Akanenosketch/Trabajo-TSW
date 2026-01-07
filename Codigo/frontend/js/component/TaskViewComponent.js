@@ -1,19 +1,56 @@
-/*TODO errores
-Variables errores para todo menos view, el mode(view, add, edit), la task a
-mostrar, el array de users TOTALES DEL PROYECTO, el array de users de la tarea,
+class TaskViewComponent extends Fronty.ModelComponent {
 
+    constructor(projectsModel, router) {
+        let taskModel = new TaskModel("view");
+        super(Handlebars.templates.taskForm, taskModel);
 
-    setear botones, guardar en edit y add
-projectID necesario en add
+        //Config Models
+        this.taskModel = taskModel;
 
+        this.projectsModel = projectsModel;
+        this.addModel('projects', projectsModel);
 
-NECESITA MODELO DE PROJECTS projects.selectedProject.users
-Reibe el id como parametro
+        //Config Services
+        this.projectService = new ProjectService();
 
-Modelo = Task el principal, conocer los users del proyecto con ProjectModel(recibir el id y poder recuperarlo) 
-hay que actualizar el project seleccionado para actualizar tasks supngo ? o se hace en otro lafo
-seleccionar el projecto en el ModelComponent
+        //Config Router
+        this.router = router;
 
-El update de projects se hace en project index
-El update de 1 concreto se hace con get en project view
-*/
+        setupListeners();
+
+    }
+
+    setupListeners() {
+
+        this.addEventListener('click', '#cancelTaskBtn', () => {
+            this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
+        });
+
+    }
+
+    onStart() {
+        let projectId = this.router.getRouteQueryParam('projectId');
+        let taskId = this.router.getRouteQueryParam('taskId');
+        this.loadProject(projectId);
+        this.loadTask(taskId);
+    }
+
+    loadProject(projectID) {
+        if (projectID != null) {
+            this.projectService.getProject(projectID)
+                .then((project) => {
+                    this.projectsModel.setSelectedProject(
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks)
+                    );
+                });
+        }
+    }
+
+    loadTask(taskID) {
+        if (taskID != null) {
+            let task = this.projectsModel.selectedProject.getTaskByID(taskID);
+            this.taskModel.setTask(task);
+        }
+    }
+
+}

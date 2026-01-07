@@ -2,7 +2,7 @@ class TaskEditComponent extends Fronty.ModelComponent {
 
     constructor(projectsModel, router) {
         let taskModel = new TaskModel("edit");
-        super(Handlebars.templates.taskDorm, taskModel);
+        super(Handlebars.templates.taskForm, taskModel);
 
         //Config Models
         this.taskModel = taskModel;
