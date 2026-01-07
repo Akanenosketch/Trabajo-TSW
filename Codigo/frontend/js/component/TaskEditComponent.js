@@ -59,26 +59,36 @@ class TaskEditComponent extends Fronty.ModelComponent {
 
     saveTask() {
 
-        /*
-                let provUserModel = new UserModel();
-        provUserModel.setMail(this.userModel.user_mail);
-        provUserModel.setName($('#regNombre').val());
-        provUserModel.setPass($('#regPass').val());
 
-        this.userService.edit(provUserModel)
+        //Almacenar los datos de la task en el taskModel
+        //No editar ID o ProjectId
+        this.taskModel.setName($('#modalTaskName').val());
+        this.taskModel.setDesc($('#modalTaskDesc').val());
+        this.taskModel.setStatus($('#modalTaskStatus').val());
+
+
+        let newUsers = {};
+        let count = this.projectsModel.selectedProject.users.length;
+        for (let index = 0; index < count; index++) {
+            if ($('#user' + index).is(':checked')) {
+                newUsers['user' + index] = $('#user' + index).val();
+            }
+        }
+        this.taskModel.setUsers(newUsers);
+        this.taskModel.setPriority($('#modalTaskPriority').val());
+        this.taskModel.setBeginDate($('#modalTaskBegin').val());
+        this.taskModel.setEndDate($('#modalTaskEnd').val());
+
+        this.taskService.updateTask(this.taskModel.projectID, this.taskModel.id, this.taskModel)
             .then(() => {
-
-                this.userModel.setLoggeduser(provUserModel);
-                this.userModel.setMode("");
-                this.userModel.set((model) => {
-                      model.errors = []
+                this.taskModel.set((model) => {
+                    model.errors = []
                 });
-
-                this.router.goToPage('ProjectIndex');
+                this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
             })
             .fail((xhr, errorThrown, statusText) => {
                 if (xhr.status == 400) {
-                    this.userModel.set((model) => {
+                    this.taskModel.set((model) => {
                         model.errors = xhr.responseJSON;
                     });
                 } else {
@@ -86,40 +96,6 @@ class TaskEditComponent extends Fronty.ModelComponent {
                 }
             });
 
-
-        */
-        /*
-        this.projectsModel.selectedProject.name = $('#newProjectName').val();
- //Almacenar usuarios
- let newUsers = {};
- let count = this.usersModel.usercount;
- for (let index = 0; index < count; index++) {
-     if ($('#user' + index).is(':checked')) {
-         newUsers['##user' + index] = $('#user' + index).val();
-         // Proceed with value
-     }
- }
- this.projectsModel.selectedProject.users = newUsers;
- 
- this.projectService.updateProject(this.projectsModel.selectedProject.id, this.projectsModel.selectedProject)
-     .then(() => {
-         this.projectsModel.set((model) => {
-             model.errors = []
-         });
-         this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
-     })
-     .fail((xhr, errorThrown, statusText) => {
-         if (xhr.status == 400) {
-             this.projectsModel.set((model) => {
-                 model.errors = xhr.responseJSON;
-             });
-         } else {
-             alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
-         }
-     });
- 
- 
- */
     }
 
 }

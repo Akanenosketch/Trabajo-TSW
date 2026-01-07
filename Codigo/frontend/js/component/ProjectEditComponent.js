@@ -61,8 +61,7 @@ class ProjectEditComponent extends Fronty.ModelComponent {
         let count = this.usersModel.usercount;
         for (let index = 0; index < count; index++) {
             if ($('#user' + index).is(':checked')) {
-                newUsers['##user' + index] = $('#user' + index).val();
-                // Proceed with value
+                newUsers['user' + index] = $('#user' + index).val();
             }
         }
         this.projectsModel.selectedProject.users = newUsers;
