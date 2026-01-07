@@ -12,6 +12,7 @@ class ProjectEditComponent extends Fronty.ModelComponent {
 
         //Config Services
         this.projectService = new ProjectService();
+        this.userService = new UserService();
 
         //Config Router
         this.router = router;
@@ -35,6 +36,11 @@ class ProjectEditComponent extends Fronty.ModelComponent {
     onStart() {
         var selectedId = this.router.getRouteQueryParam('id');
         this.loadProject(selectedId);
+        this.userService.listAllUsers()
+            .then((emails) => {
+                this.usersModel.setUsers();
+            });
+
     }
 
     loadProject(projectID) {
