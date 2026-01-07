@@ -15,7 +15,7 @@ TODO
 Acabar los components y templates
 Probar SPA y MVC finales
 CSS a SPA
-
+va a hacer falta tocar los errores para cuando el login falla
 
 
 Ampliaciones posibles por hacer: (0.9 pts)

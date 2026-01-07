@@ -22,6 +22,8 @@
                     placeholder="{{i18n " Nombre de Usuario"}}"
                     value="{{#if_eq mode "edit"}}{{username}}{{/if}}"
                     required="required" minlength="4" />
+                <span
+                    class="error-span">{{#i18n}}{{errors.username}}{{/i18n}}</span>
             </div>
             {{/if_eq}}
 
@@ -34,6 +36,8 @@
                     {{else}}{{i18n "Escribe tu correo"}}{{/if}}"
                     required="required"
                     pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
+                <span
+                    class="error-span">{{#i18n}}{{errors.user_mail}}{{/i18n}}</span>
             </div>
             {{/if_eq}}
 
@@ -42,14 +46,16 @@
                 <input id="regPass" name="contrasena" type="password"
                     placeholder="{{i18n "Contraseña"}}" required="required"
                     minlength="6" />
+                <span
+                    class="error-span">{{#i18n}}{{errors.passwd}}{{/i18n}}</span>
             </div>
 
             <div class="form-actions">
-                <button type="button" class="secondary">
+                <button id="cancelUserBtn" type="button" class="secondary">
                     {{i18n "Cancelar"}}
                 </button>
 
-                <button type="button" class="primary">
+                <button id="saveUserBtn" type="button" class="primary">
                     {{#if_eq mode "register"}}
                     {{i18n "Crear Cuenta"}}
                     {{/if_eq}}

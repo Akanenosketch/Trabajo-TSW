@@ -71,4 +71,10 @@ class UserModel extends Fronty.Model {
         });
     }
 
+    setMode(mode) {
+        this.set((self) => {
+            self.mode = mode;
+        });
+    }
+
 }

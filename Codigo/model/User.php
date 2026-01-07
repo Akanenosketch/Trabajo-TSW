@@ -129,7 +129,6 @@ class User
 
 		if (strlen(trim($this->username)) < 4) {
 			$errors["username"] = i18n("nombre es obligatorio");
-
 		}
 		if (strlen(trim($this->passwd)) < 6) {
 			$errors["passwd"] = i18n("Contraseña es obligatoria");

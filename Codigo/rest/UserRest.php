@@ -42,7 +42,9 @@ class UserRest extends BaseRest{
 				$this->userMapper->save($user);
 			} else {
 				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
-				echo ("Existe un usuario con el mismo correo");
+				$errors = array();
+				$errors["user_mail"] = i18n("Existe un usuario con el mismo correo");
+				echo (json_encode($errors));
 				return;
 			}
 			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
@@ -69,7 +71,9 @@ class UserRest extends BaseRest{
 				$this->userMapper->update($user);
 			} else {
 				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
-				echo ("No existe un usuario con el mismo correo");
+				$errors = array();
+				$errors["user_mail"] = i18n("No existe un usuario con el mismo correo");
+				echo (json_encode($errors));
 				return;
 			}
 			header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');

@@ -91,7 +91,7 @@ class UserService {
 
     /**
      * Edits the current user
-     * @param  user the editted user (UserModel?) 
+     * @param  user the editted user (UserModel) 
      */
     edit(user) {
         var login = window.sessionStorage.getItem('login');
