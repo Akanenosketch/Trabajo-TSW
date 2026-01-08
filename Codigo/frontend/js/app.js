@@ -18,7 +18,7 @@ function loadTextFile(url) {
 
 // Configuration del backend
 var AppConfig = {
-  backendServer: 'http://localhost/rest'
+  backendServer: 'http://localhost/rest/'
 }
 
 //Carga las plantillas, las compila, y las almacena
