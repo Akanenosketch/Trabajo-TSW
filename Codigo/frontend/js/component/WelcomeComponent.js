@@ -15,11 +15,11 @@ class WelcomeComponent extends Fronty.ModelComponent {
     setupListeners() {
 
         this.addEventListener('click', '#openLogin', () => {
-            this.router.goToPage('Register');
+            this.router.goToPage('Login');
         });
 
         this.addEventListener('click', '#openRegister', () => {
-            this.router.goToPage('Login');
+            this.router.goToPage('Register');
         });
 
     }
