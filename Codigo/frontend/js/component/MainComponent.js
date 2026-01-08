@@ -24,47 +24,47 @@ class MainComponent extends Fronty.RouterComponent {
         super.setRouterConfig({
             'Login': {
                 component: new LoginComponent(this.userModel, this),
-                title: 'Login'
+                title: I18n.translate("Iniciar Sesion")
             },
             'ProjectAdd': {
                 component: new ProjectAddComponent(this.projectsModel, this.usersModel, this),
-                title: 'ProjectAdd'
+                title: I18n.translate("Añadir Proyecto")
             },
             'ProjectEdit': {
                 component: new ProjectEditComponent(this.projectsModel, this.usersModel, this),
-                title: 'ProjectEdit'
+                title: I18n.translate("Editar Proyecto")
             },
             'ProjectIndex': {
                 component: new ProjectIndexComponent(this.projectsModel, this.userModel, this),
-                title: 'ProjectIndex'
+                title: I18n.translate("Dashboard")
             },
             'ProjectView': {
                 component: new ProjectViewComponent(this.projectsModel, this),
-                title: 'ProjectView'
+                title: I18n.translate("Info Proyecto")
             },
             'Register': {
                 component: new RegisterComponent(this),
-                title: 'Register'
+                title: I18n.translate("Registrarse")
             },
             'TaskAdd': {
                 component: new TaskAddComponent(this.projectsModel, this),
-                title: 'TaskAdd'
+                title: I18n.translate("Añadir Tarea")
             },
             'TaskEdit': {
                 component: new TaskEditComponent(this.projectsModel, this),
-                title: 'TaskEdit'
+                title: I18n.translate("Editar Tarea")
             },
             'TaskView': {
                 component: new TaskViewComponent(this.projectsModel, this),
-                title: 'TaskView'
+                title: I18n.translate("Ver Tarea")
             },
             'UserEdit': {
                 component: new UserEditComponent(this.userModel, this),
-                title: 'UserEdit'
+                title: I18n.translate("Editar Usuario")
             },
             'WelcomePage': {
                 component: new WelcomeComponent(this),
-                title: 'WelcomePage'
+                title: I18n.translate("Pagina de Bienvenida")
             },
             defaultRoute: 'WelcomePage' //lo que se visualiza por defecto
         });

@@ -1,7 +1,17 @@
 //Cargado dinamicamente por I18n.js
 
 I18n.translations = {
-  "Alternar tema": "Change Theme",
+  "Pagina de Bienvenida": "Welcome Page",
+  "Registrarse": "Register",
+  "Iniciar Sesion": "Login",
+  "Editar Usuario": "Edit User",
+  "Dashboard": "Dashboard",
+  "Añadir Tarea": "Add Task",
+  "Editar Tarea": "Edit Task",
+  "Ver Tarea": "View Task",
+  "Añadir Proyecto": "Add Project",
+  "Editar Projecto": "Edit Project",
+  "Info Proyecto": "Project Info",
   "Baja": "Low",
   "Media": "Medium",
   "Alta": "High",
