@@ -21,8 +21,6 @@ var AppConfig = {
   backendServer: 'http://localhost/rest'
 }
 
-
-//Revisar y añadir los templates que se usen
 //Carga las plantillas, las compila, y las almacena
 Handlebars.templates = {};
 Promise.all([

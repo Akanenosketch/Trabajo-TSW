@@ -2,7 +2,8 @@ class WelcomeComponent extends Fronty.ModelComponent {
 
     constructor(router) {
 
-        super(Handlebars.templates.welcomePage, userModel);
+        let defaultModel= new UserModel();
+        super(Handlebars.templates.welcomePage, defaultModel);
 
         //Config Router
         this.router = router;

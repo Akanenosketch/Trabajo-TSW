@@ -3,6 +3,7 @@
 
 $i18n_messages =
 	array(
+		"Alternar tema" => "Change Theme",
 		"Baja" => "Low",
 		"Media" => "Medium",
 		"Alta" => "High",

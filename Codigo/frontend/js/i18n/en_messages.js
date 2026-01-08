@@ -1,7 +1,7 @@
 //Cargado dinamicamente por I18n.js
 
 I18n.translations = {
-
+  "Alternar tema": "Change Theme",
   "Baja": "Low",
   "Media": "Medium",
   "Alta": "High",
