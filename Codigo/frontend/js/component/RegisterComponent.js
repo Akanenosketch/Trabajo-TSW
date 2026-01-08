@@ -14,7 +14,8 @@ class RegisterComponent extends Fronty.ModelComponent {
         //Config Router
         this.router = router;
 
-        setupListeners();
+        this.setupListeners();
+
 
     }
 

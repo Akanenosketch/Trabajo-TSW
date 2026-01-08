@@ -9,7 +9,7 @@ class MainComponent extends Fronty.RouterComponent {
         this.usersModel = new UsersModel(); //Modelo para gestionar lista de Users
         this.projectsModel = new ProjectsModel(); //Modelo para gestionar Projects
 
-        configRouter();
+        this.configRouter();
 
         Handlebars.registerHelper('currentPage', () => {
             return super.getCurrentPage();
@@ -20,6 +20,7 @@ class MainComponent extends Fronty.RouterComponent {
     }
 
     configRouter() {
+        console.log('Configuring router...');
         super.setRouterConfig({
             'Login': {
                 component: new LoginComponent(this.userModel, this),

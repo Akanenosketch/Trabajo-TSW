@@ -1,1 +1,362 @@
-Meter el css combinado
+/* =========================================
+   1. VARIABLES & THEMES
+   ========================================= */
+:root {
+    /* --- Colors --- */
+    --bg-dark: #0a0b0f;
+    --bg-light: #141721;
+    --surface-dark: #1a1b23;
+    --surface-lighter: #22242e;
+    
+    /* --- Accents --- */
+    --accent-neon: #00ff9d;
+    --accent-glow: #00cc7e;
+    
+    /* --- Text --- */
+    --text-bright: #ffffff;
+    --text-dim: #9da3b4;
+    --btn-text-primary: #000000;
+    
+    /* --- UI --- */
+    --border-dark: #2a2d3a;
+    --danger: #ff3b3b;
+    
+    /* --- Fonts --- */
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* Light Mode Overrides (from theme.css) */
+.light-theme {
+    --bg-dark: #ffffff;
+    --bg-light: #888fa6;
+    --surface-dark: #ffffff;
+    --surface-lighter: #f5f6fa;
+    --accent-neon: #00664d;
+    --accent-glow: #004d3a;
+    --text-bright: #000000;
+    --text-dim: #525769;
+    --btn-text-primary: #ffffff;
+    --border-dark: #e6e7ee;
+    --danger: #c0392b;
+}
+
+/* =========================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================= */
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background: var(--bg-dark); /* Default flat background */
+    color: var(--text-bright);
+    min-height: 100vh;
+    transition: background 200ms ease, color 200ms ease;
+}
+
+/* Use this class for Login, Register, and Welcome pages */
+.layout-centered-gradient {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+}
+
+a {
+    color: var(--accent-neon);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--accent-glow);
+}
+
+/* =========================================
+   3. COMPONENTS: BUTTONS
+   ========================================= */
+button, .btn {
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Primary Neon Button */
+.btn-primary, button.primary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary:hover, button.primary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Secondary/Outline Button */
+.btn-secondary, button.secondary {
+    background: transparent;
+    color: var(--accent-neon);
+    border: 2px solid var(--accent-neon);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Language Switcher Buttons */
+.lang-switch {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    background: var(--accent-neon);
+    display: flex;
+    align-items: center;
+    color: var(--bg-dark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.lang-btn:hover {
+    background: var(--accent-glow);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--accent-neon);
+}
+
+/* =========================================
+   4. COMPONENTS: FORMS & INPUTS
+   ========================================= */
+input, select, textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0,255,157,0.25);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+/* Checkboxes */
+.checkbox-list > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.checkbox-list input[type="checkbox"] {
+    accent-color: var(--accent-neon);
+}
+
+/* Error Messages */
+.error {
+    color: var(--danger);
+    font-size: 14px;
+    background: rgba(255, 59, 59, 0.1);
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 59, 59, 0.2);
+}
+
+/* =========================================
+   5. COMPONENTS: MODALS & OVERLAYS
+   ========================================= */
+.overlay, .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 15, 0.8); /* Fallback */
+    /* Modern transparency mix */
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--bg-dark), transparent 45%),
+            color-mix(in srgb, var(--bg-light), transparent 45%));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal, .modal-box {
+    width: 100%;
+    max-width: 520px;
+    background: var(--surface-dark);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 22px rgba(0, 255, 157, 0.09);
+    animation: fadeIn 0.25s ease-out;
+}
+
+.modal h2, .modal h3 {
+    margin: 0 0 16px;
+    color: var(--accent-neon);
+}
+
+.modal-footer, .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* =========================================
+   6. PAGE: WELCOME & AUTH (Login/Register)
+   ========================================= */
+.welcome-card {
+    background: var(--surface-dark);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 6px 24px rgba(0, 255, 157, 0.08);
+    max-width: 420px;
+    width: 100%;
+}
+
+.welcome-card h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    color: var(--accent-neon);
+}
+
+/* =========================================
+   7. PAGE: DASHBOARD & VIEWS
+   ========================================= */
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface-dark);
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    margin: 20px 0 32px;
+    position: relative;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 18px;
+    background: var(--surface-lighter);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    color: var(--accent-neon);
+}
+
+/* Table */
+.table-container {
+    background: var(--surface-dark);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-dark);
+    overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th, td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+th {
+    background: var(--surface-lighter);
+    color: var(--text-dim);
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+/* Project View Layout */
+.cols {
+    display: flex;
+    gap: 24px;
+}
+
+.col {
+    flex: 1;
+    background: var(--surface-dark);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+}
+
+.stats-container {
+    display: flex;
+    gap: 35px;
+    margin-top: 10px;
+}
+
+.stat-item span:first-child {
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: bold;
+    display: block;
+}
+
+/* =========================================
+   8. ANIMATIONS & MEDIA QUERIES
+   ========================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .cols, .stats-container, .header-content {
+        flex-direction: column;
+    }
+    
+    .stats-container {
+        align-items: center;
+    }
+
+    .modal {
+        width: 90%;
+        margin: 10px;
+    }
+}
