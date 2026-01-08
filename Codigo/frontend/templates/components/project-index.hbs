@@ -1,1 +1,48 @@
-TODO
+<div>
+
+    <header>
+        <div>
+            <div class="username" id="userDisplay">{{user.username}}</div>
+        </div>
+        <div>
+            <button id="editUserBtn" type="button" class="add-btn">{{i18n
+                "Editar Usuario"}}</button>
+
+            <button id="logoutBtn" type="button" class="add-btn">{{i18n
+                "Cerrar sesion"}}</button>
+        </div>
+    </header>
+
+    <section class="project-list">
+
+        <div class="content-center">
+            <div class="table-container">
+                <table id="projectsTable">
+                    <thead>
+                        <tr>
+                            <th>{{i18n "Nombre del Proyecto"}}</th>
+                            <th>{{i18n "Tareas Pendientes"}}</th>
+                            <th>{{i18n "Tareas En Proceso"}}</th>
+                            <th>{{i18n "Tareas Completadas"}}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="projectsContainer">
+
+                        {{#each projects}}
+                        <tr fronty-component="ProjectRowComponent" key="{{id}}"
+                            model="projects[{{@index}}]" id="item-{{id}}"></tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+
+                <div class="add-project-container">
+                    <button id="openNewProjectModal" class="add-btn">
+                        {{i18n "Añadir Proyecto"}}</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

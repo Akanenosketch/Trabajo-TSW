@@ -25,6 +25,12 @@ class ProjectModel extends Fronty.Model {
 
         if (tasks) {
             this.tasks = tasks;
+            this.todo = tasks.filter((task) => task.status == "ToDo");
+            this.todoCount = todo.length;
+            this.working = tasks.filter((task) => task.status == "Working");
+            this.workingCount = working.length;
+            this.done = tasks.filter((task) => task.status == "Done");
+            this.doneCount = done.length;
         }
 
         if (toCreate) {
@@ -48,7 +54,7 @@ class ProjectModel extends Fronty.Model {
         };
     }
 
-    getTaskByID(taskID){
+    getTaskByID(taskID) {
         return this.tasks.find(task => task.id == taskID);
     }
 
@@ -69,6 +75,12 @@ class ProjectModel extends Fronty.Model {
     setTasks(tasks) {
         this.set((self) => {
             self.tasks = tasks;
+            self.todo = tasks.filter((task) => task.status == "ToDo");
+            self.todoCount = todo.length;
+            self.working = tasks.filter((task) => task.status == "Working");
+            self.workingCount = working.length;
+            self.done = tasks.filter((task) => task.status == "Done");
+            self.doneCount = done.length;
         });
     }
 

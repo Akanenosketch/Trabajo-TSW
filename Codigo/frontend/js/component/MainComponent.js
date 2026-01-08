@@ -34,7 +34,7 @@ class MainComponent extends Fronty.RouterComponent {
                 title: 'ProjectEdit'
             },
             'ProjectIndex': {
-                //       component: new PostAddComponent(this.postsModel, this.userModel, this),
+                component: new ProjectIndexComponent(this.projectsModel, this.userModel, this),
                 title: 'ProjectIndex'
             },
             'ProjectView': {
