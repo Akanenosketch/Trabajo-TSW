@@ -4,7 +4,6 @@ $view = ViewManager::getInstance();
 
 $projects = $view->getVariable("projects");
 $currentuserName = $view->getVariable("currentusername");
-$currentuserMail = $view->getVariable("currentusermail");
 ?>
 
 <!doctype html>

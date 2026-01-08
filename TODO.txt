@@ -17,6 +17,8 @@ Probar SPA y MVC finales
 CSS a SPA
 va a hacer falta tocar los errores para cuando el login falla
 puede que los listeners haya que setearlos en el onstart despues de actualizar el selectedProject?
+mirar que las tareas esten ordenadas por prioridad
+
 
 Ampliaciones posibles por hacer: (0.9 pts)
 
