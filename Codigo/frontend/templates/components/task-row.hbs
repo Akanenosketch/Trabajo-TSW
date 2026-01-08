@@ -1,0 +1,23 @@
+<div key="{{id}}" class="task">
+
+    <span>{{name}}
+        <span class="small">
+            {{#each emails}}
+            {{this}} \n
+            {{/each}}
+        </span>
+    </span>
+
+    <div>
+
+        <button id="viewTaskBtn" class="btn">{{i18n "Ver"}}</button>
+
+        <button id="editTaskBtn" class="btn">{{i18n "Editar"}}</button>
+
+        <form>
+            <button id="deleteTaskBtn" class="btn danger" type="button">
+                {{i18n "Borrar"}}</button>
+        </form>
+
+    </div>
+</div>

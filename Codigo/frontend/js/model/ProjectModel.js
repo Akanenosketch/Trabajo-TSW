@@ -21,16 +21,25 @@ class ProjectModel extends Fronty.Model {
         if (users) {
             this.users = users;
             this.emails = users.map((user) => user.user_mail);
+            this.usersCount = users.length;
         }
 
         if (tasks) {
             this.tasks = tasks;
+            this.tasksCount = tasks.length;
             this.todo = tasks.filter((task) => task.status == "ToDo");
             this.todoCount = todo.length;
             this.working = tasks.filter((task) => task.status == "Working");
             this.workingCount = working.length;
             this.done = tasks.filter((task) => task.status == "Done");
             this.doneCount = done.length;
+            if (this.tasksCount == 0) {
+                this.completedPercent = 0;
+            } else {
+                this.completedPercent =  (this.doneCount * 100 / this.tasksCount );
+                this.completedPercent = Math.round(this.completedPercent * 100) / 100; //Fija a 2 decimales
+            }
+
         }
 
         if (toCreate) {
@@ -68,13 +77,14 @@ class ProjectModel extends Fronty.Model {
         this.set((self) => {
             self.users = users;
             self.emails = users.map((user) => user.user_mail);
-
+            self.usersCount = users.length;
         });
     }
 
     setTasks(tasks) {
         this.set((self) => {
             self.tasks = tasks;
+            self.tasksCount = tasks.length;
             self.todo = tasks.filter((task) => task.status == "ToDo");
             self.todoCount = todo.length;
             self.working = tasks.filter((task) => task.status == "Working");

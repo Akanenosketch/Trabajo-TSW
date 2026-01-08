@@ -195,8 +195,9 @@ class Project
 	public function getCompletedPercent(){
 		$total = count($this->tasks);
 		$completed = $this->getTaskNumberByType("Done");
-		if($total == 0) return 0;
-		return $completed *100/$total;
+		if($total == 0) return 0;		
+		//Redondea a 2 decimales
+		return round(($completed *100/$total) * 100) / 100;
 	}
 }
 ?>
