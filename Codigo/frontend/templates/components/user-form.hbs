@@ -2,10 +2,10 @@
     <div class="modal">
         <header id="registerTitle">
             {{#if_eq mode "register"}}
-            {{i18n "Editar Usuario"}}
+            {{i18n "Registrarse"}}
             {{/if_eq}}
             {{#if_eq mode "edit"}}
-            {{i18n "Registrarse"}}
+            {{i18n "Editar Usuario"}}
             {{/if_eq}}
             {{#if_eq mode "login"}}
             {{i18n "Iniciar sesion"}}
@@ -20,7 +20,7 @@
                 <label for="regNombre">{{i18n "Nombre de Usuario"}}</label>
                 <input id="regNombre" name="nombreUsuario" type="text"
                     placeholder="{{i18n " Nombre de Usuario"}}"
-                    value="{{#if_eq mode "edit"}}{{username}}{{/if}}"
+                    value="{{#if_eq mode "edit"}}{{username}}{{/if_eq}}"
                     required="required" minlength="4" />
                 <span
                     class="error-span">{{#i18n}}{{errors.username}}{{/i18n}}</span>
@@ -33,7 +33,7 @@
                 <label for="regCorreo">{{i18n "Correo"}}</label>
                 <input id="regCorreo" name="correo" type="email"
                     placeholder="{{#if_eq mode "register"}}ivan.martinez.estevez@uvigo.es
-                    {{else}}{{i18n "Escribe tu correo"}}{{/if}}"
+                    {{else}}{{i18n "Escribe tu correo"}}{{/if_eq}}"
                     required="required"
                     pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
                 <span

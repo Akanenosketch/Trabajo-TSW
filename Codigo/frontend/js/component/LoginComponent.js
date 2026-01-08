@@ -20,7 +20,7 @@ class LoginComponent extends Fronty.ModelComponent {
     setupListeners() {
 
         this.addEventListener('click', '#saveUserBtn', () => {
-            login();
+            this.login();
         });
 
         this.addEventListener('click', '#cancelUserBtn', () => {

@@ -19,7 +19,7 @@ class UserEditComponent extends Fronty.ModelComponent {
     setupListeners() {
 
         this.addEventListener('click', '#saveUserBtn', () => {
-            saveUser();
+            this.saveUser();
         });
 
         this.addEventListener('click', '#cancelUserBtn', () => {

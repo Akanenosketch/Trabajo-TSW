@@ -24,7 +24,7 @@ class ProjectEditComponent extends Fronty.ModelComponent {
     setupListeners() {
 
         this.addEventListener('click', '#saveProjectBtn', () => {
-            saveProject();
+            this.saveProject();
         });
 
 

@@ -15,14 +15,12 @@ class RegisterComponent extends Fronty.ModelComponent {
         this.router = router;
 
         this.setupListeners();
-
-
     }
 
     setupListeners() {
 
         this.addEventListener('click', '#saveUserBtn', () => {
-            saveUser();
+            this.saveUser();
         });
 
         this.addEventListener('click', '#cancelUserBtn', () => {

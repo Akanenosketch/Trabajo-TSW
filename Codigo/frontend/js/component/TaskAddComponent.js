@@ -24,7 +24,7 @@ class TaskAddComponent extends Fronty.ModelComponent {
 
     setupListeners() {
         this.addEventListener('click', '#saveTaskBtn', () => {
-            saveTask();
+            this.saveTask();
         });
 
         this.addEventListener('click', '#cancelTaskBtn', () => {
