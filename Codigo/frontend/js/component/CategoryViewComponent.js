@@ -20,7 +20,7 @@ class CategoryViewComponent extends Fronty.ModelComponent {
     setupListeners() {
 
         this.addEventListener('click', '#cancelCategoryBtn', () => {
-            this.router.goToPage('ProjectIndex');
+            this.router.goToPage('CategoryIndex');
         });
 
     }

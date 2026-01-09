@@ -24,6 +24,7 @@ class MainComponent extends Fronty.RouterComponent {
         console.log('Configuring router...');
         super.setRouterConfig({
             'CategoryAdd': {
+                component: new CategoryAddComponent(this),
                 title: I18n.translate("Añadir Categoria")
             },
             'CategoryEdit': {

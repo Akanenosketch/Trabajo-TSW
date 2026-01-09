@@ -21,10 +21,8 @@
                 <input id="modalCategoryName" name="name" type="text"
                     required="required"
                     minlength="1"
-                    {{#if_eq mode "edit"}}
-                    value="{{name}}"
-                    {{/if_eq}}
-                    {{#if_eq mode "view"}}
+                    {{#if_eq mode "add"}}
+                    {{else}}
                     value="{{name}}"
                     readonly="readonly"
                     {{/if_eq}} />
