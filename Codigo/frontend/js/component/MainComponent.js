@@ -28,6 +28,7 @@ class MainComponent extends Fronty.RouterComponent {
                 title: I18n.translate("Añadir Categoria")
             },
             'CategoryEdit': {
+                component: new CategoryEditComponent(this),
                 title: I18n.translate("Editar Categoria")
             },
             'CategoryIndex': {

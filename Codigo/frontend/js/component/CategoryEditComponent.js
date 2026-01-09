@@ -1,7 +1,7 @@
-class CategoryAddComponent extends Fronty.ModelComponent {
+class CategoryEditComponent extends Fronty.ModelComponent {
 
     constructor(router) {
-        let categoryModel = new CategoryModel("add");
+        let categoryModel = new CategoryModel("edit");
         super(Handlebars.templates.categoryForm, categoryModel);
 
         //Config Models
@@ -45,10 +45,9 @@ class CategoryAddComponent extends Fronty.ModelComponent {
 
     saveCat() {
 
-        this.categoryModel.setName($('#modalCategoryName').val());
         this.categoryModel.setDesc($('#modalCategoryDesc').val());
 
-        this.categoryService.createCategory(this.categoryModel)
+        this.categoryService.updateCategory(this.categoryModel.catName, this.categoryModel)
             .then(() => {
                 this.categoryModel.set((model) => {
                     model.errors = []
