@@ -1,6 +1,10 @@
 //Cargado dinamicamente por I18n.js
 
 I18n.translations = {
+  "Añadir Categoria": "Add Category",
+  "Datos de Categoria": "View Category",
+  "Formulario de Categorias": "Categories Form",
+  "Editar Categoria": "Edit Category",
   "Categorias": "Categories",
   "Pagina de Bienvenida": "Welcome Page",
   "Registrarse": "Register",

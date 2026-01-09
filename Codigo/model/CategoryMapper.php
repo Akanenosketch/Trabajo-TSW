@@ -9,7 +9,7 @@ require_once(__DIR__."/../core/PDOConnection.php");
  * Database interface for Category entities
  *
  */
-class UserMapper{
+class CategoryMapper{
 
     /**
      * Reference to the PDO connection

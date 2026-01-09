@@ -2,7 +2,11 @@
 //file: /view/messages/messages_en.php
 
 $i18n_messages =
-	array(
+	array(				
+		"Añadir Categoria" => "Add Category",
+		"Datos de Categoria" => "View Category",
+		"Editar Categoria" => "Edit Category",
+		"Formulario de Categorias" => "Categories Form",
 		"Categorias" => "Categories",
 		"categoria no valida" => "Category is not vald",
 		"Alternar tema" => "Change Theme",
