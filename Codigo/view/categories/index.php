@@ -61,7 +61,6 @@ $categories = $view->getVariable("categories");
                 </div>
             </div>
         </div>
-        </div>
         <div class="task-actions">
             <a href="index.php?controller=categories&amp;action=add">
                 <button class="btn primary action-btn" id="openCategoryModal"><?= i18n("+ Nueva Categoria") ?></button>

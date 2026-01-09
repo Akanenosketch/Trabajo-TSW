@@ -1,0 +1,30 @@
+<div>
+    <header>
+        <button id="backBtn" class="btn back">{{i18n "Volver"}}</button>
+    </header>
+
+    <main class="project-content">
+        <div class="tasks-container">
+            <div class="cols">
+                <div class="col">
+                    <h4>{{i18n "Listado de Categorias"}}</h4>
+
+                    <div id="col-cat">
+
+                        {{#each projects}}
+                        <div fronty-component="CategoryRowComponent"
+                            key="{{name}}"
+                            model="categories[{{@index}}]"
+                            id="item-{{name}}"></div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-actions">
+            <button class="btn primary action-btn" id="openCategoryModal">{{i18n
+                "+ Nueva Categoria"}}</button>
+        </div>
+    </main>
+</div>

@@ -59,13 +59,13 @@
         <div class="tasks-container">
             <div class="cols">
                 <div class="col">
-                    
+
                     <h4>{{i18n "Por Hacer"}}</h4>
                     <div id="col-todo">
                         {{#each selectedProject.todo}}
                         <tr fronty-component="TaskRowComponent" key="{{id}}"
                             model="todo[{{@index}}]" id="item-{{id}}"></tr>
-                        {{/each}}                    
+                        {{/each}}
                     </div>
                 </div>
                 <div class="col">
