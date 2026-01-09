@@ -44,6 +44,24 @@ CREATE TABLE tasks (
     CONSTRAINT PK_Task PRIMARY KEY (task_id, project_id)
 ) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
 
+-- Crear una tabla para las categorias
+CREATE TABLE categories (
+    cat_name VARCHAR(255) NOT NULL,
+    cat_desc VARCHAR(255) NOT NULL,
+    
+    PRIMARY KEY (cat_name)
+) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
+
+-- Crear una tabla para la asignacion de categorias a proyectos
+CREATE TABLE cats_on_projects (
+    cat_name VARCHAR(255) NOT NULL,
+    project_id INT NOT NULL,
+
+    FOREIGN KEY (cat_name) REFERENCES categories(cat_name) ON DELETE CASCADE,
+    FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
+    CONSTRAINT PK_Cats_projects PRIMARY KEY (cat_name, project_id)
+) ENGINE=INNODB DEFAULT CHARACTER SET = utf8;
+
 -- Crear una tabla para la asignacion de usuarios a proyectos
 CREATE TABLE users_on_projects (
     user_mail VARCHAR(255) NOT NULL,
@@ -106,3 +124,13 @@ VALUES ('TSWTestDone', 2, "Done", "desc6", "Low", '2024-02-10', '2024-02-20');
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,1);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,2);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,3);
+
+INSERT INTO categories (cat_name, cat_desc) VALUES ("Trabajo","Descripcion Trabajo");
+INSERT INTO categories (cat_name, cat_desc) VALUES ("Personal","Descripcion Personal");
+INSERT INTO categories (cat_name, cat_desc) VALUES ("Urgente","Descripcion Urgente");
+INSERT INTO categories (cat_name, cat_desc) VALUES ("Otros","Descripcion Otros");
+
+
+INSERT INTO cats_on_projects (cat_name,project_id) VALUES ('Trabajo',1);
+INSERT INTO cats_on_projects (cat_name,project_id) VALUES ('Urgente',1);
+INSERT INTO cats_on_projects (cat_name,project_id) VALUES ('Personal',2);

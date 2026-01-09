@@ -6,6 +6,7 @@ require_once(__DIR__."/../model/Task.php");
 require_once(__DIR__."/../model/ProjectMapper.php");
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/UserMapper.php");
+require_once(__DIR__."/../model/CategoryMapper.php");
 
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/BaseController.php");
@@ -34,12 +35,15 @@ class ProjectsController extends BaseController{
 	 */
 	private $userMapper;
 
+	private $categoryMapper;
+
 	public function __construct()
 	{
 		parent::__construct();
 
 		$this->projectMapper = new ProjectMapper();
 		$this->userMapper = new UserMapper();
+		$this->categoryMapper = new CategoryMapper();
 	}
 
 
@@ -153,11 +157,12 @@ class ProjectsController extends BaseController{
 		}
 
 		$users = $this->userMapper->findAll();
+		$categories = $this->categoryMapper->findAll();
 
 		if (isset($_POST["name"])) { // reaching via HTTP Post...
 			// Create and populate the Project object
 			$project = new Project();
-			$project = $this->loadProject($project, $users);
+			$project = $this->loadProject($project, $users,$categories);
 
 			try {
 				// validate Project object
@@ -177,6 +182,7 @@ class ProjectsController extends BaseController{
 		}
 		// render the view (/view/projects/form.php)
 		$this->view->setVariable("users", $users);
+		$this->view->setVariable("categories", $categories);
 		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 		$this->view->render("projects", "form");
 	}
@@ -216,10 +222,11 @@ class ProjectsController extends BaseController{
 		$project = $this->retrieveProject();
 
 		$users = $this->userMapper->findAll();
+		$categories = $this->categoryMapper->findAll();
 
 		if (isset($_POST["id"])) { // reaching via HTTP Post...
 			try {
-				$project = $this->loadProject($project, $users);
+				$project = $this->loadProject($project, $users,$categories);
 
 				// validate Project object
 				$project->checkIsValidForUpdate(); // if it fails, ValidationException
@@ -238,7 +245,9 @@ class ProjectsController extends BaseController{
 		}
 		$this->view->setVariable("project", $project);
 		$this->view->setVariable("projectUsers", $project->getUsers());
+		$this->view->setVariable("projectCats", $project->getCats());
 		$this->view->setVariable("users", $users);
+		$this->view->setVariable( "categories", $categories);
 		$this->view->setVariable("currentusermail", $this->currentUser->getUserMail());
 		// render the view (/view/projects/form.php)
 		$this->view->render("projects", "form");
@@ -315,7 +324,7 @@ class ProjectsController extends BaseController{
 	 * 
 	 * @return Project
 	 */
-	private function loadProject($project, $users): Project{
+	private function loadProject($project, $users,$categories): Project{
 		
 		$project->setName($_POST["name"]);
 
@@ -328,6 +337,17 @@ class ProjectsController extends BaseController{
 			$userNum++;
 		}
 		$project->setUsers($projectUsers);
+
+		$projectCats = array();
+		$catNum = 1;
+		foreach ($categories as $cat) {
+			if (isset($_POST["cat".$catNum])) {
+				array_push($projectCats, $cat);
+			}
+			$catNum++;
+		}
+		$project->setCats($projectCats);
+
 		return $project;
 	}
 

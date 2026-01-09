@@ -7,7 +7,7 @@ class ProjectModel extends Fronty.Model {
     /**
      * Crea un modelo de un projecto con los datos recibidos
      */
-    constructor(toCreate, id, name, users, tasks) {
+    constructor(toCreate, id, name, users, tasks, categories) {
         super('ProjectModel');
 
         if (id) {
@@ -36,10 +36,15 @@ class ProjectModel extends Fronty.Model {
             if (this.tasksCount == 0) {
                 this.completedPercent = 0;
             } else {
-                this.completedPercent =  (this.doneCount * 100 / this.tasksCount );
+                this.completedPercent = (this.doneCount * 100 / this.tasksCount);
                 this.completedPercent = Math.round(this.completedPercent * 100) / 100; //Fija a 2 decimales
             }
 
+        }
+
+        if (categories) {
+            this.categories = categories;
+            this.catsCount = categories.length;
         }
 
         if (toCreate) {
@@ -59,7 +64,8 @@ class ProjectModel extends Fronty.Model {
             id: this.id,
             name: this.name,
             users: this.users,
-            tasks: this.tasks
+            tasks: this.tasks,
+            categories: this.categories
         };
     }
 
@@ -78,6 +84,13 @@ class ProjectModel extends Fronty.Model {
             self.users = users;
             self.emails = users.map((user) => user.user_mail);
             self.usersCount = users.length;
+        });
+    }
+
+    setCats(cats) {
+        this.set((self) => {
+            this.categories = cats;
+            this.catsCount = cats.length;
         });
     }
 

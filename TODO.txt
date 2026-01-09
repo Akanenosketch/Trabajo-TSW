@@ -6,6 +6,7 @@ Ampliaciones hechas
 -(FP7) Ampliar los datos de las tareas:
 -(FP8) Añadir fechas a las tareas (por ejemplo, fecha de inicio y duración) y la posibilidad de editarlas. (creo)
 -(FP5) Modo claro / modo oscuro como preferencia de usuario.
+-(FP4) Gestionar la baja de usuarios en un proyecto.
 
 
 
@@ -21,11 +22,7 @@ Probar y ampliar
 
 Ampliaciones posibles por hacer: (0.9 pts)
 
--(FP4) Gestionar la baja de usuarios en un proyecto.
--(FP9) Ver estadísticas de usuario (tareas asignadas, completadas, pendientes, porcentaje de participación).
 -(FP12) Asignar múltiples categorías a los proyectos (depende de FG1).
-
--(FG3) Asignar roles dentro del proyecto (admin, editor, lector), con control de permisos.
 -(FG1) Crear un sistema de categorías para proyectos (desarrollo, ocio, etc.) y que en el CRUD de proyectos se pueda seleccionar alguna categoría.
 
 

@@ -23,25 +23,50 @@
                 <label>{{i18n "Participantes"}}</label>
                 <div id="initialUsers" class="checkbox-list">
 
-                {{!-- Recorre el array de emails de UsersModel --}}
-                 {{#each users.users}}
-                        <div>
-                            {{!-- @index indexa segun el each, inicia en 0 --}}
-                            <input type="checkbox"
-                                name="user{{@index}}"
-                                value="{{this}}"
-                                {{!-- Si pertenecen al proyecto los marca --}}
-                                {{#ifIncludes this selectedProject.emails}}checked="checked"{{/ifIncludes}}
-                                />
-                            <label>
-                                {{this}}
-                            </label>
-                        </div>
+                    {{!-- Recorre el array de emails de UsersModel --}}
+                    {{#each users.users}}
+                    <div>
+                        {{!-- @index indexa segun el each, inicia en 0 --}}
+                        <input type="checkbox"
+                            name="user{{@index}}"
+                            value="{{this}}"
+                            {{!-- Si pertenecen al proyecto los marca --}}
+                            {{#ifIncludes this
+                            selectedProject.emails}}checked="checked"{{/ifIncludes}} />
+                        <label>
+                            {{this}}
+                        </label>
+                    </div>
                     {{/each}}
                 </div>
                 <span
                     class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
             </div>
+
+            <div class="form-row">
+                <label>{{i18n "Categorias"}}</label>
+                <div id="initialCats" class="checkbox-list">
+
+                    {{!-- Recorre el array de categorias --}}
+                    {{#each categories.categories}}
+                    <div>
+                        {{!-- @index indexa segun el each, inicia en 0 --}}
+                        <input type="checkbox"
+                            name="cat{{@index}}"
+                            value="{{this}}"
+                            {{!-- Si pertenecen al proyecto los marca --}}
+                            {{#ifIncludes this
+                            selectedProject.categories}}checked="checked"{{/ifIncludes}} />
+                        <label>
+                            {{this}}
+                        </label>
+                    </div>
+                    {{/each}}
+                </div>
+                <span
+                    class="error-span">{{#i18n}}{{errors.categories}}{{/i18n}}</span>
+            </div>
+
             <div>
 
                 <button type="button" class="btn"

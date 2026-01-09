@@ -4,9 +4,12 @@ $view = ViewManager::getInstance();
 $errors = $view->getVariable("errors");
 $project = $view->getVariable("project");
 $users = $view->getVariable("users");
+$categories = $view->getVariable("categories");
 $currentuserMail = $view->getVariable("currentusermail");
+$projectCats = $view->getVariable("projectCats", array());
 $projectUsers = $view->getVariable("projectUsers", array());
 $userNum = 1;
+$catNum = 1;
 ?>
 
 <!doctype html>
@@ -52,11 +55,27 @@ $userNum = 1;
                                 </label>
                             </div>
                         <?php endforeach; ?>
-
-
                     </div>
-
                 </div>
+
+                <div class="form-row">
+                    <label><?= i18n("Categorias") ?></label>
+                    <div id="initialCats" class="checkbox-list">
+                        <?php foreach ($categories as $cat): ?>
+                            <div>
+                                <input type="checkbox"
+                                    name="<?="cat".$catNum?>"
+                                    value="<?=$cat?>"
+                                    <?php if (in_array($cat, $projectCats)): ?> checked="checked" <?php endif ?> />
+                                <?php $catNum++ ?>
+                                <label>
+                                    <?= $cat ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
                 <div>
                     <?php if (is_null($project)): ?>
                         <a href="index.php?controller=projects&amp;action=index">

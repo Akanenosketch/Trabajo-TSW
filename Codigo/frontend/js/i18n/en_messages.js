@@ -1,6 +1,7 @@
 //Cargado dinamicamente por I18n.js
 
 I18n.translations = {
+  "Categorias": "Categories",
   "Pagina de Bienvenida": "Welcome Page",
   "Registrarse": "Register",
   "Iniciar Sesion": "Login",

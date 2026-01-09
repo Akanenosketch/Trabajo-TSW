@@ -3,6 +3,8 @@
 
 $i18n_messages =
 	array(
+		"Categorias" => "Categories",
+		"categoria no valida" => "Category is not vald",
 		"Alternar tema" => "Change Theme",
 		"Baja" => "Low",
 		"Media" => "Medium",

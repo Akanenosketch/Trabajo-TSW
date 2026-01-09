@@ -40,7 +40,7 @@ class TaskViewComponent extends Fronty.ModelComponent {
             this.projectService.getProject(projectID)
                 .then((project) => {
                     this.projectsModel.setSelectedProject(
-                        new ProjectModel(false, project.id, project.name, project.users, project.tasks)
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks,project.categories)
                     );
                 });
         }

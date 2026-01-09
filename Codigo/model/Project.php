@@ -39,6 +39,12 @@ class Project
 	private $tasks;
 
 	/**
+	 * The list of categories of this project
+	 * @var mixed
+	 */
+	private $categories;
+
+	/**
 	 * The constructor
 	 *
 	 * @param string $id The id of the project
@@ -46,12 +52,13 @@ class Project
 	 * @param mixed $users The list of users
 	 * @param mixed $tasks The list of tasks
 	 */
-	public function __construct($id = NULL, $name = NULL, array $users = NULL, array $tasks = NULL)
+	public function __construct($id = NULL, $name = NULL, array $users = NULL, array $tasks = NULL,$categories=NULL)
 	{
 		$this->id = $id;
 		$this->name = $name;
 		$this->users = $users;
 		$this->tasks = $tasks;
+		$this->categories = $categories;
 
 	}
 
@@ -127,6 +134,17 @@ class Project
 	{
 		$this->tasks = $tasks;
 	}
+
+	public function getCats()
+	{
+		return $this->categories;
+	}
+
+	public function setCats(array $categories)
+	{
+		$this->categories = $categories;
+	}
+
 
 	/**
 	 * Checks if the current instance is valid

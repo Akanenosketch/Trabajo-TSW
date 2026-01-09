@@ -132,6 +132,20 @@ class ProjectMapper
 
 			}
 			$project_with_all->setTasks($tasks_array);
+
+			//recuperar cats
+			$stmt3 = $this->db->prepare("SELECT * FROM cats_on_projects WHERE project_id=?");
+
+			$stmt3->execute(array($projectid));
+			$cats = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+
+			$cats_array = array();
+			foreach ($cats as $cat) {
+				array_push($cats_array, $cat["cat_name"]);
+			}
+
+			$project_with_all->setCats($cats_array);
 		}
 		return $project_with_all;
 	}
@@ -153,6 +167,12 @@ class ProjectMapper
 
 		foreach ($project->getUsers() as $user) {
 			$stmt->execute(array($user->getUserMail(), $toRet));
+		}
+
+		$stmt = $this->db->prepare("INSERT INTO cats_on_projects(cat_name,project_id) values (?,?)");
+
+		foreach ($project->getCats() as $cat) {
+			$stmt->execute(array($cat, $toRet));
 		}
 
 		return $toRet;
@@ -198,6 +218,16 @@ class ProjectMapper
 			if (!in_array($user, $repeatedUsers)) {
 				$stmt2->execute(array($user,$project->getId()));
 			}
+		}
+
+		$stmt3 = $this->db->prepare("INSERT INTO cats_on_projects(cat_name,project_id) values (?,?)");
+		$stmt2 = $this->db->prepare("DELETE FROM cats_on_projects WHERE project_id=?");
+		
+		$stmt2->execute(array($project->getId()));
+
+		$newCats = $project->getCats();
+		foreach ($newCats as $cat) {
+				$stmt3->execute(array($cat, $project->getId()));
 		}
 	}
 

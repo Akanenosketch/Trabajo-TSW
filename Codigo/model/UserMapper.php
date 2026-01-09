@@ -2,6 +2,7 @@
 // file: model/UserMapper.php
 
 require_once(__DIR__."/../core/PDOConnection.php");
+require_once(__DIR__."/../model/User.php");
 
 /**
  * Class UserMapper
@@ -76,7 +77,7 @@ class UserMapper
 		$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if ($user != null) {
-			return new user(
+			return new User(
 				$user["username"],
 				$user["user_mail"],
 				$user["passwd"]

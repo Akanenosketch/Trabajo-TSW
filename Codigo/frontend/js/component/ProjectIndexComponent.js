@@ -52,7 +52,7 @@ class ProjectIndexComponent extends Fronty.ModelComponent {
 
                 this.projectsModel.setProjects(
                     projectsData.map(
-                        (project) => new ProjectModel("", project.id, project.name, project.users, project.tasks)
+                        (project) => new ProjectModel("", project.id, project.name, project.users, project.tasks,project.categories)
                     ));
             });
 

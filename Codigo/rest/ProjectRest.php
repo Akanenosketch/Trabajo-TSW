@@ -5,6 +5,7 @@ require_once(__DIR__."/../model/UserMapper.php");
 
 require_once(__DIR__."/../model/Project.php");
 require_once(__DIR__."/../model/ProjectMapper.php");
+require_once(__DIR__."/../model/CategoryMapper.php");
 
 require_once(__DIR__."/../model/Task.php");
 
@@ -24,12 +25,15 @@ class ProjectRest extends BaseRest{
 	private $projectMapper;
 
 	private $userMapper;
+	
+	private $categoryMapper;
 
 	public function __construct(){
 		parent::__construct();
 
 		$this->userMapper = new UserMapper();
 		$this->projectMapper = new ProjectMapper();
+		$this->categoryMapper = new CategoryMapper();
 	}
 
 	public function getProjects(){
@@ -56,7 +60,7 @@ class ProjectRest extends BaseRest{
 		$currentUser = parent::authenticateUser();
 		$project = new Project();
 
-		if (isset($data->name) && isset($data->users)) {
+		if (isset($data->name) && isset($data->users) && isset($data->categories)) {
 			$project = $this->loadProject($project, $data);
 		}
 		try {
@@ -124,8 +128,9 @@ class ProjectRest extends BaseRest{
 
 	private function loadProject($project, $data): Project{
 
-		$users = $this->userMapper->findAll();
 		$project->setName($data->name);
+
+		$users = $this->userMapper->findAll();
 		$projectUsers = array();
 		$userNum = 0;
 		foreach ($users as $user) {
@@ -135,7 +140,18 @@ class ProjectRest extends BaseRest{
 			$userNum++;
 		}
 		$project->setUsers($projectUsers);
-		
+
+		$cats = $this->categoryMapper->findAll();
+		$projectCats = array();
+		$catNum = 0;
+		foreach ($cats as $cat) {
+			if (isset($data->categories["cat".$catNum])) {
+				array_push($projectCats, $cat);
+			}
+			$catNum++;
+		}
+		$project->setCats($projectCats);
+
 		return $project;
 	}
 
@@ -175,7 +191,8 @@ class ProjectRest extends BaseRest{
 			"id"=>$project->getId(),
 			"name"=>$project->getName(),
 			"users"=> $encodedUsers,
-			"tasks"=> $encodedTasks
+			"tasks"=> $encodedTasks,
+			"categories"=> $project->getCats()
 		);
 
 		return $encoded;

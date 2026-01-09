@@ -1,6 +1,6 @@
 class ProjectEditComponent extends Fronty.ModelComponent {
 
-    constructor(projectsModel, usersModel, router) {
+    constructor(projectsModel, usersModel, categoriesModel, router) {
 
         super(Handlebars.templates.projectForm, projectsModel);
 
@@ -10,9 +10,13 @@ class ProjectEditComponent extends Fronty.ModelComponent {
         this.usersModel = usersModel;
         this.addModel('users', usersModel);
 
+        this.categoriesModel = categoriesModel;
+        this.addModel('categories', categoriesModel);
+
         //Config Services
         this.projectService = new ProjectService();
         this.userService = new UserService();
+        this.categoryService = new CategoryService();
 
         //Config Router
         this.router = router;
@@ -39,7 +43,11 @@ class ProjectEditComponent extends Fronty.ModelComponent {
         this.loadProject(selectedId);
         this.userService.listAllUsers()
             .then((emails) => {
-                this.usersModel.setUsers();
+                this.usersModel.setUsers(emails);
+            });
+        this.categoryService.listAllCats()
+            .then((cats) => {
+                this.categoriesModel.setCats(cats);
             });
 
     }
@@ -49,7 +57,7 @@ class ProjectEditComponent extends Fronty.ModelComponent {
             this.projectService.getProject(projectID)
                 .then((project) => {
                     this.projectsModel.setSelectedProject(
-                        new ProjectModel(false, project.id, project.name, project.users, project.tasks)
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks,project.categories)
                     );
                 });
         }
@@ -66,6 +74,16 @@ class ProjectEditComponent extends Fronty.ModelComponent {
             }
         }
         this.projectsModel.selectedProject.users = newUsers;
+
+        //Almacenar categorias
+        let newCats = {};
+        count = this.categoriesModel.catcount;
+        for (let index = 0; index < count; index++) {
+            if ($('#cat' + index).is(':checked')) {
+                newCats['cat' + index] = $('#cat' + index).val();
+            }
+        }
+        this.projectsModel.selectedProject.categories = newCats;
 
         this.projectService.updateProject(this.projectsModel.selectedProject.id, this.projectsModel.selectedProject)
             .then(() => {

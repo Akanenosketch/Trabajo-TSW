@@ -7,6 +7,7 @@ class MainComponent extends Fronty.RouterComponent {
         //Config Models
         this.userModel = new UserModel(); //Modelo para gestionar User
         this.usersModel = new UsersModel(); //Modelo para gestionar lista de Users
+        this.categoriesModel = new CategoriesModel(); //Modelo para gestionar lista de Users
         this.projectsModel = new ProjectsModel(); //Modelo para gestionar Projects
 
         this.configRouter();
@@ -27,11 +28,11 @@ class MainComponent extends Fronty.RouterComponent {
                 title: I18n.translate("Iniciar Sesion")
             },
             'ProjectAdd': {
-                component: new ProjectAddComponent(this.projectsModel, this.usersModel, this),
+                component: new ProjectAddComponent(this.projectsModel, this.usersModel,this.categoriesModel, this),
                 title: I18n.translate("Añadir Proyecto")
             },
             'ProjectEdit': {
-                component: new ProjectEditComponent(this.projectsModel, this.usersModel, this),
+                component: new ProjectEditComponent(this.projectsModel, this.usersModel,this.categoriesModel, this),
                 title: I18n.translate("Editar Proyecto")
             },
             'ProjectIndex': {
