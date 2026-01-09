@@ -1,0 +1,62 @@
+ <div id="categoryModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <div class="modal-content">
+
+            <h3 id="categoryModalTitle">
+                {{#if_eq mode "add"}}
+                {{i18n "Añadir Categoria"}}
+                {{/if_eq}}
+                {{#if_eq mode "edit"}}
+                {{i18n "Editar Categoria"}}
+                {{/if_eq}}
+                {{#if_eq mode "view"}}
+                {{i18n "Datos de Categoria"}}
+                {{/if_eq}}
+            </h3>
+
+            <div class="form-row">
+                <label>{{i18n "Nombre"}}</label>
+                <input id="modalCategoryName" name="name" type="text"
+                    required="required"
+                    minlength="1"
+                    {{#if_eq mode "edit"}}
+                    value="{{name}}"
+                    {{/if_eq}}
+                    {{#if_eq mode "view"}}
+                    value="{{name}}"
+                    readonly="readonly"
+                    {{/if_eq}} />
+                <span
+                    class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+            </div>
+
+            <div class="form-row">
+                <label>{{i18n "Descripcion"}}</label>
+                <input id="modalCategoryDesc" name="desc" type="text"
+                    required="required"
+                    minlength="1"
+                    {{#if_eq mode "edit"}}
+                    value="{{desc}}"
+                    {{/if_eq}}
+                    {{#if_eq mode "view"}}
+                    value="{{desc}}"
+                    readonly="readonly"
+                    {{/if_eq}} />
+                <span
+                    class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn" id="cancelCategoryBtn" type="button">
+                    {{i18n "Cancelar"}}</button>
+
+                <button class="btn primary" type="button" id="saveCategoryBtn"
+                    {{#if_eq mode "view"}}
+                    hidden="hidden"
+                    {{/if_eq}}>
+                    {{i18n "Guardar"}}</button>
+            </div>
+        </div>
+    </div>

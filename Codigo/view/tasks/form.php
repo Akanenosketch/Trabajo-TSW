@@ -112,6 +112,8 @@ if ($task != null) $taskUsers = $task->getUsers();
                     </div>
                 </div>
             </div>
+            </div>
+            
     </form>
     <script src="./view/js/theme.js"></script>
 </body>

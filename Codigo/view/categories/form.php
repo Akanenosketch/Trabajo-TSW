@@ -22,7 +22,6 @@ $category = $view->getVariable("category");
 
     <form action="index.php?controller=categories&amp;action=<?php if (!is_null($category) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($category)): ?>add<?php endif ?>" method="post">
         <div id="categoryModal" class="modal-overlay">
-
             <div class="modal-box">
                 <div class="modal-content">
                     <h3 id="categoryModalTitle">
@@ -51,6 +50,7 @@ $category = $view->getVariable("category");
                             <?php endif ?>><?= i18n("Guardar") ?></button>
                     </div>
                 </div>
+            </div>
             </div>
     </form>
 </body>
