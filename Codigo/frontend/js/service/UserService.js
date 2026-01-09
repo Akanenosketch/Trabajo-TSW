@@ -119,13 +119,6 @@ class UserService {
         });
 
     }
-
-
-    TODO
-
-
-
-
     
     /**
     * Lists the emails of all existing users. 
