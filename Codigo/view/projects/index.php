@@ -28,6 +28,9 @@ $currentuserName = $view->getVariable("currentusername");
             <div class="username" id="userDisplay"><?= $currentuserName ?></div>
         </div>
         <div>
+            <a href="index.php?controller=categories&amp;action=index">
+                <button type="button" class="add-btn"><?= i18n("Listar Categorias") ?></button>
+            </a>
             <a href="index.php?action=edit">
                 <button type="button" class="add-btn"><?= i18n("Editar Usuario") ?></button>
             </a>

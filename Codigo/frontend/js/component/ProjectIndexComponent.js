@@ -26,6 +26,10 @@ class ProjectIndexComponent extends Fronty.ModelComponent {
             this.router.goToPage("ProjectAdd");
         });
 
+        
+        this.addEventListener('click', '#listCatBtn', () => {
+            this.router.goToPage("CategoryIndex");
+        });
 
         this.addEventListener('click', '#editUserBtn', () => {
             this.router.goToPage("UserEdit");

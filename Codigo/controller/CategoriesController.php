@@ -32,14 +32,34 @@ class CategoriesController extends BaseController{
 
 
 
-    public function index(){
+    /**
+	 * Action to list categories.
+	 *
+	 * Loads all the categories from the database.
+	 *
+	 * The views are:
+	 * <ul>
+	 * <li>categories/index (via include)</li>
+	 * </ul>
+	 * </ul>
+	 */
+	public function index(){
 
-//        TODO
-    }
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Viewing categories requires login");
+		}
+
+		// obtain the data from the database
+		$cats = $this->categoryMapper->findAllWithDesc();
 
 
+		// put the array containing Post object to the view
+		$this->view->setVariable("categories", $cats);
 
+		// render the view (/view/categories/index.php)
+		$this->view->render("categories", "index");
 
+	}
 
 	/**
 	 * Action to view a given category.
@@ -207,7 +227,7 @@ class CategoriesController extends BaseController{
 		$cat = $this->retrieveCategory();
 
 		// Delete the category object from the database
-		$this->categoryMapper->delete($category->getName());
+		$this->categoryMapper->delete($cat);
 
 		// POST-REDIRECT-GET
 		// perform the redirection. More or less:
