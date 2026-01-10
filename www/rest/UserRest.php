@@ -48,7 +48,7 @@ class UserRest extends BaseRest{
 			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
 			header("Location: ".$_SERVER['REQUEST_URI']."/".$data->username);
 		} catch (ValidationException $e) {
-			http_response_code(400);
+			http_response_code(response_code: 400);
 			header('Content-Type: application/json');
 			echo (json_encode($e->getErrors()));
 		}
@@ -81,13 +81,27 @@ class UserRest extends BaseRest{
 	}
 
 	public function login($usermail){
-		$currentLogged = parent::authenticateUser();
-		if (strcmp($currentLogged->getUserMail(), $usermail) != 0) {
-			header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
-			echo ("You are not authorized to login as anyone but you");
+
+		if (!isset($_SERVER['PHP_AUTH_USER'])) {
+			header($_SERVER['SERVER_PROTOCOL'].' 401 Unauthorized');
+			header('WWW-Authenticate: Basic realm="Rest API of MVCBLOG"');
+			die('This operation requires authentication');
 		} else {
-			header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
-			echo(json_encode($currentLogged));
+			if (
+				$this->userMapper->isValidUser(
+					$_SERVER['PHP_AUTH_USER'],
+					$_SERVER['PHP_AUTH_PW']
+				)
+			) {
+				header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
+				echo (json_encode($this->userMapper->findByEmail($_SERVER['PHP_AUTH_USER'])));
+			} else {
+				$errors = array();
+				$errors["user_mail"] = i18n("usuario no valido");
+				http_response_code(response_code: 400);
+				header('Content-Type: application/json');
+				echo (json_encode(new ValidationException($errors, i18n("usuario no valido"))->getErrors()));
+			}
 		}
 	}
 

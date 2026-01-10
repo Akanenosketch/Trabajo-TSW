@@ -48,7 +48,7 @@ class LoginComponent extends Fronty.ModelComponent {
 
                 this.router.goToPage('ProjectIndex');
             })
-            .fail((xhr, errorThrown, statusText) => {
+            .catch((xhr, errorThrown, statusText) => {
                 if (xhr.status == 400) {
                     this.userModel.set((model) => {
                         model.errors = xhr.responseJSON;

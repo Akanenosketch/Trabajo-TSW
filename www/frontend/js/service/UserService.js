@@ -5,28 +5,6 @@ class UserService {
     }
 
     /**
-     * Retrieves session variables to login automatically.
-     * @returns The login field (user_mail) promise
-     */
-    loginWithSessionData() {
-        var self = this;
-        return new Promise((resolve, reject) => {
-            if (window.sessionStorage.getItem('login') &&
-                window.sessionStorage.getItem('pass')) {
-                self.login(window.sessionStorage.getItem('login'), window.sessionStorage.getItem('pass'))
-                    .then((data) => {
-                        resolve(data);
-                    })
-                    .catch(() => {
-                        reject();
-                    });
-            } else {
-                resolve(null);
-            }
-        });
-    }
-
-    /**
      * Stores the credentials to sent them with all requests and logins
      * @param {*} login The user_mail
      * @param {*} pass The password
