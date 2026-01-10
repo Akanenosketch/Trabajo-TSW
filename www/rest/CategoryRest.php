@@ -63,7 +63,7 @@ class CategoryRest extends BaseRest{
             header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
             header('Location: '.$_SERVER['REQUEST_URI']."/".$cat->getName());
             header('Content-Type: application/json');
-            $encoded_cat = $this->encodeCat($cat);
+            $encoded_cat = $this->encodeCatWithDesc($cat);
             echo (json_encode($encoded_cat));
         } catch (ValidationException $e) {
             header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
@@ -121,7 +121,7 @@ class CategoryRest extends BaseRest{
 
     private function encodeCat($cat){
         $encoded = array(
-            "name" => $cat->getName()
+            "name" => $cat
         );
 
         return $encoded;
