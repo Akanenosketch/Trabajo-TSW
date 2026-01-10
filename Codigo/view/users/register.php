@@ -14,53 +14,56 @@ $errors = $view->getVariable("errors");
     <link rel="stylesheet" type="text/css" href="./view/css/users/register.css">
     <title><?= i18n("Form de Registro") ?></title>
 </head>
+
 <body>
-<div id="registerOverlay" class="overlay">
-    <div class="modal">
-        <header>
-            <h2 id="registerTitle">
-                <?php if (!is_null($user)): ?><?= i18n("Editar Usuario") ?><?php endif ?>
-                <?php if (is_null($user)): ?><?= i18n("Registrarse") ?><?php endif ?>
-            </h2>
-        </header>
+    <div id="registerOverlay" class="overlay">
+        <div class="modal">
+            <header>
+                <h2 id="registerTitle">
+                    <?php if (!is_null($user)): ?>    <?= i18n("Editar Usuario") ?><?php endif ?>
+                    <?php if (is_null($user)): ?>    <?= i18n("Registrarse") ?><?php endif ?>
+                </h2>
+            </header>
 
-        <form id="registerForm" method="post">
-            <div class="form-row">
-                <label for="regNombre"><?= i18n("Nombre de Usuario") ?></label>
-                <input id="regNombre" name="nombreUsuario" type="text" placeholder="<?= i18n("Nombre de Usuario") ?>"
-                   value="<?php if (!is_null($user)): ?><?= $user->getUsername() ?><?php endif ?>"
-                     required minlength="4" />
-            </div>
-
-            <?php if (is_null($user)): ?>
+            <form id="registerForm" method="post">
                 <div class="form-row">
-                <label for="regCorreo"><?= i18n("Correo") ?></label>
-                <input id="regCorreo" name="correo" type="email" placeholder="ivan.martinez.estevez@uvigo.es" required
-                    pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
-            </div>
-            <?php endif ?>
-            
-            <div class="form-row">
-                <label for="regPass"><?= i18n("Contraseña") ?></label>
-                <input id="regPass" name="contrasena" type="password" placeholder="<?= i18n("Contraseña") ?>" required
-                    minlength="6" />
-            </div>
+                    <label for="regNombre"><?= i18n("Nombre de Usuario") ?></label>
+                    <input id="regNombre" name="nombreUsuario" type="text"
+                        placeholder="<?= i18n("Nombre de Usuario") ?>"
+                        value="<?php if (!is_null($user)): ?><?= $user->getUsername() ?><?php endif ?>" required
+                        minlength="4" />
+                </div>
 
-            <div class="form-actions">
-                <?php if (!is_null($user)): ?><a href="index.php?controller=projects&amp;action=index"><?php endif ?>
-                <?php if (is_null($user)): ?><a href="index.php?action=index"><?php endif ?>
+                <?php if (is_null($user)): ?>
+                    <div class="form-row">
+                        <label for="regCorreo"><?= i18n("Correo") ?></label>
+                        <input id="regCorreo" name="correo" type="email" placeholder="ivan.martinez.estevez@uvigo.es"
+                            required pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
+                    </div>
+                <?php endif ?>
 
-                
-                    <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>
-                </a>
-                <button type="submit" class="primary"
-                    formaction="index.php?action=<?php if (!is_null($user)): ?>edit<?php endif ?><?php if (is_null($user)): ?>register<?php endif ?>">
-                    <?php if (!is_null($user)): ?><?= i18n("Editar Usuario") ?><?php endif ?><?php if (is_null($user)): ?><?= i18n("Crear Cuenta") ?><?php endif ?>
-                </button>
-            </div>
-        </form>
+                <div class="form-row">
+                    <label for="regPass"><?= i18n("Contraseña") ?></label>
+                    <input id="regPass" name="contrasena" type="password" placeholder="<?= i18n("Contraseña") ?>"
+                        required minlength="6" />
+                </div>
+
+                <div class="form-actions">
+                    <?php if (!is_null($user)): ?><a
+                            href="index.php?controller=projects&amp;action=index"><?php endif ?>
+                        <?php if (is_null($user)): ?><a href="index.php?action=index"><?php endif ?>
+
+
+                            <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>
+                        </a>
+                        <button type="submit" class="primary"
+                            formaction="index.php?action=<?php if (!is_null($user)): ?>edit<?php endif ?><?php if (is_null($user)): ?>register<?php endif ?>">
+                            <?php if (!is_null($user)): ?>    <?= i18n("Editar Usuario") ?><?php endif ?><?php if (is_null($user)): ?>    <?= i18n("Crear Cuenta") ?><?php endif ?>
+                        </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>    
     <script src="./view/js/theme.js"></script>
 </body>
 

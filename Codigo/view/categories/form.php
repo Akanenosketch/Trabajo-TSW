@@ -31,7 +31,8 @@ $category = $view->getVariable("category");
                         <label><?= i18n(key: "Nombre") ?></label>
                         <input id="modalCategoryName" name="name" type="text" required minlength="1"
                             value="<?php if (!is_null($category)): ?><?= $category->getName() ?><?php endif ?>"
-                            <?php if ($isViewing): ?>readonly<?php endif ?> />
+                            <?php if ($isViewing || !is_null($category)):?>readonly="readonly"<?php endif ?>
+                                 />
                     </div>
                     <div class="form-row">
                         <label><?= i18n("Descripcion") ?></label>

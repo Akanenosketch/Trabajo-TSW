@@ -51,7 +51,8 @@ $project = $view->getVariable("project");
                     <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
                     <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
                 </div>
-                <button id="themeToggle" class="theme-toggle global" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
+                <button id="themeToggle" class="theme-toggle global"
+                    aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
                 <a href="index.php?controller=projects&amp;action=index">
                     <button class="btn back"><?= i18n("Volver") ?></button>
                 </a>
@@ -109,7 +110,8 @@ $project = $view->getVariable("project");
                                         </span>
                                     </span>
                                     <div>
-                                        <a href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
+                                        <a
+                                            href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Ver") ?></button>
                                         </a>
                                         <a

@@ -71,11 +71,11 @@ $currentuserName = $view->getVariable("currentusername");
 
                     </tbody>
                 </table>
-                        <div class="add-project-container">
-            <a href="index.php?controller=projects&amp;action=add">
-                <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
-            </a>
-        </div>
+                <div class="add-project-container">
+                    <a href="index.php?controller=projects&amp;action=add">
+                        <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
