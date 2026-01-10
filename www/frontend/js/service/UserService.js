@@ -73,35 +73,18 @@ class UserService {
      */
     edit(user) {
         var login = window.sessionStorage.getItem('login');
-        var pass = user.password;
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: this.baseUrl + login,
-                method: 'PUT',
-                data: JSON.stringify(user),
-                contentType: 'application/json'
-            })
-                .then(() => {
-                    //keep this authentication forever
-                    window.sessionStorage.setItem('pass', pass);
-                    $.ajaxSetup({
-                        beforeSend: (xhr) => {
-                            xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
-                        }
-                    });
-                    resolve();
-                })
-                .fail((error) => {
-                    reject(error);
-                });
-        });
-
+        return $.ajax({
+            url: this.baseUrl + login,
+            method: 'PUT',
+            data: JSON.stringify(user),
+            contentType: 'application/json'
+        })
     }
-    
+
     /**
     * Lists the emails of all existing users. 
     */
-    listAllUsers(){
+    listAllUsers() {
         return $.get(this.baseUrl.substring(0, this.baseUrl.length - 1));
     }
 

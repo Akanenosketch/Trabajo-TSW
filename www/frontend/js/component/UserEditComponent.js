@@ -47,6 +47,15 @@ class UserEditComponent extends Fronty.ModelComponent {
                 this.userModel.set((model) => {
                     model.errors = []
                 });
+                let pass = provUserModel.passwd;
+                let login = provUserModel.user_mail;
+                //keep this authentication forever
+                window.sessionStorage.setItem('pass', pass);
+                $.ajaxSetup({
+                    beforeSend: (xhr) => {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
+                    }
+                });
 
                 this.router.goToPage('ProjectIndex');
             })
