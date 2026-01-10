@@ -94,7 +94,15 @@ class UserRest extends BaseRest{
 				)
 			) {
 				header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
-				echo (json_encode($this->userMapper->findByEmail($_SERVER['PHP_AUTH_USER'])));
+				$user = $this->userMapper->findByEmail($_SERVER['PHP_AUTH_USER']);
+
+				$encodedUser = array(
+					"username" => $user->getUsername(),
+					"user_mail" => $user->getUserMail(),
+					"passwd" => $user->getPasswd()
+				);
+
+				echo (json_encode($encodedUser));
 			} else {
 				$errors = array();
 				$errors["user_mail"] = i18n("usuario no valido");

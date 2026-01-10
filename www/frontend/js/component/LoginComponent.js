@@ -42,7 +42,6 @@ class LoginComponent extends Fronty.ModelComponent {
         let user_mail = $('#regCorreo').val();
         let passwd = $('#regPass').val();
         if (user_mail == "") {
-            console.log("Empty");
             this.userModel.set((model) => {
                 model.errors = { "user_mail": "usuario no valido" };
             });
@@ -50,10 +49,8 @@ class LoginComponent extends Fronty.ModelComponent {
         } else {
             this.userService.login(user_mail, passwd)
                 .then((userData) => {
-                    console.log("Cor " + userData + " f3wfd");
 
                     this.userModel.setLoggeduser(userData);
-                    console.log(this.userModel.username);
                     this.userModel.setMode("");
                     this.userModel.set((model) => {
                         model.errors = []

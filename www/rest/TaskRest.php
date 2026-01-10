@@ -36,7 +36,10 @@ class TaskRest extends BaseRest{
 
 		// Create and populate the Task object
 		$task = new Task();
-		$task = $this->loadTask($project, $task, $data);
+		if (isset($data->name) && isset($data->status) && isset($data->desc)&& isset($data->priority)&& isset($data->beginDate)&& isset($data->endDate)) {
+			$task = $this->loadTask($project, $task, $data);
+		}
+
 		try {
 			$task->checkIsValidForCreate(); // if it fails, ValidationException
 			$this->taskMapper->save($task);
@@ -54,7 +57,9 @@ class TaskRest extends BaseRest{
 		$task = $this->retrieveTask($project,$taskId);
 
 		try {
+		if (isset($data->name) && isset($data->status) && isset($data->desc)&& isset($data->priority)&& isset($data->beginDate)&& isset($data->endDate)) {
 			$task = $this->loadTask($project, $task, $data);
+		} else throw new ValidationException(array());
 			// validate Task object	
 			$task->checkIsValidForUpdate(); // if it fails, ValidationException
 			//Update Task object in the database

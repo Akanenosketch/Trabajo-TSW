@@ -86,8 +86,10 @@ class ProjectRest extends BaseRest{
 	public function updateProject($projectId, $data){
 
 		$project = $this->retrieveProject($projectId);
-		$project = $this->loadProject($project, $data);
 		try {			
+		if (isset($data->name) && isset($data->users) && isset($data->categories)) {
+			$project = $this->loadProject($project, $data);
+		} else throw new ValidationException(array());
 			// validate Project object
 			$project->checkIsValidForUpdate(); // if it fails, ValidationException
 			// update the Project object in the database

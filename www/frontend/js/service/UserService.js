@@ -28,7 +28,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve(data);
+                    resolve(JSON.parse(data));
                 })
                 .fail((error) => {
                     window.sessionStorage.removeItem('login');
@@ -89,7 +89,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve(data);
+                    resolve(JSON.parse(data));
                 })
                 .fail((error) => {
                     reject(error);

@@ -75,8 +75,10 @@ class CategoryRest extends BaseRest{
     public function updateCategory($catName, $data){
 
         $cat = $this->retrieveCat($catName);
-        $cat = $this->loadCat($cat, $data);
         try {
+        if (isset($data->name) && isset($data->desc)) {
+            $cat = $this->loadCat($cat, $data);
+        } else throw new ValidationException(array());
             // validate Category object
             $cat->checkIsValidForRegister(); // if it fails, ValidationException
             // update the Category object in the database
