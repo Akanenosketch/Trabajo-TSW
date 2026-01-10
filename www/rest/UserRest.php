@@ -61,7 +61,7 @@ class UserRest extends BaseRest{
 		$currentLogged = parent::authenticateUser();
 		try {
 		if (isset($data->username) && isset($data->user_mail) && isset($data->passwd)) {
-		$user = new User($data->username, $usermail, $data->passpasswdword);
+		$user = new User($data->username, $usermail, $data->passwd);
 		} else throw new ValidationException(array());
 		
 			if(strcmp($usermail, $currentLogged->getUserMail()) != 0){
