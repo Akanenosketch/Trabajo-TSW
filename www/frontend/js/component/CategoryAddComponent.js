@@ -61,7 +61,7 @@ class CategoryAddComponent extends Fronty.ModelComponent {
             })
             .fail((xhr, errorThrown, statusText) => {
                 if (xhr.status == 400) {
-                    this.taskModel.set((model) => {
+                    this.categoryModel.set((model) => {
                         model.errors = xhr.responseJSON;
                     });
                 } else {

@@ -39,7 +39,7 @@ class CategoryIndexComponent extends Fronty.ModelComponent {
             .then((cats) => {
                 this.categoriesModel.setCats(
                     cats.map(
-                        (cat) => new CategoryModel("",cat.name)
+                        (cat) => new CategoryModel("", cat.name)
                     ));
             });
     }
@@ -78,11 +78,11 @@ class CategoryRowComponent extends Fronty.ModelComponent {
         });
 
         this.addEventListener('click', '#editCatBtn', () => {
-            this.router.goToPage("CategoryEdit?catName=" + + this.categoryModel.name);
+            this.router.goToPage("CategoryEdit?catName=" + this.categoryModel.name);
         });
 
         this.addEventListener('click', '#deleteCatBtn', () => {
-            this.categoryService.deleteTask(this.categoryModel.name)
+            this.categoryService.deleteCategory(this.categoryModel.name)
                 .fail(() => {
                     alert('Error Deleting')
                 })

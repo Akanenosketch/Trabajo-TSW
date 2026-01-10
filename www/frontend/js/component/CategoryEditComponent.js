@@ -50,7 +50,7 @@ class CategoryEditComponent extends Fronty.ModelComponent {
 
         this.categoryModel.setDesc($('#modalCategoryDesc').val());
 
-        this.categoryService.updateCategory(this.categoryModel.catName, this.categoryModel)
+        this.categoryService.updateCategory(this.categoryModel.name, this.categoryModel)
             .then(() => {
                 this.categoryModel.set((model) => {
                     model.errors = []
@@ -59,7 +59,7 @@ class CategoryEditComponent extends Fronty.ModelComponent {
             })
             .fail((xhr, errorThrown, statusText) => {
                 if (xhr.status == 400) {
-                    this.taskModel.set((model) => {
+                    this.categoryModel.set((model) => {
                         model.errors = xhr.responseJSON;
                     });
                 } else {
