@@ -58,7 +58,7 @@ class ProjectService {
      * @returns 
      */
     listProjects() {
-        return $.get(this.baseUrl);
+        return $.get(this.baseUrl.substring(0, this.baseUrl.length - 1));
     }
 
 }

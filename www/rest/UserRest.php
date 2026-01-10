@@ -111,7 +111,7 @@ class UserRest extends BaseRest{
 $userRest = new UserRest();
 URIDispatcher::getInstance()
 	->map("GET", "/users/$1", array($userRest, "login"))
-	->map("GET", "/users"."/", array($userRest, "list"))
+	->map("GET", "/users", array($userRest, "list"))
 	->map("PUT", "/users/$1", array($userRest, "edit"))
 	->map("POST", "/users"."/", array($userRest, "register"));
 

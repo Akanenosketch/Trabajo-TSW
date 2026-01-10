@@ -37,27 +37,35 @@ class LoginComponent extends Fronty.ModelComponent {
     login() {
         let user_mail = $('#regCorreo').val();
         let passwd = $('#regPass').val();
-        this.userService.login(user_mail, passwd)
-            .then((userData) => {
-
-                this.userModel.setLoggeduser(userData);
-                this.userModel.setMode("");
-                this.userModel.set((model) => {
-                    model.errors = []
-                });
-
-                this.router.goToPage('ProjectIndex');
-            })
-            .catch((xhr, errorThrown, statusText) => {
-                if (xhr.status == 400) {
-                    this.userModel.set((model) => {
-                        model.errors = xhr.responseJSON;
-                    });
-                } else {
-                    alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
-                }
+        if (user_mail == "") {
+            this.userModel.set((model) => {
+                model.errors = {user_mail};
             });
 
+        } else {
+            this.userService.login(user_mail, passwd)
+                .then((userData) => {
+
+                    this.userModel.setLoggeduser(userData);
+                    this.userModel.setMode("");
+                    this.userModel.set((model) => {
+                        model.errors = []
+                    });
+
+                    this.router.goToPage('ProjectIndex');
+                })
+                .catch((xhr, errorThrown, statusText) => {
+                    if (xhr.status == 400) {
+                        this.userModel.set((model) => {
+                            model.errors = xhr.responseJSON;
+                        });
+                    } else {
+                        alert('an error has occurred during request: ' + statusText + '.' + xhr.responseText);
+                    }
+                });
+
+
+        }
     }
 
 }

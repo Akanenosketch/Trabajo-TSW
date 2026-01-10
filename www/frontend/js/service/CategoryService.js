@@ -57,7 +57,7 @@ class CategoryService {
     * Lists the category names of all existing cats. 
     */
     listAllCats(){
-        return $.get(this.baseUrl);
+        return $.get(this.baseUrl.substring(0, this.baseUrl.length - 1));
     }
 
 }

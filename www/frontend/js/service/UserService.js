@@ -102,7 +102,7 @@ class UserService {
     * Lists the emails of all existing users. 
     */
     listAllUsers(){
-        return $.get(this.baseUrl);
+        return $.get(this.baseUrl.substring(0, this.baseUrl.length - 1));
     }
 
 }

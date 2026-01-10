@@ -139,7 +139,7 @@ class CategoryRest extends BaseRest{
 // URI-MAPPING for this Rest endpoint
 $categoryRest = new CategoryRest();
 URIDispatcher::getInstance()
-    ->map("GET", "/categories"."/", array($categoryRest, "getCategories"))
+    ->map("GET", "/categories", array($categoryRest, "getCategories"))
     ->map("GET", "/categories/$1", array($categoryRest, "getCategory"))
     ->map("POST", "/categories"."/", array($categoryRest, "createCategory"))
     ->map("PUT", "/categories/$1", array($categoryRest, "updateCategory"))
