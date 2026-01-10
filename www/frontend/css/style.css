@@ -649,6 +649,65 @@ textarea {
 }
 
 /* =========================================
+                    Categorías
+   ========================================= */
+
+.cols {
+    display: flex;
+    gap: 24px;
+}
+
+.col {
+    flex: 1;
+    background: var(--surface-dark);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.05);
+}
+
+.col h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: 600;
+}
+
+.cat {
+    background: var(--surface-lighter);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dark);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 0.25s;
+}
+
+.cat:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+}
+
+.cat .btn {
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.cat .btn:hover {
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
+}
+
+/* =========================================
    8. ANIMATIONS & MEDIA QUERIES
    ========================================= */
 @keyframes fadeIn {
