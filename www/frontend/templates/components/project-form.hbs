@@ -27,7 +27,7 @@
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
                         <input type="checkbox" id="{{this}}" name="{{this}}" value="{{this}}" {{!-- Si pertenecen al
-                            proyecto los marca --}} {{#ifIncludes this selectedProject.emails}}checked="checked"
+                            proyecto los marca --}} {{#ifIncludes this ../selectedProject.emails}}checked="checked"
                             {{/ifIncludes}} />
                         <label>
                             {{this}}
@@ -49,8 +49,8 @@
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
                         <input type="checkbox" id="{{this.name}}" name="{{this.name}}" value="{{this.name}}" {{!-- Si
-                            pertenecen al proyecto los marca --}} {{#ifIncludes this
-                            selectedProject.categories}}checked="checked" {{/ifIncludes}} />
+                            pertenecen al proyecto los marca --}} 
+                            {{#ifIncludes this.name ../selectedProject.categories}}checked="checked" {{/ifIncludes}} />
                         <label>
                             {{this.name}}
                         </label>

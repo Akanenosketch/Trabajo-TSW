@@ -116,7 +116,7 @@
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
                         <input type="checkbox" name="{{this}}" id="{{this}}" value="{{this}}" {{!-- Si pertenecen al
-                            task los marca --}} {{#ifIncludes this emails}}checked="checked" {{/ifIncludes}} {{#if_eq
+                            task los marca --}} {{#ifIncludes this ../emails}}checked="checked" {{/ifIncludes}} {{#if_eq
                             mode "view" }} disabled="disabled" {{/if_eq}} />
                         <label>
                             {{this}}

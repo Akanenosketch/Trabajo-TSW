@@ -125,6 +125,13 @@ class ProjectModel extends Fronty.Model {
             self.workingCount = self.working.length;
             self.done = tasks.filter((task) => task.status == "Done");
             self.doneCount = self.done.length;
+            if (this.tasksCount == 0) {
+                this.completedPercent = 0;
+            } else {
+                this.completedPercent = (this.doneCount * 100 / this.tasksCount);
+                this.completedPercent = Math.round(this.completedPercent * 100) / 100; //Fija a 2 decimales
+            }
+
         });
     }
 

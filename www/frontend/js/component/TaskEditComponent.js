@@ -89,7 +89,7 @@ class TaskEditComponent extends Fronty.ModelComponent {
                 this.taskModel.set((model) => {
                     model.errors = []
                 });
-                this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
+                this.router.goToPage('ProjectIndex');
             })
             .fail((xhr, errorThrown, statusText) => {
                 if (xhr.status == 400) {

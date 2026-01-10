@@ -101,7 +101,7 @@ class ProjectEditComponent extends Fronty.ModelComponent {
                 this.projectsModel.set((model) => {
                     model.errors = []
                 });
-                this.router.goToPage('ProjectView?id=' + this.projectsModel.selectedProject.id);
+                this.router.goToPage('ProjectIndex');
             })
             .fail((xhr, errorThrown, statusText) => {
                 if (xhr.status == 400) {

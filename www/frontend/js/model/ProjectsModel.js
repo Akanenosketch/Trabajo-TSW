@@ -13,11 +13,14 @@ class ProjectsModel extends Fronty.Model {
    */
   setSelectedProject(project) {
     this.set((self) => {
-      project.setTasks(
+      self.selectedProject = project;
+      if(self.selectedProject.tasks){
+      self.selectedProject.setTasks(
         project.tasks.map(
           (task) => new TaskModel("", task.id, task.name, task.desc, task.projectID, task.status, task.users, task.priority, task.beginDate, task.endDate)
         ))
-      self.selectedProject = project;
+
+      }
 
     });
   }

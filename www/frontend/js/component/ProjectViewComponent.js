@@ -31,7 +31,7 @@ class ProjectViewComponent extends Fronty.ModelComponent {
         });
 
         this.addEventListener('click', '#editProjBtn', () => {
-            this.router.goToPage("TaskEdit?projectId=" + this.projectsModel.selectedProject.id);
+            this.router.goToPage("ProjectEdit?projectId=" + this.projectsModel.selectedProject.id);
         });
 
         this.addEventListener('click', '#deleteProjBtn', () => {
@@ -57,7 +57,7 @@ class ProjectViewComponent extends Fronty.ModelComponent {
             this.projectService.getProject(projectID)
                 .then((project) => {
                     this.projectsModel.setSelectedProject(
-                        new ProjectModel(false, project.id, project.name, project.users, project.tasks, project.categories)
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks,project.categories)
                     );
                 });
         }
@@ -104,7 +104,7 @@ class TaskRowComponent extends Fronty.ModelComponent {
         });
 
         this.addEventListener('click', '#editTaskBtn', () => {
-            this.router.goToPage("ProjectEdit?projectId=" + this.taskModel.projectID);
+            this.router.goToPage("TaskEdit?projectId=" + this.taskModel.projectID + "&taskId=" + this.taskModel.id);
         });
 
         this.addEventListener('click', '#deleteTaskBtn', () => {
