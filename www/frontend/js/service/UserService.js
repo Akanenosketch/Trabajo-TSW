@@ -19,7 +19,7 @@ class UserService {
                     xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                 }
             })
-                .then(() => {
+                .then((data) => {
                     //keep this authentication forever
                     window.sessionStorage.setItem('login', login);
                     window.sessionStorage.setItem('pass', pass);
@@ -28,7 +28,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve();
+                    resolve(JSON.parse(data));
                 })
                 .fail((error) => {
                     window.sessionStorage.removeItem('login');
@@ -81,7 +81,7 @@ class UserService {
                 data: JSON.stringify(user),
                 contentType: 'application/json'
             })
-                .then((data) => {
+                .then(() => {
                     //keep this authentication forever
                     window.sessionStorage.setItem('pass', pass);
                     $.ajaxSetup({
@@ -89,7 +89,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve(JSON.parse(data));
+                    resolve();
                 })
                 .fail((error) => {
                     reject(error);
