@@ -19,7 +19,7 @@ class UserService {
                     xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                 }
             })
-                .then((data) => {
+                .then(() => {
                     //keep this authentication forever
                     window.sessionStorage.setItem('login', login);
                     window.sessionStorage.setItem('pass', pass);
@@ -28,7 +28,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve(JSON.parse(data));
+                    resolve();
                 })
                 .fail((error) => {
                     window.sessionStorage.removeItem('login');
