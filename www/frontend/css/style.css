@@ -477,6 +477,7 @@ textarea {
 
 /* ---- Error Messages ---- */
 .error-span {
+    visibility: hidden;
     color: var(--danger);
     font-size: 14px;
     background: rgba(255, 59, 59, 0.1);
