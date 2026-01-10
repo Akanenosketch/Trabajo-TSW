@@ -24,12 +24,12 @@ class WelcomeComponent extends Fronty.ModelComponent {
         });
 
 
-                options.addEventListener('click', '#es-button', () => {
+        this.addEventListener('click', '#es-button', () => {
             I18n.changeLanguage('default');
             document.location.reload();
         });
 
-        options.addEventListener('click', '#en-button', () => {
+        this.addEventListener('click', '#en-button', () => {
             I18n.changeLanguage('en');
             document.location.reload();
         });
@@ -54,7 +54,7 @@ class WelcomeComponent extends Fronty.ModelComponent {
             localStorage.setItem('theme', "dark");
         }
 
-        options.addEventListener('click', '#themeToggle', () => {
+        this.addEventListener('click', '#themeToggle', () => {
             let current = document.body.classList.contains('light-theme') ? 'light' : 'dark';
             let next = current === 'light' ? 'dark' : 'light';
             applyTheme(next);
