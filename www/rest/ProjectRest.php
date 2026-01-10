@@ -73,9 +73,6 @@ class ProjectRest extends BaseRest{
 			// response OK. Also send project in content
 			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
 			header('Location: '.$_SERVER['REQUEST_URI']."/".$projectId);
-			header('Content-Type: application/json');
-			$encoded_project = $this->encodeProject($project);
-			echo(json_encode($encoded_project));
 		} catch (ValidationException $e) {
 			header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
 			header('Content-Type: application/json');
@@ -134,24 +131,15 @@ class ProjectRest extends BaseRest{
 
 		$users = $this->userMapper->findAll();
 		$projectUsers = array();
-		$userNum = 0;
+		$dataUsers = (array) $data->users;
 		foreach ($users as $user) {
-			if (isset($data->users["user".$userNum])) {
+			if (isset($dataUsers[$user->getUserMail()])) {
 				array_push($projectUsers, $user);
 			}
-			$userNum++;
 		}
 		$project->setUsers($projectUsers);
 
-		$cats = $this->categoryMapper->findAll();
-		$projectCats = array();
-		$catNum = 0;
-		foreach ($cats as $cat) {
-			if (isset($data->categories["cat".$catNum])) {
-				array_push($projectCats, $cat);
-			}
-			$catNum++;
-		}
+		$projectCats =  (array) $data->categories;
 		$project->setCats($projectCats);
 
 		return $project;

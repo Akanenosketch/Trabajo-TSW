@@ -1,4 +1,4 @@
- <div id="taskModal" class="modal-overlay">
+<div id="taskModal" class="modal-overlay">
 
     <div class="modal-box">
         <div class="modal-content">
@@ -16,166 +16,95 @@
 
             <div class="form-row">
                 <label>{{i18n "Nombre"}}</label>
-                <input id="modalTaskName" name="title" type="text"
-                    required="required"
-                    minlength="1"
-                    {{#if_eq mode "edit"}}
-                    value="{{name}}"
-                    {{/if_eq}}
-                    {{#if_eq mode "view"}}
-                    value="{{name}}"
-                    readonly="readonly"
-                    {{/if_eq}} />
+                <input id="modalTaskName" name="title" type="text" required="required" minlength="1" {{#if_eq
+                    mode "edit" }} value="{{name}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{name}}"
+                    readonly="readonly" {{/if_eq}} />
                 {{#if errors.name }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
             <div class="form-row">
                 <label>{{i18n "Descripcion"}}</label>
-                <input id="modalTaskDesc" name="desc" type="text"
-                    required="required"
-                    minlength="1"
-                    {{#if_eq mode "edit"}}
-                    value="{{desc}}"
-                    {{/if_eq}}
-                    {{#if_eq mode "view"}}
-                    value="{{desc}}"
-                    readonly="readonly"
+                <input id="modalTaskDesc" name="desc" type="text" required="required" minlength="1" {{#if_eq mode "edit"
+                    }} value="{{desc}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{desc}}" readonly="readonly"
                     {{/if_eq}} />
                 {{#if errors.desc }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
                 {{/if}}
 
             </div>
 
             <div class="form-row">
                 <label>{{i18n "Fecha de Inicio"}}</label>
-                <input id="modalTaskBegin" name="beginDate" type="date"
-                    required="required"
-                    {{#if_eq mode "edit"}}
-                    value="{{beginDate}}"
-                    {{/if_eq}}
-                    {{#if_eq mode "view"}}
-                    value="{{beginDate}}"
-                    readonly="readonly"
+                <input id="modalTaskBegin" name="beginDate" type="date" required="required" {{#if_eq mode "edit" }}
+                    value="{{beginDate}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{beginDate}}" readonly="readonly"
                     {{/if_eq}} />
                 {{#if errors.beginDate }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.beginDate}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.beginDate}}{{/i18n}}</span>
                 {{/if}}
 
                 <label>{{i18n "Fecha de Fin"}}</label>
-                <input id="modalTaskEnd" name="endDate" type="date"
-                    required="required"
-                    {{#if_eq mode "edit"}}
-                    value="{{endDate}}"
-                    {{/if_eq}}
-                    {{#if_eq mode "view"}}
-                    value="{{endDate}}"
-                    readonly="readonly"
+                <input id="modalTaskEnd" name="endDate" type="date" required="required" {{#if_eq mode "edit" }}
+                    value="{{endDate}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{endDate}}" readonly="readonly"
                     {{/if_eq}} />
                 {{#if errors.endDate }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.endDate}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.endDate}}{{/i18n}}</span>
                 {{/if}}
 
                 {{#if errors.dates }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.dates}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.dates}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
             <div class="form-row">
                 <label>{{i18n "Estado"}}</label>
-                <select id="modalTaskStatus" name="status"
-                    required="required"
-                    {{#if_eq mode "view"}}
-                    disabled="disabled"
-                    {{/if_eq}}>
-                    <option value="ToDo"
-                        {{#if_eq mode "add"}}
-                        {{else}}
-                        {{#if_eq status "ToDo"}}
-                        selected="selected"
-                        {{/if_eq}}
-                        {{/if_eq}}>
+                <select id="modalTaskStatus" name="status" required="required" {{#if_eq mode "view" }}
+                    disabled="disabled" {{/if_eq}}>
+                    <option value="ToDo" {{#if_eq mode "add" }} {{else}} {{#if_eq status "ToDo" }} selected="selected"
+                        {{/if_eq}} {{/if_eq}}>
                         {{i18n "Por Hacer"}}
                     </option>
-                    <option value="Working"
-                        {{#if_eq mode "add"}}
-                        {{else}}
-                        {{#if_eq status "Working"}}
-                        selected="selected"
-                        {{/if_eq}}
-                        {{/if_eq}}>
+                    <option value="Working" {{#if_eq mode "add" }} {{else}} {{#if_eq status "Working" }}
+                        selected="selected" {{/if_eq}} {{/if_eq}}>
                         {{i18n "En Proceso"}}
                     </option>
-                    <option value="Done"
-                        {{#if_eq mode "add"}}
-                        {{else}}
-                        {{#if_eq status "Done"}}
-                        selected="selected"
-                        {{/if_eq}}
-                        {{/if_eq}}>
+                    <option value="Done" {{#if_eq mode "add" }} {{else}} {{#if_eq status "Done" }} selected="selected"
+                        {{/if_eq}} {{/if_eq}}>
                         {{i18n "Acabado"}}
                     </option>
                 </select>
                 {{#if errors.status }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.status}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.status}}{{/i18n}}</span>
                 {{/if}}
                 {{#if errors.statusValue }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.statusValue}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.statusValue}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
             <div class="form-row">
                 <label>{{i18n "Prioridad"}}</label>
-                <select id="modalTaskPriority" name="priority"
-                    required="required"
-                    {{#if_eq mode "view"}}
-                    disabled="disabled"
-                    {{/if_eq}}>
+                <select id="modalTaskPriority" name="priority" required="required" {{#if_eq mode "view" }}
+                    disabled="disabled" {{/if_eq}}>
 
-                    <option value="Low"
-                        {{#if_eq mode "add"}}
-                        {{else}}
-                        {{#if_eq priority "Low"}}
-                        selected="selected"
-                        {{/if_eq}}
-                        {{/if_eq}}>
+                    <option value="Low" {{#if_eq mode "add" }} {{else}} {{#if_eq priority "Low" }} selected="selected"
+                        {{/if_eq}} {{/if_eq}}>
                         {{i18n "Baja"}}
                     </option>
-                    <option value="Medium"
-                        {{#if_eq mode "add"}}
-                        {{else}}
-                        {{#if_eq priority "Medium"}}
-                        selected="selected"
-                        {{/if_eq}}
-                        {{/if_eq}}>
+                    <option value="Medium" {{#if_eq mode "add" }} {{else}} {{#if_eq priority "Medium" }}
+                        selected="selected" {{/if_eq}} {{/if_eq}}>
                         {{i18n "Media"}}
                     </option>
-                    <option value="High"
-                        {{#if_eq mode "add"}}
-                        {{else}}
-                        {{#if_eq priority "High"}}
-                        selected="selected"
-                        {{/if_eq}}
-                        {{/if_eq}}>
+                    <option value="High" {{#if_eq mode "add" }} {{else}} {{#if_eq priority "High" }} selected="selected"
+                        {{/if_eq}} {{/if_eq}}>
                         {{i18n "Alta"}}
                     </option>
                 </select>
                 {{#if errors.priority }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.priority}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.priority}}{{/i18n}}</span>
                 {{/if}}
                 {{#if errors.priorityValue }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.priorityValue}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.priorityValue}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
@@ -186,23 +115,17 @@
                     {{#each projects.selectedProject.emails}}
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
-                        <input type="checkbox"
-                            name="user{{@index}}"
-                            value="{{this}}"
-                            {{!-- Si pertenecen al task los marca --}}
-                            {{#ifIncludes this
-                            emails}}checked="checked"{{/ifIncludes}}
-                            {{#if_eq mode "view"}}
-                            disabled="disabled" {{/if_eq}} />
+                        <input type="checkbox" name="{{this}}" id="{{this}}" value="{{this}}" {{!-- Si pertenecen al
+                            task los marca --}} {{#ifIncludes this emails}}checked="checked" {{/ifIncludes}} {{#if_eq
+                            mode "view" }} disabled="disabled" {{/if_eq}} />
                         <label>
                             {{this}}
                         </label>
                     </div>
                     {{/each}}
-                {{#if errors.users }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
-                {{/if}}
+                    {{#if errors.users }}
+                    <span class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+                    {{/if}}
                 </div>
 
                 <div class="modal-footer">
@@ -210,20 +133,15 @@
                     <button class="btn" id="cancelTaskBtn" type="button">
                         {{i18n "Cancelar"}}</button>
 
-                    <button class="primary" type="button"
-                        id="saveTaskBtn"
-                        {{#if_eq mode "view"}}
-                        hidden="hidden"
+                    <button class="primary" type="button" id="saveTaskBtn" {{#if_eq mode "view" }} hidden="hidden"
                         {{/if_eq}}>
                         {{i18n "Guardar"}}</button>
 
                     {{#if_eq mode "edit"}}
-                    <input type="hidden" id="editingTaskId" name="task_id"
-                        value="{{id}}" />
+                    <input type="hidden" id="editingTaskId" name="task_id" value="{{id}}" />
                     {{/if_eq}}
 
-                    <input type="hidden" id="editingProjectId" name="id"
-                        value="{{projectID}}" />
+                    <input type="hidden" id="editingProjectId" name="id" value="{{projectID}}" />
 
                 </div>
 

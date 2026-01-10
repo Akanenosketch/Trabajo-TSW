@@ -120,11 +120,11 @@ class ProjectModel extends Fronty.Model {
             self.tasks = tasks;
             self.tasksCount = tasks.length;
             self.todo = tasks.filter((task) => task.status == "ToDo");
-            self.todoCount = todo.length;
+            self.todoCount = self.todo.length;
             self.working = tasks.filter((task) => task.status == "Working");
-            self.workingCount = working.length;
+            self.workingCount = self.working.length;
             self.done = tasks.filter((task) => task.status == "Done");
-            self.doneCount = done.length;
+            self.doneCount = self.done.length;
         });
     }
 

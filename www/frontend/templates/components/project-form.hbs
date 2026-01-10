@@ -12,13 +12,10 @@
 
             <div class="form-row">
                 <label>{{i18n "Nombre del Proyecto"}}</label>
-                <input id="newProjectName" type="text" name="name"
-                    required="required"
-                    minlength="1"
+                <input id="newProjectName" type="text" name="name" required="required" minlength="1"
                     value="{{#if selectedProject.editing}}{{selectedProject.name}}{{/if}}" />
                 {{#if errors.name }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
                 {{/if}}
             </div>
             <div class="form-row">
@@ -29,12 +26,9 @@
                     {{#each users.users}}
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
-                        <input type="checkbox"
-                            name="user{{@index}}"
-                            value="{{this}}"
-                            {{!-- Si pertenecen al proyecto los marca --}}
-                            {{#ifIncludes this
-                            selectedProject.emails}}checked="checked"{{/ifIncludes}} />
+                        <input type="checkbox" id="{{this}}" name="{{this}}" value="{{this}}" {{!-- Si pertenecen al
+                            proyecto los marca --}} {{#ifIncludes this selectedProject.emails}}checked="checked"
+                            {{/ifIncludes}} />
                         <label>
                             {{this}}
                         </label>
@@ -42,8 +36,7 @@
                     {{/each}}
                 </div>
                 {{#if errors.users }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
@@ -55,12 +48,9 @@
                     {{#each categories.categories}}
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
-                        <input type="checkbox"
-                            name="cat{{@index}}"
-                            value="{{this}}"
-                            {{!-- Si pertenecen al proyecto los marca --}}
-                            {{#ifIncludes this
-                            selectedProject.categories}}checked="checked"{{/ifIncludes}} />
+                        <input type="checkbox" id="{{this.name}}" name="{{this.name}}" value="{{this.name}}" {{!-- Si
+                            pertenecen al proyecto los marca --}} {{#ifIncludes this
+                            selectedProject.categories}}checked="checked" {{/ifIncludes}} />
                         <label>
                             {{this.name}}
                         </label>
@@ -68,20 +58,17 @@
                     {{/each}}
                 </div>
                 {{#if errors.categories }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.categories}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.categories}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
             <div>
 
-                <button type="button" class="btn"
-                    id="cancelProjectBtn">{{i18n "Cancelar"}}
+                <button type="button" class="btn" id="cancelProjectBtn">{{i18n "Cancelar"}}
                 </button>
 
                 {{#if selectedProject.editing}}
-                <input value="{{id}}" type="hidden"
-                    name="id" />
+                <input value="{{id}}" type="hidden" name="id" />
                 {{/if}}
 
                 <button type="button" class="btn primary" id="saveProjectBtn">

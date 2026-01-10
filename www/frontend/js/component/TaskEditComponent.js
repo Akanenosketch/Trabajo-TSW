@@ -70,12 +70,13 @@ class TaskEditComponent extends Fronty.ModelComponent {
         this.taskModel.setDesc($('#modalTaskDesc').val());
         this.taskModel.setStatus($('#modalTaskStatus').val());
 
-
         let newUsers = {};
         let count = this.projectsModel.selectedProject.users.length;
+        let userMails = this.projectsModel.selectedProject.emails;
         for (let index = 0; index < count; index++) {
-            if ($('#user' + index).is(':checked')) {
-                newUsers['user' + index] = $('#user' + index).val();
+            let key = '#' + $.escapeSelector(userMails[index]);
+            if ($(key).is(':checked')) {
+                newUsers[userMails[index]] = userMails[index];
             }
         }
         this.taskModel.setUsers(newUsers);

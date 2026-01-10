@@ -60,19 +60,25 @@ class ProjectAddComponent extends Fronty.ModelComponent {
         //Almacenar usuarios
         let newUsers = {};
         let count = this.usersModel.usercount;
+        let userMails = this.usersModel.users;
         for (let index = 0; index < count; index++) {
-            if ($('#user' + index).is(':checked')) {
-                newUsers['user' + index] = $('#user' + index).val();
+            let key = '#' + $.escapeSelector(userMails[index]);
+            if ($(key).is(':checked')) {
+                newUsers[userMails[index]] = userMails[index];
             }
         }
         this.projectsModel.selectedProject.users = newUsers;
 
         //Almacenar categorias
         let newCats = {};
+        let catNames = this.categoriesModel.categories.map(
+            (cat) => cat.name
+        );
         count = this.categoriesModel.catcount;
         for (let index = 0; index < count; index++) {
-            if ($('#cat' + index).is(':checked')) {
-                newCats['cat' + index] = $('#cat' + index).val();
+            let key = '#' + $.escapeSelector(catNames[index]);
+            if ($(key).is(':checked')) {
+                newCats[catNames[index]] = catNames[index];
             }
         }
         this.projectsModel.selectedProject.categories = newCats;

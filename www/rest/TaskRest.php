@@ -129,14 +129,12 @@ class TaskRest extends BaseRest{
 		$task->setBeginDate($data->beginDate);
 		$task->setEndDate($data->endDate);
 
-		//Esta parte cambiarla
 		$users = array();
-		$userNum = 0;
+		$dataUsers = (array) $data->users;
 		foreach ($project->getUsers() as $user) {
-			if (isset($data->users["user".$userNum])) {
+			if (isset($dataUsers[$user->getUserMail()])) {
 				array_push($users, $user);
 			}
-			$userNum++;
 		}
 		$task->setUsers($users);
 

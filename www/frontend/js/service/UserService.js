@@ -47,8 +47,8 @@ class UserService {
     logout() {
         window.sessionStorage.removeItem('login');
         window.sessionStorage.removeItem('pass');
-        $.ajaxSetup({
-            beforeSend: (xhr) => { }
+        $.ajaxSetup({ //Elimina el Auth headers
+            beforeSend: null
         });
     }
 
