@@ -97,7 +97,7 @@ class Category{
 		if (strlen(trim($this->name)) < 1) {
 			$errors["name"] = i18n("nombre es obligatorio");
 		}
-		if (strlen(trim($this->passwd)) < 6) {
+		if (strlen(trim($this->desc)) < 1) {
 			$errors["desc"] = i18n("Descripcion es obligatoria");
 		}
 

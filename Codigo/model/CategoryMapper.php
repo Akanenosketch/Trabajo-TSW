@@ -126,8 +126,8 @@ class CategoryMapper{
 
         foreach ($cats_DB as $car) {
             array_push($cats,new Category(
-                $cats["cat_name"],
-                $cats["cat_desc"]
+                $car["cat_name"],
+                $car["cat_desc"]
         ));
         }
         return $cats;
