@@ -35,17 +35,15 @@ class UserRest extends BaseRest{
 	}
 
 	public function register($data){
-		$user = new User($data->username, $data->user_mail, $data->password);
+		$user = new User($data->username, $data->user_mail, $data->passwd);
 		try {
 			$user->checkIsValidForRegister();
 			if (!$this->userMapper->usermailExists($data->user_mail)) {
 				$this->userMapper->save($user);
 			} else {
-				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
 				$errors = array();
 				$errors["user_mail"] = i18n("Existe un usuario con el mismo correo");
-				echo (json_encode($errors));
-				return;
+				throw new ValidationException($errors, i18n("usuario no valido"));
 			}
 			header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
 			header("Location: ".$_SERVER['REQUEST_URI']."/".$data->username);
@@ -70,11 +68,9 @@ class UserRest extends BaseRest{
 			if ($this->userMapper->usermailExists($usermail)) {
 				$this->userMapper->update($user);
 			} else {
-				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
 				$errors = array();
 				$errors["user_mail"] = i18n("No existe un usuario con el mismo correo");
-				echo (json_encode($errors));
-				return;
+				throw new ValidationException($errors, i18n("usuario no valido"));
 			}
 			header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
 		} catch (ValidationException $e) {
@@ -101,9 +97,9 @@ class UserRest extends BaseRest{
 $userRest = new UserRest();
 URIDispatcher::getInstance()
 	->map("GET", "/users/$1", array($userRest, "login"))
-	->map("GET", "/users", array($userRest, "list"))
+	->map("GET", "/users"."/", array($userRest, "list"))
 	->map("PUT", "/users/$1", array($userRest, "edit"))
-	->map("POST", "/users", array($userRest, "register"));
+	->map("POST", "/users"."/", array($userRest, "register"));
 
 
 //Esto es un CR de Users, estaria bien ampliarlo para tener CRUD

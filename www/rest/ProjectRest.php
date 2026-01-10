@@ -203,8 +203,8 @@ class ProjectRest extends BaseRest{
 // URI-MAPPING for this Rest endpoint
 $projectRest = new ProjectRest();
 URIDispatcher::getInstance()
-	->map("GET", "/projects", array($projectRest, "getProjects"))
+	->map("GET", "/projects"."/", array($projectRest, "getProjects"))
 	->map("GET", "/projects/$1", array($projectRest, "getProject"))
-	->map("POST", "/projects", array($projectRest, "createProject"))
+	->map("POST", "/projects"."/", array($projectRest, "createProject"))
 	->map("PUT", "/projects/$1", array($projectRest, "updateProject"))
 	->map("DELETE", "/projects/$1", array($projectRest, "deleteProject"));
