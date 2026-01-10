@@ -22,8 +22,10 @@
                     placeholder="{{i18n " Nombre de Usuario"}}"
                     value="{{#if_eq mode "edit"}}{{username}}{{/if_eq}}"
                     required="required" minlength="4" />
+                {{#if errors.username }}
                 <span
                     class="error-span">{{#i18n}}{{errors.username}}{{/i18n}}</span>
+                {{/if}}
             </div>
             {{/if_eq}}
 
@@ -36,8 +38,10 @@
                     {{else}}{{i18n "Escribe tu correo"}}{{/if_eq}}"
                     required="required"
                     pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
+                {{#if errors.user_mail }}
                 <span
                     class="error-span">{{#i18n}}{{errors.user_mail}}{{/i18n}}</span>
+                {{/if}}
             </div>
             {{/if_eq}}
 
@@ -46,8 +50,10 @@
                 <input id="regPass" name="contrasena" type="password"
                     placeholder="{{i18n "Contraseña"}}" required="required"
                     minlength="6" />
+                {{#if errors.passwd }}
                 <span
                     class="error-span">{{#i18n}}{{errors.passwd}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="form-actions">

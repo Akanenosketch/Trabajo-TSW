@@ -26,8 +26,10 @@
                     value="{{name}}"
                     readonly="readonly"
                     {{/if_eq}} />
+                {{#if errors.name }}
                 <span
                     class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="form-row">
@@ -42,8 +44,10 @@
                     value="{{desc}}"
                     readonly="readonly"
                     {{/if_eq}} />
+                {{#if errors.desc }}
                 <span
                     class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="modal-footer">

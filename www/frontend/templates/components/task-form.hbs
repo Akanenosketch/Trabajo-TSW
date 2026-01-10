@@ -26,9 +26,10 @@
                     value="{{name}}"
                     readonly="readonly"
                     {{/if_eq}} />
+                {{#if errors.name }}
                 <span
                     class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
-
+                {{/if}}
             </div>
 
             <div class="form-row">
@@ -43,8 +44,10 @@
                     value="{{desc}}"
                     readonly="readonly"
                     {{/if_eq}} />
+                {{#if errors.desc }}
                 <span
                     class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
+                {{/if}}
 
             </div>
 
@@ -59,8 +62,10 @@
                     value="{{beginDate}}"
                     readonly="readonly"
                     {{/if_eq}} />
+                {{#if errors.beginDate }}
                 <span
                     class="error-span">{{#i18n}}{{errors.beginDate}}{{/i18n}}</span>
+                {{/if}}
 
                 <label>{{i18n "Fecha de Fin"}}</label>
                 <input id="modalTaskEnd" name="endDate" type="date"
@@ -72,10 +77,15 @@
                     value="{{endDate}}"
                     readonly="readonly"
                     {{/if_eq}} />
+                {{#if errors.endDate }}
                 <span
                     class="error-span">{{#i18n}}{{errors.endDate}}{{/i18n}}</span>
+                {{/if}}
+
+                {{#if errors.dates }}
                 <span
                     class="error-span">{{#i18n}}{{errors.dates}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="form-row">
@@ -113,10 +123,14 @@
                         {{i18n "Acabado"}}
                     </option>
                 </select>
+                {{#if errors.status }}
                 <span
                     class="error-span">{{#i18n}}{{errors.status}}{{/i18n}}</span>
+                {{/if}}
+                {{#if errors.statusValue }}
                 <span
                     class="error-span">{{#i18n}}{{errors.statusValue}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="form-row">
@@ -155,10 +169,14 @@
                         {{i18n "Alta"}}
                     </option>
                 </select>
+                {{#if errors.priority }}
                 <span
                     class="error-span">{{#i18n}}{{errors.priority}}{{/i18n}}</span>
+                {{/if}}
+                {{#if errors.priorityValue }}
                 <span
                     class="error-span">{{#i18n}}{{errors.priorityValue}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="form-row">
@@ -181,8 +199,10 @@
                         </label>
                     </div>
                     {{/each}}
-                    <span
-                        class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+                {{#if errors.users }}
+                <span
+                    class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+                {{/if}}
                 </div>
 
                 <div class="modal-footer">

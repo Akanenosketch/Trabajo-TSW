@@ -16,8 +16,10 @@
                     required="required"
                     minlength="1"
                     value="{{#if selectedProject.editing}}{{selectedProject.name}}{{/if}}" />
+                {{#if errors.name }}
                 <span
                     class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+                {{/if}}
             </div>
             <div class="form-row">
                 <label>{{i18n "Participantes"}}</label>
@@ -39,8 +41,10 @@
                     </div>
                     {{/each}}
                 </div>
+                {{#if errors.users }}
                 <span
                     class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div class="form-row">
@@ -63,8 +67,10 @@
                     </div>
                     {{/each}}
                 </div>
+                {{#if errors.categories }}
                 <span
                     class="error-span">{{#i18n}}{{errors.categories}}{{/i18n}}</span>
+                {{/if}}
             </div>
 
             <div>

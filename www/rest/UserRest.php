@@ -100,7 +100,8 @@ class UserRest extends BaseRest{
 				$errors["user_mail"] = i18n("usuario no valido");
 				http_response_code(response_code: 400);
 				header('Content-Type: application/json');
-				echo (json_encode(new ValidationException($errors, i18n("usuario no valido"))->getErrors()));
+				$e = new ValidationException($errors, i18n("usuario no valido"));
+				echo (json_encode($e->getErrors()));
 			}
 		}
 	}
