@@ -182,13 +182,12 @@ th, td {
     box-shadow: 0 0 40px rgba(0,255,157,0.1);
 }
 
-/*Links*/
-a {
+.project-link {
     color: var(--accent-neon);
     text-decoration: none;
 }
 
-a:hover {
+.project-link:hover {
     color: var(--accent-glow);
     transition: color 0.2s;
 }
