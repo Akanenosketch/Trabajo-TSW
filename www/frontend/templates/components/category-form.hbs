@@ -1,4 +1,4 @@
- <div id="categoryModal" class="modal-overlay">
+<div id="categoryModal" class="modal-overlay">
 
     <div class="modal-box">
 
@@ -18,35 +18,20 @@
 
             <div class="form-row">
                 <label>{{i18n "Nombre"}}</label>
-                <input id="modalCategoryName" name="name" type="text"
-                    required="required"
-                    minlength="1"
-                    {{#if_eq mode "add"}}
-                    {{else}}
-                    value="{{name}}"
-                    readonly="readonly"
-                    {{/if_eq}} />
+                <input id="modalCategoryName" name="name" type="text" required="required" minlength="1" {{#if_eq
+                    mode "add" }} {{else}} value="{{name}}" readonly="readonly" {{/if_eq}} />
                 {{#if errors.name }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
             <div class="form-row">
                 <label>{{i18n "Descripcion"}}</label>
-                <input id="modalCategoryDesc" name="desc" type="text"
-                    required="required"
-                    minlength="1"
-                    {{#if_eq mode "edit"}}
-                    value="{{desc}}"
-                    {{/if_eq}}
-                    {{#if_eq mode "view"}}
-                    value="{{desc}}"
-                    readonly="readonly"
-                    {{/if_eq}} />
+                <input id="modalCategoryDesc" name="desc" type="text" required="required" minlength="1" {{#if_eq
+                    mode "edit" }} value="{{desc}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{desc}}"
+                    readonly="readonly" {{/if_eq}} />
                 {{#if errors.desc }}
-                <span
-                    class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
+                <span class="error-span">{{#i18n}}{{errors.desc}}{{/i18n}}</span>
                 {{/if}}
             </div>
 
@@ -54,9 +39,7 @@
                 <button class="btn" id="cancelCategoryBtn" type="button">
                     {{i18n "Cancelar"}}</button>
 
-                <button class="btn primary" type="button" id="saveCategoryBtn"
-                    {{#if_eq mode "view"}}
-                    hidden="hidden"
+                <button class="btn primary" type="button" id="saveCategoryBtn" {{#if_eq mode "view" }} hidden="hidden"
                     {{/if_eq}}>
                     {{i18n "Guardar"}}</button>
             </div>

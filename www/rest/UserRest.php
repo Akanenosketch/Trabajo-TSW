@@ -27,7 +27,7 @@ class UserRest extends BaseRest{
 		$mails = array();
 		$users = $this->userMapper->findAll();
 		foreach($users as $user){
-			array_push($mails, $user->getUserMail);
+			array_push($mails, $user->getUserMail());
 		}
 		header($_SERVER['SERVER_PROTOCOL'].' 200 Ok');
 		header('Content-Type: application/json');

@@ -1,6 +1,6 @@
 <div>
 
-    <header >
+    <header>
         <div class="project-header">
             <div class="username" id="userDisplay">{{user.username}}</div>
         </div>
@@ -34,8 +34,8 @@
                     <tbody id="projectsContainer">
 
                         {{#each projects}}
-                        <tr fronty-component="ProjectRowComponent" key="{{id}}"
-                            model="projects[{{@index}}]" id="item-{{id}}"></tr>
+                        <tr fronty-component="ProjectRowComponent" key="{{id}}" model="projects[{{@index}}]"
+                            id="item-{{id}}"></tr>
                         {{/each}}
 
                     </tbody>
