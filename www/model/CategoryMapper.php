@@ -41,9 +41,6 @@ class CategoryMapper{
         $stmt->execute(array($cat->getName(), $cat->getDesc()));
     }
 
-
-
-
     /**
      * Checks if a given Category name is already in the database
      *

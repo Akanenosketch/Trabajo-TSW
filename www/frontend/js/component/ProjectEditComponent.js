@@ -47,7 +47,9 @@ class ProjectEditComponent extends Fronty.ModelComponent {
             });
         this.categoryService.listAllCats()
             .then((cats) => {
-                this.categoriesModel.setCats(cats);
+                this.categoriesModel.setCats(cats.map(
+                    (cat) => new CategoryModel("", cat.name)
+                ));
             });
         this.projectsModel.set((model) => {
             model.errors = []

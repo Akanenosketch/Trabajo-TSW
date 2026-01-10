@@ -56,8 +56,14 @@ class CategoryRest extends BaseRest{
             // validate Cat object
             $cat->checkIsValidForRegister(); // if it fails, ValidationException
 
+            if(! $this->categoryMapper->categoryExists($cat->getName())){
             // save the Cat object into the database
             $this->categoryMapper->save($cat);
+            } else{
+                $errors = array();
+                $errors["name"] = i18n("Existe una categoria con el mismo nombre");
+                throw new ValidationException($errors, msg: i18n("cat no valido"));
+            }
 
             // response OK. Also send cat in content
             header($_SERVER['SERVER_PROTOCOL'].' 201 Created');
@@ -102,7 +108,7 @@ class CategoryRest extends BaseRest{
             $currentUser = parent::authenticateUser();
 
         // Get the Category object from the database
-        $cat = $this->categoryMapper->findAllWithDesc($catName);
+        $cat = $this->categoryMapper->find($catName);
         if ($cat == NULL) {
             header($_SERVER['SERVER_PROTOCOL'].' 400 Bad request');
             echo ("Category with name ".$catName." not found");

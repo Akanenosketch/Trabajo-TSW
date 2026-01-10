@@ -3,6 +3,7 @@
 
 $i18n_messages =
 	array(
+		"Existe una categoria con el mismo nombre" => "The category exists",
 		"Listar Categorias" => "List Categories",
 		"+ Nueva Categoria" => "+ New Category",
 		"Listado de Categorias" => "List Categories",
