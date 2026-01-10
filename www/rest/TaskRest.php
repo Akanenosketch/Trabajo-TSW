@@ -76,7 +76,7 @@ class TaskRest extends BaseRest{
 		$project = $this->retrieveProject($projectId);
 		$task = $this->retrieveTask($project,$taskId);
 	
-		$this->taskMapper->delete($task);
+		$this->taskMapper->delete($taskId);
 		header($_SERVER['SERVER_PROTOCOL'].' 204 No Content');
 	}
 

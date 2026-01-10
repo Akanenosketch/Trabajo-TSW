@@ -57,8 +57,8 @@
                     <h4>{{i18n "Por Hacer"}}</h4>
                     <div id="col-todo">
                         {{#each selectedProject.todo}}
-                        <tr fronty-component="TaskRowComponent" key="{{id}}" model="todo[{{@index}}]" id="item-{{id}}">
-                        </tr>
+                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.todo[{{@index}}]"
+                            id="item-{{id}}" class="cat"></div>
                         {{/each}}
                     </div>
                 </div>
@@ -67,8 +67,8 @@
                     <div id="col-working">
 
                         {{#each selectedProject.working}}
-                        <tr fronty-component="TaskRowComponent" key="{{id}}" model="working[{{@index}}]"
-                            id="item-{{id}}"></tr>
+                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.working[{{@index}}]"
+                            id="item-{{id}}"></div>
                         {{/each}}
 
                     </div>
@@ -78,8 +78,8 @@
                     <div id="col-done">
 
                         {{#each selectedProject.done}}
-                        <tr fronty-component="TaskRowComponent" key="{{id}}" model="done[{{@index}}]" id="item-{{id}}">
-                        </tr>
+                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.done[{{@index}}]" id="item-{{id}}">
+                        </div>
                         {{/each}}
 
                     </div>

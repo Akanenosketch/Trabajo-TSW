@@ -116,8 +116,8 @@
                     <div>
                         {{!-- @index indexa segun el each, inicia en 0 --}}
                         <input type="checkbox" name="{{this}}" id="{{this}}" value="{{this}}" {{!-- Si pertenecen al
-                            task los marca --}} {{#ifIncludes this ../emails}}checked="checked" {{/ifIncludes}} {{#if_eq
-                            mode "view" }} disabled="disabled" {{/if_eq}} />
+                            task los marca --}} {{#ifIncludes this ../emails}}checked="checked" {{/ifIncludes}} 
+                            {{#if_eq ../mode "view" }} disabled="disabled" {{/if_eq}} />
                         <label>
                             {{this}}
                         </label>
@@ -128,24 +128,26 @@
                     {{/if}}
                 </div>
 
-                <div class="modal-footer">
-
-                    <button class="btn" id="cancelTaskBtn" type="button">
-                        {{i18n "Cancelar"}}</button>
-
-                    <button class="primary" type="button" id="saveTaskBtn" {{#if_eq mode "view" }} hidden="hidden"
-                        {{/if_eq}}>
-                        {{i18n "Guardar"}}</button>
-
-                    {{#if_eq mode "edit"}}
-                    <input type="hidden" id="editingTaskId" name="task_id" value="{{id}}" />
-                    {{/if_eq}}
-
-                    <input type="hidden" id="editingProjectId" name="id" value="{{projectID}}" />
-
-                </div>
 
             </div>
+
+            <div class="modal-footer">
+
+                <button class="btn" id="cancelTaskBtn" type="button">
+                    {{i18n "Cancelar"}}</button>
+
+                <button class="primary" type="button" id="saveTaskBtn" {{#if_eq mode "view" }} hidden="hidden"
+                    {{/if_eq}}>
+                    {{i18n "Guardar"}}</button>
+
+                {{#if_eq mode "edit"}}
+                <input type="hidden" id="editingTaskId" name="task_id" value="{{id}}" />
+                {{/if_eq}}
+
+                <input type="hidden" id="editingProjectId" name="id" value="{{projectID}}" />
+
+            </div>
+
         </div>
     </div>
 </div>
