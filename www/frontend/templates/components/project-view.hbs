@@ -5,50 +5,49 @@
         <div class="header-content">
 
             <div class="header-left">
-                <div class="project-title"
-                    id="projName">{{selectedProject.name}}</div>
+                <div class="project-title" id="projName">{{selectedProject.name}}</div>
 
                 <div class="stats-container">
 
                     <div class="stat-item">
-                        <span
-                            id="participantsCount">{{selectedProject.usersCount}}</span>
+                        <span id="participantsCount">{{selectedProject.usersCount}}</span>
                         <span class="stat-label">{{i18n "Participantes"}}</span>
                     </div>
                     <div class="stat-item">
-                        <span
-                            id="todoTasks">{{selectedProject.todoCount}}</span>
+                        <span id="todoTasks">{{selectedProject.todoCount}}</span>
                         <span class="stat-label">{{i18n
                             "Tareas Pendientes"}}</span>
                     </div>
                     <div class="stat-item">
-                        <span
-                            id="workingTasks">{{selectedProject.workingCount}}</span>
+                        <span id="workingTasks">{{selectedProject.workingCount}}</span>
                         <span class="stat-label">{{i18n
                             "Tareas En Proceso"}}</span>
                     </div>
                     <div class="stat-item">
-                        <span
-                            id="doneTasks">{{selectedProject.doneCount}}</span>
+                        <span id="doneTasks">{{selectedProject.doneCount}}</span>
                         <span class="stat-label">{{i18n
                             "Tareas Completadas"}}</span>
                     </div>
                     <div class="stat-item">
-                        <span
-                            id="totalTasks">{{selectedProject.tasksCount}}</span>
+                        <span id="totalTasks">{{selectedProject.tasksCount}}</span>
                         <span class="stat-label">{{i18n
                             "Tareas Totales"}}</span>
                     </div>
                     <div class="stat-item">
-                        <span
-                            id="completionRate">{{selectedProject.getCompletedPercent}}%</span>
+                        <span id="completionRate">{{selectedProject.getCompletedPercent}}%</span>
                         <span class="stat-label">{{i18n "Completado"}}</span>
                     </div>
                 </div>
             </div>
 
             <div class="controls">
-                <button id="backBtn" class="btn back">{{i18n "Volver"}}</button>
+                <div class="lang-switch">
+                    <div id="es-button" class="lang-btn">ES</div>
+                    <div id="en-button" class="lang-btn">EN</div>
+                </div>
+                <button id="themeToggle" class="theme-toggle global">🌙</button>
+                <button id="backBtn" class="btn primary">{{i18n "Volver"}}</button>
+
             </div>
 
         </div>
@@ -63,8 +62,8 @@
                     <h4>{{i18n "Por Hacer"}}</h4>
                     <div id="col-todo">
                         {{#each selectedProject.todo}}
-                        <tr fronty-component="TaskRowComponent" key="{{id}}"
-                            model="todo[{{@index}}]" id="item-{{id}}"></tr>
+                        <tr fronty-component="TaskRowComponent" key="{{id}}" model="todo[{{@index}}]" id="item-{{id}}">
+                        </tr>
                         {{/each}}
                     </div>
                 </div>
@@ -73,8 +72,8 @@
                     <div id="col-working">
 
                         {{#each selectedProject.working}}
-                        <tr fronty-component="TaskRowComponent" key="{{id}}"
-                            model="working[{{@index}}]" id="item-{{id}}"></tr>
+                        <tr fronty-component="TaskRowComponent" key="{{id}}" model="working[{{@index}}]"
+                            id="item-{{id}}"></tr>
                         {{/each}}
 
                     </div>
@@ -84,8 +83,8 @@
                     <div id="col-done">
 
                         {{#each selectedProject.done}}
-                        <tr fronty-component="TaskRowComponent" key="{{id}}"
-                            model="done[{{@index}}]" id="item-{{id}}"></tr>
+                        <tr fronty-component="TaskRowComponent" key="{{id}}" model="done[{{@index}}]" id="item-{{id}}">
+                        </tr>
                         {{/each}}
 
                     </div>
@@ -98,13 +97,13 @@
             <button class="btn primary action-btn" id="openTaskModal">
                 {{i18n "+ Nueva Tarea"}}</button>
 
-            <button class="btn action-btn" id="editProjBtn">
+            <button class="btn secondary" id="editProjBtn">
                 {{i18n "Editar Proyecto"}}</button>
 
             <form>
                 <input value="{{selectedProject.id}}" type="hidden" name="id">
-                <button class="btn danger action-btn" id="deleteProjBtn"
-                    type="button">{{i18n "Eliminar Proyecto"}}</button>
+                <button class="btn danger action-btn" id="deleteProjBtn" type="button">{{i18n "Eliminar
+                    Proyecto"}}</button>
             </form>
         </div>
 

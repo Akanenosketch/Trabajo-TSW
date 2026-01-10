@@ -101,7 +101,7 @@ a {
     transition: color 0.2s;
 }
 
-/* ---- Header ---- */
+/* ---- Header  CREAR ESPECIFICO PARA PROYECT/VIEW---- */
 
 header {
     display: flex;
@@ -218,6 +218,47 @@ button.secondary {
     background: var(--accent-glow);
 }
 
+/*===============================================================================================*/
+/* ----  CHECK THIS AND FIX IT ----*/
+.action-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    border-color: var(--accent-neon);
+    color: var(--accent-neon);
+}
+
+.action-btn.primary {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    border: none;
+    font-weight: bold;
+}
+
+.action-btn.primary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 15px var(--accent-neon);
+}
+
+.action-btn.danger {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.action-btn.danger:hover {
+    background: var(--danger);
+    color: var(--bg-dark);
+}
+/*===============================================================================================*/
+
 /* =========================================
             4.- Welcome Page
    ========================================= */
@@ -326,7 +367,128 @@ td {
     align-self: auto;
 }
 
+.project-view-header {
+    padding: 18px 30px;
+}
+
 /* ---- View (project) ---- */
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.project-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.stats-container {
+    display: flex;
+    gap: 35px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item span:first-child {
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: bold;
+}
+
+.project-content {
+    padding: 32px;
+}
+
+.cols {
+    display: flex;
+    gap: 24px;
+}
+
+.col {
+    flex: 1;
+    background: var(--surface-dark);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.05);
+}
+
+.col h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: 600;
+}
+
+.task {
+    background: var(--surface-lighter);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dark);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 0.25s;
+}
+
+.task:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+}
+
+.task .btn {
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.task .btn:hover {
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
+}
+
+.btn.danger {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.btn.danger:hover {
+    background: var(--danger);
+    color: var(--bg-dark);
+}
+
+.task-actions {
+    margin-top: 32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+.small {
+    border: var(--border-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 10pt;
+}
+
+.small.text {
+    font-size: 0.8rem;
+    color: var(--text-bright);
+}
 
 /* =========================================
                 6.- Modales
@@ -549,6 +711,7 @@ textarea {
         padding: 14px;
 
     }
+
 }
 
 @media (min-width: 1400px) {
