@@ -37,7 +37,10 @@ class CategoryIndexComponent extends Fronty.ModelComponent {
     refresh() {
         this.categoryService.listAllCats()
             .then((cats) => {
-                this.categoriesModel.setCats(cats);
+                this.categoriesModel.setCats(
+                    cats.map(
+                        (cat) => new CategoryModel("",cat.name)
+                    ));
             });
     }
 
@@ -51,7 +54,7 @@ class CategoryRowComponent extends Fronty.ModelComponent {
 
     constructor(categoryModel, categoryIndexComponent, categoryService, router) {
 
-        super(Handlebars.templates.categoryRow, categoryModel, null, null);
+        super(Handlebars.templates.categoryRow, categoryModel);
 
         this.categoryIndexComponent = categoryIndexComponent;
 
@@ -64,7 +67,7 @@ class CategoryRowComponent extends Fronty.ModelComponent {
         //Config Router
         this.router = router;
 
-        setupListeners();
+        this.setupListeners();
 
     }
 

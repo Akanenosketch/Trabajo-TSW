@@ -11,11 +11,9 @@
 
                     <div id="col-cat">
 
-                        {{#each projects}}
-                        <div fronty-component="CategoryRowComponent"
-                            key="{{name}}"
-                            model="categories[{{@index}}]"
-                            id="item-{{name}}"></div>
+                        {{#each categories}}
+                        <div fronty-component="CategoryRowComponent" key="{{name}}"
+                            model="categories[{{@index}}]" id="item-{{name}}" class="cat"></div>
                         {{/each}}
                     </div>
                 </div>
