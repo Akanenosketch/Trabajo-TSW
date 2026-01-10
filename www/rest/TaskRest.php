@@ -147,6 +147,6 @@ class TaskRest extends BaseRest{
 // URI-MAPPING for this Rest endpoint
 $taskRest = new TaskRest();
 URIDispatcher::getInstance()
-	->map("POST", "/projects/$1/tasks"."/", array($taskRest, "createTask"))
+	->map("POST", "/projects/$1/tasks", array($taskRest, "createTask"))
 	->map("PUT", "/projects/$1/tasks/$2", array($taskRest, "updateTask"))
 	->map("DELETE", "/projects/$1/tasks/$2", array($taskRest, "deleteTask"));

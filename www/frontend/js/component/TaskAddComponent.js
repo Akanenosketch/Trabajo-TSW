@@ -75,7 +75,7 @@ class TaskAddComponent extends Fronty.ModelComponent {
         this.taskModel.setBeginDate($('#modalTaskBegin').val());
         this.taskModel.setEndDate($('#modalTaskEnd').val());
 
-        this.taskService.create(this.projectsModel.selectedProject.id, this.taskModel)
+        this.taskService.createTask(this.projectsModel.selectedProject.id, this.taskModel)
             .then(() => {
                 this.taskModel.set((model) => {
                     model.errors = []

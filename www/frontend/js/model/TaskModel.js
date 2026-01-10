@@ -153,7 +153,7 @@ class TaskModel extends Fronty.Model {
     setUsers(users) {
         this.set((self) => {
             self.users = users;
-            self.emails = users.map((user) => user.user_mail);
+            self.emails =  Object.values(users).map((user) => user.user_mail);
         });
     }
 
