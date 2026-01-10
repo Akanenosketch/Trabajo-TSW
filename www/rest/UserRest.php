@@ -35,7 +35,10 @@ class UserRest extends BaseRest{
 	}
 
 	public function register($data){
-		$user = new User($data->username, $data->user_mail, $data->passwd);
+		$user = new User();
+		if (isset($data->username) && isset($data->user_mail) && isset($data->passwd)) {
+			$user = new User($data->username, $data->user_mail, $data->passwd);
+		}
 		try {
 			$user->checkIsValidForRegister();
 			if (!$this->userMapper->usermailExists($data->user_mail)) {
@@ -56,8 +59,11 @@ class UserRest extends BaseRest{
 
 	public function edit($usermail,$data){
 		$currentLogged = parent::authenticateUser();
-		$user = new User($data->username, $usermail, $data->password);
 		try {
+		if (isset($data->username) && isset($data->user_mail) && isset($data->passwd)) {
+		$user = new User($data->username, $usermail, $data->password);
+		} else throw new ValidationException(array());
+		
 			if(strcmp($usermail, $currentLogged->getUserMail()) != 0){
 			
 				header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');

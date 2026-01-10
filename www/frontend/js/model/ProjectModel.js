@@ -60,6 +60,27 @@ class ProjectModel extends Fronty.Model {
      * @returns El objeto como string
      */
     toJSON() {
+
+        if (!this.id) {
+            this.id = "";
+        }
+
+        if (!this.name) {
+            this.name = "";
+        }
+
+        if (!this.users) {
+            this.users = "";
+        }
+
+        if (!this.tasks) {
+            this.tasks = "";
+        }
+
+        if (!this.categories) {
+            this.categories = "";
+        }
+
         return {
             id: this.id,
             name: this.name,

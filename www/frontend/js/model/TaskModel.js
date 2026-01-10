@@ -55,6 +55,43 @@ class TaskModel extends Fronty.Model {
      * @returns El objeto como string
      */
     toJSON() {
+
+        if (!this.id) {
+            this.id = "";
+        }
+
+        if (!this.name) {
+            this.name = "";
+        }
+
+        if (!this.desc) {
+            this.desc = "";
+        }
+
+        if (!this.projectID) {
+            this.projectID = "";
+        }
+
+        if (!this.status) {
+            this.status = "";
+        }
+
+        if (!this.users) {
+            this.users = "";
+        }
+     
+        if (!this.priority) {
+            this.priority = "";
+        }
+
+        if (!this.beginDate) {
+            this.beginDate = "";
+        }
+
+        if (!this.endDate) {
+            this.endDate = "";
+        }
+
         return {
             id: this.id,
             name: this.name,

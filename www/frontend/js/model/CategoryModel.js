@@ -26,6 +26,15 @@ class CategoryModel extends Fronty.Model {
      * @returns El objeto como string
      */
     toJSON() {
+
+        if (!this.desc) {
+            this.desc = "";
+        }
+
+        if (!this.name) {
+            this.name = "";
+        }
+
         return {
             name: this.name,
             desc: this.desc
@@ -36,7 +45,7 @@ class CategoryModel extends Fronty.Model {
         this.set((self) => {
             self.name = cat.name;
             self.desc = cat.desc;
-         });
+        });
     }
 
     setName(name) {

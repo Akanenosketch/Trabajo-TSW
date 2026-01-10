@@ -27,6 +27,19 @@ class UserModel extends Fronty.Model {
     * @returns El objeto como string
     */
     toJSON() {
+
+        if (!this.username) {
+            this.username = "";
+        }
+
+        if (!this.user_mail) {
+            this.user_mail = "";
+        }
+
+        if (!this.passwd) {
+            this.passwd = "";
+        }
+
         return {
             username: this.username,
             user_mail: this.user_mail,
