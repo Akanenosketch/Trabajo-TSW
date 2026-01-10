@@ -81,7 +81,7 @@ class UserService {
                 data: JSON.stringify(user),
                 contentType: 'application/json'
             })
-                .then(() => {
+                .then((data) => {
                     //keep this authentication forever
                     window.sessionStorage.setItem('pass', pass);
                     $.ajaxSetup({
@@ -89,7 +89,7 @@ class UserService {
                             xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
                         }
                     });
-                    resolve();
+                    resolve(data);
                 })
                 .fail((error) => {
                     reject(error);

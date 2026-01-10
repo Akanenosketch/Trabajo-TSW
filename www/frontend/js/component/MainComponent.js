@@ -16,8 +16,6 @@ class MainComponent extends Fronty.RouterComponent {
             return super.getCurrentPage();
         });
 
-        this.addChildComponent(this.createOptionsComponent());
-
     }
 
     configRouter() {
@@ -85,50 +83,6 @@ class MainComponent extends Fronty.RouterComponent {
             defaultRoute: 'WelcomePage' //lo que se visualiza por defecto
         });
 
-    }
-
-    createOptionsComponent() {
-        let options = new Fronty.ModelComponent(Handlebars.templates.options, this.routerModel, 'langThemeOptions');
-
-        // Language change
-        options.addEventListener('click', '#es-button', () => {
-            I18n.changeLanguage('default');
-            document.location.reload();
-        });
-
-        options.addEventListener('click', '#en-button', () => {
-            I18n.changeLanguage('en');
-            document.location.reload();
-        });
-
-        // Theme change
-        function applyTheme(theme) {
-            let toggleBtn = document.getElementById('themeToggle');
-            if (theme === 'light') {
-                document.body.classList.add('light-theme');
-                if (toggleBtn) toggleBtn.textContent = '🌞';
-                if (toggleBtn) toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
-            } else {
-                document.body.classList.remove('light-theme');
-                if (toggleBtn) toggleBtn.textContent = '🌙';
-                if (toggleBtn) toggleBtn.setAttribute('aria-label', 'Switch to light mode');
-            }
-        }
-
-        // Determine initial theme: saved preference -> user preference -> default dark
-        let saved = localStorage.getItem('theme');
-        if (!saved) {
-            localStorage.setItem('theme', "dark");
-        }
-
-        options.addEventListener('click', '#themeToggle', () => {
-            let current = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-            let next = current === 'light' ? 'dark' : 'light';
-            applyTheme(next);
-            localStorage.setItem('theme', next);
-        });
-
-        return options;
     }
 
 }

@@ -33,6 +33,10 @@ class TaskViewComponent extends Fronty.ModelComponent {
         let taskId = this.router.getRouteQueryParam('taskId');
         this.loadProject(projectId);
         this.loadTask(taskId);
+        this.taskModel.set((model) => {
+            model.errors = []
+        });
+
     }
 
     loadProject(projectID) {
@@ -40,7 +44,7 @@ class TaskViewComponent extends Fronty.ModelComponent {
             this.projectService.getProject(projectID)
                 .then((project) => {
                     this.projectsModel.setSelectedProject(
-                        new ProjectModel(false, project.id, project.name, project.users, project.tasks,project.categories)
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks, project.categories)
                     );
                 });
         }

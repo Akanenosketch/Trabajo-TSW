@@ -49,6 +49,9 @@ class ProjectEditComponent extends Fronty.ModelComponent {
             .then((cats) => {
                 this.categoriesModel.setCats(cats);
             });
+        this.projectsModel.set((model) => {
+            model.errors = []
+        });
 
     }
 
@@ -57,7 +60,7 @@ class ProjectEditComponent extends Fronty.ModelComponent {
             this.projectService.getProject(projectID)
                 .then((project) => {
                     this.projectsModel.setSelectedProject(
-                        new ProjectModel(false, project.id, project.name, project.users, project.tasks,project.categories)
+                        new ProjectModel(false, project.id, project.name, project.users, project.tasks, project.categories)
                     );
                 });
         }

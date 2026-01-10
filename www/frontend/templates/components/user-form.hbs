@@ -19,7 +19,7 @@
             <div class="form-row">
                 <label for="regNombre">{{i18n "Nombre de Usuario"}}</label>
                 <input id="regNombre" name="nombreUsuario" type="text"
-                    placeholder="{{i18n " Nombre de Usuario"}}"
+                    placeholder="{{i18n "Nombre de Usuario"}}"
                     value="{{#if_eq mode "edit"}}{{username}}{{/if_eq}}"
                     required="required" minlength="4" />
                 {{#if errors.username }}

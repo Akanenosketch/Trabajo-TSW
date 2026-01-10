@@ -33,6 +33,10 @@ class RegisterComponent extends Fronty.ModelComponent {
     onStart() {
         this.userModel.logout(); //limpia datos por si acaso
         this.userModel.setMode("register");
+        this.userModel.set((model) => {
+            model.errors = []
+        });
+
     }
 
     saveUser() {

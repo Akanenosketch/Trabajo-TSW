@@ -32,6 +32,9 @@ class CategoryEditComponent extends Fronty.ModelComponent {
     onStart() {
         let catName = this.router.getRouteQueryParam('catName');
         this.loadCat(catName);
+        this.categoryModel.set((model) => {
+            model.errors = []
+        });
     }
 
     loadCat(catName) {

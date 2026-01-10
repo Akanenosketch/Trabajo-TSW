@@ -28,11 +28,11 @@ class ProjectModel extends Fronty.Model {
             this.tasks = tasks;
             this.tasksCount = tasks.length;
             this.todo = tasks.filter((task) => task.status == "ToDo");
-            this.todoCount = todo.length;
+            this.todoCount = this.todo.length;
             this.working = tasks.filter((task) => task.status == "Working");
-            this.workingCount = working.length;
+            this.workingCount = this.working.length;
             this.done = tasks.filter((task) => task.status == "Done");
-            this.doneCount = done.length;
+            this.doneCount = this.done.length;
             if (this.tasksCount == 0) {
                 this.completedPercent = 0;
             } else {

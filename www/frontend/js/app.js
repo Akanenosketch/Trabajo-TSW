@@ -39,9 +39,6 @@ Promise.all([
   loadTextFile('templates/components/main.hbs').then((source) =>
     Handlebars.templates.main = Handlebars.compile(source)),
 
-  loadTextFile('templates/components/options.hbs').then((source) =>
-    Handlebars.templates.options = Handlebars.compile(source)),
-
   loadTextFile('templates/components/project-form.hbs').then((source) =>
     Handlebars.templates.projectForm = Handlebars.compile(source)),
 

@@ -47,6 +47,10 @@ class ProjectAddComponent extends Fronty.ModelComponent {
             .then((cats) => {
                 this.categoriesModel.setCats(cats);
             });
+        this.projectsModel.set((model) => {
+            model.errors = []
+        });
+
     }
 
     saveProject() {
