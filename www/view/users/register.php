@@ -15,9 +15,9 @@ $errors = $view->getVariable("errors");
     <title><?= i18n("Form de Registro") ?></title>
 </head>
 
-<body>
-    <div id="registerOverlay" class="overlay">
-        <div class="modal">
+<body class="Rbody">
+    <div id="registerOverlay" class="Roverlay">
+        <div class="Rmodal">
             <header>
                 <h2 id="registerTitle">
                     <?php if (!is_null($user)): ?>    <?= i18n("Editar Usuario") ?><?php endif ?>
@@ -54,9 +54,9 @@ $errors = $view->getVariable("errors");
                         <?php if (is_null($user)): ?><a href="index.php?action=index"><?php endif ?>
 
 
-                            <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>
+                            <button type="button" class="Fsecondary"><?= i18n("Cancelar") ?></button>
                         </a>
-                        <button type="submit" class="primary"
+                        <button type="submit" class="Fprimary"
                             formaction="index.php?action=<?php if (!is_null($user)): ?>edit<?php endif ?><?php if (is_null($user)): ?>register<?php endif ?>">
                             <?php if (!is_null($user)): ?>    <?= i18n("Editar Usuario") ?><?php endif ?><?php if (is_null($user)): ?>    <?= i18n("Crear Cuenta") ?><?php endif ?>
                         </button>

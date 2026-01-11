@@ -23,13 +23,13 @@ if ($task != null) $taskUsers = $task->getUsers();
     <title><?= i18n("Formulario de Tareas") ?></title>
 </head>
 
-<body>
+<body class="Fbody">
 
     <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($task)): ?>add<?php endif ?>" method="post">
-        <div id="taskModal" class="modal-overlay">
+        <div id="taskModal" class="Fmodal-overlay">
 
-            <div class="modal-box">
-                <div class="modal-content">
+            <div class="Fmodal-box">
+                <div class="Fmodal-content">
                     <h3 id="taskModalTitle">
                         <?php if (!is_null($task) && !$isViewing): ?><?= i18n("Editar Tarea") ?><?php endif ?><?php if (is_null($task)): ?><?= i18n("Añadir Tarea") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Tarea") ?><?php endif ?>
                     </h3>
@@ -82,11 +82,11 @@ if ($task != null) $taskUsers = $task->getUsers();
                     </div>
                     <div class="form-row">
                         <label><?= i18n("Asignar a") ?></label>
-                        <div id="modalTaskAssignees" class="checkbox-list">
+                        <div id="modalTaskAssignees" class="Fcheckbox-list">
 
                             <?php foreach ($users as $user): ?>
                                 <div>
-                                    <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
+                                    <input type="Fcheckbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
                                         <?php $userNum++ ?>
                                         <?php if ($isViewing): ?>disabled<?php endif ?>
                                         <?php if (in_array($user, $taskUsers)): ?> checked<?php endif ?> />
@@ -98,11 +98,11 @@ if ($task != null) $taskUsers = $task->getUsers();
                         </div>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="Fmodal-footer">
                         <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $projectID ?>">
-                            <button class="btn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
+                            <button class="Fbtn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
                         </a>
-                        <button class="btn primary" type="submit" id="saveTaskBtn"
+                        <button class="Fbtn primary" type="submit" id="saveTaskBtn"
                             <?php if ($isViewing): ?>
                             hidden="hidden"
                             <?php endif ?>><?= i18n("Guardar") ?></button>

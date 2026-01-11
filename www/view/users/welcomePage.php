@@ -15,9 +15,9 @@ $errors = $view->getVariable("errors");
     <title><?= i18n("Pagina de Bienvenida") ?></title>
 </head>
 
-<body>
+<body class="WPBody">
     <button id="themeToggle" class="theme-toggle global" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
-    <main class="container">
+    <main class="WPcontainer">
 
         <div class="lang-switch">
             <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>

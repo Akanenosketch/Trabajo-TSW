@@ -14,9 +14,9 @@ $errors = $view->getVariable("errors");
     <title><?= i18n("Form de Sesion") ?></title>
 </head>
 
-<body>
-    <div id="loginOverlay" class="overlay">
-        <div class="modal">
+<body class="Lbody">
+    <div id="loginOverlay" class="Loverlay">
+        <div class="Lmodal">
             <header>
                 <h2 id="loginTitle"><?= i18n("Iniciar sesion") ?></h2>
             </header>
@@ -37,8 +37,8 @@ $errors = $view->getVariable("errors");
 
                 <div class="form-actions">
                     <a href="index.php?action=index">
-                        <button type="button" class="secondary"><?= i18n("Cancelar") ?></button>
-                    </a> <button type="submit" class="primary" formaction="index.php?action=login"
+                        <button type="button" class="Fsecondary"><?= i18n("Cancelar") ?></button>
+                    </a> <button type="submit" class="Fprimary" formaction="index.php?action=login"
                         formmethod="post"><?= i18n("Entrar") ?></button>
                 </div>
             </form>

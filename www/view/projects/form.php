@@ -25,8 +25,8 @@ $catNum = 1;
 
 <body>
 
-    <div id="newProjectModal" class="modal-overlay">
-        <div class="modal-box">
+    <div id="newProjectModal" class="Fmodal-overlay">
+        <div class="Fmodal-box">
             <h3>
                 <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
                 <?php if (is_null($project)): ?><?= i18n("Nuevo Proyecto") ?><?php endif ?>
@@ -41,11 +41,11 @@ $catNum = 1;
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Participantes") ?></label>
-                    <div id="initialUsers" class="checkbox-list">
+                    <div id="initialUsers" class="Fcheckbox-list">
 
                         <?php foreach ($users as $user): ?>
                             <div>
-                                <input type="checkbox"
+                                <input type="Fcheckbox"
                                     name="<?="user".$userNum?>"
                                     value="<?=$user->getUserMail()?>"
                                     <?php if (in_array($user, $projectUsers)): ?> checked="checked" <?php endif ?> />
@@ -60,10 +60,10 @@ $catNum = 1;
 
                 <div class="form-row">
                     <label><?= i18n("Categorias") ?></label>
-                    <div id="initialCats" class="checkbox-list">
+                    <div id="initialCats" class="Fcheckbox-list">
                         <?php foreach ($categories as $cat): ?>
                             <div>
-                                <input type="checkbox"
+                                <input type="Fcheckbox"
                                     name="<?="cat".$catNum?>"
                                     value="<?=$cat?>"
                                     <?php if (in_array($cat, $projectCats)): ?> checked="checked" <?php endif ?> />
@@ -83,13 +83,13 @@ $catNum = 1;
                         <?php if (!is_null($project)): ?>
                             <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $project->getId() ?>">
                             <?php endif ?>
-                            <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
+                            <button type="button" class="Fbtn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
                             </a>
                             <?php if (!is_null($project)): ?>
                                 <input value="<?= $project->getId() ?>" type="hidden" name="id" />
                             <?php endif ?>
 
-                            <button type="submit" class="btn primary">
+                            <button type="submit" class="Fbtn primary">
 
                                 <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
                                 <?php if (is_null($project)): ?><?= i18n("Crear proyecto") ?><?php endif ?>

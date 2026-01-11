@@ -14,10 +14,10 @@ $project = $view->getVariable("project");
     <title><?= i18n("Proyecto") ?></title>
 </head>
 
-<body>
-    <header>
-        <div class="header-content">
-            <div class="header-left">
+<body class="Vbody">
+    <header class="Vheader">
+        <div class="Vheader-content">
+            <div class="Vheader-left">
                 <div class="project-title" id="projName"><?= $project->getName() ?></div>
                 <div class="stats-container">
                     <div class="stat-item">
@@ -54,7 +54,7 @@ $project = $view->getVariable("project");
                 <button id="themeToggle" class="theme-toggle global"
                     aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
                 <a href="index.php?controller=projects&amp;action=index">
-                    <button class="btn back"><?= i18n("Volver") ?></button>
+                    <button class="Vbtn back"><?= i18n("Volver") ?></button>
                 </a>
             </div>
         </div>
@@ -62,13 +62,13 @@ $project = $view->getVariable("project");
 
     <main class="project-content">
         <div class="tasks-container">
-            <div class="cols">
-                <div class="col">
+            <div class="Vcols">
+                <div class="Vcol">
                     <h4><?= i18n("Por Hacer") ?></h4>
                     <div id="col-todo">
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "ToDo") == 0): ?>
-                                <div class="task">
+                                <div class="Vtask">
                                     <span><?= $task->getName() ?>
                                         <span class="small">
                                             <?php foreach ($task->getUsers() as $user): ?>
@@ -79,16 +79,16 @@ $project = $view->getVariable("project");
                                     <div>
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Ver") ?></button>
+                                            <button class="Vbtn"><?= i18n("Ver") ?></button>
                                         </a>
                                         <a
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Editar") ?></button>
+                                            <button class="Vbtn"><?= i18n("Editar") ?></button>
                                         </a>
                                         <form method="post" action="index.php?controller=tasks&amp;action=delete">
                                             <input value="<?= $project->getId() ?>" type="hidden" name="id">
                                             <input value="<?= $task->getId() ?>" type="hidden" name="task_id">
-                                            <button class="btn danger" type="submit"><?= i18n("Borrar") ?></button>
+                                            <button class="Vbtn danger" type="submit"><?= i18n("Borrar") ?></button>
                                         </form>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@ $project = $view->getVariable("project");
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="col">
+                <div class="Vcol">
                     <h4><?= i18n("En Proceso") ?></h4>
                     <div id="col-working">
                         <?php foreach ($project->getTasks() as $task): ?>
@@ -112,16 +112,16 @@ $project = $view->getVariable("project");
                                     <div>
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Ver") ?></button>
+                                            <button class="Vbtn"><?= i18n("Ver") ?></button>
                                         </a>
                                         <a
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Editar") ?></button>
+                                            <button class="Vbtn"><?= i18n("Editar") ?></button>
                                         </a>
                                         <form method="post" action="index.php?controller=tasks&amp;action=delete">
                                             <input value="<?= $project->getId() ?>" type="hidden" name="id">
                                             <input value="<?= $task->getId() ?>" type="hidden" name="task_id">
-                                            <button class="btn danger" type="submit"><?= i18n("Borrar") ?></button>
+                                            <button class="Vbtn danger" type="submit"><?= i18n("Borrar") ?></button>
                                         </form>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ $project = $view->getVariable("project");
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="col">
+                <div class="Vcol">
                     <h4><?= i18n("Acabado") ?></h4>
                     <div id="col-done">
                         <?php foreach ($project->getTasks() as $task): ?>
@@ -145,16 +145,16 @@ $project = $view->getVariable("project");
                                     <div>
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Ver") ?></button>
+                                            <button class="Vbtn"><?= i18n("Ver") ?></button>
                                         </a>
                                         <a
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
-                                            <button class="btn"><?= i18n("Editar") ?></button>
+                                            <button class="Vbtn"><?= i18n("Editar") ?></button>
                                         </a>
                                         <form method="post" action="index.php?controller=tasks&amp;action=delete">
                                             <input value="<?= $project->getId() ?>" type="hidden" name="id">
                                             <input value="<?= $task->getId() ?>" type="hidden" name="task_id">
-                                            <button class="btn danger" type="submit"><?= i18n("Borrar") ?></button>
+                                            <button class="Vbtn danger" type="submit"><?= i18n("Borrar") ?></button>
                                         </form>
                                     </div>
                                 </div>
@@ -164,18 +164,18 @@ $project = $view->getVariable("project");
                 </div>
             </div>
         </div>
-        <div class="task-actions">
+        <div class="Vtask-actions">
             <a href="index.php?controller=tasks&amp;action=add&amp;id=<?= $project->getId() ?>">
-                <button class="btn primary action-btn" id="openTaskModal"><?= i18n("+ Nueva Tarea") ?></button>
+                <button class="Vbtn primary Vaction-btn" id="openTaskModal"><?= i18n("+ Nueva Tarea") ?></button>
             </a>
             <a href="index.php?controller=projects&amp;action=edit&amp;id=<?= $project->getId() ?>">
-                <button class="btn action-btn" id="editProjBtn"><?= i18n("Editar Proyecto") ?></button>
+                <button class="Vbtn Vaction-btn" id="editProjBtn"><?= i18n("Editar Proyecto") ?></button>
             </a>
 
             <form method="post" action="index.php?controller=projects&amp;action=delete">
                 <input value="<?= $project->getId() ?>" type="hidden" name="id">
 
-                <button class="btn danger action-btn" id="deleteProjBtn"
+                <button class="Vbtn danger Vaction-btn" id="deleteProjBtn"
                     type="submit"><?= i18n("Eliminar Proyecto") ?></button>
             </form>
         </div>
