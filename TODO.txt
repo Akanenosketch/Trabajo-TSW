@@ -16,25 +16,16 @@ Ampliaciones hechas
 TODO
 
 
-Probar SPA y MVC finales
 CSS a SPA
-va a hacer falta tocar los errores para cuando el login falla
-puede que los listeners haya que setearlos en el onstart despues de actualizar el selectedProject? creo que no
-mirar que las tareas esten ordenadas por prioridad
+Scroll a los forms
 
-
-Revisar html bien formado en todo
 
 PARA ENTREGAR
 
 Todo el codigo tal cual puesto
 manual.pdf
 readme.txt X
-database.sql
-
-
-ARREGLAR
-Scroll a los forms
+database.sql X
 
 En manual:
 Illustracion 1 poner la arquitectura actual / final
