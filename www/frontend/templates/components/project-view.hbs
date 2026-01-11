@@ -67,8 +67,8 @@
                     <div id="col-working">
 
                         {{#each selectedProject.working}}
-                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.working[{{@index}}]"
-                            id="item-{{id}}" class="task"></div>
+                        <div fronty-component="TaskRowComponent" key="{{id}}"
+                            model="selectedProject.working[{{@index}}]" id="item-{{id}}" class="task"></div>
                         {{/each}}
 
                     </div>
@@ -78,7 +78,8 @@
                     <div id="col-done">
 
                         {{#each selectedProject.done}}
-                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.done[{{@index}}]" id="item-{{id}}" class="task">
+                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.done[{{@index}}]"
+                            id="item-{{id}}" class="task">
                         </div>
                         {{/each}}
 
@@ -95,10 +96,11 @@
             <button class="Vbtn Vaction-btn" id="editProjBtn">
                 {{i18n "Editar Proyecto"}}</button>
 
-            <form>
-                <input value="{{selectedProject.id}}" type="hidden" name="id">
-                <button class="btnDelete" id="deleteProjBtn" type="button">{{i18n "Eliminar Proyecto"}}</button>
-            </form>
+
+            <input value="{{selectedProject.id}}" type="hidden" name="id">
+            <button class="Vbtn danger Vaction-btn" id="deleteProjBtn" type="button">{{i18n "Eliminar
+                Proyecto"}}</button>
+
         </div>
 
     </main>
