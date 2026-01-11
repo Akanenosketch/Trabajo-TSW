@@ -197,6 +197,13 @@ button.secondary {
     color: var(--bg-dark);
 }
 
+/* ---- Login and Register Buttons ---- */
+#openLogin,
+#openRegister{
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
 /* ---- Selector de idioma ---- */
 
 .lang-switch {
@@ -284,7 +291,7 @@ button.secondary {
 
 /* ---- Tarjeta central ---- */
 .welcome-card {
-    width: 100%;
+    width: 45%;
     background: var(--surface-dark);
     border-radius: 16px;
     padding: 32px;

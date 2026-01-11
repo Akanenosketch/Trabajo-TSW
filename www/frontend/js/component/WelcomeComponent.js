@@ -11,6 +11,9 @@ class WelcomeComponent extends Fronty.ModelComponent {
 
         this.setupListeners();
 
+        // Load gradient
+        document.body.classList.add('gradient-layout');
+
     }
 
     setupListeners() {
