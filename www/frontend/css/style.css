@@ -28,24 +28,7 @@
     font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* Theme toggle button */
 
-.theme-toggle {
-    position: relative;
-    /*top: 6px;*/
-    /*right: 6px;*/
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 6px;
-    border-radius: 8px;
-    color: var(--accent-neon);
-}
-
-.theme-toggle:focus {
-    outline: 2px solid rgba(0, 0, 0, 0.08);
-}
 
 /* Smooth transitions for background and color changes */
 body,
@@ -55,7 +38,7 @@ button {
     transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
 }
 
-/* Global placement for pages without modal header */
+/* Global theme toggle button */
 .theme-toggle.global {
     position: absolute;
     top: 5px;
@@ -64,6 +47,9 @@ button {
     background: rgba(255, 255, 255, 0.02);
 }
 
+.theme-toggle.global:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.08);
+}
 /*
 Commons
 */
@@ -211,6 +197,7 @@ button.Fprimary {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    align-self: center;
 }
 
 button.Fsecondary {
@@ -220,6 +207,7 @@ button.Fsecondary {
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
+    align-self: center;
 }
 
 .form-actions {
@@ -796,6 +784,27 @@ td {
     transition: color 0.2s;
 }
 
+button.Logout {
+    background: var(--danger);
+    color: var(--btn-text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: center;
+}
+
+button.Iprimary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: center;
+}
 /* ###############################################################################
                                     projects/form.php   
    ###############################################################################   */
