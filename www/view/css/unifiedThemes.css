@@ -10,12 +10,12 @@
     --btn-text-primary: #000;
     --border-dark: #2a2d3a;
     --danger: #ff3b3b;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .light-theme {
-    --bg-dark: #ffffff;
-    --bg-light: #888fa6;
+    --bg-dark: #d9dceb;
+    --bg-light: #ffffff;
     --surface-dark: #ffffff;
     --surface-lighter: #f5f6fa;
     --accent-neon: #00664d;
@@ -23,9 +23,8 @@
     --text-bright: #000000;
     --text-dim: #525769;
     --btn-text-primary: #ffffff;
-    --border-dark: #e6e7ee;
+    --border-dark: #e6e7ee; 
     --danger: #c0392b;
-    font-family: 'Inter', system-ui, sans-serif;
 }
 /*
 Commons
@@ -86,8 +85,7 @@ a:hover {
    ###############################################################################   */
 .Fbody {
     margin: 0;
-    /*Background no funciona del todo, pendiente de seguir debbugeando*/
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -202,9 +200,7 @@ button.Fsecondary {
 .modal-overlay, .Fmodal-overlay {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg,
-        rgba(10, 11, 15, 0.6),
-        rgba(20, 23, 33, 0.6));
+    background: rgba(10, 11, 15, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -261,7 +257,7 @@ button.Fsecondary {
 
 .WPBody {
     margin: 0;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     min-height: 100vh;
     display: flex;
@@ -313,7 +309,7 @@ button.secondary {
 
 button.primary {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
 }
 
 button.secondary {
@@ -331,7 +327,7 @@ button.secondary {
     margin: 0;
     min-height: 100vh;
     display: flex;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -368,7 +364,7 @@ button.secondary {
     margin: 0;
     min-height: 100vh;
     display: flex;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -953,7 +949,7 @@ header {
 body {
     margin: 0;
     /*No funcional del todo, pendiente de seguir debbugeando*/
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
