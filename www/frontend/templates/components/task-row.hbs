@@ -1,7 +1,7 @@
 <div key="{{id}}" class="task">
 
     <span>{{name}}
-        <span class="small">
+        <span class="mails">
             {{#each emails}}
             {{this}}
             <br>
@@ -9,13 +9,13 @@
         </span>
     </span>
 
-    <div>
+    <div class="VDiv">
 
-        <button id="viewTaskBtn" class="btn">{{i18n "Ver"}}</button>
+        <button id="viewTaskBtn" class="btnA">{{i18n "Ver"}}</button>
 
-        <button id="editTaskBtn" class="btn">{{i18n "Editar"}}</button>
+        <button id="editTaskBtn" class="btnA">{{i18n "Editar"}}</button>
 
-        <button id="deleteTaskBtn" class="btn danger" type="button">
+        <button id="deleteTaskBtn" class="btnD" type="button">
             {{i18n "Borrar"}}</button>
 
     </div>

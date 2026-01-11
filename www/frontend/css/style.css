@@ -542,6 +542,7 @@ button.secondary {
     justify-content: space-between;
     align-items: flex-start;
     transition: 0.25s;
+    gap: 15px;
 }
 
 .task:hover {
@@ -550,7 +551,17 @@ button.secondary {
     box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
 }
 
-.task .Vbtn {
+.VDiv {
+    display: flex;         
+    flex-direction: row;   
+    align-items: center;    
+    gap: 8px;              
+    flex-shrink: 0;       
+    white-space: nowrap;    
+}
+
+.task .btnA {
+    flex: auto;
     padding: 5px 10px;
     border-radius: 6px;
     cursor: pointer;
@@ -560,11 +571,45 @@ button.secondary {
     color: var(--text-bright);
 }
 
-.task .Vbtn:hover {
+.task .btnA:hover {
     color: var(--accent-neon);
     border-color: var(--accent-neon);
 }
-.btnDelete {
+
+.task .btnD {
+    flex: auto;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--danger);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.task .btnD:hover {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.VbtnA {
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid var(--accent-neon);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.VbtnA:hover {
+    background: var(--accent-glow);
+    color: var(--bg-dark);
+}
+
+.VbtnD {
     padding: 10px 18px;
     border-radius: 8px;
     cursor: pointer;
@@ -572,11 +617,11 @@ button.secondary {
     cursor: pointer;
     transition: 0.3s;
     border: 2px solid var(--danger);
-    background: var(--danger);
+    background: var(--surface-dark);
     color: var(--text-bright);
 }
 
-.btnDelete:hover {
+.VbtnD:hover {
     background: var(--danger);
     color: var(--bg-dark);
 }
@@ -590,67 +635,7 @@ button.secondary {
     gap: 18px;
 }
 
-.Vaction-btn {
-    padding: 10px 18px;
-    border-radius: 8px;
-    border: 1px solid var(--border-dark);
-    background: var(--surface-lighter);
-    color: var(--text-bright);
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
 
-.Vaction-btn:hover {
-    border-color: var(--accent-neon);
-    color: var(--accent-neon);
-}
-
-.Vbtn.back {
-    background: var(--accent-neon);
-    color: var(--bg-dark);
-    border-radius: 6px;
-    padding: 8px 10px;
-    border: none;
-    align-content: center;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10pt;
-}
-
-.Vbtn.primary {
-    background: var(--accent-neon);
-    color: var(--bg-dark);
-    border-radius: 6px;
-    padding: 8px 14px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.Vbtn.primary:hover {
-    background: var(--accent-glow);
-    box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.action-btn.primary {
-    background: var(--accent-neon);
-    color: var(--bg-dark);
-    border: none;
-    font-weight: bold;
-}
-
-.action-btn.primary:hover {
-    background: var(--accent-glow);
-    box-shadow: 0 0 15px var(--accent-neon);
-}
-
-.action-btn.danger:hover {
-    background: var(--danger);
-    color: var(--bg-dark);
-}
 
 .small {
     border: var(--border-dark);
@@ -955,11 +940,6 @@ header {
 .cat .btn:hover {
     color: var(--accent-neon);
     border-color: var(--accent-neon);
-}
-
-.btn.danger:hover {
-    background: var(--danger);
-    color: var(--bg-dark);
 }
 
 .task-actions {
