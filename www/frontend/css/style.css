@@ -312,12 +312,14 @@ button.secondary {
 }
 
 /* ---- Footer ---- */
-footer.site-footer {
+footer.site-footer {    
+    width: 95%;
     margin-top: auto;
     background: transparent;
-    /*background: #0f1724;  ---- Old setting*/
     color: var(--text-bright);
     text-align: center;
+    position: absolute;
+    bottom: 0;
     padding: 16px;
     font-size: 14px;
 }
