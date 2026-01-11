@@ -64,14 +64,14 @@
 
             <div class="form-actions">
 
-                <button type="button" class="btn" id="cancelProjectBtn">{{i18n "Cancelar"}}
+                <button type="button" class="Fsecondary" id="cancelProjectBtn">{{i18n "Cancelar"}}
                 </button>
 
                 {{#if selectedProject.editing}}
                 <input value="{{id}}" type="hidden" name="id" />
                 {{/if}}
 
-                <button type="button" class="btn primary" id="saveProjectBtn">
+                <button type="button" class="Fprimary" id="saveProjectBtn">
                     {{#if selectedProject.editing}}
                     {{i18n "Editar Proyecto"}}
                     {{else}}

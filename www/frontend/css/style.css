@@ -203,8 +203,7 @@ textarea {
     resize: vertical;
 }
 
-button.Fprimary
-button.btn.primary {
+button.Fprimary {
     background: var(--accent-neon);
     color: var(--btn-text-primary);
     border: none;
@@ -214,8 +213,7 @@ button.btn.primary {
     font-weight: 600;
 }
 
-button.Fsecondary,
-button.cancelProjectBtn {
+button.Fsecondary {
     background: transparent;
     color: var(--accent-neon);
     border: 2px solid var(--accent-neon);
@@ -226,9 +224,7 @@ button.cancelProjectBtn {
 }
 
 .Fprimary:hover,
-.Fsecondary:hover,
-.btn.primary:hover,
-.cancelProjectBtn:hover {
+.Fsecondary:hover {
     background: var(--accent-glow);
     box-shadow: 0 0 10px var(--accent-glow);
 }
