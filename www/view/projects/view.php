@@ -101,7 +101,7 @@ $project = $view->getVariable("project");
                     <div id="col-working">
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "Working") == 0): ?>
-                                <div class="task">
+                                <div class="Vtask">
                                     <span><?= $task->getName() ?>
                                         <span class="small">
                                             <?php foreach ($task->getUsers() as $user): ?>
@@ -134,7 +134,7 @@ $project = $view->getVariable("project");
                     <div id="col-done">
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "Done") == 0): ?>
-                                <div class="task">
+                                <div class="Vtask">
                                     <span><?= $task->getName() ?>
                                         <span class="small">
                                             <?php foreach ($task->getUsers() as $user): ?>
