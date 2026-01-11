@@ -19,7 +19,7 @@ $catNum = 1;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/projects/form.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Formulario de Projectos") ?></title>
 </head>
 
@@ -45,7 +45,7 @@ $catNum = 1;
 
                         <?php foreach ($users as $user): ?>
                             <div>
-                                <input type="Fcheckbox"
+                                <input type="checkbox"
                                     name="<?="user".$userNum?>"
                                     value="<?=$user->getUserMail()?>"
                                     <?php if (in_array($user, $projectUsers)): ?> checked="checked" <?php endif ?> />
@@ -63,7 +63,7 @@ $catNum = 1;
                     <div id="initialCats" class="Fcheckbox-list">
                         <?php foreach ($categories as $cat): ?>
                             <div>
-                                <input type="Fcheckbox"
+                                <input type="checkbox"
                                     name="<?="cat".$catNum?>"
                                     value="<?=$cat?>"
                                     <?php if (in_array($cat, $projectCats)): ?> checked="checked" <?php endif ?> />

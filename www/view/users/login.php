@@ -10,16 +10,14 @@ $errors = $view->getVariable("errors");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/users/login.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Form de Sesion") ?></title>
 </head>
 
 <body class="Lbody">
     <div id="loginOverlay" class="Loverlay">
         <div class="Lmodal">
-            <header>
-                <h2 id="loginTitle"><?= i18n("Iniciar sesion") ?></h2>
-            </header>
+            <h2 id="loginTitle"><?= i18n("Iniciar sesion") ?></h2>
 
             <form id="loginForm">
                 <div class="form-row">

@@ -19,7 +19,7 @@ if ($task != null) $taskUsers = $task->getUsers();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/tasks/form.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Formulario de Tareas") ?></title>
 </head>
 
@@ -86,7 +86,7 @@ if ($task != null) $taskUsers = $task->getUsers();
 
                             <?php foreach ($users as $user): ?>
                                 <div>
-                                    <input type="Fcheckbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
+                                    <input type="checkbox" name="<?= "user".$userNum ?>" value="<?= $user->getUserMail() ?>"
                                         <?php $userNum++ ?>
                                         <?php if ($isViewing): ?>disabled<?php endif ?>
                                         <?php if (in_array($user, $taskUsers)): ?> checked<?php endif ?> />

@@ -14,7 +14,7 @@ $category = $view->getVariable("category");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/categories/form.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Formulario de Categorias") ?></title>
 </head>
 

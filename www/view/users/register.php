@@ -11,19 +11,17 @@ $errors = $view->getVariable("errors");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/users/register.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Form de Registro") ?></title>
 </head>
 
 <body class="Rbody">
     <div id="registerOverlay" class="Roverlay">
         <div class="Rmodal">
-            <header>
-                <h2 id="registerTitle">
-                    <?php if (!is_null($user)): ?>    <?= i18n("Editar Usuario") ?><?php endif ?>
-                    <?php if (is_null($user)): ?>    <?= i18n("Registrarse") ?><?php endif ?>
-                </h2>
-            </header>
+            <h2 id="registerTitle">
+                <?php if (!is_null($user)): ?> <?= i18n("Editar Usuario") ?><?php endif ?>
+                    <?php if (is_null($user)): ?> <?= i18n("Registrarse") ?><?php endif ?>
+            </h2>
 
             <form id="registerForm" method="post">
                 <div class="form-row">
@@ -55,11 +53,11 @@ $errors = $view->getVariable("errors");
 
 
                             <button type="button" class="Fsecondary"><?= i18n("Cancelar") ?></button>
-                        </a>
-                        <button type="submit" class="Fprimary"
-                            formaction="index.php?action=<?php if (!is_null($user)): ?>edit<?php endif ?><?php if (is_null($user)): ?>register<?php endif ?>">
-                            <?php if (!is_null($user)): ?>    <?= i18n("Editar Usuario") ?><?php endif ?><?php if (is_null($user)): ?>    <?= i18n("Crear Cuenta") ?><?php endif ?>
-                        </button>
+                            </a>
+                            <button type="submit" class="Fprimary"
+                                formaction="index.php?action=<?php if (!is_null($user)): ?>edit<?php endif ?><?php if (is_null($user)): ?>register<?php endif ?>">
+                                <?php if (!is_null($user)): ?> <?= i18n("Editar Usuario") ?><?php endif ?><?php if (is_null($user)): ?> <?= i18n("Crear Cuenta") ?><?php endif ?>
+                            </button>
                 </div>
             </form>
         </div>

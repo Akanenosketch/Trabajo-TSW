@@ -3,7 +3,7 @@
 /* Light theme overrides (applied when <body> has class "light-theme") */
 .light-theme {
     --bg-dark: #ffffff;
-    --bg-light: #888fa6;
+    --bg-light: #afb4c8;
     --surface-dark: #ffffff;
     --surface-lighter: #f5f6fa;
     --accent-neon: #00664d;
@@ -41,7 +41,7 @@ body, .modal, input, button {
 
 /* Global placement for pages without modal header */
 .theme-toggle.global {
-    position: fixed;
+    position: absolute;
     top: 5px;
     right: 110px;
     z-index: 9999;

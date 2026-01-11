@@ -11,7 +11,7 @@ $errors = $view->getVariable("errors");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/users/welcomePage.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Pagina de Bienvenida") ?></title>
 </head>
 
@@ -40,7 +40,7 @@ $errors = $view->getVariable("errors");
     <footer class="site-footer">
         <div><strong><?= i18n("Informacion:") ?></strong> <?= i18n("Proyecto Trabajo-TSW — Interfaz.") ?>
         </div>
-        <div class="small"><?= i18n("Contacto: equipo@example.com · Version 1.0") ?></div>
+        <div class="small-text"><?= i18n("Contacto: equipo@example.com · Version 1.0") ?></div>
     </footer>
 
     <script src="./view/js/theme.js"></script>
