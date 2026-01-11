@@ -26,9 +26,7 @@ body {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg,
-            color-mix(in srgb, var(--bg-dark), transparent 45%),
-            color-mix(in srgb, var(--bg-light), transparent 45%));
+    background: rgba(10, 11, 15, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -12,11 +12,10 @@
     --btn-text-primary: #000;
     --border-dark: #2a2d3a;
     --danger: #ff3b3b;
-    /*font-family: 'Inter', system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;*/
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    font-family: 'Inter', system-ui, Arial, sans-serif;
     background: var(--bg-dark);
     margin: 10pt;
     padding: 20px;

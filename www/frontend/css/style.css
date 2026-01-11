@@ -14,8 +14,8 @@
 }
 
 .light-theme {
-    --bg-dark: #ffffff;
-    --bg-light: #afb4c8;
+    --bg-dark: #d9dceb;
+    --bg-light: #ffffff;
     --surface-dark: #ffffff;
     --surface-lighter: #f5f6fa;
     --accent-neon: #00664d;
@@ -23,24 +23,8 @@
     --text-bright: #000000;
     --text-dim: #525769;
     --btn-text-primary: #ffffff;
-    --border-dark: #e6e7ee;
+    --border-dark: #e6e7ee; 
     --danger: #c0392b;
-    font-family: 'Inter', sans-serif;
-}
-
-/* Theme toggle button */
-
-.theme-toggle {
-    position: relative;
-    /*top: 6px;*/
-    /*right: 6px;*/
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 6px;
-    border-radius: 8px;
-    color: var(--accent-neon);
 }
 
 .theme-toggle:focus {
@@ -62,6 +46,13 @@ button {
     right: 110px;
     z-index: 9999;
     background: rgba(255, 255, 255, 0.02);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--accent-neon);
 }
 
 /*
@@ -236,7 +227,7 @@ button.Fsecondary {
     margin-top: 20px;
 }
 
-.error {
+.error-span {
     color: var(--danger);
     font-size: 14px;
     background: rgba(255, 59, 59, 0.1);
@@ -251,7 +242,7 @@ button.Fsecondary {
 .Fmodal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 11, 15, 0.75);
+    background: rgba(10, 11, 15, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -371,18 +362,22 @@ button.secondary {
     text-transform: uppercase;
     border: none;
     font-size: 1rem;
-    margin-top: 20px;
 }
 
 button.primary {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
 }
 
 button.secondary {
     background: transparent;
     color: var(--accent-neon);
     border: 2px solid var(--accent-neon);
+}
+
+#openLogin, 
+#openRegister{
+    margin-top: 20px;
 }
 
 /* ###############################################################################
@@ -711,7 +706,7 @@ button.secondary {
     border-radius: 12px;
     padding: 20px;
     border: 1px solid var(--border-dark);
-    width: 90%;
+    width: 91.5%;
     margin: 0 auto;
     overflow-x: auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -808,7 +803,6 @@ button.Iprimary {
     cursor: pointer;
     font-weight: 600;
     align-self: center;
-    margin-top: 5px;
 }
 /* ###############################################################################
                                     projects/form.php   
@@ -894,7 +888,6 @@ header {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    margin-top: 10pt;
 }
 
 
