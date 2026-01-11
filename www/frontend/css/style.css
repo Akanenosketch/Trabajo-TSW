@@ -175,6 +175,15 @@ select {
     transition: border 0.2s, box-shadow 0.25s;
 }
 
+input[type="date"] {
+    width: 100%;          
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--surface-dark); 
+    color: var(--text-bright);
+    border: 1px solid var(--border-dark);
+}
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -193,6 +202,8 @@ select:disabled {
 textarea {
     resize: vertical;
 }
+
+
 
 button.Fprimary {
     background: var(--accent-neon);
@@ -649,7 +660,22 @@ button.secondary {
     color: var(--text-bright);
 }
 
+.date-inputs {
+    display: flex;      
+    gap: 20px;          
+}
 
+.date-group {
+    display: flex;
+    flex-direction: column; 
+    flex: 1;               
+}
+
+.date-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--text-dim);
+}
 /* ###############################################################################
                                     projects/index.php   
    ###############################################################################   */

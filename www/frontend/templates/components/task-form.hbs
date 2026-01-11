@@ -36,25 +36,30 @@
             </div>
 
             <div class="form-row">
-                <label>{{i18n "Fecha de Inicio"}}</label>
-                <input id="modalTaskBegin" name="beginDate" type="date" required="required" {{#if_eq mode "edit" }}
-                    value="{{beginDate}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{beginDate}}" readonly="readonly"
-                    {{/if_eq}} />
-                {{#if errors.beginDate }}
-                <span class="error-span">{{#i18n}}{{errors.beginDate}}{{/i18n}}</span>
-                {{/if}}
+                <div class="date-inputs">
+                    <div class="date-group">
+                        <label>{{i18n "Fecha de Inicio"}}</label>
+                        <input id="modalTaskBegin" name="beginDate" type="date" required="required" {{#if_eq mode "edit" }}
+                        value="{{beginDate}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{beginDate}}" readonly="readonly"
+                            {{/if_eq}} />
+                        {{#if errors.beginDate }}
+                        <span class="error-span">{{#i18n}}{{errors.beginDate}}{{/i18n}}</span>
+                        {{/if}}
+                    </div>
+                    <div class="date-group">
+                        <label>{{i18n "Fecha de Fin"}}</label>
+                        <input id="modalTaskEnd" name="endDate" type="date" required="required" {{#if_eq mode "edit" }}
+                            value="{{endDate}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{endDate}}" readonly="readonly"
+                            {{/if_eq}} />
+                        {{#if errors.endDate }}
+                        <span class="error-span">{{#i18n}}{{errors.endDate}}{{/i18n}}</span>
+                        {{/if}}
 
-                <label>{{i18n "Fecha de Fin"}}</label>
-                <input id="modalTaskEnd" name="endDate" type="date" required="required" {{#if_eq mode "edit" }}
-                    value="{{endDate}}" {{/if_eq}} {{#if_eq mode "view" }} value="{{endDate}}" readonly="readonly"
-                    {{/if_eq}} />
-                {{#if errors.endDate }}
-                <span class="error-span">{{#i18n}}{{errors.endDate}}{{/i18n}}</span>
-                {{/if}}
-
-                {{#if errors.dates }}
-                <span class="error-span">{{#i18n}}{{errors.dates}}{{/i18n}}</span>
-                {{/if}}
+                        {{#if errors.dates }}
+                        <span class="error-span">{{#i18n}}{{errors.dates}}{{/i18n}}</span>
+                        {{/if}}
+                        </div>
+                    </div>  
             </div>
 
             <div class="form-row">
