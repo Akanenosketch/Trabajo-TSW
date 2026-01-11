@@ -88,8 +88,7 @@ a:hover {
    ###############################################################################   */
 .Fbody {
     margin: 0;
-    /*Background no funciona del todo, pendiente de seguir debbugeando*/
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -206,9 +205,7 @@ button.Fsecondary {
 .Fmodal-overlay {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg,
-            rgba(10, 11, 15, 0.6),
-            rgba(20, 23, 33, 0.6));
+    background:  rgba(10, 11, 15, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +285,7 @@ button.Fsecondary {
     box-shadow: 0 0 12px rgba(0, 255, 157, 0.35);
 }
 
-#cancelCategoryBtn{
+#cancelCategoryBtn {
     margin-top: 20px;
 }
 
@@ -298,7 +295,7 @@ button.Fsecondary {
 
 .WPBody {
     margin: 0;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     min-height: 100vh;
     display: flex;
@@ -368,7 +365,7 @@ button.secondary {
     margin: 0;
     min-height: 100vh;
     display: flex;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -405,7 +402,7 @@ button.secondary {
     margin: 0;
     min-height: 100vh;
     display: flex;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -992,8 +989,7 @@ header {
 
 body {
     margin: 0;
-    /*No funcional del todo, pendiente de seguir debbugeando*/
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
