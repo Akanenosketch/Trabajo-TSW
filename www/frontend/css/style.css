@@ -60,7 +60,7 @@ button {
 
 /* Global placement for pages without modal header */
 .theme-toggle.global {
-    position: fixed;
+    position: absolute;
     top: 5px;
     right: 110px;
     z-index: 9999;
