@@ -130,6 +130,14 @@ header {
     text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
 }
 
+/* ---- Titles (TODO FIX OR UNIFY)---- */
+h3 {
+    margin-top: 5px;
+    font-size: 1.4rem;
+    color: var(--accent-neon);
+    text-shadow: 0 0 6px rgba(0, 255, 157, 0.4);
+}
+
 /* =========================================
                 3. Botones
    ========================================= */
@@ -493,19 +501,8 @@ td {
 /* =========================================
                 6.- Modales
    ========================================= */
-
-/* TODO UNIFICAR ======================================================================================*/  
+   
 .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 11, 15, 0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.modal-overlay {
     position: fixed;
     inset: 0;
     background: rgba(10, 11, 15, 0.75);
@@ -517,9 +514,7 @@ td {
     z-index: 999;
 }
 
-/*=================================================================================================*/
-
-.modal-overlay.show {
+.overlay.show {
     display: flex;
 }
 
