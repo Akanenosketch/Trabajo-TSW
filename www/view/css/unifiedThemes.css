@@ -188,7 +188,7 @@ button.Fsecondary {
     margin-top: 20px;
 }
 
-.error {
+.error-span {
     color: var(--danger);
     font-size: 14px;
     background: rgba(255, 59, 59, 0.1);
