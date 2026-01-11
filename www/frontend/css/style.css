@@ -493,10 +493,12 @@ td {
 /* =========================================
                 6.- Modales
    ========================================= */
+
+/* TODO UNIFICAR ======================================================================================*/  
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 11, 15, 0.8);
+    background: rgba(10, 11, 15, 0.75);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -506,14 +508,16 @@ td {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg,
-            color-mix(in srgb, var(--bg-dark), transparent 45%),
-            color-mix(in srgb, var(--bg-light), transparent 45%));
+    background: rgba(10, 11, 15, 0.75);
     backdrop-filter: blur(4px);
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 20px;
     z-index: 999;
 }
+
+/*=================================================================================================*/
 
 .modal-overlay.show {
     display: flex;
