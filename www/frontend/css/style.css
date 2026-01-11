@@ -189,7 +189,8 @@ textarea {
     resize: vertical;
 }
 
-button.Fprimary {
+button.Fprimary
+button.btn.primary {
     background: var(--accent-neon);
     color: var(--btn-text-primary);
     border: none;
@@ -200,7 +201,8 @@ button.Fprimary {
     align-self: center;
 }
 
-button.Fsecondary {
+button.Fsecondary,
+button.cancelProjectBtn {
     background: transparent;
     color: var(--accent-neon);
     border: 2px solid var(--accent-neon);
@@ -210,10 +212,18 @@ button.Fsecondary {
     align-self: center;
 }
 
+.Fprimary:hover,
+.Fsecondary:hover,
+.btn.primary:hover,
+.cancelProjectBtn:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
 .form-actions {
     display: flex;
     gap: 12px;
-    justify-content: flex-end;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -280,8 +290,7 @@ button.Fsecondary {
     margin-top: 20px;
 }
 
-.btn,
-.Fbtn {
+.btn {
     background: var(--surface-lighter);
     padding: 9px 18px;
     color: var(--text-bright);
@@ -291,25 +300,9 @@ button.Fsecondary {
     transition: background 0.2s, transform 0.15s, box-shadow 0.25s;
 }
 
-.btn:hover,
-.Fbtn:hover {
+.btn:hover {
     background: #2d2f39;
     transform: translateY(-2px);
-}
-
-.btn.primary,
-.btn.primary,
-.Fbtn.primary {
-    background: var(--accent-neon);
-    color: var(--btn-text-primary);
-    border: none;
-    font-weight: 600;
-}
-
-.btn.primary:hover,
-.Fbtn.primary:hover {
-    background: var(--accent-glow);
-    box-shadow: 0 0 12px rgba(0, 255, 157, 0.35);
 }
 
 #cancelCategoryBtn {
@@ -784,7 +777,8 @@ td {
     transition: color 0.2s;
 }
 
-button.Logout {
+button.logout {
+    display: block;
     background: var(--danger);
     color: var(--btn-text-primary);
     border: none;
@@ -792,7 +786,8 @@ button.Logout {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    align-self: center;
+    margin-top: 10pt;
+    margin-left: auto;
 }
 
 button.Iprimary {
@@ -804,6 +799,7 @@ button.Iprimary {
     cursor: pointer;
     font-weight: 600;
     align-self: center;
+    margin-top: 5px;
 }
 /* ###############################################################################
                                     projects/form.php   
@@ -892,21 +888,6 @@ header {
     margin-top: 10pt;
 }
 
-.btn.primary {
-    background: var(--accent-neon);
-    color: var(--bg-dark);
-    border-radius: 6px;
-    padding: 8px 14px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn.primary:hover {
-    background: var(--accent-glow);
-    box-shadow: 0 0 10px var(--accent-glow);
-}
 
 .project-title {
     font-size: 32px;
