@@ -35,9 +35,7 @@ $currentuserName = $view->getVariable("currentusername");
                 <button type="button" class="add-btn"><?= i18n("Editar Usuario") ?></button>
             </a>
 
-            <a href="index.php?action=logout">
-                <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
-            </a>
+
         </div>
     </header>
 
@@ -73,12 +71,15 @@ $currentuserName = $view->getVariable("currentusername");
                 </table>
                 <div class="add-project-container">
                     <a href="index.php?controller=projects&amp;action=add">
-                        <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
+                        <button id="openNewProjectModal" class="primary"><?= i18n("Añadir Proyecto") ?></button>
                     </a>
                 </div>
             </div>
         </div>
     </section>
+        <a href="index.php?action=logout">
+            <button type="button" class="logout"><?= i18n("Cerrar sesion") ?></button>
+        </a>
     <script src="./view/js/theme.js"></script>
 </body>
 

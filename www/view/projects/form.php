@@ -25,7 +25,7 @@ $catNum = 1;
 
 <body>
 
-    <div id="newProjectModal" class="Fmodal-overlay">
+    <div id="newProjectModal" class="modal-overlay">
         <div class="Smodal-box">
             <div class="Smodal-content">
                 <h3>
@@ -77,20 +77,20 @@ $catNum = 1;
                         </div>
                     </div>
 
-                    <div>
+                    <div class="form-actions">
                         <?php if (is_null($project)): ?>
                             <a href="index.php?controller=projects&amp;action=index">
                             <?php endif ?>
                             <?php if (!is_null($project)): ?>
                                 <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $project->getId() ?>">
                                 <?php endif ?>
-                                <button type="button" class="Fbtn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
+                                <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
                                 </a>
                                 <?php if (!is_null($project)): ?>
                                     <input value="<?= $project->getId() ?>" type="hidden" name="id" />
                                 <?php endif ?>
 
-                                <button type="submit" class="Fbtn primary">
+                                <button type="submit" class="btn primary">
 
                                     <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
                                     <?php if (is_null($project)): ?><?= i18n("Crear proyecto") ?><?php endif ?>
