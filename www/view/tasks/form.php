@@ -28,8 +28,8 @@ if ($task != null) $taskUsers = $task->getUsers();
     <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($task)): ?>add<?php endif ?>" method="post">
         <div id="taskModal" class="modal-overlay">
 
-            <div class="modal-box">
-                <div class="modal-content">
+            <div class="Smodal-box">
+                <div class="Smodal-content">
                     <h3 id="taskModalTitle">
                         <?php if (!is_null($task) && !$isViewing): ?><?= i18n("Editar Tarea") ?><?php endif ?><?php if (is_null($task)): ?><?= i18n("Añadir Tarea") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Tarea") ?><?php endif ?>
                     </h3>

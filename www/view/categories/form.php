@@ -22,8 +22,8 @@ $category = $view->getVariable("category");
 
     <form action="index.php?controller=categories&amp;action=<?php if (!is_null($category) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($category)): ?>add<?php endif ?>" method="post">
         <div id="categoryModal" class="modal-overlay">
-            <div class="modal-box">
-                <div class="modal-content">
+            <div class="Smodal-box">
+                <div class="Smodal-content">
                     <h3 id="categoryModalTitle">
                         <?php if (!is_null($category) && !$isViewing): ?><?= i18n("Editar Categoria") ?><?php endif ?><?php if (is_null($category)): ?><?= i18n("Añadir Categoria") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Categoria") ?><?php endif ?>
                     </h3>
