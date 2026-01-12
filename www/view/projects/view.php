@@ -73,7 +73,7 @@ $project = $view->getVariable("project");
                                         <span><?= $task->getName() ?>
                                             <span class="small">
                                                 <?php foreach ($task->getUsers() as $user): ?>
-                                                    <?= $user->getUserName() . "\n" ?>
+                                                    <?= $user->getUserName()."\n" ?>
                                                 <?php endforeach; ?>
                                             </span>
                                         </span>
@@ -109,7 +109,7 @@ $project = $view->getVariable("project");
                                         <span><?= $task->getName() ?>
                                             <span class="small">
                                                 <?php foreach ($task->getUsers() as $user): ?>
-                                                    <?= $user->getUserName() . "\n" ?>
+                                                    <?= $user->getUserName()."\n" ?>
                                                 <?php endforeach; ?>
                                             </span>
                                         </span>
@@ -145,7 +145,7 @@ $project = $view->getVariable("project");
                                         <span><?= $task->getName() ?>
                                             <span class="small">
                                                 <?php foreach ($task->getUsers() as $user): ?>
-                                                    <?= $user->getUserName() . "\n" ?>
+                                                    <?= $user->getUserName()."\n" ?>
                                                 <?php endforeach; ?>
                                             </span>
                                         </span>

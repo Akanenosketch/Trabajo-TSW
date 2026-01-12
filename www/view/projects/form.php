@@ -47,7 +47,7 @@ $catNum = 1;
                             <?php foreach ($users as $user): ?>
                                 <div>
                                     <input type="checkbox"
-                                        name="<?= "user" . $userNum ?>"
+                                        name="<?= "user".$userNum ?>"
                                         value="<?= $user->getUserMail() ?>"
                                         <?php if (in_array($user, $projectUsers)): ?> checked="checked" <?php endif ?> />
                                     <?php $userNum++ ?>
@@ -65,7 +65,7 @@ $catNum = 1;
                             <?php foreach ($categories as $cat): ?>
                                 <div>
                                     <input type="checkbox"
-                                        name="<?= "cat" . $catNum ?>"
+                                        name="<?= "cat".$catNum ?>"
                                         value="<?= $cat ?>"
                                         <?php if (in_array($cat, $projectCats)): ?> checked="checked" <?php endif ?> />
                                     <?php $catNum++ ?>
