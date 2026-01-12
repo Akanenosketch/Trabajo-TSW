@@ -17,7 +17,7 @@
 /* ---- Layout general ---- */
 body {
     margin: 0;
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     min-height: 100vh;
     display: flex;

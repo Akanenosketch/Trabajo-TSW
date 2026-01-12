@@ -16,8 +16,7 @@
 
 body {
     margin: 0;
-    /*No funcional del todo, pendiente de seguir debbugeando*/
-    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    background: var(--bg-dark);
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
