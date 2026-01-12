@@ -31,6 +31,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 999;
+    overflow-y: auto;
 }
 
 .modal-box {
