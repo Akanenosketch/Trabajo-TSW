@@ -1,0 +1,91 @@
+class UserService {
+
+    constructor() {
+        this.baseUrl = AppConfig.backendServer + 'users/'
+    }
+
+    /**
+     * Stores the credentials to sent them with all requests and logins
+     * @param {*} login The user_mail
+     * @param {*} pass The password
+     * @returns 
+     */
+    login(login, pass) {
+        return new Promise((resolve, reject) => {
+
+            $.get({
+                url: this.baseUrl + login,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
+                }
+            })
+                .then((data) => {
+                    //keep this authentication forever
+                    window.sessionStorage.setItem('login', login);
+                    window.sessionStorage.setItem('pass', pass);
+                    $.ajaxSetup({
+                        beforeSend: (xhr) => {
+                            xhr.setRequestHeader("Authorization", "Basic " + btoa(login + ":" + pass));
+                        }
+                    });
+                    resolve(JSON.parse(data));
+                })
+                .fail((error) => {
+                    window.sessionStorage.removeItem('login');
+                    window.sessionStorage.removeItem('pass');
+                    $.ajaxSetup({
+                        beforeSend: (xhr) => { }
+                    });
+                    reject(error);
+                });
+        });
+    }
+
+    /**
+     * Logs out
+     */
+    logout() {
+        window.sessionStorage.removeItem('login');
+        window.sessionStorage.removeItem('pass');
+        $.ajaxSetup({ //Elimina el Auth headers
+            beforeSend: null
+        });
+    }
+
+    /**
+     * Registers the given user
+     * @param  user EL usuario a registrar, con username, user_mail y password
+     * @returns the ajax request
+     */
+    register(user) {
+        return $.ajax({
+            url: this.baseUrl,
+            method: 'POST',
+            data: JSON.stringify(user),
+            contentType: 'application/json'
+        });
+    }
+
+
+    /**
+     * Edits the current user
+     * @param  user the editted user (UserModel) 
+     */
+    edit(user) {
+        var login = window.sessionStorage.getItem('login');
+        return $.ajax({
+            url: this.baseUrl + login,
+            method: 'PUT',
+            data: JSON.stringify(user),
+            contentType: 'application/json'
+        })
+    }
+
+    /**
+    * Lists the emails of all existing users. 
+    */
+    listAllUsers() {
+        return $.get(this.baseUrl.substring(0, this.baseUrl.length - 1));
+    }
+
+}

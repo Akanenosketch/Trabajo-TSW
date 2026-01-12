@@ -1,0 +1,359 @@
+:root {
+    --bg-dark: #0a0b0f;
+    --bg-light: #141721;
+    --surface-dark: #1a1b23;
+    --surface-lighter: #22242e;
+    --accent-neon: #00ff9d;
+    --accent-glow: #00cc7e;
+    --text-bright: #ffffff;
+    --text-dim: #9da3b4;
+    --btn-text-primary: #000;
+    --border-dark: #2a2d3a;
+    --danger: #ff3b3b;
+    font-family: 'Inter', system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    background: var(--surface-dark);
+    padding: 18px 30px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.lang-switch {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.lang-btn {
+    background: var(--accent-neon);
+    display: flex;
+    color: var(--bg-dark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.lang-btn:hover {
+    background: var(--accent-glow);
+}
+
+.btn.back {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    border-radius: 6px;
+    padding: 8px 10px;
+    border: none;
+    align-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10pt;
+}
+
+.btn.primary {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    border-radius: 6px;
+    padding: 8px 14px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn.primary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.project-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.stats-container {
+    display: flex;
+    gap: 35px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item span:first-child {
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: bold;
+}
+
+.project-content {
+    padding: 32px;
+}
+
+.cols {
+    display: flex;
+    gap: 24px;
+}
+
+.col {
+    flex: 1;
+    background: var(--surface-dark);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.05);
+}
+
+.col h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: 600;
+}
+
+.task {
+    background: var(--surface-lighter);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dark);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.25s;
+}
+
+
+.task:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-name {
+    font-weight: bold;
+    color: var(--text-bright);
+}
+
+.task-controls {
+    display: flex;
+    flex-direction: row; /* Fuerza la fila */
+    align-items: center;
+    gap: 8px; /* Espacio entre botones */
+}
+
+.task-controls form {
+    margin: 0;
+    display: flex;
+}
+
+.in-lineForm {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+
+.task .btn {
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+    white-space: nowrap;
+}
+
+.task .btn:hover {
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
+}
+
+.btn.danger {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.btn.danger:hover {
+    background: var(--danger);
+    color: var(--bg-dark);
+}
+
+.task-actions {
+    margin-top: 32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.action-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    border-color: var(--accent-neon);
+    color: var(--accent-neon);
+}
+
+.action-btn.primary {
+    background: var(--accent-neon);
+    color: var(--bg-dark);
+    border: none;
+    font-weight: bold;
+}
+
+.action-btn.primary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 15px var(--accent-neon);
+}
+
+.action-btn.danger {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.action-btn.danger:hover {
+    background: var(--danger);
+    color: var(--bg-dark);
+}
+
+.small {
+    border: var(--border-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 10pt;
+}
+
+.small.text {
+    font-size: 0.8rem;
+    color: var(--text-bright);
+}
+
+
+.VDiv {
+    display: flex;         
+    flex-direction: row;   
+    align-items: center;    
+    gap: 8px;              
+    flex-shrink: 0;       
+    white-space: nowrap;    
+}
+
+/*Link, para evitar que se muestre el color de los links*/
+a {
+    color: transparent
+}
+
+@media (max-width: 1024px) {
+    .cols {
+        flex-direction: column;
+    }
+    .project-content {
+        padding: 20px;
+    }
+    .stats-container {
+        gap: 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 14px 20px;
+    }
+    .lang-switch {
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .task {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+    }
+    .task-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn.back {
+    margin-top: 0pt;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .project-title {
+        font-size: 26px;
+    }
+    .project-content {
+        padding: 16px;
+    }
+    .col {
+        padding: 14px;
+    }
+    .action-btn,
+    .btn.primary,
+    .btn.back {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .task {
+        padding: 12px;
+    }
+    .btn.back {
+    margin-top: 0pt;
+    }
+}

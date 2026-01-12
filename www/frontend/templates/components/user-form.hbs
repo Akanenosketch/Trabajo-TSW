@@ -1,0 +1,75 @@
+<div id="registerOverlay" class="Loverlay">
+    <div class="Smodal-box">
+        <div class="Smodal-content">
+           <h2 id="registerTitle">
+            {{#if_eq mode "register"}}
+            {{i18n "Registrarse"}}
+            {{/if_eq}}
+            {{#if_eq mode "edit"}}
+            {{i18n "Editar Usuario"}}
+            {{/if_eq}}
+            {{#if_eq mode "login"}}
+            {{i18n "Iniciar sesion"}}
+            {{/if_eq}}
+        </h2>
+
+        <form id="registerForm">
+
+            {{#if_eq mode "login"}}
+            {{else}}
+            <div class="form-row">
+                <label for="regNombre">{{i18n "Nombre de Usuario"}}</label>
+                <input id="regNombre" name="nombreUsuario" type="text" placeholder="{{i18n " Nombre de Usuario"}}"
+                    value="{{#if_eq mode " edit"}}{{username}}{{/if_eq}}" required="required" minlength="4" />
+                {{#if errors.username }}
+                <span class="error-span">{{#i18n}}{{errors.username}}{{/i18n}}</span>
+                {{/if}}
+            </div>
+            {{/if_eq}}
+
+            {{#if_eq mode "edit"}}
+            {{else}}
+            <div class="form-row">
+                <label for="regCorreo">{{i18n "Correo"}}</label>
+                <input id="regCorreo" name="correo" type="email" placeholder="{{#if_eq mode "
+                    register"}}ivan.martinez.estevez@uvigo.es {{else}}{{i18n "Escribe tu correo" }}{{/if_eq}}"
+                    required="required" pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" />
+                {{#if errors.user_mail }}
+                <span class="error-span">{{#i18n}}{{errors.user_mail}}{{/i18n}}</span>
+                {{/if}}
+            </div>
+            {{/if_eq}}
+
+            <div class="form-row">
+                <label for="regPass">{{i18n "Contraseña"}}</label>
+                <input id="regPass" name="contrasena" type="password" placeholder="{{i18n " Contraseña"}}"
+                    required="required" minlength="6" />
+                {{#if errors.passwd }}
+                <span class="error-span">{{#i18n}}{{errors.passwd}}{{/i18n}}</span>
+                {{/if}}
+            </div>
+
+            <div class="form-actions">
+                <button id="cancelUserBtn" type="button" class="secondary">
+                    {{i18n "Cancelar"}}
+                </button>
+
+                <button id="saveUserBtn" type="button" class="primary">
+                    {{#if_eq mode "register"}}
+                    {{i18n "Crear Cuenta"}}
+                    {{/if_eq}}
+                    {{#if_eq mode "edit"}}
+                    {{i18n "Editar Usuario"}}
+                    {{/if_eq}}
+                    {{#if_eq mode "login"}}
+                    {{i18n "Entrar"}}
+                    {{/if_eq}}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

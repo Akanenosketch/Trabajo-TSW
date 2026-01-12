@@ -1,0 +1,86 @@
+{{! Project Form, para edit y add}}
+<div id="newProjectModal" class="modal-overlay">
+    <div class="Smodal-box">
+        <div class="Smodal-content">
+            <div class="Smodal-content">
+        <h3>
+            {{#if selectedProject.editing}}
+            {{i18n "Editar Proyecto"}}
+            {{else}}
+            {{i18n "Nuevo Proyecto"}}
+            {{/if}}
+        </h3>
+        <form id="addProjectForm">
+
+            <div class="form-row">
+                <label>{{i18n "Nombre del Proyecto"}}</label>
+                <input id="newProjectName" type="text" name="name" required="required" minlength="1"
+                    value="{{#if selectedProject.editing}}{{selectedProject.name}}{{/if}}" />
+                {{#if errors.name }}
+                <span class="error-span">{{#i18n}}{{errors.name}}{{/i18n}}</span>
+                {{/if}}
+            </div>
+            <div class="form-row">
+                <label>{{i18n "Participantes"}}</label>
+                <div id="initialUsers" class="checkbox-list">
+
+                    {{!-- Recorre el array de emails de UsersModel --}}
+                    {{#each users.users}}
+                    <div>
+                        {{!-- @index indexa segun el each, inicia en 0 --}}
+                        <input type="checkbox" id="{{this}}" name="{{this}}" value="{{this}}" {{!-- Si pertenecen al
+                            proyecto los marca --}} {{#ifIncludes this ../selectedProject.emails}}checked="checked"
+                            {{/ifIncludes}} />
+                        <label>
+                            {{this}}
+                        </label>
+                    </div>
+                    {{/each}}
+                </div>
+                {{#if errors.users }}
+                <span class="error-span">{{#i18n}}{{errors.users}}{{/i18n}}</span>
+                {{/if}}
+            </div>
+
+            <div class="form-row">
+                <label>{{i18n "Categorias"}}</label>
+                <div id="initialCats" class="checkbox-list">
+
+                    {{!-- Recorre el array de categorias --}}
+                    {{#each categories.categories}}
+                    <div>
+                        {{!-- @index indexa segun el each, inicia en 0 --}}
+                        <input type="checkbox" id="{{this.name}}" name="{{this.name}}" value="{{this.name}}" {{!-- Si
+                            pertenecen al proyecto los marca --}} 
+                            {{#ifIncludes this.name ../selectedProject.categories}}checked="checked" {{/ifIncludes}} />
+                        <label>
+                            {{this.name}}
+                        </label>
+                    </div>
+                    {{/each}}
+                </div>
+                {{#if errors.categories }}
+                <span class="error-span">{{#i18n}}{{errors.categories}}{{/i18n}}</span>
+                {{/if}}
+            </div>
+
+            <div class="form-actions">
+
+                <button type="button" class="Fsecondary" id="cancelProjectBtn">{{i18n "Cancelar"}}
+                </button>
+
+                {{#if selectedProject.editing}}
+                <input value="{{id}}" type="hidden" name="id" />
+                {{/if}}
+
+                <button type="button" class="Fprimary" id="saveProjectBtn">
+                    {{#if selectedProject.editing}}
+                    {{i18n "Editar Proyecto"}}
+                    {{else}}
+                    {{i18n "Crear proyecto"}}
+                    {{/if}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

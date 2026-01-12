@@ -1,0 +1,106 @@
+<div>
+
+    <header>
+
+        <div class="header-content">
+
+            <div class="header-left">
+                <div class="project-title" id="projName">{{selectedProject.name}}</div>
+
+                <div class="stats-container">
+
+                    <div class="stat-item">
+                        <span id="participantsCount">{{selectedProject.usersCount}}</span>
+                        <span class="stat-label">{{i18n "Participantes"}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="todoTasks">{{selectedProject.todoCount}}</span>
+                        <span class="stat-label">{{i18n
+                            "Tareas Pendientes"}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="workingTasks">{{selectedProject.workingCount}}</span>
+                        <span class="stat-label">{{i18n
+                            "Tareas En Proceso"}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="doneTasks">{{selectedProject.doneCount}}</span>
+                        <span class="stat-label">{{i18n
+                            "Tareas Completadas"}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="totalTasks">{{selectedProject.tasksCount}}</span>
+                        <span class="stat-label">{{i18n
+                            "Tareas Totales"}}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="completionRate">{{selectedProject.completedPercent}}%</span>
+                        <span class="stat-label">{{i18n "Completado"}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="backBtn" class="Vbtn primary">{{i18n "Volver"}}</button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="project-content">
+        <div class="tasks-container">
+            <div class="cols">
+                <div class="col">
+
+                    <h4>{{i18n "Por Hacer"}}</h4>
+                    <div id="col-todo">
+                        {{#each selectedProject.todo}}
+                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.todo[{{@index}}]"
+                            id="item-{{id}}" class="task"></div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>{{i18n "En Proceso"}}</h4>
+                    <div id="col-working">
+
+                        {{#each selectedProject.working}}
+                        <div fronty-component="TaskRowComponent" key="{{id}}"
+                            model="selectedProject.working[{{@index}}]" id="item-{{id}}" class="task"></div>
+                        {{/each}}
+
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>{{i18n "Acabado"}}</h4>
+                    <div id="col-done">
+
+                        {{#each selectedProject.done}}
+                        <div fronty-component="TaskRowComponent" key="{{id}}" model="selectedProject.done[{{@index}}]"
+                            id="item-{{id}}" class="task">
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-actions">
+
+            <button class="VbtnA" id="openTaskModal">
+                {{i18n "+ Nueva Tarea"}}</button>
+
+            <button class="VbtnA" id="editProjBtn">
+                {{i18n "Editar Proyecto"}}</button>
+
+
+            <input value="{{selectedProject.id}}" type="hidden" name="id">
+            <button class="VbtnD" id="deleteProjBtn" type="button">{{i18n "Eliminar Proyecto"}}</button>
+
+        </div>
+
+    </main>
+</div>

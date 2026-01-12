@@ -1,0 +1,1295 @@
+:root {
+    --bg-dark: #0a0b0f;
+    --bg-light: #141721;
+    --surface-dark: #1a1b23;
+    --surface-lighter: #22242e;
+    --accent-neon: #00ff9d;
+    --accent-glow: #00cc7e;
+    --text-bright: #ffffff;
+    --text-dim: #9da3b4;
+    --btn-text-primary: #000;
+    --border-dark: #2a2d3a;
+    --danger: #ff3b3b;
+    font-family: 'Inter', sans-serif;
+}
+
+.light-theme {
+    --bg-dark: #d9dceb;
+    --bg-light: #ffffff;
+    --surface-dark: #ffffff;
+    --surface-lighter: #f5f6fa;
+    --accent-neon: #00664d;
+    --accent-glow: #004d3a;
+    --text-bright: #000000;
+    --text-dim: #525769;
+    --btn-text-primary: #ffffff;
+    --border-dark: #e6e7ee; 
+    --danger: #c0392b;
+}
+
+.theme-toggle:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Smooth transitions for background and color changes */
+body,
+.modal,
+input,
+button {
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* Global placement for pages without modal header */
+.theme-toggle.global {
+    position: absolute;
+    top: 5px;
+    right: 110px;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.02);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--accent-neon);
+}
+
+/*
+Commons
+*/
+.lang-switch {
+    position: absolute;
+    align-self: flex-end;
+    justify-content: flex-end;
+    top: 10px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+
+}
+
+.lang-btn {
+    background: var(--accent-neon);
+    display: flex;
+    color: var(--btn-text-primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.lang-btn:hover {
+    background: var(--accent-glow);
+}
+
+/* Footer */
+footer.site-footer {
+    margin-top: auto;
+    background: transparent;
+    /*background: #0f1724;  ---- Old setting*/
+    color: var(--text-bright);
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+    width: 95%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer .small-text {
+    opacity: 0.7;
+}
+
+/* Links */
+a {
+    color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ###############################################################################
+                                    Forms   
+   ###############################################################################   */
+.Fbody {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    justify-content: center;
+    align-items: center;
+}
+
+.Fcheckbox-list>div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.Fcheckbox-list input[type="checkbox"] {
+    accent-color: var(--accent-neon);
+}
+
+.Fcheckbox-list label {
+    color: var(--text-bright);
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.form-row label {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+}
+
+/*Conflicto en el input; esta presente en TasksForm y Porjectsform*/
+input[type="text"],
+textarea,
+select {
+    background: var(--surface-lighter);
+    border: 1px solid var(--border-dark);
+    padding: 10px 12px;
+    color: var(--text-bright);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border 0.2s, box-shadow 0.25s;
+}
+
+input[type="date"] {
+    width: 100%;          
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--surface-dark); 
+    color: var(--text-bright);
+    border: 1px solid var(--border-dark);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.25);
+    outline: none;
+}
+
+input[readonly],
+textarea[readonly],
+select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+
+button.Fprimary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button.Fsecondary {
+    background: transparent;
+    color: var(--accent-neon);
+    border: 2px solid var(--accent-neon);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.Fprimary:hover,
+.Fsecondary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.error-span {
+    color: var(--danger);
+    font-size: 14px;
+    background: rgba(255, 59, 59, 0.1);
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 59, 59, 0.2);
+}
+
+
+.modal-overlay,
+.Fmodal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 15, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-box,
+.Fmodal-box {
+    width: 95%;
+    max-width: 520px;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-dark);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 0 22px rgba(0, 255, 157, 0.09);
+    color: var(--text-bright);
+    animation: fadeIn 0.25s ease-out;
+}
+
+.modal-box h3,
+.Fmodal h3 {
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+    color: var(--accent-neon);
+    text-shadow: 0 0 6px rgba(0, 255, 157, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-footer,
+.Fmodal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn {
+    background: var(--surface-lighter);
+    padding: 9px 18px;
+    color: var(--text-bright);
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.25s;
+}
+
+.btn:hover {
+    background: #2d2f39;
+    transform: translateY(-2px);
+}
+
+#cancelCategoryBtn {
+    margin-top: 20px;
+}
+
+.Smodal-box {
+    width: 95%;
+    max-width: 520px;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-dark);
+    border-radius: 14px;
+    box-shadow: 0 0 22px rgba(0, 255, 157, 0.09);
+    color: var(--accent-neon);
+    animation: fadeIn 0.25s ease-out;
+    
+    display: flex;           
+    flex-direction: column;  
+    max-height: 85vh; 
+    
+    padding: 0; 
+}
+
+.Smodal-content {
+    flex: 1; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding: 24px; 
+    box-sizing: border-box;
+}
+
+.Smodal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Smodal-content::-webkit-scrollbar-track {
+    background: var(--surface-dark); 
+}
+
+.Smodal-content::-webkit-scrollbar-thumb {
+    background: var(--surface-lighter);
+    border-radius: 10px;
+}
+
+.Smodal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-neon);
+}
+/* ###############################################################################
+                                    WelcomePage.php   
+   ###############################################################################  */
+
+.WPBody {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.WPcontainer {
+    max-width: 900px;
+    margin: 48px auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.welcome-card {
+    width: 45%;
+    background: var(--surface-dark);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 6px 24px rgba(0, 255, 157, 0.08);
+}
+
+.welcome-card h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    color: var(--accent-neon);
+}
+
+.welcome-card .subtitle {
+    margin: 0;
+    color: var(--text-dim);
+}
+
+button.primary,
+button.secondary {
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10pt;
+    text-transform: uppercase;
+    border: none;
+    font-size: 1rem;
+}
+
+button.primary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+}
+
+button.secondary {
+    background: transparent;
+    color: var(--accent-neon);
+    border: 2px solid var(--accent-neon);
+}
+
+#openLogin, 
+#openRegister{
+    margin-top: 20px;
+}
+
+/* ###############################################################################
+                                    Register.php   
+   ###############################################################################   */
+
+
+.Rbody {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    justify-content: center;
+    align-items: center;
+}
+
+.Roverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 15, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.Rmodal {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface-dark);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-dark);
+}
+
+.Rmodal h2 {
+    margin: 0 0 16px;
+    color: var(--accent-neon);
+}
+
+/* ###############################################################################
+                                    Login.php   
+   ###############################################################################   */
+.Lbody {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    justify-content: center;
+    align-items: center;
+}
+
+.Loverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 11, 15, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.Lmodal {
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface-dark);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-dark);
+}
+
+.Lmodal h2 {
+    margin: 0 0 16px;
+    color: var(--accent-neon);
+}
+
+/* ###############################################################################
+                                    projects/view.php   
+   ###############################################################################   */
+
+.Vbody {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    font-family: 'Inter', sans-serif;
+}
+
+.Vheader {
+    background: var(--surface-dark);
+    padding: 18px 30px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.Vheader-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.project-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.stats-container {
+    display: flex;
+    gap: 35px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item span:first-child {
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: bold;
+}
+
+.project-content {
+    padding: 32px;
+}
+
+.Vcols {
+    display: flex;
+    gap: 24px;
+}
+
+.Vcol {
+    flex: 1;
+    background: var(--surface-dark);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.05)
+}
+
+.Vcol h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: 600;
+}
+
+.task {
+    background: var(--surface-lighter);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dark);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 0.25s;
+    gap: 15px;
+}
+
+.task:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+}
+
+.VDiv {
+    display: flex;         
+    flex-direction: row;   
+    align-items: center;    
+    gap: 8px;              
+    flex-shrink: 0;       
+    white-space: nowrap;    
+}
+
+.task .btnA {
+    flex: auto;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.task .btnA:hover {
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
+}
+
+.task .btnD {
+    flex: auto;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--danger);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.task .btnD:hover {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.VbtnA {
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid var(--accent-neon);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.VbtnA:hover {
+    background: var(--accent-glow);
+    color: var(--btn-text-primary);
+}
+
+.VbtnD {
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid var(--danger);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.VbtnD:hover {
+    background: var(--danger);
+    color: var(--btn-text-primary);
+}
+
+.task-actions {
+    margin-top: 32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+
+
+.small {
+    border: var(--border-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 10pt;
+}
+
+.small.text {
+    font-size: 0.8rem;
+    color: var(--text-bright);
+}
+
+.date-inputs {
+    display: flex;      
+    gap: 20px;          
+}
+
+.date-group {
+    display: flex;
+    flex-direction: column; 
+    flex: 1;               
+}
+
+.date-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--text-dim);
+}
+/* ###############################################################################
+                                    projects/index.php   
+   ###############################################################################   */
+.Ibody {
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    background: var(--bg-dark);
+    margin: 10pt;
+    padding: 20px;
+    max-width: 100%;
+    color: var(--text-bright);
+}
+
+.Iheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface-dark);
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 32px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 18px;
+    background: var(--surface-lighter);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    color: var(--accent-neon);
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+}
+
+.table-container {
+    background: var(--surface-dark);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-dark);
+    width: 91.5%;
+    margin: 0 auto;
+    overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+td {
+    background: var(--surface-dark);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+th,
+td {
+    padding: 16px;
+}
+
+.task-count {
+    display: inline-block;
+    background: var(--surface-lighter);
+    color: var(--accent-neon);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-dark);
+    min-width: 40px;
+    text-align: center;
+}
+
+.header-actions {
+    align-items: center;
+    align-self: auto;
+}
+
+.Iadd-btn {
+    align-self: center;
+    padding: 12px 24px;
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.Iadd-btn:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
+}
+
+.project-link {
+    color: var(--accent-neon);
+    text-decoration: none;
+}
+
+.project-link:hover {
+    color: var(--accent-glow);
+    transition: color 0.2s;
+}
+
+button.logout {
+    display: block;
+    background: var(--danger);
+    color: var(--btn-text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10pt;
+    margin-left: auto;
+}
+
+button.Iprimary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: center;
+}
+/* ###############################################################################
+                                    projects/form.php   
+   ###############################################################################   */
+
+
+.Fmodal-buttons,
+#newProjectModal .Fmodal-buttons {
+    text-align: right;
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.Fmodal-box .Fbtn {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background .2s, transform .15s;
+}
+
+.Fmodal-box .Fbtn.cancel {
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+    border: 1px solid var(--border-dark);
+}
+
+.Fmodal-box .Fbtn.cancel:hover {
+    background: #2c2f3a;
+}
+
+.Fmodal-box .Fbtn.primary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+}
+
+.Fmodal-box .Fbtn.primary:hover {
+    background: var(--accent-glow);
+}
+
+
+
+/* ###############################################################################
+                                    categories/index.php   
+   ###############################################################################   */
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    background: var(--surface-dark);
+    padding: 18px 30px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.btn.back {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border-radius: 6px;
+    padding: 8px 10px;
+    border: none;
+    align-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.project-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+.project-content {
+    padding: 32px;
+}
+
+.cols {
+    display: flex;
+    gap: 24px;
+}
+
+.col {
+    flex: 1;
+    background: var(--surface-dark);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.05);
+}
+
+.col h4 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: var(--accent-neon);
+    font-weight: 600;
+}
+
+.cat {
+    background: var(--surface-lighter);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dark);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: 0.25s;
+}
+
+.cat:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+}
+
+.cat .btn {
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-dark);
+    color: var(--text-bright);
+}
+
+.cat .btn:hover {
+    color: var(--accent-neon);
+    border-color: var(--accent-neon);
+}
+
+.task-actions {
+    margin-top: 32px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.action-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-dark);
+    background: var(--surface-lighter);
+    color: var(--text-bright);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    border-color: var(--accent-neon);
+    color: var(--accent-neon);
+}
+
+.action-btn.primary {
+    background: var(--accent-neon);
+    color: var(--btn-text-primary);
+    border: none;
+    font-weight: bold;
+}
+
+.action-btn.primary:hover {
+    background: var(--accent-glow);
+    box-shadow: 0 0 15px var(--accent-neon);
+}
+
+
+.action-btn.danger:hover {
+    background: var(--danger);
+    color: var(--btn-text-primary);
+}
+
+.btn.danger:hover{
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+/* ###############################################################################
+                                    categories/form.php   
+   ###############################################################################   */
+
+body {
+    margin: 0;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal h3 {
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+    color: var(--accent-neon);
+    text-shadow: 0 0 6px rgba(0, 255, 157, 0.4);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+input[readonly],
+textarea[readonly] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/** ###############################################################################
+                                    Responsive Styles   
+   ############################################################################### */
+
+@media (min-width: 1400px) {
+    .table-container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cols {
+        flex-direction: column;
+    }
+
+    .project-content {
+        padding: 20px;
+    }
+
+    .stats-container {
+        gap: 20px;
+    }
+
+    body {
+        padding: 16px;
+    }
+
+    .table-container {
+        width: 95%;
+    }
+
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 14px 20px;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .modal {
+        max-width: 360px;
+    }
+
+    .lang-switch {
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .task {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .task-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn.back {
+        margin-top: 0pt;
+    }
+
+    .cat {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .WPcontainer {
+        margin: 24px 12px;
+        padding: 16px;
+    }
+
+    .welcome-card {
+        padding: 20px;
+    }
+
+    .welcome-card h1 {
+        font-size: 28px;
+    }
+
+    button.primary,
+    button.secondary {
+        width: 100%;
+        border-top: 10pt;
+        padding: 14px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .modal,
+    .modal-box {
+        padding: 16px;
+        border-radius: 12px;
+        max-width: 92%;
+    }
+
+    body,
+    .overlay {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .table-container {
+        padding: 12px;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .modal-footer,
+    .modal-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .modal-box .btn,
+    .btn,
+    .Fbtn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    button.primary,
+    button.secondary,
+    .btn.primary {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: stretch;
+    }
+
+
+    .col {
+        padding: 14px;
+    }
+
+    .cat,
+    .task {
+        padding: 12px;
+    }
+
+    .action-btn,
+    .btn.primary,
+    .btn.back {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn.back {
+        margin-top: 0;
+    }
+
+    .project-title {
+        font-size: 26px;
+    }
+
+    .project-content {
+        padding: 16px;
+    }
+
+    .task-count {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .username {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+}
