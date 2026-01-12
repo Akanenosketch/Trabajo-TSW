@@ -411,6 +411,7 @@ button.secondary {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    margin-top: 10pt;
     text-transform: uppercase;
     border: none;
     font-size: 1rem;
