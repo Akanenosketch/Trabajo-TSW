@@ -46,15 +46,19 @@ if ($task != null) $taskUsers = $task->getUsers();
                             <?php if ($isViewing): ?>readonly<?php endif ?> />
                     </div>
                     <div class="form-row">
-                        <label><?= i18n("Fecha de Inicio") ?></label>
-                        <input id="modalTaskBegin" name="beginDate" type="date" required
-                            value="<?php if (!is_null($task)): ?><?= $task->getBeginDate() ?><?php endif ?>"
-                            <?php if ($isViewing): ?>readonly<?php endif ?> />
-                      
-                        <label><?= i18n("Fecha de Fin") ?></label>
-                        <input id="modalTaskEnd" name="endDate" type="date" required
-                            value="<?php if (!is_null($task)): ?><?= $task->getEndDate() ?><?php endif ?>"
-                            <?php if ($isViewing): ?>readonly<?php endif ?> />
+                        <div class="date-inputs">
+                            <div class="date-group">
+                                <label><?= i18n("Fecha de Inicio") ?></label>
+                                <input id="modalTaskBegin" name="beginDate" type="date" required
+                                    value="<?php if (!is_null($task)): ?><?= $task->getBeginDate() ?><?php endif ?>"
+                                    <?php if ($isViewing): ?>readonly<?php endif ?> />
+
+                                <label><?= i18n("Fecha de Fin") ?></label>
+                                <input id="modalTaskEnd" name="endDate" type="date" required
+                                    value="<?php if (!is_null($task)): ?><?= $task->getEndDate() ?><?php endif ?>"
+                                    <?php if ($isViewing): ?>readonly<?php endif ?> />
+                            </div>
+                        </div>
                     </div>
                     <div class="form-row">
                         <label><?= i18n("Estado") ?></label>

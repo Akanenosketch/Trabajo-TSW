@@ -26,12 +26,11 @@ body {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 11, 15, 0.75);
+    background: rgba(10, 11, 15, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 999;
-    overflow-y: auto;
 }
 
 .modal-box {
@@ -81,6 +80,32 @@ select {
     border-radius: 8px;
     font-size: 0.95rem;
     transition: border 0.2s, box-shadow 0.25s;
+}
+
+input[type="date"] {
+    width: 100%;          
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--surface-dark); 
+    color: var(--text-bright);
+    border: 1px solid var(--border-dark);
+}
+
+.date-inputs {
+    display: flex;      
+    gap: 20px;          
+}
+
+.date-group {
+    display: flex;
+    flex-direction: column; 
+    flex: 1;               
+}
+
+.date-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--text-dim);
 }
 
 input:focus,
