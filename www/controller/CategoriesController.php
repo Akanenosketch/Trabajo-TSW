@@ -26,12 +26,6 @@ class CategoriesController extends BaseController{
 		$this->categoryMapper = new CategoryMapper();
 	}
 
-
-
-
-
-
-
     /**
 	 * Action to list categories.
 	 *
@@ -131,8 +125,14 @@ class CategoriesController extends BaseController{
                 // validate Project object
                 $cat->checkIsValidForRegister(); // if it fails, ValidationException
 
-                // save the Project object into the database
-                $this->categoryMapper->save($cat);
+				if (!$this->categoryMapper->categoryExists($cat->getName())) {
+					// save the Cat object into the database
+					$this->categoryMapper->save($cat);
+				} else {
+					$errors = array();
+					$errors["name"] = i18n("Existe una categoria con el mismo nombre");
+					throw new ValidationException($errors, msg: i18n("cat no valido"));
+				}
 
                 // POST-REDIRECT-GET 
                 $this->view->redirect("categories", "index");
