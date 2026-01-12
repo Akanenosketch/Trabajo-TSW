@@ -10,7 +10,7 @@ $project = $view->getVariable("project");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/projects/view.css">
     <title><?= i18n("Proyecto") ?></title>
 </head>
 
