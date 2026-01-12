@@ -44,7 +44,7 @@ Commons
 .lang-btn {
     background: var(--accent-neon);
     display: flex;
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     padding: 5px 10px;
     border-radius: 5px;
     text-decoration: none;
@@ -547,7 +547,7 @@ button.secondary {
 
 .Vbtn.danger:hover {
     background: var(--danger);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
 }
 
 .Vtask-actions {
@@ -577,7 +577,7 @@ button.secondary {
 
 .Vbtn.back {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     border-radius: 6px;
     padding: 8px 10px;
     border: none;
@@ -606,7 +606,7 @@ button.secondary {
 
 .action-btn.primary {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     border: none;
     font-weight: bold;
 }
@@ -623,7 +623,7 @@ button.secondary {
 
 .action-btn.danger:hover {
     background: var(--danger);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
 }
 
 .small {
@@ -731,7 +731,7 @@ td {
     align-self: center;
     padding: 12px 24px;
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     border-radius: 8px;
     font-weight: 600;
     text-transform: uppercase;
@@ -832,7 +832,7 @@ header {
 
 .btn.back {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     border-radius: 6px;
     padding: 8px 10px;
     border: none;
@@ -845,7 +845,7 @@ header {
 
 .btn.primary {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     border-radius: 6px;
     padding: 8px 14px;
     border: none;
@@ -931,7 +931,7 @@ header {
 
 .btn.danger:hover {
     background: var(--danger);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
 }
 
 .task-actions {
@@ -962,7 +962,7 @@ header {
 
 .action-btn.primary {
     background: var(--accent-neon);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
     border: none;
     font-weight: bold;
 }
@@ -979,7 +979,7 @@ header {
 
 .action-btn.danger:hover {
     background: var(--danger);
-    color: var(--bg-dark);
+    color: var(--btn-text-primary);
 }
 
 .small {

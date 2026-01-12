@@ -98,6 +98,7 @@ $catNum = 1;
             </form>
         </div>
     </div>
+    <script src="./view/js/theme.js"></script>
     <script src="./view/js/projects/form.js"></script>
 </body>
 
