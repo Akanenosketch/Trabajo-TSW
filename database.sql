@@ -124,6 +124,14 @@ VALUES ('TSWTestDone', 2, "Done", "desc6", "Low", '2024-02-10', '2024-02-20');
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,1);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,2);
 INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,3);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw2@uvigo.es',1,1);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,4);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,5);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',1,6);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',2,7);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',2,8);
+INSERT INTO users_on_tasks (user_mail,project_id,task_id) VALUES ('tsw@uvigo.es',2,9);
+
 
 INSERT INTO categories (cat_name, cat_desc) VALUES ("Trabajo","Descripcion Trabajo");
 INSERT INTO categories (cat_name, cat_desc) VALUES ("Personal","Descripcion Personal");
