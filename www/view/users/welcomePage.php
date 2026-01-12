@@ -11,7 +11,7 @@ $errors = $view->getVariable("errors");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/users/welcomePage.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
     <title><?= i18n("Pagina de Bienvenida") ?></title>
 </head>
 
