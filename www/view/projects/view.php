@@ -69,14 +69,17 @@ $project = $view->getVariable("project");
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "ToDo") == 0): ?>
                                 <div class="task">
-                                    <span><?= $task->getName() ?>
-                                        <span class="small">
-                                            <?php foreach ($task->getUsers() as $user): ?>
-                                                <?= $user->getUserName() . "\n" ?>
-                                            <?php endforeach; ?>
+                                    <div class="task-info">
+                                        <span><?= $task->getName() ?>
+                                            <span class="small">
+                                                <?php foreach ($task->getUsers() as $user): ?>
+                                                    <?= $user->getUserName() . "\n" ?>
+                                                <?php endforeach; ?>
+                                            </span>
                                         </span>
-                                    </span>
-                                    <div>
+                                    </div>                
+
+                                    <div class="task-controls">
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Ver") ?></button>
@@ -85,7 +88,7 @@ $project = $view->getVariable("project");
                                             href="index.php?controller=tasks&amp;action=edit&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Editar") ?></button>
                                         </a>
-                                        <form method="post" action="index.php?controller=tasks&amp;action=delete">
+                                        <form method="post" class="in-lineForm" action="index.php?controller=tasks&amp;action=delete">
                                             <input value="<?= $project->getId() ?>" type="hidden" name="id">
                                             <input value="<?= $task->getId() ?>" type="hidden" name="task_id">
                                             <button class="btn danger" type="submit"><?= i18n("Borrar") ?></button>
@@ -102,14 +105,17 @@ $project = $view->getVariable("project");
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "Working") == 0): ?>
                                 <div class="task">
-                                    <span><?= $task->getName() ?>
-                                        <span class="small">
-                                            <?php foreach ($task->getUsers() as $user): ?>
-                                                <?= $user->getUserName() . "\n" ?>
-                                            <?php endforeach; ?>
+                                    <div class="task-info">
+                                        <span><?= $task->getName() ?>
+                                            <span class="small">
+                                                <?php foreach ($task->getUsers() as $user): ?>
+                                                    <?= $user->getUserName() . "\n" ?>
+                                                <?php endforeach; ?>
+                                            </span>
                                         </span>
-                                    </span>
-                                    <div class="Vdiv">
+                                    </div>                
+
+                                    <div class="task-controls">
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Ver") ?></button>
@@ -135,14 +141,17 @@ $project = $view->getVariable("project");
                         <?php foreach ($project->getTasks() as $task): ?>
                             <?php if (strcmp($task->getStatus(), "Done") == 0): ?>
                                 <div class="task">
-                                    <span><?= $task->getName() ?>
-                                        <span class="small">
-                                            <?php foreach ($task->getUsers() as $user): ?>
-                                                <?= $user->getUserName() . "\n" ?>
-                                            <?php endforeach; ?>
+                                     <div class="task-info">
+                                        <span><?= $task->getName() ?>
+                                            <span class="small">
+                                                <?php foreach ($task->getUsers() as $user): ?>
+                                                    <?= $user->getUserName() . "\n" ?>
+                                                <?php endforeach; ?>
+                                            </span>
                                         </span>
-                                    </span>
-                                    <div>
+                                    </div>                
+
+                                    <div class="task-controls">
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Ver") ?></button>

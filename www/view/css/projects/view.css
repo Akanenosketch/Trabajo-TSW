@@ -146,14 +146,44 @@ header {
     margin-bottom: 14px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     transition: 0.25s;
 }
+
 
 .task:hover {
     transform: translateY(-2px);
     border-color: var(--accent-neon);
     box-shadow: 0 0 8px rgba(0, 255, 157, 0.2);
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-name {
+    font-weight: bold;
+    color: var(--text-bright);
+}
+
+.task-controls {
+    display: flex;
+    flex-direction: row; /* Fuerza la fila */
+    align-items: center;
+    gap: 8px; /* Espacio entre botones */
+}
+
+.task-controls form {
+    margin: 0;
+    display: flex;
+}
+
+.in-lineForm {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
 }
 
 .task .btn {
@@ -164,6 +194,7 @@ header {
     border: 1px solid var(--border-dark);
     background: var(--surface-dark);
     color: var(--text-bright);
+    white-space: nowrap;
 }
 
 .task .btn:hover {
