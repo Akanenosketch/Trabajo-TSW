@@ -12,10 +12,11 @@
     --btn-text-primary: #000;
     --border-dark: #2a2d3a;
     --danger: #ff3b3b;
-    font-family: 'Inter', sans-serif;
+    /*font-family: 'Inter', system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;*/
 }
 
 body {
+    font-family: 'Inter', system-ui, Arial, sans-serif;
     background: var(--bg-dark);
     margin: 10pt;
     padding: 20px;
@@ -179,6 +180,11 @@ th, td {
     width: 90%;
     max-width: 450px;
     box-shadow: 0 0 40px rgba(0,255,157,0.1);
+}
+
+a {
+    text-decoration: none;
+    color: transparent;
 }
 
 .project-link {

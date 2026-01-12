@@ -2,8 +2,8 @@
 
 /* Light theme overrides (applied when <body> has class "light-theme") */
 .light-theme {
-    --bg-dark: #d9dceb;
-    --bg-light: #ffffff;
+    --bg-dark: #ffffff;
+    --bg-light: #888fa6;
     --surface-dark: #ffffff;
     --surface-lighter: #f5f6fa;
     --accent-neon: #00664d;
@@ -11,8 +11,23 @@
     --text-bright: #000000;
     --text-dim: #525769;
     --btn-text-primary: #ffffff;
-    --border-dark: #e6e7ee; 
+    --border-dark: #e6e7ee;
     --danger: #c0392b;
+}
+
+/* Theme toggle button */
+
+.theme-toggle {
+    position: relative;
+    /*top: 6px;*/
+    /*right: 6px;*/
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--accent-neon);
 }
 
 .theme-toggle:focus {
@@ -30,12 +45,5 @@ body, .modal, input, button {
     top: 5px;
     right: 110px;
     z-index: 9999;
-    background: rgba(255, 255, 255, 0.02);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 6px;
-    border-radius: 8px;
-    color: var(--accent-neon);
+    background: rgba(255,255,255,0.02);
 }

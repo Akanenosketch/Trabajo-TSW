@@ -11,12 +11,13 @@
     --btn-text-primary: #000000;
     --border-dark: #2a2d3a;
     --danger: #ff3b3b;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
 }
 
 body {
     margin: 0;
-    background: var(--bg-dark);
+    /*No funcional del todo, pendiente de seguir debbugeando*/
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-light));
     color: var(--text-bright);
     justify-content: center;
     align-items: center;
@@ -25,7 +26,7 @@ body {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 11, 15, 0.8);
+    background: rgba(10, 11, 15, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;

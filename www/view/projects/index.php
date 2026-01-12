@@ -13,30 +13,30 @@ $currentuserName = $view->getVariable("currentusername");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/projects/index.css">
     <title><?= i18n("Dashboard") ?></title>
 </head>
 
-<body class="Ibody">
+<body>
     <div class="lang-switch">
         <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
         <a href="index.php?controller=language&amp;action=change&amp;lang=en" class="lang-btn">EN</a>
     </div>
     <button id="themeToggle" class="theme-toggle global" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
-    <header class="Iheader">
+    <header>
         <div>
             <div class="username" id="userDisplay"><?= $currentuserName ?></div>
         </div>
         <div>
             <a href="index.php?controller=categories&amp;action=index">
-                <button type="button" class="Iadd-btn"><?= i18n("Listar Categorias") ?></button>
+                <button type="button" class="add-btn"><?= i18n("Listar Categorias") ?></button>
             </a>
             <a href="index.php?action=edit">
-                <button type="button" class="Iadd-btn"><?= i18n("Editar Usuario") ?></button>
+                <button type="button" class="add-btn"><?= i18n("Editar Usuario") ?></button>
             </a>
 
             <a href="index.php?action=logout">
-                <button type="button" class="Iadd-btn"><?= i18n("Cerrar sesion") ?></button>
+                <button type="button" class="add-btn"><?= i18n("Cerrar sesion") ?></button>
             </a>
         </div>
     </header>
@@ -73,7 +73,7 @@ $currentuserName = $view->getVariable("currentusername");
                 </table>
                 <div class="add-project-container">
                     <a href="index.php?controller=projects&amp;action=add">
-                        <button id="openNewProjectModal" class="Iadd-btn"><?= i18n("Añadir Proyecto") ?></button>
+                        <button id="openNewProjectModal" class="add-btn"><?= i18n("Añadir Proyecto") ?></button>
                     </a>
                 </div>
             </div>

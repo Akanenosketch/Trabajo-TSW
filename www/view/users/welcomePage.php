@@ -11,13 +11,13 @@ $errors = $view->getVariable("errors");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/users/welcomePage.css">
     <title><?= i18n("Pagina de Bienvenida") ?></title>
 </head>
 
-<body class="WPBody">
+<body>
     <button id="themeToggle" class="theme-toggle global" aria-label="<?= i18n("Alternar tema") ?>">🌙</button>
-    <main class="WPcontainer">
+    <main class="container">
 
         <div class="lang-switch">
             <a href="index.php?controller=language&amp;action=change&amp;lang=es" class="lang-btn">ES</a>
@@ -40,7 +40,7 @@ $errors = $view->getVariable("errors");
     <footer class="site-footer">
         <div><strong><?= i18n("Informacion:") ?></strong> <?= i18n("Proyecto Trabajo-TSW — Interfaz.") ?>
         </div>
-        <div class="small-text"><?= i18n("Contacto: equipo@example.com · Version 1.0") ?></div>
+        <div class="small"><?= i18n("Contacto: equipo@example.com · Version 1.0") ?></div>
     </footer>
 
     <script src="./view/js/theme.js"></script>

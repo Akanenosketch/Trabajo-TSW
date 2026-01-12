@@ -19,14 +19,14 @@ $catNum = 1;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/projects/form.css">
     <title><?= i18n("Formulario de Projectos") ?></title>
 </head>
 
 <body>
 
-    <div id="newProjectModal" class="Fmodal-overlay">
-        <div class="Fmodal-box">
+    <div id="newProjectModal" class="modal-overlay">
+        <div class="modal-box">
             <h3>
                 <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
                 <?php if (is_null($project)): ?><?= i18n("Nuevo Proyecto") ?><?php endif ?>
@@ -41,7 +41,7 @@ $catNum = 1;
                 </div>
                 <div class="form-row">
                     <label><?= i18n("Participantes") ?></label>
-                    <div id="initialUsers" class="Fcheckbox-list">
+                    <div id="initialUsers" class="checkbox-list">
 
                         <?php foreach ($users as $user): ?>
                             <div>
@@ -60,7 +60,7 @@ $catNum = 1;
 
                 <div class="form-row">
                     <label><?= i18n("Categorias") ?></label>
-                    <div id="initialCats" class="Fcheckbox-list">
+                    <div id="initialCats" class="checkbox-list">
                         <?php foreach ($categories as $cat): ?>
                             <div>
                                 <input type="checkbox"
@@ -83,13 +83,13 @@ $catNum = 1;
                         <?php if (!is_null($project)): ?>
                             <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $project->getId() ?>">
                             <?php endif ?>
-                            <button type="button" class="Fbtn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
+                            <button type="button" class="btn" id="cancelProjectBtn"><?= i18n("Cancelar") ?></button>
                             </a>
                             <?php if (!is_null($project)): ?>
                                 <input value="<?= $project->getId() ?>" type="hidden" name="id" />
                             <?php endif ?>
 
-                            <button type="submit" class="Fbtn primary">
+                            <button type="submit" class="btn primary">
 
                                 <?php if (!is_null($project)): ?><?= i18n("Editar Proyecto") ?><?php endif ?>
                                 <?php if (is_null($project)): ?><?= i18n("Crear proyecto") ?><?php endif ?>

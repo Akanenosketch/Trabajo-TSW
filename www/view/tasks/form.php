@@ -19,17 +19,17 @@ if ($task != null) $taskUsers = $task->getUsers();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./view/css/theme.css">
-    <link rel="stylesheet" type="text/css" href="./view/css/unifiedThemes.css">
+    <link rel="stylesheet" type="text/css" href="./view/css/tasks/form.css">
     <title><?= i18n("Formulario de Tareas") ?></title>
 </head>
 
-<body class="Fbody">
+<body>
 
     <form action="index.php?controller=tasks&amp;action=<?php if (!is_null($task) && !$isViewing): ?>edit<?php endif ?><?php if (is_null($task)): ?>add<?php endif ?>" method="post">
-        <div id="taskModal" class="Fmodal-overlay">
+        <div id="taskModal" class="modal-overlay">
 
-            <div class="Fmodal-box">
-                <div class="Fmodal-content">
+            <div class="modal-box">
+                <div class="modal-content">
                     <h3 id="taskModalTitle">
                         <?php if (!is_null($task) && !$isViewing): ?><?= i18n("Editar Tarea") ?><?php endif ?><?php if (is_null($task)): ?><?= i18n("Añadir Tarea") ?><?php endif ?><?php if ($isViewing): ?><?= i18n("Datos de Tarea") ?><?php endif ?>
                     </h3>
@@ -82,7 +82,7 @@ if ($task != null) $taskUsers = $task->getUsers();
                     </div>
                     <div class="form-row">
                         <label><?= i18n("Asignar a") ?></label>
-                        <div id="modalTaskAssignees" class="Fcheckbox-list">
+                        <div id="modalTaskAssignees" class="checkbox-list">
 
                             <?php foreach ($users as $user): ?>
                                 <div>
@@ -98,11 +98,11 @@ if ($task != null) $taskUsers = $task->getUsers();
                         </div>
                     </div>
 
-                    <div class="Fmodal-footer">
+                    <div class="modal-footer">
                         <a href="index.php?controller=projects&amp;action=view&amp;id=<?= $projectID ?>">
-                            <button class="Fbtn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
+                            <button class="btn" id="cancelTaskBtn" type="button"><?= i18n("Cancelar") ?></button>
                         </a>
-                        <button class="Fbtn primary" type="submit" id="saveTaskBtn"
+                        <button class="btn primary" type="submit" id="saveTaskBtn"
                             <?php if ($isViewing): ?>
                             hidden="hidden"
                             <?php endif ?>><?= i18n("Guardar") ?></button>
