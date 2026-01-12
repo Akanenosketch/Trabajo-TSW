@@ -109,7 +109,7 @@ $project = $view->getVariable("project");
                                             <?php endforeach; ?>
                                         </span>
                                     </span>
-                                    <div>
+                                    <div class="Vdiv">
                                         <a
                                             href="index.php?controller=tasks&amp;action=view&amp;id=<?= $project->getId() ?>&amp;task_id=<?= $task->getId() ?>">
                                             <button class="btn"><?= i18n("Ver") ?></button>

@@ -241,6 +241,16 @@ header {
     color: var(--text-bright);
 }
 
+
+.VDiv {
+    display: flex;         
+    flex-direction: row;   
+    align-items: center;    
+    gap: 8px;              
+    flex-shrink: 0;       
+    white-space: nowrap;    
+}
+
 /*Link, para evitar que se muestre el color de los links*/
 a {
     color: transparent
