@@ -320,6 +320,47 @@ button.Fsecondary {
     margin-top: 20px;
 }
 
+.Smodal-box {
+    width: 95%;
+    max-width: 520px;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-dark);
+    border-radius: 14px;
+    box-shadow: 0 0 22px rgba(0, 255, 157, 0.09);
+    color: var(--accent-neon);
+    animation: fadeIn 0.25s ease-out;
+    
+    display: flex;           
+    flex-direction: column;  
+    max-height: 85vh; 
+    
+    padding: 0; 
+}
+
+.Smodal-content {
+    flex: 1; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding: 24px; 
+    box-sizing: border-box;
+}
+
+.Smodal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Smodal-content::-webkit-scrollbar-track {
+    background: var(--surface-dark); 
+}
+
+.Smodal-content::-webkit-scrollbar-thumb {
+    background: var(--surface-lighter);
+    border-radius: 10px;
+}
+
+.Smodal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-neon);
+}
 /* ###############################################################################
                                     WelcomePage.php   
    ###############################################################################  */
