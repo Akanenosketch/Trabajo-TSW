@@ -54,6 +54,8 @@ $category = $view->getVariable("category");
             </div>
             </div>
     </form>
+        <script src="./view/js/theme.js"></script>
+
 </body>
 
 <?php if (!is_null($errors)): ?>

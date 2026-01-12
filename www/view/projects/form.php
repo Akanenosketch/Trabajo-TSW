@@ -99,7 +99,6 @@ $catNum = 1;
         </div>
     </div>
     <script src="./view/js/theme.js"></script>
-    <script src="./view/js/projects/form.js"></script>
 </body>
 
 <?php if (!is_null($errors)): ?>
