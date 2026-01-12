@@ -164,6 +164,7 @@ header {
 .btn.danger:hover {
     background: var(--danger);
     color: var(--bg-dark);
+    border-color: transparent;
 }
 
 .task-actions {
